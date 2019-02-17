@@ -1,0 +1,88 @@
+# ========== Profile ========== #
+# avatar
+avatar: /avatar/avatar.jpg
+# author name
+author: clay
+# signature
+signature: do not resuscitate
+# SNS
+social:
+  email: clay4444@126.com
+  github: //github.com/clay4444
+  # wechat and qq should be a path of qr-code image
+  wechat: /assets/example_qr.png
+  qq: 
+  weibo: 
+  zhihu: 
+  douban: 
+  facebook: 
+  twitter: 
+  instagram: 
+  stack-overflow: 
+  v2ex: 
+  linkedin: 
+  others: 
+  rss: 
+# friends
+friends:
+  friendA: //www.cnblogs.com/moongeek
+  friendB: //www.google.com
+  friendC: 
+about:
+  enable: true
+  image: '/intro/about-bg.jpg'
+
+# ========== Site ========== #
+# title of the site
+SEO_title: 十年饮冰，难凉热血
+# main title
+main_title: 诚觉世事尽可原谅.
+# subtitle
+subtitle: it's better to burn out than to fade away
+# site haeder image
+site_header_image: '/intro/index-bg.jpg'
+# post haeder image
+post_header_image: '/intro/post-bg.jpg'
+# 404 image
+_404_image: '/intro/404-bg.jpg'
+
+# ========== Comment ========== #
+# Fill in the field to enable the corresponding comment plugin
+# If you want to add other comment plugin, edit in "custom.ejs"
+comment:
+  # Livere  site: https://livere.com/
+  livere_uid: 
+  # Disqus  site: https://disqus.com/
+  disqus_shortname: 
+  # Changyan  site: http://changyan.kuaizhan.com/
+  changyan_appid: 
+  changyan_conf: 
+  # Gitment  site: https://github.com/imsun/gitment
+  gitment_owner: 
+  gitment_repo: 
+  gitment_client_id: 
+  gitment_client_secret: 
+  # Youyan  site: http://www.uyan.cc/
+  youyan_uid: 
+
+# ========== Analytics ========== #
+# Busuanzi pv analytics
+busuanzi: true
+# Baidu analytics
+baidu_analytics: 
+# Google analytics
+google_analytics: 
+# CNZZ analytics
+CNZZ_analytics: 
+
+# ========== Others ========== #
+# favicon
+favicon: /assets/favicon.ico
+# truncate length of abstracts in index page (the default is 300, there will be no abstruct if you input 0)
+truncate_length: 
+# enable toc
+toc: true
+# intro height (the default is 50 percents of the screen, you can input other number)
+index_intro_height: 50
+post_intro_height: 50
+about_intro_height: 50
