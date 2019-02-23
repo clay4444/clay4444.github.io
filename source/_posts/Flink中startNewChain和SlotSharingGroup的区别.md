@@ -1,8 +1,9 @@
 ---
 title: Flink中startNewChain和SlotSharingGroup的区别
-date: 2019-02-22 20:24:24
 tags:
   - Flink
+abbrlink: 5c06dc97
+date: 2019-02-22 20:24:24
 ---
 
 ### 声明
