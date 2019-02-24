@@ -398,7 +398,7 @@ height:50vh;
         <h3 id="遍历的递归行为分析"><a href="#遍历的递归行为分析" class="headerlink" title="遍历的递归行为分析"></a>遍历的递归行为分析</h3><p><br></p>
 <p>依次来到节点的顺序是啥？</p>
 <p>每个节点会来到三次，这个顺序是不变的，只是我们把打印的时机放在哪，就被加工成了先序，中序和后序</p>
-<img src="/clay4444.github.io/posts/undefined/picture1.jpg">
+<img src="/clay4444.github.io/posts/7591844b/picture1.jpg">
 <p>我们把打印的时机放在第一次来到这个节点的时候，就是先序遍历，把打印的时机放在第二次来到这个节点的时候，就是中序遍历，把打印的时机放在第三次来到这个节点的时候，就是后序遍历，</p>
 <p><br></p>
 <h4 id="先序遍历"><a href="#先序遍历" class="headerlink" title="先序遍历"></a>先序遍历</h4><p>头节点，左子树，右子树</p>
@@ -413,7 +413,7 @@ height:50vh;
 <p>当前节点为空，从栈拿一个，打印，然后赋给当前节点，然后当前节点往右边跑</p>
 <p>当前节点不为空，当前压入栈，当前节点往左走，</p>
 <p>压一留左边界，然后依次往外弹，弹到每一个节点，再去遍历它右孩子这个过程，就模拟了左中右这个过程，</p>
-<img src="/clay4444.github.io/posts/undefined/picture2.jpg">
+<img src="/clay4444.github.io/posts/7591844b/picture2.jpg">
 <p><br></p>
 <h4 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h4><p>左子树，右子树，头节点</p>
 <p><br></p>
@@ -427,7 +427,7 @@ height:50vh;
 <p><br></p>
 <p>后继节点：</p>
 <p>中序遍历的排列顺序中一个节点后面的节点就叫这个节点的后继节点</p>
-<img src="/clay4444.github.io/posts/undefined/picture3.jpg">
+<img src="/clay4444.github.io/posts/7591844b/picture3.jpg">
 <p><br></p>
 <p>规律：</p>
 <ol>
@@ -444,7 +444,7 @@ height:50vh;
 <p><br></p>
 <h3 id="序列化和反序列化"><a href="#序列化和反序列化" class="headerlink" title="序列化和反序列化"></a>序列化和反序列化</h3><p>先序序列化</p>
 <p>遇到null需要加一个特殊符号标记遇到null了</p>
-<img src="/clay4444.github.io/posts/undefined/picture4.jpg">
+<img src="/clay4444.github.io/posts/7591844b/picture4.jpg">
 <p><br></p>
 <p>反序列化</p>
 <p><br></p>
@@ -471,7 +471,7 @@ height:50vh;
 <p><br></p>
 <p>列出可能性，整理出返回值的类型，整个递归过程按照同样的结构，得到子树的信息，整合子树的信息，加工出我的信息，往上返回，要求结构完全一致，因为是递归函数。这是最大的套路， 它不能帮你解决列出可能性，怎么解决这道题的思路，但是可以给你一个方法论，以及写代码会非常快，什么方法论？你就想我就会遍历每一个节点，考虑以每个节点为头的整棵树怎么怎么样，都判断完，这道题就出来了，整个大的方法论就是这样一个过程，然后左树收集什么信息，右树收集什么信息，列出可能性， 是你要去想的，也就仅是列出可能性这个问题是你需要想的，接下来怎么写代码完全套路的；</p>
 <p><br></p>
-<img src="/clay4444.github.io/posts/undefined/picture5.jpg">
+<img src="/clay4444.github.io/posts/7591844b/picture5.jpg">
 <p><br></p>
 <p>代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Code_06_IsBalancedTree</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">int</span> value;</span><br><span class="line">        <span class="keyword">public</span> Node left;</span><br><span class="line">        <span class="keyword">public</span> Node right;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> data)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.value = data;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ReturnData</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">boolean</span> isB;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">int</span> h;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">ReturnData</span><span class="params">(<span class="keyword">boolean</span> isB, <span class="keyword">int</span> h)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.isB = isB;</span><br><span class="line">            <span class="keyword">this</span>.h = h;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//===========第一种方法============================</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isB</span><span class="params">(Node head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> process(head).isB;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> ReturnData <span class="title">process</span><span class="params">(Node head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ReturnData(<span class="keyword">true</span>, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        ReturnData leftRes = process(head.left);</span><br><span class="line">        <span class="keyword">if</span> (!leftRes.isB) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ReturnData(<span class="keyword">false</span>, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        ReturnData rightRes = process(head.right);</span><br><span class="line">        <span class="keyword">if</span> (!rightRes.isB) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ReturnData(<span class="keyword">false</span>, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(Math.abs(leftRes.h - rightRes.h) &gt; <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ReturnData(<span class="keyword">false</span>,<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ReturnData(<span class="keyword">true</span>,Math.max(leftRes.h, rightRes.h) + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//===============第二种方法=================================</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isBalance</span><span class="params">(Node head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span>[] res = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">1</span>];</span><br><span class="line">        res[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line">        getHeight(head, <span class="number">1</span>, res);</span><br><span class="line">        <span class="keyword">return</span> res[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getHeight</span><span class="params">(Node head, <span class="keyword">int</span> level, <span class="keyword">boolean</span>[] res)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> level;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> lH = getHeight(head.left, level + <span class="number">1</span>, res);</span><br><span class="line">        <span class="keyword">if</span> (!res[<span class="number">0</span>]) &#123;</span><br><span class="line">            <span class="keyword">return</span> level;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> rH = getHeight(head.right, level + <span class="number">1</span>, res);</span><br><span class="line">        <span class="keyword">if</span> (!res[<span class="number">0</span>]) &#123;</span><br><span class="line">            <span class="keyword">return</span> level;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (Math.abs(lH - rH) &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            res[<span class="number">0</span>] = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Math.max(lH, rH);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Node head = <span class="keyword">new</span> Node(<span class="number">1</span>);</span><br><span class="line">        head.left = <span class="keyword">new</span> Node(<span class="number">2</span>);</span><br><span class="line">        head.right = <span class="keyword">new</span> Node(<span class="number">3</span>);</span><br><span class="line">        head.left.left = <span class="keyword">new</span> Node(<span class="number">4</span>);</span><br><span class="line">        head.left.right = <span class="keyword">new</span> Node(<span class="number">5</span>);</span><br><span class="line">        head.right.left = <span class="keyword">new</span> Node(<span class="number">6</span>);</span><br><span class="line">        head.right.right = <span class="keyword">new</span> Node(<span class="number">7</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(isBalance(head));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -502,7 +502,7 @@ height:50vh;
 <p><br></p>
 <p>思路：</p>
 <p> 先以头结点为开始，遍历左边界，找到整颗二叉树的总高度，然后找到头结点的右孩子，以右孩子为头节点遍历左边界，看是否可以遍历到最底层，如果遍历到了最底层，说明左子树是一颗满二叉树，可以根据公式直接计算出节点个数，然后右子树还是一颗完全二叉树，只需要递归计算即可，如果没有遍历到最底层，说明左子树不是一颗满二叉树，但是右子树肯定是一颗高度减一的满二叉树，此时左子树还是一颗完全二叉树，再递归计算左子树即可；</p>
-<img src="/clay4444.github.io/posts/undefined/picture6.jpg">
+<img src="/clay4444.github.io/posts/7591844b/picture6.jpg">
     </article>
     <!-- license  -->
     
@@ -510,13 +510,18 @@ height:50vh;
             <p>原文作者：<a href="http://clay4444.github.io">clay</a>
             </p><p>原文链接：<a href="http://clay4444.github.io/posts/7591844b/">http://clay4444.github.io/posts/7591844b/</a>
             </p><p>发表日期：<a href="http://clay4444.github.io/posts/7591844b/">February 24th 2019, 12:22:44 pm</a>
-            </p><p>更新日期：<a href="http://clay4444.github.io/posts/7591844b/">February 24th 2019, 12:24:17 pm</a>
+            </p><p>更新日期：<a href="http://clay4444.github.io/posts/7591844b/">February 24th 2019, 12:25:22 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/clay4444.github.io/posts/1a0f410c/" title="算法基础第五课">
+                    <div class="nextTitle">算法基础第五课</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -3240,9 +3245,96 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 147
+        Total : 148
         </div>
         <!-- search  -->
         
@@ -3255,6 +3347,11 @@ top:50vh;
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/1a0f410c/">算法基础第五课</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3412,17 +3509,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/9799c850/">MR中的计数器、job串联等功能实现</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
         </li>
     
     
@@ -3492,12 +3589,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/97e35c7b/">Storm的分组策略和确保消息送达机制</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/d5a66bc5/">Storm和kafka、Hbase之间的整合</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/d5a66bc5/">Storm和kafka、Hbase之间的整合</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/97e35c7b/">Storm的分组策略和确保消息送达机制</a>
         </li>
     
     
@@ -3507,7 +3604,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
         </li>
     
     
@@ -3517,7 +3614,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
         </li>
     
     
@@ -3542,6 +3639,11 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
@@ -3553,11 +3655,6 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
         </li>
     
     
@@ -3612,12 +3709,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/eb162f92/">并发编程实战(一)</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/eb162f92/">并发编程实战(一)</a>
         </li>
     
     
@@ -4042,9 +4139,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="环境部署问题系列"><span class="iconfont-archer">&#xe606;</span>环境部署问题系列</span>
     
-        <span class="sidebar-tag-name" data-tags="maven"><span class="iconfont-archer">&#xe606;</span>maven</span>
-    
         <span class="sidebar-tag-name" data-tags="快学scala读书笔记"><span class="iconfont-archer">&#xe606;</span>快学scala读书笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="maven"><span class="iconfont-archer">&#xe606;</span>maven</span>
     
         <span class="sidebar-tag-name" data-tags="zookeeper"><span class="iconfont-archer">&#xe606;</span>zookeeper</span>
     
