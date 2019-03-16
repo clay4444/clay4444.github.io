@@ -359,6 +359,62 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/117ed1fe/">
+            
+                <span>Flume日志收集框架初探</span>
+        </a>
+        <div class="abstract-content">
+            flume
+
+收集、移动、聚合大量日志数据的服务。
+基于流数据的架构，用于在线日志分析。
+基于事件。
+在生产和消费者之间启动协调作用。
+提供了事务保证，确保消息一定被分发。
+Source 多种
+sink多种.
+
+multihop        //多级跃点.
+
+
+Source​    接受数据，类型有多种。
+
+Channel临时存放地，对Source中来的数据进行缓冲，直到sink消费掉。
+
+Sink从channel提取数据存放到中央化存储(hadoop / hbase)。
+
+安装flume1.7.0
+下载
+
+tar
+
+环境变量
+
+验证flume是否成功
+$&gt;flume-ng ve...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/03/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="flume">flume</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/649d866d/">
             
                 <span>扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</span>
@@ -635,30 +691,6 @@ height:50vh;
         <a class="post-tag" href="javascript:void(0);" data-tags="并发编程实战读书笔记">并发编程实战读书笔记</a>
     
 </div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/4a0a5133/">
-            
-                <span>Java中的Runnable、Callable、Future、FutureTask的区别与示例</span>
-        </a>
-        <div class="abstract-content">
-            Runnable其中Runnable应该是我们最熟悉的接口，它只有一个run()函数，用于将耗时操作写在其中，该函数没有返回值。然后使用某个线程去执行该runnable即可实现多线程，Thread类在调用start()函数后就是执行的是Runnable的run()函数。Runnable的声明如下 : 
-123456789101112public interface Runnable &#123;    /**      * When an object implementing interface &lt;code&gt;Runnable&lt;/code&gt; is used    ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/26</span>
-            </div>
-            <!-- tags  -->
             
         </div>
     </article>
@@ -3629,9 +3661,30 @@ height:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 152
+        Total : 153
         </div>
         <!-- search  -->
         
@@ -3644,6 +3697,11 @@ height:50vh;
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/fdbf220/">算法进阶第二课</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3826,12 +3884,12 @@ height:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/9799c850/">MR中的计数器、job串联等功能实现</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/9799c850/">MR中的计数器、job串联等功能实现</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
         </li>
     
     
@@ -3886,22 +3944,22 @@ height:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
         </li>
     
     
@@ -3921,17 +3979,17 @@ height:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
         </li>
     
     
@@ -3956,12 +4014,7 @@ height:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
         </li>
     
     
@@ -3971,7 +4024,12 @@ height:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
     
@@ -4006,12 +4064,12 @@ height:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
@@ -4036,12 +4094,12 @@ height:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
         </li>
     
     
@@ -4456,9 +4514,9 @@ height:50vh;
     
         <span class="sidebar-tag-name" data-tags="环境部署问题系列"><span class="iconfont-archer">&#xe606;</span>环境部署问题系列</span>
     
-        <span class="sidebar-tag-name" data-tags="maven"><span class="iconfont-archer">&#xe606;</span>maven</span>
-    
         <span class="sidebar-tag-name" data-tags="快学scala读书笔记"><span class="iconfont-archer">&#xe606;</span>快学scala读书笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="maven"><span class="iconfont-archer">&#xe606;</span>maven</span>
     
         <span class="sidebar-tag-name" data-tags="zookeeper"><span class="iconfont-archer">&#xe606;</span>zookeeper</span>
     
