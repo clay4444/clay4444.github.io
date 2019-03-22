@@ -346,6 +346,39 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/42c55172/">
+            
+                <span>算法进阶第三课</span>
+        </a>
+        <div class="abstract-content">
+            Morris 遍历经典二叉树的遍历不管是递归还是非递归，都避免不了额外空间复杂度O(h)，递归是程序帮我们压栈，非递归是我们自己压栈，因为当我们遍历左子树或者右子树的时候，我们希望遍历完一遍后，还回到当前节点，所以这个过程是省不掉的；
+
+morris遍历
+时间复杂度O(N)，空间复杂度O(1)
+指向null也是会占用空间的，morris遍历就是利用这些剩余空间来完成遍历的，相当于是修改原来二叉树的结构，让我们可以回去，这一种统一思路叫做线索二叉树；
+
+标准：
+当前节点记为cur，
+
+如果CUR没有左孩子，CUR向右移动，CUR = cur.right
+如果CUR有左孩子，找到左子树最右节...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/22</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/fdbf220/">
             
                 <span>算法进阶第二课</span>
@@ -611,38 +644,11 @@ less、more和cur两个指针，less左边的代表小于num区域的数，more�
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/bfb4d2a4/">
-            
-                <span>算法基础第一课</span>
-        </a>
-        <div class="abstract-content">
-            时间复杂度常数时间的操作：一个操作如果和数据量没有关系，每次都是 固定时间内完成的操作，叫做常数操作。
-
-时间复杂度为一个算法流程中，常数操作数量的指标。常用O （读作big O）来表示。具体来说，在常数操作数量的表达式中， 只要高阶项，不要低阶项，也不要高阶项的系数，剩下的部分 如果记为f(N)，那么时间复杂度为O(f(N))。
-
-评价一个算法流程的好坏，先看时间复杂度的指标，然后再分 析不同数据样本下的实际运行时间，也就是常数项时间。
-
-一个简单的理解时间复杂度的例子一个有序数组A，另一个无序数组B，请打印B中的所有不在A中的数，A数 组长度为N，B数组长度为M。
-
-算法流程1：对于...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/17</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <span class="page-number current">1</span><a class="page-number" href="/clay4444.github.io/categories/leetcode/page/2/">2</a><a class="extend next" rel="next" href="/clay4444.github.io/categories/leetcode/page/2/">NEXT &#62;</a>
+    </nav>
     
 </main>
             <!-- profile -->
@@ -3477,60 +3483,9 @@ less、more和cur两个指针，less左边的代表小于num区域的数，more�
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 153
+        Total : 154
         </div>
         <!-- search  -->
         
@@ -3543,6 +3498,11 @@ less、more和cur两个指针，less左边的代表小于num区域的数，more�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/22</span><a class="archive-post-title" href="/clay4444.github.io/posts/42c55172/">算法进阶第三课</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3790,12 +3750,12 @@ less、more和cur两个指针，less左边的代表小于num区域的数，more�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
         </li>
     
     
@@ -3860,7 +3820,7 @@ less、more和cur两个指针，less左边的代表小于num区域的数，more�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
     
@@ -3875,7 +3835,7 @@ less、more和cur两个指针，less左边的代表小于num区域的数，more�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
         </li>
     
     
@@ -3910,22 +3870,22 @@ less、more和cur两个指针，less左边的代表小于num区域的数，more�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/c0977bd4/">并发编程实战(四)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
         </li>
     
     
@@ -4336,9 +4296,9 @@ less、more和cur两个指针，less左边的代表小于num区域的数，more�
     
         <span class="sidebar-tag-name" data-tags="Flink"><span class="iconfont-archer">&#xe606;</span>Flink</span>
     
-        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
-    
         <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
+    
+        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
     
@@ -4360,9 +4320,9 @@ less、more和cur两个指针，less左边的代表小于num区域的数，more�
     
         <span class="sidebar-tag-name" data-tags="环境部署问题系列"><span class="iconfont-archer">&#xe606;</span>环境部署问题系列</span>
     
-        <span class="sidebar-tag-name" data-tags="快学scala读书笔记"><span class="iconfont-archer">&#xe606;</span>快学scala读书笔记</span>
-    
         <span class="sidebar-tag-name" data-tags="maven"><span class="iconfont-archer">&#xe606;</span>maven</span>
+    
+        <span class="sidebar-tag-name" data-tags="快学scala读书笔记"><span class="iconfont-archer">&#xe606;</span>快学scala读书笔记</span>
     
         <span class="sidebar-tag-name" data-tags="zookeeper"><span class="iconfont-archer">&#xe606;</span>zookeeper</span>
     

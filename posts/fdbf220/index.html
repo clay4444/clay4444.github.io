@@ -401,20 +401,20 @@ height:50vh;
 <p>不需要遍历，只需要从头部加减东西，从尾部加减东西，时间复杂度都是O(1)</p>
 <p>我们需要保证从头部到尾部放的值是从大到小的；</p>
 <p>加数的时候，从双端队列的尾部加入，如果原数组i位置上的数字是value，考察双端队列的尾部， value如果比尾部的值小，直接落在尾部后面，如果比尾部的值大，依次弹出尾部的值，直到value小于尾部某个值，或者弹到空；然后把新的数字从尾部插入；</p>
-<img src="/clay4444.github.io/posts/undefined/picture1.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture1.jpg">
 <p>减数的时候，L向右走，检查双端队列的头部的index过期还是没过期，这就是为什么双端队列中为什么要存储位置index和value的原因， 如果是过期的，从头部弹出，只要这一个更新逻辑；</p>
-<img src="/clay4444.github.io/posts/undefined/picture2.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture2.jpg">
 <p><br></p>
 <p>原因：</p>
 <p>窗口内为什么要留着5，4，1，因为窗口内留着的所有值，是都有可能，当窗口缩减的时候，成为最大值的；</p>
-<img src="/clay4444.github.io/posts/undefined/picture3.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture3.jpg">
 <p>再缩的时候，1过期了，所以以1为index的4弹出了，此时窗口的最大值是1；</p>
 <p><br></p>
 <p>那为什么当从尾部加数的时候，尾部比当前的value值小的时候，直接弹呢？因为被弹出的数，永远没有机会成为窗口内的最大值，因为窗口缩的时候，是先缩左，后缩右边的值的，而新进来的数，既值比你大，下标也比你晚过期， 所以直接弹出尾部的值即可；此时如果进来一个数，比之前的数都大，直接弹空即可，index又晚，值又大，没有必要留着之前的数字了；</p>
-<img src="/clay4444.github.io/posts/undefined/picture4.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture4.jpg">
 <p><br></p>
 <p>需要下标的原因：</p>
-<img src="/clay4444.github.io/posts/undefined/picture5.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture5.jpg">
 <p>此时双端队列内的值只有一个5，如果没有下标，当L往右边走的时候，没办法知道是0位置的5，还是4位置的5，必须需要下标，因为我们需要知道那个数字是过期的，要被从头部弹出的；</p>
 <p>其实双端队列的存的值可以只是存下标，因为对应index的值是可以直接通过arr[index] 得到的；</p>
 <p><br></p>
@@ -452,17 +452,17 @@ height:50vh;
 <p><br></p>
 <p>O(N)的解法：</p>
 <p>如果一个子数组达标了，那么这个子数组中的任意一个子数组都达标，原因：</p>
-<img src="/clay4444.github.io/posts/undefined/picture6.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture6.jpg">
 <p><br></p>
 <p>如果一个子数组不达标，那么这个子数组再往外扩，也不会达标，</p>
-<img src="/clay4444.github.io/posts/undefined/picture7.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture7.jpg">
 <p><br></p>
 <p>一开始，就让L停留在0位置，R开始往右边扩，假设R扩到x位置，再往下扩一个，就开始不达标了，R停止， 此时这个窗口内的最大值可以用窗口内最大值的更新结构得到， 窗口内的最小值可以再用一个双端队列求出一个窗口内最小值的更新结构得到，由此可以非常快的得到一个窗口内的最大值和最小值，所以可以判断R什么时候停止，此时必须以0开头的子数组(符合条件的)总共x+1个，一下就找出了x+1个符合条件的数组，此时，我们就找到了以0开头的所有符合条件的子数组达标的数量(x+1)，因为0到x+1已经不符合条件了，之后的肯定更不符合条件；</p>
 <p>接下来。L缩一个位置，窗口内的最大值和最小值都更新一下，因为L缩了一个，所以此时R有可能继续往右边扩了，假设又扩到一个位置，此时以1开头的所有符合条件的子数组也就都一次性得到了；</p>
 <p>于是，这道题变成了L每往左缩一下，R就往右走，L每往左缩一下，R就往右走，这样一个结构，一直到把每个数字开头的值的子数组都找到；</p>
 <p>L只往右走，不回退，R只往右走，不回退，扫过的就是数组中所有的数，</p>
 <p>时间复杂度 O(N)；</p>
-<img src="/clay4444.github.io/posts/undefined/picture8.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture8.jpg">
 <p><br></p>
 <p>代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Code_03_AllLessNumSubArray</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getNum</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        LinkedList&lt;Integer&gt; qmin = <span class="keyword">new</span> LinkedList&lt;Integer&gt;(); <span class="comment">// 最小值更新结构</span></span><br><span class="line">        LinkedList&lt;Integer&gt; qmax = <span class="keyword">new</span> LinkedList&lt;Integer&gt;(); <span class="comment">// 最大值更新结构</span></span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> end = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (start &lt; arr.length) &#123;	<span class="comment">//i是开头</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//while循环的作用：start固定，end扩到不能再扩了，停；</span></span><br><span class="line">            <span class="keyword">while</span> (end &lt; arr.length) &#123;<span class="comment">//j是窗口最右侧位置，再往右一个</span></span><br><span class="line">                <span class="keyword">while</span> (!qmin.isEmpty() &amp;&amp; arr[qmin.peekLast()] &gt;= arr[end]) &#123;  <span class="comment">//最小值结构更新</span></span><br><span class="line">                    qmin.pollLast();</span><br><span class="line">                &#125;</span><br><span class="line">                qmin.addLast(end);</span><br><span class="line">                <span class="keyword">while</span> (!qmax.isEmpty() &amp;&amp; arr[qmax.peekLast()] &lt;= arr[end]) &#123;  <span class="comment">//最大值结构更新</span></span><br><span class="line">                    qmax.pollLast();</span><br><span class="line">                &#125;</span><br><span class="line">                qmax.addLast(end);</span><br><span class="line">                <span class="keyword">if</span> (arr[qmax.getFirst()] - arr[qmin.getFirst()] &gt; num) &#123;</span><br><span class="line">                    <span class="keyword">break</span>;  <span class="comment">// 不达标就break</span></span><br><span class="line">                &#125;</span><br><span class="line">                end++;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (qmin.peekFirst() == start) &#123; <span class="comment">//最小值的更新结构看看有没有过期</span></span><br><span class="line">                qmin.pollFirst();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (qmax.peekFirst() == start) &#123; <span class="comment">//最大值的更新结构看看有没有过期</span></span><br><span class="line">                qmax.pollFirst();</span><br><span class="line">            &#125;</span><br><span class="line">            res += end - start; <span class="comment">//一次性获得了所有以start位置为头，达标的数量；</span></span><br><span class="line">            start++;    <span class="comment">//换一个开头</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// for test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] getRandomArray(<span class="keyword">int</span> len) &#123;</span><br><span class="line">        <span class="keyword">if</span> (len &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            arr[i] = (<span class="keyword">int</span>) (Math.random() * <span class="number">10</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// for test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (arr != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">                System.out.print(arr[i] + <span class="string">" "</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = getRandomArray(<span class="number">30</span>);</span><br><span class="line">        <span class="keyword">int</span> num = <span class="number">5</span>;</span><br><span class="line">        printArray(arr);</span><br><span class="line">        System.out.println(getNum(arr, num));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -476,15 +476,15 @@ height:50vh;
 <p>准备一个栈，保证从栈底到栈顶是从大到小的顺序，然后开始把数组中的数压栈，如果符合从栈底到栈顶是从大到小的顺序，直接压栈，如果到某一个数字，比栈顶的数要大了，就把栈顶的数字弹出，此时这个数字右边离它最近的比它大的数就是这个让它出栈的数字，左边离它最近的就是下一个栈顶的数字，按照这种方式依次弹出；</p>
 <p>如果如果某一时刻，数组中的数遍历完了，栈中还有数字，就依次弹出，最后在栈中的数字右边离它最近的肯定都是null，因为后面没有比它们大的；左边离它们最近的数就是当前数下面内个数；</p>
 <p>最后栈底的数字左右都为null；</p>
-<img src="/clay4444.github.io/posts/undefined/picture9.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture9.jpg">
 <p><br></p>
 <p>特殊情况，</p>
 <p>相等的情况：不弹出，而是把两个下标压在一起，等待下一个数结算的时候，把下面连在一起的数一起结算；如下图所示：</p>
-<img src="/clay4444.github.io/posts/undefined/picture10.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture10.jpg">
 <p><br></p>
 <p>本质：为什么这样是对的，</p>
 <p>假设如下的情况：</p>
-<img src="/clay4444.github.io/posts/undefined/picture11.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture11.jpg">
 <p>假设c&gt;a，为什么此时a右边离它最近的比a大的数是c？在数组中a肯定是在c的左边，那a和c之间是不可能出现大于a的数的，如果存在，那就轮不到c来释放a了，中间内个数就释放a了；</p>
 <p>同理可以证明b是a左边离它最近的比它大的数；</p>
 <p><br></p>
@@ -499,7 +499,7 @@ height:50vh;
 <p><br></p>
 <p>思路一：</p>
 <p>构建一个大根堆，然后把所有节点重连即可；</p>
-<img src="/clay4444.github.io/posts/undefined/picture12.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture12.jpg">
 <p><br></p>
 <p>思路二：单调栈结构；</p>
 <p>列出每个值的左边距离它最近的数，右边距离它最近的数， 建树的策略是：</p>
@@ -521,22 +521,22 @@ height:50vh;
 <p>换为证明：a的一侧，最多只能有一个孩子挂在a下面，</p>
 <p>反证法：假设a的右侧，有两个孩子挂在a下面，b和c，那么a&gt;c ，a&gt; c，</p>
 <p>此时假设：1.b&gt;c，a和b都大于c，而且b&lt;a，按照策略c应该挂在b的后面，错误；2.c&gt;b，a和c都大于b，而且c比a小，按照策略b应该挂在c后面，错误；</p>
-<img src="/clay4444.github.io/posts/undefined/picture13.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture13.jpg">
 <p><br></p>
 <p>代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Code_02_MaxTree</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">int</span> value;</span><br><span class="line">        <span class="keyword">public</span> Node left;</span><br><span class="line">        <span class="keyword">public</span> Node right;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> data)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.value = data;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Node <span class="title">getMaxTree</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        Node[] nArr = <span class="keyword">new</span> Node[arr.length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != arr.length; i++) &#123;</span><br><span class="line">            nArr[i] = <span class="keyword">new</span> Node(arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        Stack&lt;Node&gt; stack = <span class="keyword">new</span> Stack&lt;Node&gt;();</span><br><span class="line">        HashMap&lt;Node, Node&gt; lBigMap = <span class="keyword">new</span> HashMap&lt;Node, Node&gt;();</span><br><span class="line">        HashMap&lt;Node, Node&gt; rBigMap = <span class="keyword">new</span> HashMap&lt;Node, Node&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nArr.length; i++) &#123;</span><br><span class="line">            Node currNode = nArr[i];</span><br><span class="line">            <span class="keyword">while</span> ((!stack.isEmpty()) &amp;&amp; stack.peek().value &lt; currNode.value) &#123;</span><br><span class="line">                popStackSetMap(stack, lBigMap);</span><br><span class="line">            &#125;</span><br><span class="line">            stack.push(currNode);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">            popStackSetMap(stack, lBigMap);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = nArr.length - <span class="number">1</span>; i != -<span class="number">1</span>; i--) &#123;</span><br><span class="line">            Node currNode = nArr[i];</span><br><span class="line">            <span class="keyword">while</span> ((!stack.isEmpty()) &amp;&amp; stack.peek().value &lt; currNode.value) &#123;</span><br><span class="line">                popStackSetMap(stack, rBigMap);</span><br><span class="line">            &#125;</span><br><span class="line">            stack.push(currNode);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">            popStackSetMap(stack, rBigMap);</span><br><span class="line">        &#125;</span><br><span class="line">        Node head = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != nArr.length; i++) &#123;</span><br><span class="line">            Node currNode = nArr[i];</span><br><span class="line">            Node left = lBigMap.get(currNode);</span><br><span class="line">            Node right = rBigMap.get(currNode);</span><br><span class="line">            <span class="keyword">if</span> (left == <span class="keyword">null</span> &amp;&amp; right == <span class="keyword">null</span>) &#123;</span><br><span class="line">                head = currNode;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (left == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (right.left == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    right.left = currNode;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    right.right = currNode;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (right == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (left.left == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    left.left = currNode;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    left.right = currNode;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                Node parent = left.value &lt; right.value ? left : right;</span><br><span class="line">                <span class="keyword">if</span> (parent.left == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    parent.left = currNode;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    parent.right = currNode;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">popStackSetMap</span><span class="params">(Stack&lt;Node&gt; stack, HashMap&lt;Node, Node&gt; map)</span> </span>&#123;</span><br><span class="line">        Node popNode = stack.pop();</span><br><span class="line">        <span class="keyword">if</span> (stack.isEmpty()) &#123;</span><br><span class="line">            map.put(popNode, <span class="keyword">null</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            map.put(popNode, stack.peek());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printPreOrder</span><span class="params">(Node head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.print(head.value + <span class="string">" "</span>);</span><br><span class="line">        printPreOrder(head.left);</span><br><span class="line">        printPreOrder(head.right);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printInOrder</span><span class="params">(Node head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        printPreOrder(head.left);</span><br><span class="line">        System.out.print(head.value + <span class="string">" "</span>);</span><br><span class="line">        printPreOrder(head.right);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] uniqueArr = &#123;<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">2</span>&#125;;</span><br><span class="line">        Node head = getMaxTree(uniqueArr);</span><br><span class="line">        printPreOrder(head);</span><br><span class="line">        System.out.println();</span><br><span class="line">        printInOrder(head);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><br></p>
 <p><br></p>
 <h3 id="题目：最大矩形问题"><a href="#题目：最大矩形问题" class="headerlink" title="题目：最大矩形问题"></a>题目：最大矩形问题</h3><p>数组代表直方图，求组成的直方图中矩形中最大矩形的面积</p>
-<img src="/clay4444.github.io/posts/undefined/picture14.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture14.jpg">
 <p>数组的值代表直方图的高，以每个数组的值向两边扩一个位置，如果碰到比它大的，就继续扩，直到扩到比当前位置低的，此时向两边扩的距离就是矩形的长，当前位置代表的高就是矩形的宽。</p>
 <p>其实本质就是找以每个值作为高的矩形的最大底是多少；</p>
 <p><br></p>
 <p>做法：</p>
 <p>单调栈，从底到顶维持从小到大的顺序，0-4 是因为1-3被弹出的，所以4右边离他最近比它小的，就是3，栈下面没值，所以4左边离他最近比它小的就是-1，所以底就是向两边扩的距离1，高是4。按照这个策略一直往下走即可；</p>
-<img src="/clay4444.github.io/posts/undefined/picture15.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture15.jpg">
 <p>相等的情况</p>
-<img src="/clay4444.github.io/posts/undefined/picture16.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture16.jpg">
 <p><br></p>
 <p><br></p>
 <h3 id="题目：求最大子矩阵的大小"><a href="#题目：求最大子矩阵的大小" class="headerlink" title="题目：求最大子矩阵的大小"></a>题目：求最大子矩阵的大小</h3><p>题目描述：给定一个整型矩阵map，其中的值只有0和1两种，求其中全是1的所有矩形区域中，最大的矩形区域为1的数量；</p>
@@ -553,7 +553,7 @@ height:50vh;
 <p>本质就是找以每一行为底形成矩形的面积最大的内个矩形；从第二行开始，每一行会对应一个新的数组，新数组的生成是根据前面形成的数组而来的，如果当前值是1，就在上面一行的基础上+1，如果是0，就置为0；然后用上面求直方图的办法求每行的新数组的最大矩形的面积；最后取每行的最大值；</p>
 <p>这个新的数组其实代表的就是往上有几个连续的1；</p>
 <p>其实每个1可以理解为直方图中的一个小矩形；</p>
-<img src="/clay4444.github.io/posts/undefined/picture17.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture17.jpg">
 <p><br></p>
 <p>时间复杂度</p>
 <p>假设整个矩形的底为m，高为n，遍历每一行的时间复杂度为O(m)，一共n行，时间复杂度O(N*m)，相当于遍历一遍就得到了结果，时间复杂度非常底；</p>
@@ -571,18 +571,18 @@ height:50vh;
 <li>相邻可见</li>
 <li>如果不相邻，肯定有两条路可以走，如果这两条路中有一条路，路中经过的所有数，都比这两座山中数值较小的数小的话，就可以看见，例如：</li>
 </ol>
-<img src="/clay4444.github.io/posts/undefined/picture18.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture18.jpg">
 <p>其中 1 -&gt; 4，都看不见，3 -&gt;4，从 3-&gt;2-&gt;4 这条路可以看见</p>
 <p>给定一个数组，求可以相互看见的山峰有多少对？</p>
 <p><br></p>
 <p>假设没有重复数字的情况</p>
-<img src="/clay4444.github.io/posts/undefined/picture19.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture19.jpg">
 <p>人为规定只能小的找大的，这样大的能找到的小的肯定都已经找过了</p>
 <p>假设最高的值，和此高的值，已经都找到了，那么此高和最高之间的每个数肯定都能找到两对能相互看见的，因为其他数肯定都是小于最高和次高的；最后再加上此高到最高的这一对，所以最后的结果就是2n-3；</p>
 <p><br></p>
 <p>有重复数字的情况：单调栈</p>
 <p>先找到数组的最大值，压栈，然后逆时针开始遍历，栈中存储的是每个数字和这个数出现的次数，存储的顺序是从栈底到栈顶是从大到小的顺序。此时遍历到了当前数，假设当前数比栈顶的数要大，此时栈顶的数出栈，如果栈顶的数只出现了一次，那么这个数能够形成的山峰对就是两对，因此此时栈顶的数比它大，当前数也比它大，所以能够形成两对；如果栈顶的数出现了n次，那么能够形成的对数就是Cn:2+2*n 对，Cn:2代表每两个数都能形成一对可以相互看见的山峰，n✖️2代表每个数都还能和当前数还有此时栈顶的数形成两对，</p>
-<img src="/clay4444.github.io/posts/undefined/picture20.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture20.jpg">
 <p><br></p>
 <p>为什么一定要找一个最大值打底？</p>
 <p>因为我们一定要保证在顺时针方向上，能够找到一个数比当前数大，我们才能正确结算，当一个数从栈中出来的时候，很确定的能够搞出向顺时针和逆时针都有一个数字比当前数大，此时Cn:2+2*n这个公式的结算才是正确的；</p>
@@ -591,13 +591,13 @@ height:50vh;
 <p>当栈中的数因为其他数从栈中弹出的时候，上面的公式是可以正确结算的，但是当最后处理完后，栈中肯定还有其他数不能因为其他数而出栈，此时：</p>
 <p><br></p>
 <p>一：当栈中的数字个数大于等于3个时，倒数第三个及以上的数字仍然可以用 Cn:2+2*n 这个公式进行计算，因为此时栈最底部的数字是作为当前栈顶的数字的逆时针方向的最大值的，而即将被弹出的这个数下面内个数就是它顺时针方向的最大值（因为是个环嘛，具体可看下面的图示）；</p>
-<img src="/clay4444.github.io/posts/undefined/picture21.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture21.jpg">
 <p><br></p>
 <p>二：栈中的最后两个数是特殊情况，需要单独处理；</p>
 <p>1.针对倒数第二个数，如果倒数第一个最大值出现了两次以上，还是上面的通式，因为这n个数左右两边肯定会各出现一个比当前数大的，不论这个环是怎么排列的；如下图：</p>
-<img src="/clay4444.github.io/posts/undefined/picture22.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture22.jpg">
 <p>但是如果倒数第一个最大值只出现了一次，那么最后的通式就是Cn:2+1*n，因为这n个数左右两边出现的比这个数大的数肯定是同一个数即最大值；</p>
-<img src="/clay4444.github.io/posts/undefined/picture23.jpg">
+<img src="/clay4444.github.io/posts/fdbf220/picture23.jpg">
 <p>所以对于倒数第二个数来说，倒数第一个数的个数是它需要考虑的；</p>
 <p><br></p>
 <p>2.针对倒数第一个数，如果倒数第一个最大值出现了两次及以上，那么通式就是Cn:2，如果只出现了一次，结果就是0；</p>
@@ -609,13 +609,18 @@ height:50vh;
             <p>原文作者：<a href="http://clay4444.github.io">clay</a>
             </p><p>原文链接：<a href="http://clay4444.github.io/posts/fdbf220/">http://clay4444.github.io/posts/fdbf220/</a>
             </p><p>发表日期：<a href="http://clay4444.github.io/posts/fdbf220/">March 16th 2019, 7:20:17 pm</a>
-            </p><p>更新日期：<a href="http://clay4444.github.io/posts/fdbf220/">March 16th 2019, 7:22:25 pm</a>
+            </p><p>更新日期：<a href="http://clay4444.github.io/posts/fdbf220/">March 16th 2019, 7:23:40 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/clay4444.github.io/posts/42c55172/" title="算法进阶第三课">
+                    <div class="nextTitle">算法进阶第三课</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -3492,60 +3497,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 153
+        Total : 154
         </div>
         <!-- search  -->
         
@@ -3558,6 +3512,11 @@ top:50vh;
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/22</span><a class="archive-post-title" href="/clay4444.github.io/posts/42c55172/">算法进阶第三课</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3805,12 +3764,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
         </li>
     
     
@@ -3875,7 +3834,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
     
@@ -3890,7 +3849,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
         </li>
     
     
@@ -3925,22 +3884,22 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/c0977bd4/">并发编程实战(四)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
         </li>
     
     
@@ -4351,9 +4310,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Flink"><span class="iconfont-archer">&#xe606;</span>Flink</span>
     
-        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
-    
         <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
+    
+        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
     
@@ -4375,9 +4334,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="环境部署问题系列"><span class="iconfont-archer">&#xe606;</span>环境部署问题系列</span>
     
-        <span class="sidebar-tag-name" data-tags="快学scala读书笔记"><span class="iconfont-archer">&#xe606;</span>快学scala读书笔记</span>
-    
         <span class="sidebar-tag-name" data-tags="maven"><span class="iconfont-archer">&#xe606;</span>maven</span>
+    
+        <span class="sidebar-tag-name" data-tags="快学scala读书笔记"><span class="iconfont-archer">&#xe606;</span>快学scala读书笔记</span>
     
         <span class="sidebar-tag-name" data-tags="zookeeper"><span class="iconfont-archer">&#xe606;</span>zookeeper</span>
     

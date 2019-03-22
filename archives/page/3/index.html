@@ -346,6 +346,64 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/dfa909ab/">
+            
+                <span>Flink的Metrics与监控</span>
+        </a>
+        <div class="abstract-content">
+            Metrics的种类Counter计数器
+
+Gauge直接赋值
+
+Histogram会存一部分历史数据，然后取一段时间内的中位数等操作
+
+Meter时间相关，一段时间内的比率值，速率，每秒的数据流入量啊，等等
+
+按照作用划分
+MetricOption包下包含所有的metrics指标
+
+JobManager
+JobManager Job
+TaskManager
+TaskManager Job
+Task
+Operator
+
+
+
+Metrics 的获取方式MetricsReporter
+Restful api
+
+MetricsReporter
+jmx
+Ganglia
+Graphite
+
+
+自定...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/07</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Flink">Flink</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/6a73b0f6/">
             
                 <span>Flink状态管理与恢复机制</span>
@@ -669,45 +727,6 @@ A收到SYN报文后，回应一个ACK（ACK = y + 1），进入ESTABLISHED状态
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/06/02</span>
             </div>
             <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/1922d0f6/">
-            
-                <span>常见海量处理题目解题关键</span>
-        </a>
-        <div class="abstract-content">
-            常见海量处理题目解题关键
-分而治之，通过哈希函数将大任务分流到机器，或分流成小文件
-利用hashMap或bitmap
-
-难点：通讯，时间，和空间的估算。
-
-对10亿个IPV4的ip地址进行排序，每个ip只出现一次普通方法：
-IPV4的地址数量总共是42亿，所以可以通过一个简单的规则，把ip转化为32位无符号整数(最大值可表示到4294967295) 大小是2的32次方减1，然后把整数排序，然后再把整数转换回IPV4 ip地址，一个IP相当于一个4字节的整数，10亿个IP，也就是10亿个整数，每个整数4字节，所以利用空间大概使用4
-
-优化方法：
-申请一个长度为2^32次方的bit类型的数组...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/06/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="大数据处理算法">大数据处理算法</a>
-    
-</div>
             
         </div>
     </article>
@@ -3551,60 +3570,9 @@ IPV4的地址数量总共是42亿，所以可以通过一个简单的规则，�
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 153
+        Total : 154
         </div>
         <!-- search  -->
         
@@ -3617,6 +3585,11 @@ IPV4的地址数量总共是42亿，所以可以通过一个简单的规则，�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/22</span><a class="archive-post-title" href="/clay4444.github.io/posts/42c55172/">算法进阶第三课</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3864,12 +3837,12 @@ IPV4的地址数量总共是42亿，所以可以通过一个简单的规则，�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
         </li>
     
     
@@ -3934,7 +3907,7 @@ IPV4的地址数量总共是42亿，所以可以通过一个简单的规则，�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
     
@@ -3949,7 +3922,7 @@ IPV4的地址数量总共是42亿，所以可以通过一个简单的规则，�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
         </li>
     
     
@@ -3984,22 +3957,22 @@ IPV4的地址数量总共是42亿，所以可以通过一个简单的规则，�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/c0977bd4/">并发编程实战(四)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
         </li>
     
     
@@ -4410,9 +4383,9 @@ IPV4的地址数量总共是42亿，所以可以通过一个简单的规则，�
     
         <span class="sidebar-tag-name" data-tags="Flink"><span class="iconfont-archer">&#xe606;</span>Flink</span>
     
-        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
-    
         <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
+    
+        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
     
@@ -4434,9 +4407,9 @@ IPV4的地址数量总共是42亿，所以可以通过一个简单的规则，�
     
         <span class="sidebar-tag-name" data-tags="环境部署问题系列"><span class="iconfont-archer">&#xe606;</span>环境部署问题系列</span>
     
-        <span class="sidebar-tag-name" data-tags="快学scala读书笔记"><span class="iconfont-archer">&#xe606;</span>快学scala读书笔记</span>
-    
         <span class="sidebar-tag-name" data-tags="maven"><span class="iconfont-archer">&#xe606;</span>maven</span>
+    
+        <span class="sidebar-tag-name" data-tags="快学scala读书笔记"><span class="iconfont-archer">&#xe606;</span>快学scala读书笔记</span>
     
         <span class="sidebar-tag-name" data-tags="zookeeper"><span class="iconfont-archer">&#xe606;</span>zookeeper</span>
     
