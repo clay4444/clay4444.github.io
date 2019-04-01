@@ -346,6 +346,41 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/767c3cbc/">
+            
+                <span>TCP三次握手-四次挥手面试总结</span>
+        </a>
+        <div class="abstract-content">
+            三次握手
+三次握手的过程如下：
+
+客户端A 发送SYN（seq = x）报文给服务器B，然后进入SYN_SENT状态；
+B收到SYN报文，回应一个SYN（seq = y） ACK （ACK = x + 1）报文，进入SYN_RCVD状态；
+A收到SYN报文后，回应一个ACK（ACK = y + 1），进入ESTABLISHED状态；B收到ACK报文后，进入ESTABLISHED状态
+
+三次握手后，A和B成功地建立了连接，可以开始传输数据了~
+ 
+四次挥手
+四次挥手的过程如下： 
+
+客户端A上的某个进程，主动关闭连接，发送FIN（seq = u）报文给B，然后进入FIN_WAIT_1状态；...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/06/02</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/6d00129c/">
             
                 <span>自旋锁</span>
@@ -649,48 +684,6 @@ a)利用客户指定的input...
 示例
 先在mapper类中预先定义好小表，进行join
 并用distributedcache机制将小表的数据分发到每一个maptask执行节点，从而每一个 ,maptask节点可以从本地加载到小表的数据，进而在本地即可实现jo...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="MapReduce">MapReduce</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/403d9f31/">
-            
-                <span>MR之自定义outputFormat</span>
-        </a>
-        <div class="abstract-content">
-            需求现有一些原始日志需要做增强解析处理，流程： 
-
-从原始日志文件中读取数据 
-根据日志中的一个URL字段到外部知识库中获取信息增强到原始日志 
-如果成功增强，则输出到增强结果目录；如果增强失败，则抽取原始数据中URL字段输出到待爬清单目录 
-
-
-分析实现要点： 
-
-在mapreduce中访问外部资源 
-自定义outputformat，改写其中的recordwriter，改写具体输出数据的方法write() 
-
-
-实现数据库获取数据的工具1234567891011121314151617181920212223242526272829303132333435363738394041424...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -3619,134 +3612,9 @@ a)利用客户指定的input...
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 155
+        Total : 156
         </div>
         <!-- search  -->
         
@@ -3759,6 +3627,11 @@ a)利用客户指定的input...
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/7f010ad5/">算法基础第六课</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3946,12 +3819,17 @@ a)利用客户指定的input...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
         </li>
     
     
@@ -3962,11 +3840,6 @@ a)利用客户指定的input...
     
         <li class="archive-post-item">
             <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
         </li>
     
     
@@ -4016,12 +3889,12 @@ a)利用客户指定的input...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
         </li>
     
     
@@ -4036,17 +3909,22 @@ a)利用客户指定的input...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/97e35c7b/">Storm的分组策略和确保消息送达机制</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/d5a66bc5/">Storm和kafka、Hbase之间的整合</a>
         </li>
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/97e35c7b/">Storm的分组策略和确保消息送达机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/9799a940/">Storm架构及其资源分配问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
         </li>
     
     
@@ -4057,11 +3935,6 @@ a)利用客户指定的input...
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
         </li>
     
     
@@ -4086,12 +3959,12 @@ a)利用客户指定的input...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
         </li>
     
     
@@ -4136,17 +4009,12 @@ a)利用客户指定的input...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
@@ -4156,12 +4024,17 @@ a)利用客户指定的input...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/eb162f92/">并发编程实战(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
         </li>
     
     
@@ -4562,9 +4435,9 @@ a)利用客户指定的input...
     
         <span class="sidebar-tag-name" data-tags="Flink"><span class="iconfont-archer">&#xe606;</span>Flink</span>
     
-        <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
-    
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
+    
+        <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
     
         <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
     
@@ -4586,9 +4459,9 @@ a)利用客户指定的input...
     
         <span class="sidebar-tag-name" data-tags="环境部署问题系列"><span class="iconfont-archer">&#xe606;</span>环境部署问题系列</span>
     
-        <span class="sidebar-tag-name" data-tags="快学scala读书笔记"><span class="iconfont-archer">&#xe606;</span>快学scala读书笔记</span>
-    
         <span class="sidebar-tag-name" data-tags="maven"><span class="iconfont-archer">&#xe606;</span>maven</span>
+    
+        <span class="sidebar-tag-name" data-tags="快学scala读书笔记"><span class="iconfont-archer">&#xe606;</span>快学scala读书笔记</span>
     
         <span class="sidebar-tag-name" data-tags="zookeeper"><span class="iconfont-archer">&#xe606;</span>zookeeper</span>
     
