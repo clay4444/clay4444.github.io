@@ -1,0 +1,4741 @@
+<!DOCTYPE html>
+<html lang="chinese">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="clay">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="clay">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="I'll do every thing for GTR">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>算法进阶第六课 · 十年饮冰，难凉热血</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/clay4444.github.io/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/clay4444.github.io/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/clay4444.github.io/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/clay4444.github.io/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/clay4444.github.io/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/clay4444.github.io/font/Oswald-Regular.ttf" crossorigin="">
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin="">
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/clay4444.github.io/">诚觉世事尽可原谅.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">算法进阶第六课</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/clay4444.github.io/">诚觉世事尽可原谅.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/clay4444.github.io/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            算法进阶第六课
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">9.2k</span>阅读时长: <span class="post-count reading-time">40 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/04/04</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/clay4444.github.io/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/clay4444.github.io/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h3 id="题目：换钱的方法数"><a href="#题目：换钱的方法数" class="headerlink" title="题目：换钱的方法数"></a>题目：换钱的方法数</h3><p>换钱的方法数 </p>
+<p>【题目】 给定数组arr，arr中所有的值都为正数且不重复。每个值代表 一种面值的货币，每种面值的货币可以使用任意张，再给定一 个整数aim代表要找的钱数，求换钱有多少种方法。</p>
+<p>【举例】 arr=[5,10,25,1]，aim=0。 组成0元的方法有1种，就是所有面值的货币都不用。所以返回1。 </p>
+<p>arr=[5,10,25,1]，aim=15。 组成15元的方法有6种，分别为3张5元、1张10元+1张5元、1张 10元+5张1元、10张1元+1张5元、2张5元+5张1元和15张1元。所 以返回6。</p>
+<p> arr=[3,5]，aim=2。 任何方法都无法组成2元。所以返回0。</p>
+<p><br></p>
+<h4 id="尝试的暴力解法"><a href="#尝试的暴力解法" class="headerlink" title="尝试的暴力解法"></a>尝试的暴力解法</h4><img src="/clay4444.github.io/posts/undefined/picture1.jpg">
+<p>0张200的，剩下的组成1000，方法数有a种</p>
+<p>1张200的，剩下的组成800，方法数有b种</p>
+<p>2张200的，剩下的组成600，方法数有c种</p>
+<p>….<br>5张200的，剩下的组成0，方法数</p>
+<p>把所有的方法数加起来就是答案</p>
+<p><br></p>
+<p>代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">coins1</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span> || aim &lt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> process1(arr, <span class="number">0</span>, aim);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> arr   钱的种类数组</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> index  可以任意自由使用index及其之后的钱</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> aim  目标钱数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span>   方法数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">process1</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> index, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">   <span class="keyword">if</span> (index == arr.length) &#123; <span class="comment">//到最终了，剩的目标是0，就找到了一种有效的划分，就返回0，</span></span><br><span class="line">      res = aim == <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> zhang = <span class="number">0</span>; arr[index] * zhang &lt;= aim; zhang++) &#123;</span><br><span class="line">         <span class="comment">//aim - arr[index] * zhang 就是下一阶段要找的aim，并且只能使用index + 1之后的货币</span></span><br><span class="line">         res += process1(arr, index + <span class="number">1</span>, aim - arr[index] * zhang); <span class="comment">//index位置的货币已经使用完了，使用之后的货币</span></span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p>for循环图示</p>
+<img src="/clay4444.github.io/posts/undefined/picture2.jpg">
+<p><br></p>
+<p>暴力递归的缺点</p>
+<p>产生了很多的重复计算，而且重复计算的状态的返回值是固定不变的，</p>
+<img src="/clay4444.github.io/posts/undefined/picture3.jpg">
+<p><br></p>
+<h4 id="优化：记忆化搜索"><a href="#优化：记忆化搜索" class="headerlink" title="优化：记忆化搜索"></a>优化：记忆化搜索</h4><p>所以：诞生了第一个优化版本</p>
+<p>只要index和aim固定了，计算的结果肯定就是固定的，</p>
+<p>无后效性问题：计算一个子过程状态的时候，和怎么到达这个状态的过程和路径都没关系，不管如何到达的，这个子过程的状态都是保持不变的，也就是返回值都是固定不变的，这也是面试最常见的；</p>
+<p>有后效性问题：经典的n皇后问题</p>
+<p><br></p>
+<p>优化：增加一个map缓存，就是所谓的记忆化搜索方法</p>
+<p><br></p>
+<p>代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">//记忆化搜索</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">process_map</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> index, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (index == arr.length) &#123;</span><br><span class="line">        res = aim == <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span>;  <span class="comment">//到最终了，剩的目标是0，就找到了一种有效的划分，就返回0，</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> zhang = <span class="number">0</span>; arr[index] * zhang &lt;= aim; zhang++) &#123;</span><br><span class="line"></span><br><span class="line">            Integer nextAim = aim - arr[index] * zhang;</span><br><span class="line">            String key = String.valueOf(index + <span class="number">1</span>) + <span class="string">"_"</span> + String.valueOf(nextAim);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(map.containsKey(key))&#123;</span><br><span class="line">                res += map.get(key);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">//aim - arr[index] * zhang 就是下一阶段要找的aim，并且只能使用index + 1之后的货币</span></span><br><span class="line">                res += process_map(arr, index + <span class="number">1</span>, nextAim); <span class="comment">//index位置的货币已经使用完了，使用之后的货币</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    map.put(String.valueOf(index) + <span class="string">"_"</span> + aim,res);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h4 id="再优化解法：dp"><a href="#再优化解法：dp" class="headerlink" title="再优化解法：dp"></a>再优化解法：dp</h4><p>参数的变化范围，就是结果的变化范围，参数的变化范围可以用一张二维表囊括，那么所有的结果也就都可以用这张二维表装下；</p>
+<p>index的变化范围是从0到n，aim的变化范围是从0到1000，</p>
+<p><br></p>
+<p><strong>思路</strong></p>
+<p>先找出目标点，这里是(0, aim)，</p>
+<p>再找出这张表中哪些位置的值是可以直接确定的，不依赖其他位置的， 看递归中的basecase，当index=n时，值是可以直接确定的，所以最后一行第一个位置是1，剩下的都是0；</p>
+<p>然后看位置依赖，也就是如何调用递归函数的，相当于在二维表中随便找一个值，(index，aim)，看它的依赖，这个位置只依赖下面一行的数字（准确的说是：下面一行的(inde+1,aim),(inde+1,aim-1<em>arr[index]),(inde+1,aim-2</em>arr[index])……..直到越界 ） </p>
+<p>现在有了最后一行，而且之上的每个位置又只依赖下一行的位置，所以可以一直从最后一行往上推，一直推到终点位置</p>
+<img src="/clay4444.github.io/posts/undefined/picture4.jpg">
+<p><br></p>
+<p>举例</p>
+<img src="/clay4444.github.io/posts/undefined/picture5.jpg">
+<p><br></p>
+<h4 id="最优化"><a href="#最优化" class="headerlink" title="最优化"></a>最优化</h4><img src="/clay4444.github.io/posts/undefined/picture6.jpg">
+<p>如图，绿1的位置=蓝1+2+3+4+5，绿2的位置=绿2底下的值+蓝1+2+3+4+5</p>
+<p>所以绿2的位置=绿2底下的值+绿1的位置</p>
+<p><br></p>
+<p>代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Code_01_CoinsWay</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">coins1</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span> || aim &lt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> process1(arr, <span class="number">0</span>, aim);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> arr   钱的种类数组</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> index 可以任意自由使用index及其之后的钱</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> aim	目标钱数</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span>   	方法数</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">process1</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> index, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span> (index == arr.length) &#123;</span><br><span class="line">			res = aim == <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span>;  <span class="comment">//到最终了，剩的目标是0，就找到了一种有效的划分，就返回0，</span></span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> zhang = <span class="number">0</span>; arr[index] * zhang &lt;= aim; zhang++) &#123;</span><br><span class="line">				<span class="comment">//aim - arr[index] * zhang 就是下一阶段要找的aim，并且只能使用index + 1之后的货币</span></span><br><span class="line">				res += process1(arr, index + <span class="number">1</span>, aim - arr[index] * zhang); <span class="comment">//index位置的货币已经使用完了，使用之后的货币</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">	<span class="comment">//记忆化搜索</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">process_map</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> index, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span> (index == arr.length) &#123;</span><br><span class="line">			res = aim == <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span>;  <span class="comment">//到最终了，剩的目标是0，就找到了一种有效的划分，就返回0，</span></span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> zhang = <span class="number">0</span>; arr[index] * zhang &lt;= aim; zhang++) &#123;</span><br><span class="line"></span><br><span class="line">				Integer nextAim = aim - arr[index] * zhang;</span><br><span class="line">				String key = String.valueOf(index + <span class="number">1</span>) + <span class="string">"_"</span> + String.valueOf(nextAim);</span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span>(map.containsKey(key))&#123;</span><br><span class="line">					res += map.get(key);</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">					<span class="comment">//aim - arr[index] * zhang 就是下一阶段要找的aim，并且只能使用index + 1之后的货币</span></span><br><span class="line">					res += process_map(arr, index + <span class="number">1</span>, nextAim); <span class="comment">//index位置的货币已经使用完了，使用之后的货币</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		map.put(String.valueOf(index) + <span class="string">"_"</span> + aim,res);</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">coinsOther</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span> || aim &lt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> processOther(arr, arr.length - <span class="number">1</span>, aim);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">processOther</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> index, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span> (index == -<span class="number">1</span>) &#123;</span><br><span class="line">			res = aim == <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; arr[index] * i &lt;= aim; i++) &#123;</span><br><span class="line">				res += processOther(arr, index - <span class="number">1</span>, aim - arr[index] * i);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">coins2</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span> || aim &lt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span>[][] map = <span class="keyword">new</span> <span class="keyword">int</span>[arr.length + <span class="number">1</span>][aim + <span class="number">1</span>];</span><br><span class="line">		<span class="keyword">return</span> process2(arr, <span class="number">0</span>, aim, map);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">process2</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> index, <span class="keyword">int</span> aim, <span class="keyword">int</span>[][] map)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span> (index == arr.length) &#123;</span><br><span class="line">			res = aim == <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">int</span> mapValue = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; arr[index] * i &lt;= aim; i++) &#123;</span><br><span class="line">				mapValue = map[index + <span class="number">1</span>][aim - arr[index] * i];</span><br><span class="line">				<span class="keyword">if</span> (mapValue != <span class="number">0</span>) &#123;</span><br><span class="line">					res += mapValue == -<span class="number">1</span> ? <span class="number">0</span> : mapValue;</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					res += process2(arr, index + <span class="number">1</span>, aim - arr[index] * i, map);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		map[index][aim] = res == <span class="number">0</span> ? -<span class="number">1</span> : res;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * dp 不优化版本</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">coins3</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span> || aim &lt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[arr.length][aim + <span class="number">1</span>];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">			dp[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; arr[<span class="number">0</span>] * j &lt;= aim; j++) &#123;</span><br><span class="line">			dp[<span class="number">0</span>][arr[<span class="number">0</span>] * j] = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= aim; j++) &#123;</span><br><span class="line">				num = <span class="number">0</span>;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; j - arr[i] * k &gt;= <span class="number">0</span>; k++) &#123;</span><br><span class="line">					num += dp[i - <span class="number">1</span>][j - arr[i] * k];</span><br><span class="line">				&#125;</span><br><span class="line">				dp[i][j] = num;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> dp[arr.length - <span class="number">1</span>][aim];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * dp 优化版本，</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">coins4</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span> || aim &lt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[arr.length][aim + <span class="number">1</span>];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">			dp[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; arr[<span class="number">0</span>] * j &lt;= aim; j++) &#123;</span><br><span class="line">			dp[<span class="number">0</span>][arr[<span class="number">0</span>] * j] = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= aim; j++) &#123;</span><br><span class="line">				dp[i][j] = dp[i - <span class="number">1</span>][j];</span><br><span class="line">				dp[i][j] += j - arr[i] &gt;= <span class="number">0</span> ? dp[i][j - arr[i]] : <span class="number">0</span>;  <span class="comment">//优化的点</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> dp[arr.length - <span class="number">1</span>][aim];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">coins5</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span> || aim &lt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[aim + <span class="number">1</span>];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; arr[<span class="number">0</span>] * j &lt;= aim; j++) &#123;</span><br><span class="line">			dp[arr[<span class="number">0</span>] * j] = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= aim; j++) &#123;</span><br><span class="line">				dp[j] += j - arr[i] &gt;= <span class="number">0</span> ? dp[j - arr[i]] : <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> dp[aim];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[] coins = &#123; <span class="number">10</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">25</span> &#125;;</span><br><span class="line">		<span class="keyword">int</span> aim = <span class="number">2000</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">long</span> start = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">long</span> end = <span class="number">0</span>;</span><br><span class="line">		start = System.currentTimeMillis();</span><br><span class="line">		System.out.println(coins1(coins, aim));</span><br><span class="line">		end = System.currentTimeMillis();</span><br><span class="line">		System.out.println(<span class="string">"cost time : "</span> + (end - start) + <span class="string">"(ms)"</span>);</span><br><span class="line"></span><br><span class="line">		start = System.currentTimeMillis();</span><br><span class="line">		System.out.println(coinsOther(coins, aim));</span><br><span class="line">		end = System.currentTimeMillis();</span><br><span class="line">		System.out.println(<span class="string">"cost time : "</span> + (end - start) + <span class="string">"(ms)"</span>);</span><br><span class="line"></span><br><span class="line">		aim = <span class="number">20000</span>;</span><br><span class="line"></span><br><span class="line">		start = System.currentTimeMillis();</span><br><span class="line">		System.out.println(coins2(coins, aim));</span><br><span class="line">		end = System.currentTimeMillis();</span><br><span class="line">		System.out.println(<span class="string">"cost time : "</span> + (end - start) + <span class="string">"(ms)"</span>);</span><br><span class="line"></span><br><span class="line">		start = System.currentTimeMillis();</span><br><span class="line">		System.out.println(coins3(coins, aim));</span><br><span class="line">		end = System.currentTimeMillis();</span><br><span class="line">		System.out.println(<span class="string">"cost time : "</span> + (end - start) + <span class="string">"(ms)"</span>);</span><br><span class="line"></span><br><span class="line">		start = System.currentTimeMillis();</span><br><span class="line">		System.out.println(coins4(coins, aim));</span><br><span class="line">		end = System.currentTimeMillis();</span><br><span class="line">		System.out.println(<span class="string">"cost time : "</span> + (end - start) + <span class="string">"(ms)"</span>);</span><br><span class="line"></span><br><span class="line">		start = System.currentTimeMillis();</span><br><span class="line">		System.out.println(coins5(coins, aim));</span><br><span class="line">		end = System.currentTimeMillis();</span><br><span class="line">		System.out.println(<span class="string">"cost time : "</span> + (end - start) + <span class="string">"(ms)"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p><br></p>
+<h3 id="题目：排成一条线的纸牌博弈问题"><a href="#题目：排成一条线的纸牌博弈问题" class="headerlink" title="题目：排成一条线的纸牌博弈问题"></a>题目：排成一条线的纸牌博弈问题</h3><p>【题目】 </p>
+<p>给定一个整型数组arr，代表数值不同的纸牌排成一条线。玩家A和玩家B依次拿走 每张纸牌，规定玩家A先拿，玩家B后拿，但是每个玩家每次只能拿走最左或最右的纸牌，玩家A和玩家B都绝顶聪明。请返回最后获胜者的分数。 </p>
+<p>【举例】 </p>
+<p>arr=[1,2,100,4]。 </p>
+<p>开始时玩家A只能拿走1或4。如果玩家A拿走1，则排列变为[2,100,4]，接下来玩 家B可以拿走2或4，然后继续轮到玩家A。如果开始时玩家A拿走4，则排列变为 [1,2,100]，接下来玩家B可以拿走1或100，然后继续轮到玩家A。玩家A作为绝顶 聪明的人不会先拿4，因为拿4之后，玩家B将拿走100。所以玩家A会先拿1，让排 列变为[2,100,4]，接下来玩家B不管怎么选，100都会被玩家A拿走。玩家A会获胜， 分数为101。所以返回101。 </p>
+<p>arr=[1,100,2]。 </p>
+<p>开始时玩家A不管拿1还是2，玩家B作为绝顶聪明的人，都会把100拿走。玩家B会 获胜，分数为100。所以返回100。</p>
+<p><br></p>
+<p>举例</p>
+<img src="/clay4444.github.io/posts/undefined/picture7.jpg">
+<p>如图所示情况，玩家一二，都是博弈论中非常理智的人，</p>
+<p>如果玩家一先拿，是不存在必胜策略的，例如1，100，1  这种情况，先拿的人肯定输</p>
+<p><br></p>
+<p><strong>经验</strong></p>
+<p>一道题，想不出来贪心策略，肯定就是暴力递归问题，递归解法出来之后，转化为dp问题</p>
+<p><br></p>
+<p>暴力尝试版本</p>
+<p>直接看代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">win1</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> Math.max(f(arr, <span class="number">0</span>, arr.length - <span class="number">1</span>), s(arr, <span class="number">0</span>, arr.length - <span class="number">1</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 表示如果纸牌只剩下标在begin~end之间的几个了，那么作为先拿者，纸牌被拿完后，先拿者能达到的最大分数</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> arr</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> begin</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> end</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin == end) &#123;  <span class="comment">// 如果只有一张纸牌，那么该纸牌分数就是先拿者能达到的最大分数，直接返回，无需决策。</span></span><br><span class="line">        <span class="keyword">return</span> arr[begin];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//否则先拿者A的第一次决策只有两种情况：</span></span><br><span class="line">    <span class="comment">//先拿最左边的arr[beginIndex]，那么在A拿完这一张之后就会作为后拿者参与到剩下的(begin+1)~end之间的纸牌的决策了，这一过程可以交给s()来做。</span></span><br><span class="line">    <span class="comment">//先拿最右边的arr[endIndex]，那么在A拿完这一张之后就会作为后拿者参与到剩下的begin~(end-1)之间的纸牌的决策了，这一过程可以交给s()来做。</span></span><br><span class="line">    <span class="keyword">return</span> Math.max(arr[begin] + s(arr, begin + <span class="number">1</span>, end), arr[end] + s(arr, begin, end - <span class="number">1</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 表示如果纸牌只剩下标在begin~end之间的几个了，那么作为后拿者，纸牌被拿完后，后拿者能达到的最大分数</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> arr</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> begin</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> end</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">s</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (begin == end) &#123;  <span class="comment">//如果只有一张纸牌，那么作为后拿者没有纸牌可拿，分数为0，直接返回</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//假设先拿者A拿到了arr[beginIndex]，那么去掉该纸牌后，对于剩下的(begin+1)~end之间的纸牌，后拿者B就转变身份成了先拿者，这一过程可以交给f()来处理。</span></span><br><span class="line">    <span class="comment">//假设先拿者A拿到了arr[endIndex]，那么去掉该纸牌后，对于剩下的begin~(end-1)之间的纸牌，后拿者B就转变身份成了先拿者，这一过程可以交给f()来处理。</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//这里取两种情况中结果较小的一种，是因为这两种情况是我们假设的，但先拿者A绝顶聪明，他的选择肯定会让后拿者尽可能拿到更小的分数。</span></span><br><span class="line">    <span class="comment">//比如arr=[1,2,100,4]，虽然我们的假设有先拿者拿1和拿4两种情况，对应f(arr,1,3)和f(arr,0,2)，但实际上先拿者不会让后拿者拿到100，</span></span><br><span class="line">    <span class="comment">//因此取两种情况中结果较小的一种。</span></span><br><span class="line">    <span class="keyword">return</span> Math.min(f(arr, begin + <span class="number">1</span>, end), f(arr, begin, end - <span class="number">1</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p>dp</p>
+<p>根据递归函数，参数的变化范围i和j都是数组index的变化范围，有两个函数，所以构建两张二维表</p>
+<p>i不可能比j大， 因为遇到相等就返回了；所以表的左下区域不用填；</p>
+<p>i：数组中index变化范围</p>
+<p>j：数组中index变化范围</p>
+<p>目标位置：两个表都是0到n-1范围是目标位置，取两个中最大的；</p>
+<p>basecase，f表中对角线位置是对应index的值，s表对角线位置都是0</p>
+<p>然后看一个普遍的位置是如何依赖的：f(i,j) 依赖s表中的 s(i+1,j) 和s(i,j-1)，同理，s(i,j)也依赖f(i+1,j) 和f(i,j-1)</p>
+<p>所以可以从s表的对角线推出f表的倒数第二条对角线，从f表的对角线推出s表的倒数第二条对角线，所以之后的过程就是两个表互相推，直到推到两个表的 0到n-1 位置；</p>
+<p><br></p>
+<h3 id="题目：机器人走路问题"><a href="#题目：机器人走路问题" class="headerlink" title="题目：机器人走路问题"></a>题目：机器人走路问题</h3><p>n：1位置到n位置，</p>
+<p>m：开始停留到m位置，</p>
+<p>当机器人在n位置时，只能往左走，在0位置时，只能往右走，</p>
+<p>问：当机器人走p步的时候，正好停在k位置的机会有多少种？</p>
+<p><br></p>
+<p>暴力解法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Easy</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> N 多少个位置        不变</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> M 来到的位置</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> P 再走p步</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> K 最终停留在k位置    固定不变</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 一共多少种走法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">ways</span><span class="params">(<span class="keyword">int</span> N, <span class="keyword">int</span> M, <span class="keyword">int</span> P, <span class="keyword">int</span> K)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (N &lt; <span class="number">2</span> || M &lt; <span class="number">1</span> || M &gt; N || P &lt; <span class="number">0</span> || K &lt; <span class="number">1</span> || K &gt; N) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (P == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> M == K ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (M == <span class="number">1</span>) &#123;</span><br><span class="line">            res += ways(N, M + <span class="number">1</span>, P - <span class="number">1</span>, K);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (M == N) &#123;</span><br><span class="line">            res += ways(N, M - <span class="number">1</span>, P - <span class="number">1</span>, K);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            res += ways(N, M + <span class="number">1</span>, P - <span class="number">1</span>, K) + ways(N, M - <span class="number">1</span>, P - <span class="number">1</span>, K);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p>dp解法</p>
+<p>杨辉三角形，碰到撞墙的地方就只取一个依赖位置，</p>
+<p>分析思路和上面的套路完全一致；</p>
+<img src="/clay4444.github.io/posts/undefined/picture8.jpg">
+<p><br></p>
+<h3 id="题目：累加和等于aim的最长子数组"><a href="#题目：累加和等于aim的最长子数组" class="headerlink" title="题目：累加和等于aim的最长子数组"></a>题目：累加和等于aim的最长子数组</h3><p>给定一个数组arr，全是正数；一个整数aim，求累加和等于aim的，最长子数组，要求额外空间复杂度O(1)，时间 复杂度O(N)</p>
+<p><br></p>
+<p>解法：双指针</p>
+<p>L、R 初始都指在-1位置，sum值记录子数组累加和，sum&lt;aim，R就往右扩一个，当发现等于aim了，就说明找到了一个字数组，记录这个子数组，然后R再往右扩一个，如果sum&gt;aim 了。L开始往右边走，sum减去出窗口的值，然后再判断sum和aim的情况，继续双指针的移动即可；直到到达最右边界，</p>
+<img src="/clay4444.github.io/posts/undefined/picture9.jpg">
+<p><br></p>
+<p>注意：sum=aim的情况下，既可以L往右边扩充，也可以R往右边扩充，因为都是正数，如果L往右边扩充，之后肯定是sum&lt;aim了， R往右边扩，如果R往右边扩，之后肯定是sum&gt;aim了，L会往右边扩，两种方法结果是一致的；</p>
+<p><br></p>
+<p>本质，为什么这样是对的？</p>
+<img src="/clay4444.github.io/posts/undefined/picture10.jpg">
+<p>假设矩形是整个数组，椭圆形是最后的答案，假设L已经到达了答案的左边界，那么R如果在答案数组中间，那么此时sum一定小于aim，如果R超过了答案数组的右边界，那么R之前一定经过过答案数组的右边界，而且经过的时候，sum一定等于aim，此时会记录这个答案数组。综上，一定不会错过正确答案；</p>
+<p>而且不仅不会错过答案，还会找到以每个位置开头的，符合条件的子数组；</p>
+<p><br></p>
+<p>代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Code_04_LongestSumSubArrayLengthInPositiveArray</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getMaxLength</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span> || aim &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> L = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> R = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> sum = arr[<span class="number">0</span>];</span><br><span class="line">		<span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> (R &lt; arr.length) &#123;</span><br><span class="line">			<span class="keyword">if</span> (sum == aim) &#123;</span><br><span class="line">				len = Math.max(len, R - L + <span class="number">1</span>);</span><br><span class="line">				sum -= arr[L++];</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (sum &lt; aim) &#123;</span><br><span class="line">				R++;</span><br><span class="line">				<span class="keyword">if</span> (R == arr.length) &#123;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				sum += arr[R];</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				sum -= arr[L++];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> len;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] generatePositiveArray(<span class="keyword">int</span> size) &#123;</span><br><span class="line">		<span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[size];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != size; i++) &#123;</span><br><span class="line">			result[i] = (<span class="keyword">int</span>) (Math.random() * <span class="number">10</span>) + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != arr.length; i++) &#123;</span><br><span class="line">			System.out.print(arr[i] + <span class="string">" "</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> len = <span class="number">20</span>;</span><br><span class="line">		<span class="keyword">int</span> k = <span class="number">15</span>;</span><br><span class="line">		<span class="keyword">int</span>[] arr = generatePositiveArray(len);</span><br><span class="line">		printArray(arr);</span><br><span class="line">		System.out.println(getMaxLength(arr, k));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p><br></p>
+<h3 id="题目：累加和小于等于aim的最长子数组"><a href="#题目：累加和小于等于aim的最长子数组" class="headerlink" title="题目：累加和小于等于aim的最长子数组"></a>题目：累加和小于等于aim的最长子数组</h3><p>给定一个数组arr，值可正，可负，可0；一个整数aim，求累加 和小于等于aim的，最长子数组，要求时间复杂度O(N)</p>
+<p><br></p>
+<p>准备</p>
+<p>生成两个数组 min_sum 和 min_sum_index ，和原数组的长度一致</p>
+<p>min_sum代表的意思是对应原数组中，以原数组index位置的值作为数组开头的一个累加和最小的子数组的累加和；</p>
+<p>min_sum_index代表的意思是对应原数组中，以原数组index位置的值作为数组开头的一个累加和最小的子数组能够到达的右边界；</p>
+<p>这另个数组的生成过程很简单，从右往左遍历原数组， 最后的值先填上，然后往左遍历，遍历的时候如果发现右边已经填上的值是负数，此时直接加上右边的值就是以当前位置开头的累加和最小的子数组的累加和，此时到达的右边界和右边数的右边界一致。如果发现左边已经填上的值是正数，那么这个位置本身的值就是以当前位置开头的累加和最小的子数组的累加和，此时到达的右边界也是它自己本身的index；</p>
+<img src="/clay4444.github.io/posts/undefined/picture11.jpg">
+<p><br></p>
+<p>解法过程</p>
+<p>从0位置开始扩，此时L指向0位置，然后从min_sum数组中找出以0位置开始累加和最小的子数组的累加和，然后再从min_sum_index中取出以0位置开始累加和最小的子数组能够到达的右边界，此时判断0到R这个子数组的累加和是否小于aim。如果大于aim，说明以0开头找不到小于aim的子数组，因为刚才取出来的0到R这个子数组就是以0位置开头累加和最小的子数组，如果它都不符合条件，其他以0开头的子数组更不可能符合条件。如果小于等于aim，此时R一下扩到这个边界位置，然后以当前的边界点R为L，找到这个L点的以L位置开头累加和最小的子数组的累加和，把这两个累加和累加起来，看是否小于等于aim，如果还小于等于，R继续跳到这个累加和最小的子数组的后边界，继续以此种方式往右边扩，直到发现全部的累加和大于aim了，停止；此时R的位置，就是以0位置开头能够找到的累加和小于等于aim的最长子数组的右边界；</p>
+<img src="/clay4444.github.io/posts/undefined/picture12.jpg">
+<p><br></p>
+<p>注意：之后的解法不是找1往右一块一块的扩，找2往右一块一块的扩，这样的解法不会错过答案，但是会使得时间复杂度变成O(n^2)</p>
+<p><br></p>
+<p>假设从0开始扩到T位置，累加和是小于等于aim的，T+1位置扩不动了，然后计算1位置的时候，T是不会往左缩的，我们会直接计算1位置到T+1位置是不是小于等于aim的，这个步骤的sum是可以计算出来的，sum=sum-aim[0]，因为如果1位置扩不到T+1位置，我们是不关心这个结果的，因为即使计算了以1位置开头的最长子数组，它还是没有以0位置开头的长，这个计算是没有意义的，就是如下的情况</p>
+<img src="/clay4444.github.io/posts/undefined/picture13.jpg">
+<p><br></p>
+<p>我们只关心最长的子数组，所以这件事就变成了左边界和右边界永远都是往右滑的，永远不会回退，所以时间复杂度是O(N)，这是这道题的精髓</p>
+<img src="/clay4444.github.io/posts/undefined/picture14.jpg">
+<p><br></p>
+<p>代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Code_05_LongestSubarrayLessSumAwesomeSolution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">maxLengthAwesome</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span>[] sums = <span class="keyword">new</span> <span class="keyword">int</span>[arr.length];</span><br><span class="line">		<span class="keyword">int</span>[] ends = <span class="keyword">new</span> <span class="keyword">int</span>[arr.length];</span><br><span class="line"></span><br><span class="line">		sums[arr.length - <span class="number">1</span>] = arr[arr.length - <span class="number">1</span>];</span><br><span class="line">		ends[arr.length - <span class="number">1</span>] = arr.length - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//生成两个信息</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = arr.length - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">			<span class="keyword">if</span> (sums[i + <span class="number">1</span>] &lt; <span class="number">0</span>) &#123;</span><br><span class="line">				sums[i] = arr[i] + sums[i + <span class="number">1</span>];  <span class="comment">//负数</span></span><br><span class="line">				ends[i] = ends[i+<span class="number">1</span>];  <span class="comment">//右边前一个到达的右边界</span></span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				sums[i] = arr[i];</span><br><span class="line">				ends[i] = i;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 利用两个信息做计算,</span></span><br><span class="line">		<span class="keyword">int</span> R = <span class="number">0</span>;  <span class="comment">//右边界</span></span><br><span class="line">		<span class="keyword">int</span> sum = <span class="number">0</span>;   <span class="comment">//start 到 R 的累加和</span></span><br><span class="line">		<span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> start = <span class="number">0</span>; start &lt; arr.length; start++) &#123;</span><br><span class="line">			<span class="keyword">while</span> (R &lt; arr.length &amp;&amp; sum + sums[R] &lt;= aim) &#123;  <span class="comment">//越界了或者累加和超过aim了。</span></span><br><span class="line">				sum += sums[R];</span><br><span class="line">				R = ends[R] + <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			sum -= R &gt; start ? arr[start] : <span class="number">0</span>;  <span class="comment">// R &gt; start 说明窗口有值，</span></span><br><span class="line">			len = Math.max(len, R - start);  <span class="comment">//更新长度</span></span><br><span class="line">			R = Math.max(R, start + <span class="number">1</span>);  <span class="comment">//需要考虑一个数都扩不动的情况；此时R也需要向右扩，否则R就不动了；</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> len;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">maxLength</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[] h = <span class="keyword">new</span> <span class="keyword">int</span>[arr.length + <span class="number">1</span>];</span><br><span class="line">		<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">		h[<span class="number">0</span>] = sum;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != arr.length; i++) &#123;</span><br><span class="line">			sum += arr[i];</span><br><span class="line">			h[i + <span class="number">1</span>] = Math.max(sum, h[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		sum = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> pre = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != arr.length; i++) &#123;</span><br><span class="line">			sum += arr[i];</span><br><span class="line">			pre = getLessIndex(h, sum - k);</span><br><span class="line">			len = pre == -<span class="number">1</span> ? <span class="number">0</span> : i - pre + <span class="number">1</span>;</span><br><span class="line">			res = Math.max(res, len);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getLessIndex</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> high = arr.length - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> mid = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> res = -<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">			mid = (low + high) / <span class="number">2</span>;</span><br><span class="line">			<span class="keyword">if</span> (arr[mid] &gt;= num) &#123;</span><br><span class="line">				res = mid;</span><br><span class="line">				high = mid - <span class="number">1</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				low = mid + <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// for test</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] generateRandomArray(<span class="keyword">int</span> len, <span class="keyword">int</span> maxValue) &#123;</span><br><span class="line">		<span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != res.length; i++) &#123;</span><br><span class="line">			res[i] = (<span class="keyword">int</span>) (Math.random() * maxValue) - (maxValue / <span class="number">3</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000000</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">int</span>[] arr = generateRandomArray(<span class="number">10</span>, <span class="number">20</span>);</span><br><span class="line">			<span class="keyword">int</span> k = (<span class="keyword">int</span>) (Math.random() * <span class="number">20</span>) - <span class="number">5</span>;</span><br><span class="line">			<span class="keyword">if</span> (maxLengthAwesome(arr, k) != maxLength(arr, k)) &#123;</span><br><span class="line">				System.out.println(<span class="string">"oops!"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p><br></p>
+<h3 id="题目：环形单链表的约瑟夫问题"><a href="#题目：环形单链表的约瑟夫问题" class="headerlink" title="题目：环形单链表的约瑟夫问题"></a>题目：环形单链表的约瑟夫问题</h3><p>【题目】</p>
+<p> 据说著名犹太历史学家Josephus有过以下故事：在罗马人占领乔塔帕特后， 39个犹太人与Josephus及他的朋友躲到一个洞中，39个犹太人决定宁愿死也不要被敌人抓到，于是决定了一个自杀方式，41个人排成一个圆圈，由第1个 人开始报数，报数到3的人就自杀，然后再由下一个人重新报1，报数到3的人 再自杀，这样依次下去，直到剩下最后一个人时，那个人可以自由选择自己的命运。这就是著名的约瑟夫问题。现在请用单向环形链表描述该结构并呈现整个自杀过程。</p>
+<p> 输入：</p>
+<p>一个环形单向链表的头节点head和报数的值m。 </p>
+<p>返回：</p>
+<p>最后生存下来的节点，且这个节点自己组成环形单向链表，其他节点都删掉。 </p>
+<p>进阶： </p>
+<p>如果链表节点数为N，想在时间复杂度为O(N)时完成原问题的要求，该怎么实 现？</p>
+<p><br></p>
+<p>暴力解法：</p>
+<p>遍历一次杀死一个节点，时间复杂度 O(M*N)</p>
+<p><br></p>
+<p>y=x%i 函数图像</p>
+<img src="/clay4444.github.io/posts/undefined/picture15.jpg">
+<p><br></p>
+<p>O(N) 的解法:</p>
+<p>每杀死一个节点，剩下的节点就按照环形链表的顺序往下重新编号，也就是说被杀死节点的下一个节点编号为1，剩下的节点按照这个顺序重新编号，那么杀到最后只剩下一个节点的时候，存活节点的编号肯定是1，废话，因为只剩下一个了，如果有一个公式，可以还原出在还剩两个节点的时候，也就是这个节点在还剩两个节点的时候的编号，那么就可以从下往上一直递推，找到最开始一个节点都没杀的时候，最后存活节点的编号，也就是最终的结果，这样就不用杀死节点了。 </p>
+<img src="/clay4444.github.io/posts/undefined/picture16.jpg">
+<p><br></p>
+<p>找这个公式的思路</p>
+<p>先找出编号和报数之间的关系，编号一直是从1到i，报数是一直递增的，根据对应数字描点画图，我们得到如下的图像</p>
+<img src="/clay4444.github.io/posts/undefined/picture17.jpg">
+<p>通过观察，可以发现编号和报数之间的关系函数是由y=x%i 函数图像 向上平移一位，再向右平移一位，得到的，所以我们得到编号和报数之间的关系是：</p>
+<p>编号=(报数-1)%i+1（当长度为i的时候）</p>
+<p><br></p>
+<p>然后再找旧号(长度i)和新号之间的函数关系(长度i-1)，旧号杀死一个节点之后，链表长度变为i-1；</p>
+<p>用举例的方式分析函数图像，如下：假设s是被杀死的节点</p>
+<img src="/clay4444.github.io/posts/undefined/picture18.jpg">
+<p><br></p>
+<p>函数分析</p>
+<p>这个函数的图像，是由 y=(x-1)%i+1  向左平移S个位置得到的，</p>
+<p>其实左右平移看第一个斜线最高点时x坐标的位置就知道了，y=x%i 中，这个坐标是i-1位置， y=(x-1)%i+1 中，这个坐标是i位置，所以是向右平移了一位，而在最后这个函数图像中，这个坐标是i-s位置，所以是向左平移了S位，上下没有变化；</p>
+<p><br></p>
+<p>所以最终的函数就是： 旧 = ( 新-1+s ) % i +1</p>
+<img src="/clay4444.github.io/posts/undefined/picture19.jpg">
+<p><br></p>
+<p>根据这两个公式，我们可以推出 旧编号 和 新编号 之间的 对应关系，如下图所示，在 旧 = ( 新-1+s ) % i +1 中，只有 s 是未知的，而s就是被杀掉的节点的编号，也就是 s=(m-1)%i+1，其中m是每次杀人时报的数字，把s 带入 旧 = ( 新-1+s ) % i +1 中，得出新的公式，在新的公式中 参数 就只有m和i，m是固定不变的，i是每次传的长度，就得到了新旧编号之间的对应关系，</p>
+<p>i=1时不用求旧编号，直接作为basecase，返回给i=2时公式中的新编号即可；</p>
+<img src="/clay4444.github.io/posts/undefined/picture20.jpg">
+<p><br></p>
+<p>最终的公式</p>
+<p>旧 = ( 新 + m - 1 ) % i + 1</p>
+<p><br></p>
+<p>推倒最终公式的过程</p>
+<img src="/clay4444.github.io/posts/undefined/picture21.jpg">
+<p><br></p>
+<p>得到这个公式之后，就先算i=2时的旧编号，此时新编号是i=1时的编号，就是1，代入旧 = ( 1 + m - 1 ) % 2 + 1 公式中，求出i=2时的旧编号，然后求i=3时的旧编号，此时i=2求出来的旧编号是作为i=3时的新编号的，所以代入旧 = ( 1 + m - 1 ) % 2 + 1 公式中，求出i=3时的旧编号，然后按照这个过程一直往上求，直到最后，求出这个最终存活的节点在原始链表中的编号；返回</p>
+<p><br></p>
+<p>代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Code_06_JosephusProblem</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">int</span> value;</span><br><span class="line">		<span class="keyword">public</span> Node next;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> data)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.value = data;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Node <span class="title">josephusKill1</span><span class="params">(Node head, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == head || m &lt; <span class="number">1</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> head;</span><br><span class="line">		&#125;</span><br><span class="line">		Node last = head;</span><br><span class="line">		<span class="keyword">while</span> (last.next != head) &#123;</span><br><span class="line">			last = last.next;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> (head != last) &#123;</span><br><span class="line">			<span class="keyword">if</span> (++count == m) &#123;</span><br><span class="line">				last.next = head.next;</span><br><span class="line">				count = <span class="number">0</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				last = last.next;</span><br><span class="line">			&#125;</span><br><span class="line">			head = last.next;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> head;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Node <span class="title">josephusKill2</span><span class="params">(Node head, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == head || m &lt; <span class="number">1</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> head;</span><br><span class="line">		&#125;</span><br><span class="line">		Node cur = head.next;</span><br><span class="line">		<span class="keyword">int</span> tmp = <span class="number">1</span>; <span class="comment">// tmp -&gt; list size</span></span><br><span class="line">		<span class="keyword">while</span> (cur != head) &#123;</span><br><span class="line">			tmp++;</span><br><span class="line">			cur = cur.next;</span><br><span class="line">		&#125;</span><br><span class="line">		tmp = getLive(tmp, m); <span class="comment">// tmp -&gt; service node position</span></span><br><span class="line">		<span class="keyword">while</span> (--tmp != <span class="number">0</span>) &#123;</span><br><span class="line">			head = head.next;</span><br><span class="line">		&#125;</span><br><span class="line">		head.next = head;</span><br><span class="line">		<span class="keyword">return</span> head;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 旧 = ( 新 + m - 1 ) % i + 1</span></span><br><span class="line"><span class="comment">	 * 长度为i，报到m 就杀人的时候，</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span>  最后存活节点的一开始的旧编号</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getLive</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (i == <span class="number">1</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>; <span class="comment">//长度为1，新编号肯定是1，basecase</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//(getLive(i - 1, m)  i-1时的编号，</span></span><br><span class="line">		<span class="keyword">return</span> (getLive(i - <span class="number">1</span>, m) + m - <span class="number">1</span>) % i + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printCircularList</span><span class="params">(Node head)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.print(<span class="string">"Circular List: "</span> + head.value + <span class="string">" "</span>);</span><br><span class="line">		Node cur = head.next;</span><br><span class="line">		<span class="keyword">while</span> (cur != head) &#123;</span><br><span class="line">			System.out.print(cur.value + <span class="string">" "</span>);</span><br><span class="line">			cur = cur.next;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"-&gt; "</span> + head.value);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Node head1 = <span class="keyword">new</span> Node(<span class="number">1</span>);</span><br><span class="line">		head1.next = <span class="keyword">new</span> Node(<span class="number">2</span>);</span><br><span class="line">		head1.next.next = <span class="keyword">new</span> Node(<span class="number">3</span>);</span><br><span class="line">		head1.next.next.next = <span class="keyword">new</span> Node(<span class="number">4</span>);</span><br><span class="line">		head1.next.next.next.next = <span class="keyword">new</span> Node(<span class="number">5</span>);</span><br><span class="line">		head1.next.next.next.next.next = head1;</span><br><span class="line">		printCircularList(head1);</span><br><span class="line">		head1 = josephusKill1(head1, <span class="number">3</span>);</span><br><span class="line">		printCircularList(head1);</span><br><span class="line"></span><br><span class="line">		Node head2 = <span class="keyword">new</span> Node(<span class="number">1</span>);</span><br><span class="line">		head2.next = <span class="keyword">new</span> Node(<span class="number">2</span>);</span><br><span class="line">		head2.next.next = <span class="keyword">new</span> Node(<span class="number">3</span>);</span><br><span class="line">		head2.next.next.next = <span class="keyword">new</span> Node(<span class="number">4</span>);</span><br><span class="line">		head2.next.next.next.next = <span class="keyword">new</span> Node(<span class="number">5</span>);</span><br><span class="line">		head2.next.next.next.next.next = head2;</span><br><span class="line">		printCircularList(head2);</span><br><span class="line">		head2 = josephusKill2(head2, <span class="number">3</span>);</span><br><span class="line">		printCircularList(head2);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p><br></p>
+<h3 id="题目：字符串匹配问题"><a href="#题目：字符串匹配问题" class="headerlink" title="题目：字符串匹配问题"></a>题目：字符串匹配问题</h3><p>注意：*号用 ! 替代了，因为markdown 会把星号解析</p>
+<p>【题目】</p>
+<p>给定字符串str，其中绝对不含有字符’.’和’!’。再给定字符串exp， 其中可以含有’.’或’!’，’!’字符不能是exp的首字符，并且任意两个 ‘!’字符不相邻。exp中的’.’代表任何一个字符，exp中的’!’表示’!’ 的前一个字符可以有0个或者多个。请写一个函数，判断str是否能被 exp匹配。 </p>
+<p>【举例】 </p>
+<p>str=”abc”，exp=”abc”，返回true。 </p>
+<p>str=”abc”，exp=”a.c”，exp中单个’.’可以代表任意字符，所以返回 true。 </p>
+<p>str=”abcd”，exp=”.!”。exp中’!’的前一个字符是’.’，所以可表示任 意数量的’.’字符，当exp是”….”时与”abcd”匹配，返回true。 </p>
+<p>str=””，exp=”..<em>“。exp中’</em>‘的前一个字符是’.’，可表示任意数量 的’.’字符，但是”.!”之前还有一个’.’字符，该字符不受’!’的影响， 所以str起码有一个字符才能被exp匹配。所以返回false。</p>
+<p><br></p>
+<p><br></p>
+<p>递归版本</p>
+<p>递归函数：f(i,j)  ：代表str从i开始及其之后的字符，是否能被exp从j位置开始直到结束，这个子exp完全匹配；</p>
+<p>! 这个字符比较特殊：</p>
+<p>第一种情况，exp中j位置后面的字符不是 !，那么i位置字符和j位置要么一样，要么j位置字符为 . ，否则，直接返回false，因为这样不可能匹配到；如果i位置字符和j位置一样或者j位置字符为 . ，那么这个函数的返回值要看exp中j+1位置及其后面的字符能不能匹配到str中i+1及其后面的字符；</p>
+<p>所以这种情况下 f(i,j)  依赖于 f(i+1,j+1)</p>
+<p><br></p>
+<p>第二种情况， exp中j位置后面的字符是 !，比较麻烦，此时假设j位置和i位置不匹配，那么j+1位置的 ! 就要表示匹配0个j位置字符，然后再看j+2位置及其之后的字符能不能匹配i位置开始及其之后的字符，</p>
+<p>所以这种情况下 f(i,j)  依赖于 f(i,j+2)</p>
+<img src="/clay4444.github.io/posts/undefined/picture22.jpg">
+<p>如果j位置和i位置可以匹配上， 就会产生很多分支，比如a! 匹配一个a，然后看j+2及之后位置是否能匹配i+1之后的位置，比如a! 匹配两个a，然后看j+2及之后位置是否能匹配i+2之后的位置，比如a! 匹配三个a，然后看j+2及之后位置是否能匹配i+3之后的位置，比如a! 匹配四个a，然后看j+2及之后位置是否能匹配i+4之后的位置，这个如果匹配不到，就说明真匹配不到，返回false；</p>
+<p>所以这种情况下 f(i,j)  依赖于 多种情况，例如 f(i,j+2)：匹配0个a，f(i+1,j+2)：匹配一个a，f(i+2,j+2)：匹配两个a，等等，其中只要有一个返回true，结果就是true；</p>
+<img src="/clay4444.github.io/posts/undefined/picture23.jpg">
+<p><br></p>
+<p>dp版本</p>
+<p>basecase 位置 最后一列</p>
+<p>目标位置：f (0,0)</p>
+<p>分析普遍位置，一个普遍位置(i,j)，需要依赖 (i+1,j+1)，和  横坐标为 i+2 的这一列。 </p>
+<p>所以 如果要把整张表填完，就需要倒数两列和最后一排的位置，</p>
+<p>当我们的basecase 不足以让我们把地基打完的时候，就要还原回原题意，把欠缺的位置继续填上。</p>
+<p><br></p>
+<p>倒数第二列的意义：express剩下最后一个字符了，但是str还有字符，倒数第二列的最后一个值代表的是exp还剩下一个字符，str为空串，所以是 false，倒数第二列的倒数第二个值代表的意义是exp还剩下一个字符，str也还剩一个字符，此时需要看一下，这两个字符是否匹配，匹配这个值就是true，不匹配就是false。倒数第二列的其他位置的值表示的就是exp还剩下一个字符，str还剩不止一个字符，所以其他值都是false。</p>
+<p>倒数第一行的意义是：str是空串，但是 exp 还有后缀，此时 就要看exp 字符的形式，如果是!a!b!c!a …的形式，那最后一行的格式就是false，true，false，true，false，true …..  如果中间某一个字符破坏了这种形式，那之后的值就就都是false，注意：! 一定要和一个字符配合才能匹配空串，只有  ！ 自己的话，是匹配不了的；</p>
+<p><br></p>
+<p>代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Code_03_RegularExpressionMatch</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isValid</span><span class="params">(<span class="keyword">char</span>[] s, <span class="keyword">char</span>[] e)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (s[i] == <span class="string">'*'</span> || s[i] == <span class="string">'.'</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; e.length; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (e[i] == <span class="string">'*'</span> &amp;&amp; (i == <span class="number">0</span> || e[i - <span class="number">1</span>] == <span class="string">'*'</span>)) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isMatch</span><span class="params">(String str, String exp)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (str == <span class="keyword">null</span> || exp == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">char</span>[] s = str.toCharArray();</span><br><span class="line">		<span class="keyword">char</span>[] e = exp.toCharArray();</span><br><span class="line">		<span class="keyword">return</span> isValid(s, e) ? process(s, e, <span class="number">0</span>, <span class="number">0</span>) : <span class="keyword">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 暴力递归</span></span><br><span class="line"><span class="comment">	 * str[i,len(i)]这个字符串能不能被exp[j,len(exp)] 这个字符串，匹配出来</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">process</span><span class="params">(<span class="keyword">char</span>[] str, <span class="keyword">char</span>[] exp, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (j == exp.length) &#123; <span class="comment">//j到了终止位置，后面什么都没有了，此时i及其之后的位置只能配 "" 空串了，</span></span><br><span class="line">			<span class="keyword">return</span> i == str.length; <span class="comment">//如果exp耗尽了，那么只有str也耗尽了，才能返回true；</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//j 上面还有字符，考察 j+1 的情况，也就是第一种情况</span></span><br><span class="line">		<span class="keyword">if</span> (j + <span class="number">1</span> == exp.length || exp[j + <span class="number">1</span>] != <span class="string">'*'</span>) &#123;</span><br><span class="line">			<span class="comment">//j上面还有字符，此时如果i已经到末尾了，直接返回false</span></span><br><span class="line">			<span class="keyword">return</span> i != str.length &amp;&amp; (exp[j] == str[i] || exp[j] == <span class="string">'.'</span>)</span><br><span class="line">					&amp;&amp; process(str, exp, i + <span class="number">1</span>, j + <span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//exp[j + 1] 不仅有字符，而且还是 *</span></span><br><span class="line">		<span class="comment">//当i没到最后的情况下，而且i和j的字符还能配上，就走接下来的每一条路</span></span><br><span class="line">		<span class="keyword">while</span> (i != str.length &amp;&amp; (exp[j] == str[i] || exp[j] == <span class="string">'.'</span>)) &#123;</span><br><span class="line">			<span class="keyword">if</span> (process(str, exp, i, j + <span class="number">2</span>)) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			i++;  <span class="comment">// i++</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> process(str, exp, i, j + <span class="number">2</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isMatchDP</span><span class="params">(String str, String exp)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (str == <span class="keyword">null</span> || exp == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">char</span>[] s = str.toCharArray();</span><br><span class="line">		<span class="keyword">char</span>[] e = exp.toCharArray();</span><br><span class="line">		<span class="keyword">if</span> (!isValid(s, e)) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">boolean</span>[][] dp = initDPMap(s, e); <span class="comment">//填好最后两列和最后一行；</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = s.length - <span class="number">1</span>; i &gt; -<span class="number">1</span>; i--) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = e.length - <span class="number">2</span>; j &gt; -<span class="number">1</span>; j--) &#123;</span><br><span class="line">				<span class="keyword">if</span> (e[j + <span class="number">1</span>] != <span class="string">'*'</span>) &#123;</span><br><span class="line">					dp[i][j] = (s[i] == e[j] || e[j] == <span class="string">'.'</span>)</span><br><span class="line">							&amp;&amp; dp[i + <span class="number">1</span>][j + <span class="number">1</span>];</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="keyword">int</span> si = i;</span><br><span class="line">					<span class="keyword">while</span> (si != s.length &amp;&amp; (s[si] == e[j] || e[j] == <span class="string">'.'</span>)) &#123;</span><br><span class="line">						<span class="keyword">if</span> (dp[si][j + <span class="number">2</span>]) &#123;</span><br><span class="line">							dp[i][j] = <span class="keyword">true</span>;</span><br><span class="line">							<span class="keyword">break</span>;</span><br><span class="line">						&#125;</span><br><span class="line">						si++;</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">if</span> (dp[i][j] != <span class="keyword">true</span>) &#123;</span><br><span class="line">						dp[i][j] = dp[si][j + <span class="number">2</span>];</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> dp[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span>[][] initDPMap(<span class="keyword">char</span>[] s, <span class="keyword">char</span>[] e) &#123;</span><br><span class="line">		<span class="keyword">int</span> slen = s.length;</span><br><span class="line">		<span class="keyword">int</span> elen = e.length;</span><br><span class="line">		<span class="keyword">boolean</span>[][] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[slen + <span class="number">1</span>][elen + <span class="number">1</span>];</span><br><span class="line">		dp[slen][elen] = <span class="keyword">true</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = elen - <span class="number">2</span>; j &gt; -<span class="number">1</span>; j = j - <span class="number">2</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (e[j] != <span class="string">'*'</span> &amp;&amp; e[j + <span class="number">1</span>] == <span class="string">'*'</span>) &#123;</span><br><span class="line">				dp[slen][j] = <span class="keyword">true</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (slen &gt; <span class="number">0</span> &amp;&amp; elen &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> ((e[elen - <span class="number">1</span>] == <span class="string">'.'</span> || s[slen - <span class="number">1</span>] == e[elen - <span class="number">1</span>])) &#123;</span><br><span class="line">				dp[slen - <span class="number">1</span>][elen - <span class="number">1</span>] = <span class="keyword">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> dp;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		String str = <span class="string">"abcccdefg"</span>;</span><br><span class="line">		String exp = <span class="string">"ab.*d.*e.*"</span>;</span><br><span class="line">		System.out.println(isMatch(str, exp));</span><br><span class="line">		System.out.println(isMatchDP(str, exp));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://clay4444.github.io">clay</a>
+            </p><p>原文链接：<a href="http://clay4444.github.io/posts/ff78c689/">http://clay4444.github.io/posts/ff78c689/</a>
+            </p><p>发表日期：<a href="http://clay4444.github.io/posts/ff78c689/">April 4th 2019, 9:57:24 pm</a>
+            </p><p>更新日期：<a href="http://clay4444.github.io/posts/ff78c689/">April 4th 2019, 9:58:45 pm</a>
+            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/clay4444.github.io/posts/7f010ad5/" title="算法基础第六课">
+                    <div class="prevTitle">算法基础第六课</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:clay4444@126.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/clay4444" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title="wechat">
+                  
+                  <img class="profile-qr" src="/clay4444.github.io/assets/example_qr.png">
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目：换钱的方法数"><span class="toc-number">1.</span> <span class="toc-text">题目：换钱的方法数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#尝试的暴力解法"><span class="toc-number">1.1.</span> <span class="toc-text">尝试的暴力解法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#优化：记忆化搜索"><span class="toc-number">1.2.</span> <span class="toc-text">优化：记忆化搜索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#再优化解法：dp"><span class="toc-number">1.3.</span> <span class="toc-text">再优化解法：dp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最优化"><span class="toc-number">1.4.</span> <span class="toc-text">最优化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目：排成一条线的纸牌博弈问题"><span class="toc-number">2.</span> <span class="toc-text">题目：排成一条线的纸牌博弈问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目：机器人走路问题"><span class="toc-number">3.</span> <span class="toc-text">题目：机器人走路问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目：累加和等于aim的最长子数组"><span class="toc-number">4.</span> <span class="toc-text">题目：累加和等于aim的最长子数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目：累加和小于等于aim的最长子数组"><span class="toc-number">5.</span> <span class="toc-text">题目：累加和小于等于aim的最长子数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目：环形单链表的约瑟夫问题"><span class="toc-number">6.</span> <span class="toc-text">题目：环形单链表的约瑟夫问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目：字符串匹配问题"><span class="toc-number">7.</span> <span class="toc-text">题目：字符串匹配问题</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 157
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/clay4444.github.io/posts/ff78c689/">算法进阶第六课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/7f010ad5/">算法基础第六课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/8366812d/">算法进阶第四五课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/22</span><a class="archive-post-title" href="/clay4444.github.io/posts/42c55172/">算法进阶第三课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/fdbf220/">算法进阶第二课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/10</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fcd1ef8/">算法进阶第一课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/28</span><a class="archive-post-title" href="/clay4444.github.io/posts/8bd8430e/">算法基础特别节目</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/26</span><a class="archive-post-title" href="/clay4444.github.io/posts/5a6a5509/">算法基础第八课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/ad017d4a/">算法基础第七课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/1a0f410c/">算法基础第五课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/7591844b/">算法基础第四课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2bc9d2e/">算法基础第三课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/22</span><a class="archive-post-title" href="/clay4444.github.io/posts/5c06dc97/">Flink中startNewChain和SlotSharingGroup的区别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/20</span><a class="archive-post-title" href="/clay4444.github.io/posts/8fa23e7c/">算法基础第二课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/17</span><a class="archive-post-title" href="/clay4444.github.io/posts/bfb4d2a4/">算法基础第一课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/15</span><a class="archive-post-title" href="/clay4444.github.io/posts/6e3b6e5d/">kafka权威指南第一章</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/15</span><a class="archive-post-title" href="/clay4444.github.io/posts/98dde65a/">StreamingSystem第三章总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/11</span><a class="archive-post-title" href="/clay4444.github.io/posts/613fbfdf/">StreamingSystem一二章总结</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/6f100083/">TwoPhaseCommitSinkFunction</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/03</span><a class="archive-post-title" href="/clay4444.github.io/posts/b8ce2b2d/">sql语句中where与having的区别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/5bb24833/">ElasticSearch入门（三）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/16aceb61/">ElasticSearch入门（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/26ba07b9/">ElasticSearch入门（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/dfa909ab/">Flink的Metrics与监控</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/6a73b0f6/">Flink状态管理与恢复机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/827d698b/">Flink的Window与Time</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/589f5c61/">DataStreamAPI</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/4042ab31/">Flink基本概念与部署</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/clay4444.github.io/posts/22d66bb6/">Hive常见优化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/clay4444.github.io/posts/ce3cc54d/">zookeeper为什么一定要配置成奇数台</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/8bea7439/">MySql锁机制及索引</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/767c3cbc/">TCP三次握手-四次挥手面试总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/6d00129c/">自旋锁</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/1922d0f6/">常见海量处理题目解题关键</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/28</span><a class="archive-post-title" href="/clay4444.github.io/posts/db7f9c/">深入理解spark之架构与原理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/b1a1506f/">查找两个数组的相同字符（两个超大文件的相同字符）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/9799c850/">MR中的计数器、job串联等功能实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/03</span><a class="archive-post-title" href="/clay4444.github.io/posts/9c6cea3b/">Spring注解驱动开发之组件注册</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/44e5bf34/">Git中fork和clone的区别，fetch与pull的区别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/27</span><a class="archive-post-title" href="/clay4444.github.io/posts/9b145405/">Log4J与slf4j使用详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/eeeb2ca/">Java中的几种引用类型：强引用、软引用、弱引用和虚引用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/b391d3f0/">scala函数式编程和集合进阶</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/ccad62d6/">scala的面向对象和操作符</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/90c61e02/">scala数据类型等基本操作</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/11</span><a class="archive-post-title" href="/clay4444.github.io/posts/c640a1d5/">Java9之模块化和REPL工具</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/41355ae3/">Spark作业提交执行流程及底层实现介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/d5a66bc5/">Storm和kafka、Hbase之间的整合</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/97e35c7b/">Storm的分组策略和确保消息送达机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/9799a940/">Storm架构及其资源分配问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e73169bb/">详解hbase扫描、过滤、缓存等问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/615ff67f/">详解hbase架构、数据读取、存储、拆分风暴等问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/cedf1ac1/">kafka消息队列初探</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/117ed1fe/">Flume日志收集框架初探</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/fdf5e3ed/">死锁及其解决办法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/969c35d/">并发编程实战(八)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/28</span><a class="archive-post-title" href="/clay4444.github.io/posts/c03b7c51/">并发编程实战(七)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/27</span><a class="archive-post-title" href="/clay4444.github.io/posts/5f3364db/">并发编程实战(六)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/27</span><a class="archive-post-title" href="/clay4444.github.io/posts/c63c2ca9/">并发编程实战(五)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/26</span><a class="archive-post-title" href="/clay4444.github.io/posts/4a0a5133/">Java中的Runnable、Callable、Future、FutureTask的区别与示例</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/c0977bd4/">并发编程实战(四)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/eb162f92/">并发编程实战(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/a2cd52e0/">MR之社交粉丝数据查找共同好友</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/cc1873ed/">MR之流量统计相关需求</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/29</span><a class="archive-post-title" href="/clay4444.github.io/posts/f932ba85/">数据结构之图</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/27</span><a class="archive-post-title" href="/clay4444.github.io/posts/afe7cf7/">栈的经典应用之中缀表达式和后缀表达式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/26</span><a class="archive-post-title" href="/clay4444.github.io/posts/39aa6912/">数据结构之二叉树</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/409910e4/">数据结构之散列表</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/21</span><a class="archive-post-title" href="/clay4444.github.io/posts/6c17d6bd/">数据结构之树</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/19</span><a class="archive-post-title" href="/clay4444.github.io/posts/786266a6/">Java之Iterator与Iterable的区别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/17</span><a class="archive-post-title" href="/clay4444.github.io/posts/1c652596/">JDK1.7-Stack源码分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/21482a37/">LinkedHashMap源码赏析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/14</span><a class="archive-post-title" href="/clay4444.github.io/posts/526318cc/">HashMap源码赏析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/13</span><a class="archive-post-title" href="/clay4444.github.io/posts/df7893e2/">LinkedList源码赏析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/d36c0402/">ArrayList删除特定元素的方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/11</span><a class="archive-post-title" href="/clay4444.github.io/posts/55c3a3c7/">ArrayList添加一个元素add方法的核心</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/5b758090/">ArrayList源码赏析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/6d17d8e0/">Java8系列之新时间和日期API</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/03</span><a class="archive-post-title" href="/clay4444.github.io/posts/91ca9518/">Java8系列之Optional容器</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/28</span><a class="archive-post-title" href="/clay4444.github.io/posts/9b8b8703/">Java8系列之Stream-API</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/ccf34b81/">Java8系列之Lambda表达式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/21</span><a class="archive-post-title" href="/clay4444.github.io/posts/f26db82e/">Comparator和Comparable详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/20</span><a class="archive-post-title" href="/clay4444.github.io/posts/c4dacfdd/">Java8系列之宏观简介</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/17</span><a class="archive-post-title" href="/clay4444.github.io/posts/13325b7b/">Java的反射与动态代理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/1c38ec28/">关于内部类的那些事</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/10</span><a class="archive-post-title" href="/clay4444.github.io/posts/82b03554/">装饰者模式详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/148c5e8e/">策略模式详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/34ec76cc/">迭代器模式详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/f4488fab/">适配器模式详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/21</span><a class="archive-post-title" href="/clay4444.github.io/posts/db6632d/">详解关系型数据库三范式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/11</span><a class="archive-post-title" href="/clay4444.github.io/posts/dcf98c31/">maven的聚合和继承</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/c51233f6/">JavaIO流</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/31</span><a class="archive-post-title" href="/clay4444.github.io/posts/a4b4dacb/">详解Java7中的Try-with-resource</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/e4155742/">Java异常处理模板</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/15</span><a class="archive-post-title" href="/clay4444.github.io/posts/6bb61ef6/">深入探讨Java的故障保护异常处理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/78696dcf/">本地YUM源制作</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/04</span><a class="archive-post-title" href="/clay4444.github.io/posts/621e5041/">VMware虚拟机三种联网方法及原理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/30</span><a class="archive-post-title" href="/clay4444.github.io/posts/ecfdb360/">关于mapreduce程序开发的一些总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/clay4444.github.io/posts/c1ee2109/">MR之mapreduce原理深入剖析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/27</span><a class="archive-post-title" href="/clay4444.github.io/posts/21f9e9c5/">MR之WordCountDemo及执行流程图</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/a9435451/">MR之客户端提交mr程序job的流程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/63320029/">详解namenode的安全模式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/22</span><a class="archive-post-title" href="/clay4444.github.io/posts/ac72d308/">Hadoop集群的联邦机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/20</span><a class="archive-post-title" href="/clay4444.github.io/posts/d0edc1ed/">Linux常用命令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/15</span><a class="archive-post-title" href="/clay4444.github.io/posts/a45c106d/">Hadoop集群高可用配置原理及过程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/13</span><a class="archive-post-title" href="/clay4444.github.io/posts/442eff56/">详解Linux的链接文件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/84f5b3e/">NIO系列之非阻塞式IO</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/clay4444.github.io/posts/65ebcdd2/">NIO系列之缓冲区和通道</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/a4ab48f8/">线程八锁</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/28</span><a class="archive-post-title" href="/clay4444.github.io/posts/657d2343/">经典面试题之线程按顺序交替打印</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/2822593d/">CAS算法原子变量底层到底是如何工作的</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/clay4444.github.io/posts/46a889d8/">Lock与synchronized的区别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/15</span><a class="archive-post-title" href="/clay4444.github.io/posts/f9184235/">Disruptor框架</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/282014e2/">重入锁和读写锁和分布式锁的应用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/10</span><a class="archive-post-title" href="/clay4444.github.io/posts/417d070a/">concurrent包下常用类及其应用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/03</span><a class="archive-post-title" href="/clay4444.github.io/posts/8b920ef3/">Executor线程池应用及其源代码解析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href="/clay4444.github.io/posts/ba8be30a/">多线程的设计模式之生产者-消费者模式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/28</span><a class="archive-post-title" href="/clay4444.github.io/posts/c319249/">多线程的设计模式之Master-Worker模式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/6d530e97/">多线程的设计模式之Future模式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/f1a00836/">并发Queue详解及其应用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/20</span><a class="archive-post-title" href="/clay4444.github.io/posts/2b949ee4/">并发类容器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href="/clay4444.github.io/posts/bdf654d1/">同步类容器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/5d37d5dd/">集合迭代器快速失败行为及CopyOnWriteArrayList</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/15</span><a class="archive-post-title" href="/clay4444.github.io/posts/c8369a3e/">MR之倒排索引的建立</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/13</span><a class="archive-post-title" href="/clay4444.github.io/posts/db40873f/">ThreadLocal详解及其底层实现分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/3c6f5864/">BlockQueue队列内部实现剖析及简单模拟</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/9a01ed74/">通过一道阿里面试题看线程间通信的概念</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/03</span><a class="archive-post-title" href="/clay4444.github.io/posts/623ba864/">关于synchronized一些容易忽略的特性</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/2dd0f618/">Hive自定义函数和Transform</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/29</span><a class="archive-post-title" href="/clay4444.github.io/posts/5ec70f63/">Hive参数配置方式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/73b70227/">关于Hive的Select查询</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/f92012d0/">Hive中的数据存储格式和基本操作</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/20</span><a class="archive-post-title" href="/clay4444.github.io/posts/e01e83db/">Hive最常用之统计报表</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/18</span><a class="archive-post-title" href="/clay4444.github.io/posts/111e02e0/">volatile关键字</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/15</span><a class="archive-post-title" href="/clay4444.github.io/posts/16f9fb4/">单例模式的双重检查锁定+volatile</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/13</span><a class="archive-post-title" href="/clay4444.github.io/posts/e4408e09/">关于Hive的join操作</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="源码解析系列"><span class="iconfont-archer">&#xe606;</span>源码解析系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="Flink"><span class="iconfont-archer">&#xe606;</span>Flink</span>
+    
+        <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
+    
+        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
+    
+        <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Java8系列"><span class="iconfont-archer">&#xe606;</span>Java8系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="Java9系列"><span class="iconfont-archer">&#xe606;</span>Java9系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="MapReduce"><span class="iconfont-archer">&#xe606;</span>MapReduce</span>
+    
+        <span class="sidebar-tag-name" data-tags="MySql"><span class="iconfont-archer">&#xe606;</span>MySql</span>
+    
+        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
+    
+        <span class="sidebar-tag-name" data-tags="Storm"><span class="iconfont-archer">&#xe606;</span>Storm</span>
+    
+        <span class="sidebar-tag-name" data-tags="环境部署问题系列"><span class="iconfont-archer">&#xe606;</span>环境部署问题系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="maven"><span class="iconfont-archer">&#xe606;</span>maven</span>
+    
+        <span class="sidebar-tag-name" data-tags="快学scala读书笔记"><span class="iconfont-archer">&#xe606;</span>快学scala读书笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="zookeeper"><span class="iconfont-archer">&#xe606;</span>zookeeper</span>
+    
+        <span class="sidebar-tag-name" data-tags="并发编程实战读书笔记"><span class="iconfont-archer">&#xe606;</span>并发编程实战读书笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="大数据处理算法"><span class="iconfont-archer">&#xe606;</span>大数据处理算法</span>
+    
+        <span class="sidebar-tag-name" data-tags="Java异常处理"><span class="iconfont-archer">&#xe606;</span>Java异常处理</span>
+    
+        <span class="sidebar-tag-name" data-tags="hdfs"><span class="iconfont-archer">&#xe606;</span>hdfs</span>
+    
+        <span class="sidebar-tag-name" data-tags="elasticsearch"><span class="iconfont-archer">&#xe606;</span>elasticsearch</span>
+    
+        <span class="sidebar-tag-name" data-tags="GC"><span class="iconfont-archer">&#xe606;</span>GC</span>
+    
+        <span class="sidebar-tag-name" data-tags="日志框架"><span class="iconfont-archer">&#xe606;</span>日志框架</span>
+    
+        <span class="sidebar-tag-name" data-tags="NIO"><span class="iconfont-archer">&#xe606;</span>NIO</span>
+    
+        <span class="sidebar-tag-name" data-tags="Spring注解驱动开发"><span class="iconfont-archer">&#xe606;</span>Spring注解驱动开发</span>
+    
+        <span class="sidebar-tag-name" data-tags="kafka"><span class="iconfont-archer">&#xe606;</span>kafka</span>
+    
+        <span class="sidebar-tag-name" data-tags="JavaIO流系列"><span class="iconfont-archer">&#xe606;</span>JavaIO流系列</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="多线程编程"><span class="iconfont-archer">&#xe60a;</span>多线程编程</span>
+    
+        <span class="sidebar-category-name" data-categories="Java基础"><span class="iconfont-archer">&#xe60a;</span>Java基础</span>
+    
+        <span class="sidebar-category-name" data-categories="big-data"><span class="iconfont-archer">&#xe60a;</span>big-data</span>
+    
+        <span class="sidebar-category-name" data-categories="scala"><span class="iconfont-archer">&#xe60a;</span>scala</span>
+    
+        <span class="sidebar-category-name" data-categories="Linux"><span class="iconfont-archer">&#xe60a;</span>Linux</span>
+    
+        <span class="sidebar-category-name" data-categories="数据库"><span class="iconfont-archer">&#xe60a;</span>数据库</span>
+    
+        <span class="sidebar-category-name" data-categories="计算机网络"><span class="iconfont-archer">&#xe60a;</span>计算机网络</span>
+    
+        <span class="sidebar-category-name" data-categories="设计模式"><span class="iconfont-archer">&#xe60a;</span>设计模式</span>
+    
+        <span class="sidebar-category-name" data-categories="数据结构"><span class="iconfont-archer">&#xe60a;</span>数据结构</span>
+    
+        <span class="sidebar-category-name" data-categories="kafka权威指南读书笔记"><span class="iconfont-archer">&#xe60a;</span>kafka权威指南读书笔记</span>
+    
+        <span class="sidebar-category-name" data-categories="leetcode"><span class="iconfont-archer">&#xe60a;</span>leetcode</span>
+    
+        <span class="sidebar-category-name" data-categories="StreamingSystem读书笔记"><span class="iconfont-archer">&#xe60a;</span>StreamingSystem读书笔记</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/clay4444.github.io/",
+        author: "clay"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/clay4444.github.io/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/clay4444.github.io/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/clay4444.github.io/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+

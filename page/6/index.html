@@ -359,6 +359,48 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/41355ae3/">
+            
+                <span>Spark作业提交执行流程及底层实现介绍</span>
+        </a>
+        <div class="abstract-content">
+            解释Hadoop的分区指的是reduce的个数，MR中map的个数取决于切片的计算法则。
+
+RDD的分区类似于Hadoop的切片。
+
+每个RDD都是一个数据集，分区的意思就是这个RDD要分成多少块。
+
+分区并不是确定这个RDD要在多少个线程（节点）上运行，仅仅是确定要分多少块而已，并发度才是真正确定此RDD要在多少个线程（节点）上运行，完全可以在一个线程（节点）中计算两个分区，哪怕是一个线程（节点），也可以分4个分区，但是此时并发度只有1，所以最好是每个线程（节点）计算一个分区，
+
+
+
+Spark核心API
+SparkContext连接到spark集群,入口点.
+
+HadoopRDD读取...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/03/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Spark">Spark</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/1761f4b4/">
             
                 <span>Spark数据倾斜问题</span>
@@ -720,63 +762,6 @@ rowKey的设计原则
 例子：电信公司通话记录存储
 
 首先根据设备查看总共有多少个...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/03/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hbase">Hbase</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/f7fb5894/">
-            
-                <span>详解Hbase的协处理器coprocessor</span>
-        </a>
-        <div class="abstract-content">
-            coprocessor   协处理器批处理的，等价于存储过程或者触发器
-
-执行顺序
-
-
-执行状态
-
-
-
-图示：系统协处理器优先加载
-
-
-[Observer]
-观察者,类似于触发器，基于事件。发生动作时，回调相应方法。
-
-
-RegionObserver：用户可以使用这种协处理器处理数据修改事件，他们与表的region紧密联系
-MasterObserver：可以被用作管理或DDL类型的操作，这些是集群级事件。
-WAlObserver：提供控制WAL的钩子函数
-
-
-[Endpoint]终端,类似于存储过程。
-
-
-
-使用过程
-加载
-
-12345678910111213[hbase-site.xm...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -3804,9 +3789,186 @@ WAlObserver：提供控制WAL的钩子函数
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 156
+        Total : 157
         </div>
         <!-- search  -->
         
@@ -3819,6 +3981,11 @@ WAlObserver：提供控制WAL的钩子函数
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/clay4444.github.io/posts/ff78c689/">算法进阶第六课</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -4011,12 +4178,12 @@ WAlObserver：提供控制WAL的钩子函数
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
         </li>
     
     
@@ -4081,22 +4248,22 @@ WAlObserver：提供控制WAL的钩子函数
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
         </li>
     
     
@@ -4121,12 +4288,12 @@ WAlObserver：提供控制WAL的钩子函数
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
         </li>
     
     
@@ -4156,12 +4323,12 @@ WAlObserver：提供控制WAL的钩子函数
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
     
@@ -4231,12 +4398,12 @@ WAlObserver：提供控制WAL的钩子函数
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
         </li>
     
     
@@ -4627,9 +4794,9 @@ WAlObserver：提供控制WAL的钩子函数
     
         <span class="sidebar-tag-name" data-tags="Flink"><span class="iconfont-archer">&#xe606;</span>Flink</span>
     
-        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
-    
         <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
+    
+        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
     

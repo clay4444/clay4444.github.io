@@ -359,6 +359,40 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/5bb24833/">
+            
+                <span>ElasticSearch入门（三）</span>
+        </a>
+        <div class="abstract-content">
+            ElasticSearch的基础分布式架构总体图示
+
+Elasticsearch对复杂分布式机制的透明隐藏特性Elasticsearch是一套分布式的系统，分布式是为了应对大数据量隐藏了复杂的分布式机制
+分片机制（我们之前随随便便就将一些document插入到es集群中去了，我们有没有care过数据怎么进行分片的，数据到哪个shard中去）
+cluster discovery（集群发现机制，我们之前在做那个集群status从yellow转green的实验里，直接启动了第二个es进程，那个进程作为一个node自动就发现了集群，并且加入了进去，还接受了部分数据，replica shard）
+...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/07</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="elasticsearch">elasticsearch</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/16aceb61/">
             
                 <span>ElasticSearch入门（二）</span>
@@ -703,45 +737,6 @@ group by 优化Map端聚合，首先在map端进行初步聚合，最后在reduc
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="zookeeper">zookeeper</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/8bea7439/">
-            
-                <span>MySql锁机制及索引</span>
-        </a>
-        <div class="abstract-content">
-            一：ACID原子性：对数据库的修改，要么都执行，要么都不执行
-一致性：事务开始和结束时，都必须保持一致状态，事务结束时，索引等也必须完全正确
-隔离性：事务处理过程中的中间状态对外部都是不可见的，反之亦然
-持久性：事务完成后，对数据的修改是永久的
-
-二：问题更新丢失：两个人同时修改一份文件，前一个人的修改会被覆盖
-脏读：事务A读到事务B已经修改但尚未提交的数据，B回滚之后，出现问题
-不可重复读：事务A在读取数据的某个时间，再次读取数据，发现被修改、或者删除的数据。
-幻读：事务A读到了事务B已经提交的新增的数据。
-
-三：对应关系隔离级别                            ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/06/02</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="MySql">MySql</a>
     
 </div>
             
@@ -3758,9 +3753,186 @@ group by 优化Map端聚合，首先在map端进行初步聚合，最后在reduc
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 156
+        Total : 157
         </div>
         <!-- search  -->
         
@@ -3773,6 +3945,11 @@ group by 优化Map端聚合，首先在map端进行初步聚合，最后在reduc
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/clay4444.github.io/posts/ff78c689/">算法进阶第六课</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3965,12 +4142,12 @@ group by 优化Map端聚合，首先在map端进行初步聚合，最后在reduc
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
         </li>
     
     
@@ -4035,22 +4212,22 @@ group by 优化Map端聚合，首先在map端进行初步聚合，最后在reduc
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
         </li>
     
     
@@ -4075,12 +4252,12 @@ group by 优化Map端聚合，首先在map端进行初步聚合，最后在reduc
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
         </li>
     
     
@@ -4110,12 +4287,12 @@ group by 优化Map端聚合，首先在map端进行初步聚合，最后在reduc
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
     
@@ -4185,12 +4362,12 @@ group by 优化Map端聚合，首先在map端进行初步聚合，最后在reduc
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
         </li>
     
     
@@ -4581,9 +4758,9 @@ group by 优化Map端聚合，首先在map端进行初步聚合，最后在reduc
     
         <span class="sidebar-tag-name" data-tags="Flink"><span class="iconfont-archer">&#xe606;</span>Flink</span>
     
-        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
-    
         <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
+    
+        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
     
