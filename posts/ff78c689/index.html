@@ -401,7 +401,7 @@ height:50vh;
 <p>arr=[5,10,25,1]，aim=15。 组成15元的方法有6种，分别为3张5元、1张10元+1张5元、1张 10元+5张1元、10张1元+1张5元、2张5元+5张1元和15张1元。所 以返回6。</p>
 <p> arr=[3,5]，aim=2。 任何方法都无法组成2元。所以返回0。</p>
 <p><br></p>
-<h4 id="尝试的暴力解法"><a href="#尝试的暴力解法" class="headerlink" title="尝试的暴力解法"></a>尝试的暴力解法</h4><img src="/clay4444.github.io/posts/undefined/picture1.jpg">
+<h4 id="尝试的暴力解法"><a href="#尝试的暴力解法" class="headerlink" title="尝试的暴力解法"></a>尝试的暴力解法</h4><img src="/clay4444.github.io/posts/ff78c689/picture1.jpg">
 <p>0张200的，剩下的组成1000，方法数有a种</p>
 <p>1张200的，剩下的组成800，方法数有b种</p>
 <p>2张200的，剩下的组成600，方法数有c种</p>
@@ -412,11 +412,11 @@ height:50vh;
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">coins1</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span> || aim &lt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> process1(arr, <span class="number">0</span>, aim);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> arr   钱的种类数组</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> index  可以任意自由使用index及其之后的钱</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> aim  目标钱数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span>   方法数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">process1</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> index, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">   <span class="keyword">if</span> (index == arr.length) &#123; <span class="comment">//到最终了，剩的目标是0，就找到了一种有效的划分，就返回0，</span></span><br><span class="line">      res = aim == <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> zhang = <span class="number">0</span>; arr[index] * zhang &lt;= aim; zhang++) &#123;</span><br><span class="line">         <span class="comment">//aim - arr[index] * zhang 就是下一阶段要找的aim，并且只能使用index + 1之后的货币</span></span><br><span class="line">         res += process1(arr, index + <span class="number">1</span>, aim - arr[index] * zhang); <span class="comment">//index位置的货币已经使用完了，使用之后的货币</span></span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><br></p>
 <p>for循环图示</p>
-<img src="/clay4444.github.io/posts/undefined/picture2.jpg">
+<img src="/clay4444.github.io/posts/ff78c689/picture2.jpg">
 <p><br></p>
 <p>暴力递归的缺点</p>
 <p>产生了很多的重复计算，而且重复计算的状态的返回值是固定不变的，</p>
-<img src="/clay4444.github.io/posts/undefined/picture3.jpg">
+<img src="/clay4444.github.io/posts/ff78c689/picture3.jpg">
 <p><br></p>
 <h4 id="优化：记忆化搜索"><a href="#优化：记忆化搜索" class="headerlink" title="优化：记忆化搜索"></a>优化：记忆化搜索</h4><p>所以：诞生了第一个优化版本</p>
 <p>只要index和aim固定了，计算的结果肯定就是固定的，</p>
@@ -436,12 +436,12 @@ height:50vh;
 <p>再找出这张表中哪些位置的值是可以直接确定的，不依赖其他位置的， 看递归中的basecase，当index=n时，值是可以直接确定的，所以最后一行第一个位置是1，剩下的都是0；</p>
 <p>然后看位置依赖，也就是如何调用递归函数的，相当于在二维表中随便找一个值，(index，aim)，看它的依赖，这个位置只依赖下面一行的数字（准确的说是：下面一行的(inde+1,aim),(inde+1,aim-1<em>arr[index]),(inde+1,aim-2</em>arr[index])……..直到越界 ） </p>
 <p>现在有了最后一行，而且之上的每个位置又只依赖下一行的位置，所以可以一直从最后一行往上推，一直推到终点位置</p>
-<img src="/clay4444.github.io/posts/undefined/picture4.jpg">
+<img src="/clay4444.github.io/posts/ff78c689/picture4.jpg">
 <p><br></p>
 <p>举例</p>
-<img src="/clay4444.github.io/posts/undefined/picture5.jpg">
+<img src="/clay4444.github.io/posts/ff78c689/picture5.jpg">
 <p><br></p>
-<h4 id="最优化"><a href="#最优化" class="headerlink" title="最优化"></a>最优化</h4><img src="/clay4444.github.io/posts/undefined/picture6.jpg">
+<h4 id="最优化"><a href="#最优化" class="headerlink" title="最优化"></a>最优化</h4><img src="/clay4444.github.io/posts/ff78c689/picture6.jpg">
 <p>如图，绿1的位置=蓝1+2+3+4+5，绿2的位置=绿2底下的值+蓝1+2+3+4+5</p>
 <p>所以绿2的位置=绿2底下的值+绿1的位置</p>
 <p><br></p>
@@ -458,7 +458,7 @@ height:50vh;
 <p>开始时玩家A不管拿1还是2，玩家B作为绝顶聪明的人，都会把100拿走。玩家B会 获胜，分数为100。所以返回100。</p>
 <p><br></p>
 <p>举例</p>
-<img src="/clay4444.github.io/posts/undefined/picture7.jpg">
+<img src="/clay4444.github.io/posts/ff78c689/picture7.jpg">
 <p>如图所示情况，玩家一二，都是博弈论中非常理智的人，</p>
 <p>如果玩家一先拿，是不存在必胜策略的，例如1，100，1  这种情况，先拿的人肯定输</p>
 <p><br></p>
@@ -490,18 +490,18 @@ height:50vh;
 <p>dp解法</p>
 <p>杨辉三角形，碰到撞墙的地方就只取一个依赖位置，</p>
 <p>分析思路和上面的套路完全一致；</p>
-<img src="/clay4444.github.io/posts/undefined/picture8.jpg">
+<img src="/clay4444.github.io/posts/ff78c689/picture8.jpg">
 <p><br></p>
 <h3 id="题目：累加和等于aim的最长子数组"><a href="#题目：累加和等于aim的最长子数组" class="headerlink" title="题目：累加和等于aim的最长子数组"></a>题目：累加和等于aim的最长子数组</h3><p>给定一个数组arr，全是正数；一个整数aim，求累加和等于aim的，最长子数组，要求额外空间复杂度O(1)，时间 复杂度O(N)</p>
 <p><br></p>
 <p>解法：双指针</p>
 <p>L、R 初始都指在-1位置，sum值记录子数组累加和，sum&lt;aim，R就往右扩一个，当发现等于aim了，就说明找到了一个字数组，记录这个子数组，然后R再往右扩一个，如果sum&gt;aim 了。L开始往右边走，sum减去出窗口的值，然后再判断sum和aim的情况，继续双指针的移动即可；直到到达最右边界，</p>
-<img src="/clay4444.github.io/posts/undefined/picture9.jpg">
+<img src="/clay4444.github.io/posts/ff78c689/picture9.jpg">
 <p><br></p>
 <p>注意：sum=aim的情况下，既可以L往右边扩充，也可以R往右边扩充，因为都是正数，如果L往右边扩充，之后肯定是sum&lt;aim了， R往右边扩，如果R往右边扩，之后肯定是sum&gt;aim了，L会往右边扩，两种方法结果是一致的；</p>
 <p><br></p>
 <p>本质，为什么这样是对的？</p>
-<img src="/clay4444.github.io/posts/undefined/picture10.jpg">
+<img src="/clay4444.github.io/posts/ff78c689/picture10.jpg">
 <p>假设矩形是整个数组，椭圆形是最后的答案，假设L已经到达了答案的左边界，那么R如果在答案数组中间，那么此时sum一定小于aim，如果R超过了答案数组的右边界，那么R之前一定经过过答案数组的右边界，而且经过的时候，sum一定等于aim，此时会记录这个答案数组。综上，一定不会错过正确答案；</p>
 <p>而且不仅不会错过答案，还会找到以每个位置开头的，符合条件的子数组；</p>
 <p><br></p>
@@ -516,19 +516,19 @@ height:50vh;
 <p>min_sum代表的意思是对应原数组中，以原数组index位置的值作为数组开头的一个累加和最小的子数组的累加和；</p>
 <p>min_sum_index代表的意思是对应原数组中，以原数组index位置的值作为数组开头的一个累加和最小的子数组能够到达的右边界；</p>
 <p>这另个数组的生成过程很简单，从右往左遍历原数组， 最后的值先填上，然后往左遍历，遍历的时候如果发现右边已经填上的值是负数，此时直接加上右边的值就是以当前位置开头的累加和最小的子数组的累加和，此时到达的右边界和右边数的右边界一致。如果发现左边已经填上的值是正数，那么这个位置本身的值就是以当前位置开头的累加和最小的子数组的累加和，此时到达的右边界也是它自己本身的index；</p>
-<img src="/clay4444.github.io/posts/undefined/picture11.jpg">
+<img src="/clay4444.github.io/posts/ff78c689/picture11.jpg">
 <p><br></p>
 <p>解法过程</p>
 <p>从0位置开始扩，此时L指向0位置，然后从min_sum数组中找出以0位置开始累加和最小的子数组的累加和，然后再从min_sum_index中取出以0位置开始累加和最小的子数组能够到达的右边界，此时判断0到R这个子数组的累加和是否小于aim。如果大于aim，说明以0开头找不到小于aim的子数组，因为刚才取出来的0到R这个子数组就是以0位置开头累加和最小的子数组，如果它都不符合条件，其他以0开头的子数组更不可能符合条件。如果小于等于aim，此时R一下扩到这个边界位置，然后以当前的边界点R为L，找到这个L点的以L位置开头累加和最小的子数组的累加和，把这两个累加和累加起来，看是否小于等于aim，如果还小于等于，R继续跳到这个累加和最小的子数组的后边界，继续以此种方式往右边扩，直到发现全部的累加和大于aim了，停止；此时R的位置，就是以0位置开头能够找到的累加和小于等于aim的最长子数组的右边界；</p>
-<img src="/clay4444.github.io/posts/undefined/picture12.jpg">
+<img src="/clay4444.github.io/posts/ff78c689/picture12.jpg">
 <p><br></p>
 <p>注意：之后的解法不是找1往右一块一块的扩，找2往右一块一块的扩，这样的解法不会错过答案，但是会使得时间复杂度变成O(n^2)</p>
 <p><br></p>
 <p>假设从0开始扩到T位置，累加和是小于等于aim的，T+1位置扩不动了，然后计算1位置的时候，T是不会往左缩的，我们会直接计算1位置到T+1位置是不是小于等于aim的，这个步骤的sum是可以计算出来的，sum=sum-aim[0]，因为如果1位置扩不到T+1位置，我们是不关心这个结果的，因为即使计算了以1位置开头的最长子数组，它还是没有以0位置开头的长，这个计算是没有意义的，就是如下的情况</p>
-<img src="/clay4444.github.io/posts/undefined/picture13.jpg">
+<img src="/clay4444.github.io/posts/ff78c689/picture13.jpg">
 <p><br></p>
 <p>我们只关心最长的子数组，所以这件事就变成了左边界和右边界永远都是往右滑的，永远不会回退，所以时间复杂度是O(N)，这是这道题的精髓</p>
-<img src="/clay4444.github.io/posts/undefined/picture14.jpg">
+<img src="/clay4444.github.io/posts/ff78c689/picture14.jpg">
 <p><br></p>
 <p>代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Code_05_LongestSubarrayLessSumAwesomeSolution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">maxLengthAwesome</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> aim)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span>[] sums = <span class="keyword">new</span> <span class="keyword">int</span>[arr.length];</span><br><span class="line">		<span class="keyword">int</span>[] ends = <span class="keyword">new</span> <span class="keyword">int</span>[arr.length];</span><br><span class="line"></span><br><span class="line">		sums[arr.length - <span class="number">1</span>] = arr[arr.length - <span class="number">1</span>];</span><br><span class="line">		ends[arr.length - <span class="number">1</span>] = arr.length - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//生成两个信息</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = arr.length - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">			<span class="keyword">if</span> (sums[i + <span class="number">1</span>] &lt; <span class="number">0</span>) &#123;</span><br><span class="line">				sums[i] = arr[i] + sums[i + <span class="number">1</span>];  <span class="comment">//负数</span></span><br><span class="line">				ends[i] = ends[i+<span class="number">1</span>];  <span class="comment">//右边前一个到达的右边界</span></span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				sums[i] = arr[i];</span><br><span class="line">				ends[i] = i;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 利用两个信息做计算,</span></span><br><span class="line">		<span class="keyword">int</span> R = <span class="number">0</span>;  <span class="comment">//右边界</span></span><br><span class="line">		<span class="keyword">int</span> sum = <span class="number">0</span>;   <span class="comment">//start 到 R 的累加和</span></span><br><span class="line">		<span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> start = <span class="number">0</span>; start &lt; arr.length; start++) &#123;</span><br><span class="line">			<span class="keyword">while</span> (R &lt; arr.length &amp;&amp; sum + sums[R] &lt;= aim) &#123;  <span class="comment">//越界了或者累加和超过aim了。</span></span><br><span class="line">				sum += sums[R];</span><br><span class="line">				R = ends[R] + <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			sum -= R &gt; start ? arr[start] : <span class="number">0</span>;  <span class="comment">// R &gt; start 说明窗口有值，</span></span><br><span class="line">			len = Math.max(len, R - start);  <span class="comment">//更新长度</span></span><br><span class="line">			R = Math.max(R, start + <span class="number">1</span>);  <span class="comment">//需要考虑一个数都扩不动的情况；此时R也需要向右扩，否则R就不动了；</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> len;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">maxLength</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[] h = <span class="keyword">new</span> <span class="keyword">int</span>[arr.length + <span class="number">1</span>];</span><br><span class="line">		<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">		h[<span class="number">0</span>] = sum;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != arr.length; i++) &#123;</span><br><span class="line">			sum += arr[i];</span><br><span class="line">			h[i + <span class="number">1</span>] = Math.max(sum, h[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		sum = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> pre = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != arr.length; i++) &#123;</span><br><span class="line">			sum += arr[i];</span><br><span class="line">			pre = getLessIndex(h, sum - k);</span><br><span class="line">			len = pre == -<span class="number">1</span> ? <span class="number">0</span> : i - pre + <span class="number">1</span>;</span><br><span class="line">			res = Math.max(res, len);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getLessIndex</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> high = arr.length - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> mid = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> res = -<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">			mid = (low + high) / <span class="number">2</span>;</span><br><span class="line">			<span class="keyword">if</span> (arr[mid] &gt;= num) &#123;</span><br><span class="line">				res = mid;</span><br><span class="line">				high = mid - <span class="number">1</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				low = mid + <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// for test</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] generateRandomArray(<span class="keyword">int</span> len, <span class="keyword">int</span> maxValue) &#123;</span><br><span class="line">		<span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != res.length; i++) &#123;</span><br><span class="line">			res[i] = (<span class="keyword">int</span>) (Math.random() * maxValue) - (maxValue / <span class="number">3</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000000</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">int</span>[] arr = generateRandomArray(<span class="number">10</span>, <span class="number">20</span>);</span><br><span class="line">			<span class="keyword">int</span> k = (<span class="keyword">int</span>) (Math.random() * <span class="number">20</span>) - <span class="number">5</span>;</span><br><span class="line">			<span class="keyword">if</span> (maxLengthAwesome(arr, k) != maxLength(arr, k)) &#123;</span><br><span class="line">				System.out.println(<span class="string">"oops!"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -547,38 +547,38 @@ height:50vh;
 <p>遍历一次杀死一个节点，时间复杂度 O(M*N)</p>
 <p><br></p>
 <p>y=x%i 函数图像</p>
-<img src="/clay4444.github.io/posts/undefined/picture15.jpg">
+<img src="/clay4444.github.io/posts/ff78c689/picture15.jpg">
 <p><br></p>
 <p>O(N) 的解法:</p>
 <p>每杀死一个节点，剩下的节点就按照环形链表的顺序往下重新编号，也就是说被杀死节点的下一个节点编号为1，剩下的节点按照这个顺序重新编号，那么杀到最后只剩下一个节点的时候，存活节点的编号肯定是1，废话，因为只剩下一个了，如果有一个公式，可以还原出在还剩两个节点的时候，也就是这个节点在还剩两个节点的时候的编号，那么就可以从下往上一直递推，找到最开始一个节点都没杀的时候，最后存活节点的编号，也就是最终的结果，这样就不用杀死节点了。 </p>
-<img src="/clay4444.github.io/posts/undefined/picture16.jpg">
+<img src="/clay4444.github.io/posts/ff78c689/picture16.jpg">
 <p><br></p>
 <p>找这个公式的思路</p>
 <p>先找出编号和报数之间的关系，编号一直是从1到i，报数是一直递增的，根据对应数字描点画图，我们得到如下的图像</p>
-<img src="/clay4444.github.io/posts/undefined/picture17.jpg">
+<img src="/clay4444.github.io/posts/ff78c689/picture17.jpg">
 <p>通过观察，可以发现编号和报数之间的关系函数是由y=x%i 函数图像 向上平移一位，再向右平移一位，得到的，所以我们得到编号和报数之间的关系是：</p>
 <p>编号=(报数-1)%i+1（当长度为i的时候）</p>
 <p><br></p>
 <p>然后再找旧号(长度i)和新号之间的函数关系(长度i-1)，旧号杀死一个节点之后，链表长度变为i-1；</p>
 <p>用举例的方式分析函数图像，如下：假设s是被杀死的节点</p>
-<img src="/clay4444.github.io/posts/undefined/picture18.jpg">
+<img src="/clay4444.github.io/posts/ff78c689/picture18.jpg">
 <p><br></p>
 <p>函数分析</p>
 <p>这个函数的图像，是由 y=(x-1)%i+1  向左平移S个位置得到的，</p>
 <p>其实左右平移看第一个斜线最高点时x坐标的位置就知道了，y=x%i 中，这个坐标是i-1位置， y=(x-1)%i+1 中，这个坐标是i位置，所以是向右平移了一位，而在最后这个函数图像中，这个坐标是i-s位置，所以是向左平移了S位，上下没有变化；</p>
 <p><br></p>
 <p>所以最终的函数就是： 旧 = ( 新-1+s ) % i +1</p>
-<img src="/clay4444.github.io/posts/undefined/picture19.jpg">
+<img src="/clay4444.github.io/posts/ff78c689/picture19.jpg">
 <p><br></p>
 <p>根据这两个公式，我们可以推出 旧编号 和 新编号 之间的 对应关系，如下图所示，在 旧 = ( 新-1+s ) % i +1 中，只有 s 是未知的，而s就是被杀掉的节点的编号，也就是 s=(m-1)%i+1，其中m是每次杀人时报的数字，把s 带入 旧 = ( 新-1+s ) % i +1 中，得出新的公式，在新的公式中 参数 就只有m和i，m是固定不变的，i是每次传的长度，就得到了新旧编号之间的对应关系，</p>
 <p>i=1时不用求旧编号，直接作为basecase，返回给i=2时公式中的新编号即可；</p>
-<img src="/clay4444.github.io/posts/undefined/picture20.jpg">
+<img src="/clay4444.github.io/posts/ff78c689/picture20.jpg">
 <p><br></p>
 <p>最终的公式</p>
 <p>旧 = ( 新 + m - 1 ) % i + 1</p>
 <p><br></p>
 <p>推倒最终公式的过程</p>
-<img src="/clay4444.github.io/posts/undefined/picture21.jpg">
+<img src="/clay4444.github.io/posts/ff78c689/picture21.jpg">
 <p><br></p>
 <p>得到这个公式之后，就先算i=2时的旧编号，此时新编号是i=1时的编号，就是1，代入旧 = ( 1 + m - 1 ) % 2 + 1 公式中，求出i=2时的旧编号，然后求i=3时的旧编号，此时i=2求出来的旧编号是作为i=3时的新编号的，所以代入旧 = ( 1 + m - 1 ) % 2 + 1 公式中，求出i=3时的旧编号，然后按照这个过程一直往上求，直到最后，求出这个最终存活的节点在原始链表中的编号；返回</p>
 <p><br></p>
@@ -604,10 +604,10 @@ height:50vh;
 <p><br></p>
 <p>第二种情况， exp中j位置后面的字符是 !，比较麻烦，此时假设j位置和i位置不匹配，那么j+1位置的 ! 就要表示匹配0个j位置字符，然后再看j+2位置及其之后的字符能不能匹配i位置开始及其之后的字符，</p>
 <p>所以这种情况下 f(i,j)  依赖于 f(i,j+2)</p>
-<img src="/clay4444.github.io/posts/undefined/picture22.jpg">
+<img src="/clay4444.github.io/posts/ff78c689/picture22.jpg">
 <p>如果j位置和i位置可以匹配上， 就会产生很多分支，比如a! 匹配一个a，然后看j+2及之后位置是否能匹配i+1之后的位置，比如a! 匹配两个a，然后看j+2及之后位置是否能匹配i+2之后的位置，比如a! 匹配三个a，然后看j+2及之后位置是否能匹配i+3之后的位置，比如a! 匹配四个a，然后看j+2及之后位置是否能匹配i+4之后的位置，这个如果匹配不到，就说明真匹配不到，返回false；</p>
 <p>所以这种情况下 f(i,j)  依赖于 多种情况，例如 f(i,j+2)：匹配0个a，f(i+1,j+2)：匹配一个a，f(i+2,j+2)：匹配两个a，等等，其中只要有一个返回true，结果就是true；</p>
-<img src="/clay4444.github.io/posts/undefined/picture23.jpg">
+<img src="/clay4444.github.io/posts/ff78c689/picture23.jpg">
 <p><br></p>
 <p>dp版本</p>
 <p>basecase 位置 最后一列</p>
@@ -629,13 +629,18 @@ height:50vh;
             <p>原文作者：<a href="http://clay4444.github.io">clay</a>
             </p><p>原文链接：<a href="http://clay4444.github.io/posts/ff78c689/">http://clay4444.github.io/posts/ff78c689/</a>
             </p><p>发表日期：<a href="http://clay4444.github.io/posts/ff78c689/">April 4th 2019, 9:57:24 pm</a>
-            </p><p>更新日期：<a href="http://clay4444.github.io/posts/ff78c689/">April 4th 2019, 9:58:45 pm</a>
+            </p><p>更新日期：<a href="http://clay4444.github.io/posts/ff78c689/">April 4th 2019, 10:00:38 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/clay4444.github.io/posts/f849401d/" title="算法进阶第一课-3">
+                    <div class="nextTitle">算法进阶第一课-3</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -3594,178 +3599,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 157
+        Total : 158
         </div>
         <!-- search  -->
         
@@ -3778,6 +3614,11 @@ top:50vh;
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/f849401d/">算法进阶第一课-3</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3975,12 +3816,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
         </li>
     
     
@@ -3990,12 +3831,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/9799c850/">MR中的计数器、job串联等功能实现</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/9799c850/">MR中的计数器、job串联等功能实现</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
         </li>
     
     
@@ -4045,12 +3886,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
         </li>
     
     
@@ -4065,12 +3906,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/d5a66bc5/">Storm和kafka、Hbase之间的整合</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/97e35c7b/">Storm的分组策略和确保消息送达机制</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/97e35c7b/">Storm的分组策略和确保消息送达机制</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/d5a66bc5/">Storm和kafka、Hbase之间的整合</a>
         </li>
     
     
@@ -4080,7 +3921,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
         </li>
     
     
@@ -4090,7 +3931,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
         </li>
     
     
@@ -4115,7 +3956,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
         </li>
     
     
@@ -4130,7 +3971,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
         </li>
     
     
@@ -4165,17 +4006,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/c0977bd4/">并发编程实战(四)</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
@@ -4185,7 +4021,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/eb162f92/">并发编程实战(一)</a>
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/c0977bd4/">并发编程实战(四)</a>
         </li>
     
     
@@ -4195,12 +4031,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/eb162f92/">并发编程实战(一)</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
         </li>
     
     
@@ -4591,11 +4432,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Flink"><span class="iconfont-archer">&#xe606;</span>Flink</span>
     
-        <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
+        <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
-        <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
+        <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
     
         <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
