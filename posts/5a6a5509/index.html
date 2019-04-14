@@ -403,7 +403,7 @@ height:50vh;
 <p>要求：任何时刻不能违反小压大的原则； </p>
 <p>题目：给定一个N层的盘子，打印所有移动的步骤；</p>
 <p><br></p>
-
+<img src="/clay4444.github.io/posts/5a6a5509/picture12.jpg">
 <p> <br></p>
 <p>代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 汉诺塔问题</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 第一步：把1~（n-1）从from移动到help上去。</span></span><br><span class="line"><span class="comment"> * 第二步：把单独的n移动到to上去。</span></span><br><span class="line"><span class="comment"> * 第三步：把1~（n-1）从help移动到to上去。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Code_02_Hanoi</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">hanoi</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (n &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			func(n, <span class="string">"left"</span>, <span class="string">"right"</span>, <span class="string">"mid"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> N：N层</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> from</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> to</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> help</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> N,String from, String to,String help)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(N == <span class="number">1</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">"Move 1 from "</span> + from + <span class="string">"to"</span> + to);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">//第一步：把1~（n-1）从from移动到help上去，可以借助的杆是to</span></span><br><span class="line">            process(N-<span class="number">1</span>,from,help,to);</span><br><span class="line">            <span class="comment">//第二步：把单独的n移动到to上去。</span></span><br><span class="line">            System.out.println(<span class="string">"Move "</span> + N + <span class="string">" form "</span> + from + <span class="string">"to"</span> + to);</span><br><span class="line">            <span class="comment">//第三步：把1~（n-1）从help移动到to上去。</span></span><br><span class="line">            process(N-<span class="number">1</span>,help,to,from);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">moveLeftToRight</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (N == <span class="number">1</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">"move 1 from left to right"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		moveLeftToMid(N - <span class="number">1</span>);</span><br><span class="line">		System.out.println(<span class="string">"move "</span> + N + <span class="string">"from left to right"</span>);</span><br><span class="line">		moveMidToRight(N - <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">moveRightToLeft</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">moveLeftToMid</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (N == <span class="number">1</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">"move 1 from left to mid"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		moveLeftToRight(N - <span class="number">1</span>);</span><br><span class="line">		System.out.println(<span class="string">"move "</span> + N + <span class="string">"from left to mid"</span>);</span><br><span class="line">		moveRightToMid(N - <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">moveMidToLeft</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">moveRightToMid</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">moveMidToRight</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (N == <span class="number">1</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">"move 1 from mid to right"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		moveMidToLeft(N - <span class="number">1</span>);</span><br><span class="line">		System.out.println(<span class="string">"move "</span> + N + <span class="string">"from mid to right"</span>);</span><br><span class="line">		moveLeftToRight(N - <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> n = <span class="number">3</span>;</span><br><span class="line">		hanoi(n);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -506,10 +506,10 @@ height:50vh;
 <p>再给定一个整数bag，要求你挑选商品的重量加起来一定不能超 过bag，返回满足这个条件下，你能获得的最大价值。 </p>
 <p><br></p>
 <p>递归思路：</p>
-
+<img src="/clay4444.github.io/posts/5a6a5509/picture10.jpg">
 <p><br></p>
 <p>dp思路</p>
-
+<img src="/clay4444.github.io/posts/5a6a5509/picture11.jpg">
 <p><br></p>
 <p>代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Code_09_Knapsack</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">maxValue1</span><span class="params">(<span class="keyword">int</span>[] c, <span class="keyword">int</span>[] p, <span class="keyword">int</span> bag)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> process1(c, p, <span class="number">0</span>, <span class="number">0</span>, bag);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 从两个数组的i位置开始，一直选到最后，能够获得的最大收益</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">process1</span><span class="params">(<span class="keyword">int</span>[] c, <span class="keyword">int</span>[] p, <span class="keyword">int</span> i, <span class="keyword">int</span> cost, <span class="keyword">int</span> bag)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (cost &gt; bag) &#123;  <span class="comment">//减枝的策略，递归的过程中，如果之前的选择已经大于了bag，就不用继续往下选了；</span></span><br><span class="line">			<span class="keyword">return</span> Integer.MIN_VALUE;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (i == c.length) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>; <span class="comment">//返回0是因为到最后了，之前的选择不会影响后面的结果，最后没的可选了，返回的收益肯定是0；</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> Math.max(process1(c, p, i + <span class="number">1</span>, cost, bag), p[i] + process1(c, p, i + <span class="number">1</span>, cost + c[i], bag));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">maxValue2</span><span class="params">(<span class="keyword">int</span>[] c, <span class="keyword">int</span>[] p, <span class="keyword">int</span> bag)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[c.length + <span class="number">1</span>][bag + <span class="number">1</span>];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = c.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = bag; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">				dp[i][j] = dp[i + <span class="number">1</span>][j];</span><br><span class="line">				<span class="keyword">if</span> (j + c[i] &lt;= bag) &#123;</span><br><span class="line">					dp[i][j] = Math.max(dp[i][j], p[i] + dp[i + <span class="number">1</span>][j + c[i]]);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> dp[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span>[] c = &#123; <span class="number">3</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">7</span> &#125;;</span><br><span class="line">		<span class="keyword">int</span>[] p = &#123; <span class="number">5</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="number">19</span> &#125;;</span><br><span class="line">		<span class="keyword">int</span> bag = <span class="number">11</span>;</span><br><span class="line">		System.out.println(maxValue1(c, p, bag));</span><br><span class="line">		System.out.println(maxValue2(c, p, bag));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -518,12 +518,12 @@ height:50vh;
 <p><br></p>
 <p>思路：</p>
 <p>首先实现一个g函数：功能是实现移除并返回栈底元素，其余元素的位置不变；此函数的过程如下，其实就是每次弹出栈顶元素，然后再判断栈此时是否空了，如果空了，说明弹出的元素就是栈底元素，直接返回，如果此时栈不为空，就用一个变量记住弹出的元素，然后继续调用这个函数，去获取last元素，然后再把弹出的元素重新放回栈中，这样一来，函数返回的时候是从底部往上返回的，也就是之前先弹出的元素，放回的时候，最后才放回去，所以这样并没有改变栈中其他元素的顺序，而且也返回了栈底的元素；</p>
-
+<img src="/clay4444.github.io/posts/5a6a5509/picture13.jpg">
 <p><br></p>
 <p>主函数实现的功能如下：</p>
 <p>每次调用上面提到的g函数，每次取出栈最底部的元素，但是函数此时不直接结束，而是保存这个栈底元素，然后继续调用这个函数，去获取此时栈底元素，直到栈为空了，返回，也就是：把栈中的元素按照从栈底往栈顶的顺序取出来，然后递归子过程往上返回的时候，把之前取出来的栈底元素重新放进栈中；</p>
 <p>也就是按照从栈顶到栈底的顺序重新压入栈；</p>
-
+<img src="/clay4444.github.io/posts/5a6a5509/picture14.jpg">
 <p><br></p>
 <p>代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Code_06_ReverseStackUsingRecursive</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">reverse</span><span class="params">(Stack&lt;Integer&gt; stack)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (stack.isEmpty()) &#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> i = getAndRemoveLastElement(stack);</span><br><span class="line">		reverse(stack);</span><br><span class="line">		stack.push(i);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getAndRemoveLastElement</span><span class="params">(Stack&lt;Integer&gt; stack)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> result = stack.pop();</span><br><span class="line">		<span class="keyword">if</span> (stack.isEmpty()) &#123;</span><br><span class="line">			<span class="keyword">return</span> result;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">int</span> last = getAndRemoveLastElement(stack);</span><br><span class="line">			stack.push(result);</span><br><span class="line">			<span class="keyword">return</span> last;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Stack&lt;Integer&gt; test = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">		test.push(<span class="number">1</span>);</span><br><span class="line">		test.push(<span class="number">2</span>);</span><br><span class="line">		test.push(<span class="number">3</span>);</span><br><span class="line">		test.push(<span class="number">4</span>);</span><br><span class="line">		test.push(<span class="number">5</span>);</span><br><span class="line">		reverse(test);</span><br><span class="line">		<span class="keyword">while</span> (!test.isEmpty()) &#123;</span><br><span class="line">			System.out.println(test.pop());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -542,7 +542,7 @@ height:50vh;
 <p><br></p>
 <p>思路：</p>
 <p>跳出一直找波谷，然后相加，求得结果的思路，这种思路有局限性，即：两边有两个非常大的波峰；</p>
-
+<img src="/clay4444.github.io/posts/5a6a5509/picture15.jpg">
 <p><br></p>
 <p>思路是求每个位置可以容纳多少格水，假设当前位置是5，左边最大值是10，右边最大值是20，那么这个位置一定可以容纳5格水；所以标准简化为：每个位置取左边最大值和右边最大值，两个中的较小的值，减去当前位置的数，是正数，当前位置就能容纳这么多水，负数，说明这个位置不能容纳水；</p>
 <p><br></p>
@@ -552,7 +552,7 @@ height:50vh;
 <p>优化：<strong>预处理数组</strong>，<strong>很重要的技巧</strong>，</p>
 <p>生成一个和原数组一样长的数组，每个位置的值代表从0开始到这个位置的最大值，生成的逻辑也很简单，之前的数大，拷贝之前的，否则，拷贝原数组当前位置的；</p>
 <p>再生成一个同样长度的数组，每个位置的值代表从i位置到N-1位置的最大值，生成的逻辑变成从后往前生成即可；</p>
-
+<img src="/clay4444.github.io/posts/5a6a5509/picture16.jpg">
 <p><br></p>
 <p>此时再求每个位置可以容纳多少格水的时候，直接查询左边最大值和右边最大值即可；时间复杂度O(N)，空间复杂度O(N)；</p>
 <p><br></p>
@@ -577,7 +577,7 @@ height:50vh;
 <li>0到L位置中间的任意位置k，从k到L-1位置的累加和肯定是负数，因为它如果是正数或者是0，那么L到R就不是累加和为最大值的最长子数组了，而应该是k到R位置；</li>
 <li>L和R中间的一个位置z，L到z位置的累加和一定不是负数，因为如果是负，L到R的子数组就不是最大累加和了，z到R一定更大；</li>
 </ol>
-
+<img src="/clay4444.github.io/posts/5a6a5509/picture17.jpg">
 <p><br></p>
 <p>cur在从左往右加的时候，在加L位置的时候，肯定是先回滚到0，然后再加L的，因为从k到L-1位置的累加和肯定是负数。在cur加上L位置上数之后，从L位置一直加到R位置，肯定是不会回滚到0的，因为L到z位置的累加和一定不是负数，所以max一定不会错过答案； </p>
 <p><br></p>
@@ -770,6 +770,10 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
     
     
     
@@ -3916,22 +3920,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
         </li>
     
     
@@ -3942,6 +3941,11 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
         </li>
     
     
@@ -3991,22 +3995,22 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
         </li>
     
     
@@ -4061,7 +4065,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
         </li>
     
     
@@ -4071,7 +4075,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
     
@@ -4131,12 +4135,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/eb162f92/">并发编程实战(一)</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/eb162f92/">并发编程实战(一)</a>
         </li>
     
     
@@ -4537,15 +4541,15 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Flink"><span class="iconfont-archer">&#xe606;</span>Flink</span>
     
-        <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
+        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
     
-        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
-    
-        <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+        <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
     
         <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
     
         <span class="sidebar-tag-name" data-tags="Java8系列"><span class="iconfont-archer">&#xe606;</span>Java8系列</span>
     
