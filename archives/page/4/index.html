@@ -346,6 +346,41 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/22d66bb6/">
+            
+                <span>Hive常见优化</span>
+        </a>
+        <div class="abstract-content">
+            Join优化mr实现的过程分为map端join，和reduceJoin，两种方式，这两种方式在之前的mr介绍的论文中都有详细描述，这里不再赘述，请参考MapReduce tag标签下的内容
+Hql 底层默认执行join的过程中，在 Join 操作的 Reduce 阶段，位于 Join 操作符左边的表的内容会被加载进内存 ，所以，
+将条目少的表/子查询放在 Join 操作符的左边  可以有效减少发生内存溢出错误的几率。 
+其实从底层实现上来说，就是mr的分布式缓存。
+
+group by 优化Map端聚合，首先在map端进行初步聚合，最后在reduce端得出最终结果，相关参数：
+12//是否...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/06/04</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Hive">Hive</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/ce3cc54d/">
             
                 <span>zookeeper为什么一定要配置成奇数台</span>
@@ -661,38 +696,6 @@ MR程序运行流程流程示意图
 
 maptask进程启动之后，根据给定的数据切片范围进行数据处理，主体流程为：
 a)利用客户指定的input...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="MapReduce">MapReduce</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/57f823bb/">
-            
-                <span>MR之参数优化</span>
-        </a>
-        <div class="abstract-content">
-            资源相关参数(1) mapreduce.map.memory.mb: 一个Map Task可使用的资源上限（单位:MB），默认为1024。如果Map Task实际使用的资源量超过该值，则会被强制杀死。
-(2) mapreduce.reduce.memory.mb: 一个Reduce Task可使用的资源上限（单位:MB），默认为1024。如果Reduce Task实际使用的资源量超过该值，则会被强制杀死。
-(3) mapreduce.map.java.opts: Map Task的JVM参数，你可以在此配置默认的java heap size等参数, e.g.
-“-Xmx1024m -ve...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -3595,9 +3598,148 @@ a)利用客户指定的input...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 158
+        Total : 159
         </div>
         <!-- search  -->
         
@@ -3610,6 +3752,11 @@ a)利用客户指定的input...
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/5bedbc4e/">深入理解java虚拟机</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3917,17 +4064,17 @@ a)利用客户指定的input...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
         </li>
     
     
@@ -3952,22 +4099,22 @@ a)利用客户指定的input...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
         </li>
     
     
@@ -4002,22 +4149,22 @@ a)利用客户指定的input...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/c0977bd4/">并发编程实战(四)</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/c0977bd4/">并发编程实战(四)</a>
         </li>
     
     
@@ -4428,19 +4575,19 @@ a)利用客户指定的input...
     
         <span class="sidebar-tag-name" data-tags="Flink"><span class="iconfont-archer">&#xe606;</span>Flink</span>
     
+        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
+    
         <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
+    
+        <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
     
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
     
         <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
-        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
-    
         <span class="sidebar-tag-name" data-tags="Java8系列"><span class="iconfont-archer">&#xe606;</span>Java8系列</span>
     
         <span class="sidebar-tag-name" data-tags="Java9系列"><span class="iconfont-archer">&#xe606;</span>Java9系列</span>
-    
-        <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
     
         <span class="sidebar-tag-name" data-tags="MapReduce"><span class="iconfont-archer">&#xe606;</span>MapReduce</span>
     
@@ -4470,15 +4617,17 @@ a)利用客户指定的input...
     
         <span class="sidebar-tag-name" data-tags="GC"><span class="iconfont-archer">&#xe606;</span>GC</span>
     
-        <span class="sidebar-tag-name" data-tags="日志框架"><span class="iconfont-archer">&#xe606;</span>日志框架</span>
-    
         <span class="sidebar-tag-name" data-tags="NIO"><span class="iconfont-archer">&#xe606;</span>NIO</span>
     
         <span class="sidebar-tag-name" data-tags="Spring注解驱动开发"><span class="iconfont-archer">&#xe606;</span>Spring注解驱动开发</span>
     
+        <span class="sidebar-tag-name" data-tags="日志框架"><span class="iconfont-archer">&#xe606;</span>日志框架</span>
+    
         <span class="sidebar-tag-name" data-tags="kafka"><span class="iconfont-archer">&#xe606;</span>kafka</span>
     
         <span class="sidebar-tag-name" data-tags="JavaIO流系列"><span class="iconfont-archer">&#xe606;</span>JavaIO流系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="jvm"><span class="iconfont-archer">&#xe606;</span>jvm</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

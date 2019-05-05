@@ -346,6 +346,34 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/409910e4/">
+            
+                <span>数据结构之散列表</span>
+        </a>
+        <div class="abstract-content">
+            什么是哈希表哈希表就是一种以 键-值(key-indexed) 存储数据的结构，我们只要输入待查找的值即key，即可查找到其对应的值。
+哈希的思路很简单，如果所有的键都是整数，那么就可以使用一个简单的无序数组来实现：将键作为索引，值即为其对应的值，这样就可以快速访问任意键的值。这是对于简单的键的情况，我们将其扩展到可以处理更加复杂的类型的键。
+使用哈希查找有两个步骤:
+
+使用哈希函数将被查找的键转换为数组的索引。在理想的情况下，不同的键会被转换为不同的索引值，但是在有些情况下我们需要处理多个键被哈希到同一个索引值的情况。所以哈希查找的第二个步骤就是处理冲突
+处理哈希碰撞冲突。有很多处理哈...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/01/23</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/6c17d6bd/">
             
                 <span>数据结构之树</span>
@@ -625,35 +653,6 @@ ArrayList是List类的一个典型的实现，是基于数组实现的List类，
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="源码解析系列">源码解析系列</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/6d17d8e0/">
-            
-                <span>Java8系列之新时间和日期API</span>
-        </a>
-        <div class="abstract-content">
-            传统的日期时间API会有线程安全问题，123456789101112131415161718192021222324SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");Callable&lt;Date&gt; task = new Callable&lt;Date&gt;() &#123;  @Override  public Date call() throws Exception &#123;    return sdf.parse("20161121");  &#125;&#125;;ExecutorService poo...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/01/06</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Java8系列">Java8系列</a>
     
 </div>
             
@@ -3545,9 +3544,148 @@ ArrayList是List类的一个典型的实现，是基于数组实现的List类，
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 158
+        Total : 159
         </div>
         <!-- search  -->
         
@@ -3560,6 +3698,11 @@ ArrayList是List类的一个典型的实现，是基于数组实现的List类，
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/5bedbc4e/">深入理解java虚拟机</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3867,17 +4010,17 @@ ArrayList是List类的一个典型的实现，是基于数组实现的List类，
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
         </li>
     
     
@@ -3902,22 +4045,22 @@ ArrayList是List类的一个典型的实现，是基于数组实现的List类，
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
         </li>
     
     
@@ -3952,22 +4095,22 @@ ArrayList是List类的一个典型的实现，是基于数组实现的List类，
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/c0977bd4/">并发编程实战(四)</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/c0977bd4/">并发编程实战(四)</a>
         </li>
     
     
@@ -4378,19 +4521,19 @@ ArrayList是List类的一个典型的实现，是基于数组实现的List类，
     
         <span class="sidebar-tag-name" data-tags="Flink"><span class="iconfont-archer">&#xe606;</span>Flink</span>
     
+        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
+    
         <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
+    
+        <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
     
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
     
         <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
-        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
-    
         <span class="sidebar-tag-name" data-tags="Java8系列"><span class="iconfont-archer">&#xe606;</span>Java8系列</span>
     
         <span class="sidebar-tag-name" data-tags="Java9系列"><span class="iconfont-archer">&#xe606;</span>Java9系列</span>
-    
-        <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
     
         <span class="sidebar-tag-name" data-tags="MapReduce"><span class="iconfont-archer">&#xe606;</span>MapReduce</span>
     
@@ -4420,15 +4563,17 @@ ArrayList是List类的一个典型的实现，是基于数组实现的List类，
     
         <span class="sidebar-tag-name" data-tags="GC"><span class="iconfont-archer">&#xe606;</span>GC</span>
     
-        <span class="sidebar-tag-name" data-tags="日志框架"><span class="iconfont-archer">&#xe606;</span>日志框架</span>
-    
         <span class="sidebar-tag-name" data-tags="NIO"><span class="iconfont-archer">&#xe606;</span>NIO</span>
     
         <span class="sidebar-tag-name" data-tags="Spring注解驱动开发"><span class="iconfont-archer">&#xe606;</span>Spring注解驱动开发</span>
     
+        <span class="sidebar-tag-name" data-tags="日志框架"><span class="iconfont-archer">&#xe606;</span>日志框架</span>
+    
         <span class="sidebar-tag-name" data-tags="kafka"><span class="iconfont-archer">&#xe606;</span>kafka</span>
     
         <span class="sidebar-tag-name" data-tags="JavaIO流系列"><span class="iconfont-archer">&#xe606;</span>JavaIO流系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="jvm"><span class="iconfont-archer">&#xe606;</span>jvm</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

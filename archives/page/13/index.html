@@ -346,6 +346,42 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/ecfdb360/">
+            
+                <span>关于mapreduce程序开发的一些总结</span>
+        </a>
+        <div class="abstract-content">
+            MRmapreduce在编程的时候，基本上一个固化的模式，没有太多可灵活改变的地方，除了以下几处：
+
+
+1、输入数据接口：InputFormat   —&gt;     FileInputFormat(文件类型数据读取的通用抽象类)  DBInputFormat （数据库数据读取的通用抽象类）
+   默认使用的实现类是： TextInputFormat     job.setInputFormatClass(TextInputFormat.class) TextInputFormat的功能逻辑是：一次读一行文本，然后将该行的起始偏移量作为key，行内容作为value返回
+
+
+2、逻辑处理...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/09/30</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="MapReduce">MapReduce</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/c1ee2109/">
             
                 <span>MR之mapreduce原理深入剖析</span>
@@ -635,45 +671,6 @@ $&gt;ln -s a.txt alink        //a.txt: 目标文件  alink:连接名称(symbolic
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/09/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="NIO">NIO</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/65ebcdd2/">
-            
-                <span>NIO系列之缓冲区和通道</span>
-        </a>
-        <div class="abstract-content">
-            基本概念1.简介：Java NIO（ New IO） 是从Java 1.4版本开始引入的一个新的IO API，可以替代标准的Java IO API。NIO与原来的IO有同样的作用和目的，但是使用的方式完全不同， NIO支持面向缓冲区的、基于通道的IO操作。 NIO将以更加高效的方式进行文件的读写操作。
-
-2.与IO的主要区别
-只要是IO，肯定就是完成数据的传输。
-
-普通IO:
-直接面向的就是传输的数据的管道中的数据的流动。
-单向的。
-
-NIO：
-NIO的通道也可以理解为传输数据的流，但是不可以看成水流，可以看成铁路，铁路要完成运输，必须要依靠火车，所以这个通道只是一个从源地点到目的地点的...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/09/04</span>
             </div>
             <!-- tags  -->
             
@@ -3571,9 +3568,148 @@ NIO的通道也可以理解为传输数据的流，但是不可以看成水流�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 158
+        Total : 159
         </div>
         <!-- search  -->
         
@@ -3586,6 +3722,11 @@ NIO的通道也可以理解为传输数据的流，但是不可以看成水流�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/5bedbc4e/">深入理解java虚拟机</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3893,17 +4034,17 @@ NIO的通道也可以理解为传输数据的流，但是不可以看成水流�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
         </li>
     
     
@@ -3928,22 +4069,22 @@ NIO的通道也可以理解为传输数据的流，但是不可以看成水流�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
         </li>
     
     
@@ -3978,22 +4119,22 @@ NIO的通道也可以理解为传输数据的流，但是不可以看成水流�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/c0977bd4/">并发编程实战(四)</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/c0977bd4/">并发编程实战(四)</a>
         </li>
     
     
@@ -4404,19 +4545,19 @@ NIO的通道也可以理解为传输数据的流，但是不可以看成水流�
     
         <span class="sidebar-tag-name" data-tags="Flink"><span class="iconfont-archer">&#xe606;</span>Flink</span>
     
+        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
+    
         <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
+    
+        <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
     
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
     
         <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
-        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
-    
         <span class="sidebar-tag-name" data-tags="Java8系列"><span class="iconfont-archer">&#xe606;</span>Java8系列</span>
     
         <span class="sidebar-tag-name" data-tags="Java9系列"><span class="iconfont-archer">&#xe606;</span>Java9系列</span>
-    
-        <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
     
         <span class="sidebar-tag-name" data-tags="MapReduce"><span class="iconfont-archer">&#xe606;</span>MapReduce</span>
     
@@ -4446,15 +4587,17 @@ NIO的通道也可以理解为传输数据的流，但是不可以看成水流�
     
         <span class="sidebar-tag-name" data-tags="GC"><span class="iconfont-archer">&#xe606;</span>GC</span>
     
-        <span class="sidebar-tag-name" data-tags="日志框架"><span class="iconfont-archer">&#xe606;</span>日志框架</span>
-    
         <span class="sidebar-tag-name" data-tags="NIO"><span class="iconfont-archer">&#xe606;</span>NIO</span>
     
         <span class="sidebar-tag-name" data-tags="Spring注解驱动开发"><span class="iconfont-archer">&#xe606;</span>Spring注解驱动开发</span>
     
+        <span class="sidebar-tag-name" data-tags="日志框架"><span class="iconfont-archer">&#xe606;</span>日志框架</span>
+    
         <span class="sidebar-tag-name" data-tags="kafka"><span class="iconfont-archer">&#xe606;</span>kafka</span>
     
         <span class="sidebar-tag-name" data-tags="JavaIO流系列"><span class="iconfont-archer">&#xe606;</span>JavaIO流系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="jvm"><span class="iconfont-archer">&#xe606;</span>jvm</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
