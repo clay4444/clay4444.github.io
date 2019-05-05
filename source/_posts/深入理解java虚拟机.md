@@ -1,8 +1,9 @@
 ---
 title: 深入理解java虚拟机
-date: 2019-05-05 13:38:10
 tags:
   - jvm
+abbrlink: 5bedbc4e
+date: 2019-05-05 13:38:10
 ---
 
 -XX:+HeapDumpOnOutOfMemoryError 堆内存溢出时dump出一个快照文件，后续可以使用工具进行解析
