@@ -1,0 +1,4712 @@
+<!DOCTYPE html>
+<html lang="chinese">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="clay">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="clay">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="I'll do every thing for GTR">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>kafka权威指南第二三四章 · 十年饮冰，难凉热血</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/clay4444.github.io/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/clay4444.github.io/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/clay4444.github.io/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/clay4444.github.io/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/clay4444.github.io/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/clay4444.github.io/font/Oswald-Regular.ttf" crossorigin="">
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin="">
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/clay4444.github.io/">诚觉世事尽可原谅.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">kafka权威指南第二三四章</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/clay4444.github.io/">诚觉世事尽可原谅.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/clay4444.github.io/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            kafka权威指南第二三四章
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">12.9k</span>阅读时长: <span class="post-count reading-time">46 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/05/17</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/clay4444.github.io/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/clay4444.github.io/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><p><br></p>
+<h3 id="一、配置"><a href="#一、配置" class="headerlink" title="一、配置"></a>一、配置</h3><p><br></p>
+<h4 id="常规配置"><a href="#常规配置" class="headerlink" title="常规配置"></a>常规配置</h4><ol>
+<li>broker.id</li>
+</ol>
+<p>每个 broker 都需要有一个标识符，使用 broker.id 来表示。它的默认值是 0 ，也可以被设置 成其他任意整数。这个值在整个 Kafka 集群里必须是唯一的。这个值可以任意选定，如果 出于维护的需要，可以在服务器节点间交换使用这些 ID。建议把它们设置成与机器名具有 相关性的整数，这样在进行维护时，将 ID 号映射到机器名就没那么麻烦了 。 例如，如果 机器名包含唯一性的数字（比如 host1.example.com 、 host2.example.com ），那么用这些数字 来设置 broker.id 就再好不过了。</p>
+<p><br></p>
+<ol>
+<li>listeners = listener_name://host_name:port</li>
+</ol>
+<p>如果使用默认来启动 Kafka ，它会监听 9092 端口。修改 listeners 配置参数可以把它设置，成其他任意可用的端口。要注意，如果使用 1024 以下的端口，需要使用 root 权限启动Kafka ，不过不建议这么做。</p>
+<p><br></p>
+<ol>
+<li>zookeeper.connect</li>
+</ol>
+<p>用于保存 broker 元数据的 Zookeeper 地址是通过 zookeeper.connect 来指定的。 localhost:2181 表示这个 Zookeeper 是运行在本地的 2181 端口上。该配置参数是用 逗号分 隔的一组 hostname:port/path 列表，/path 是可选的 Zookeeper 路径，作为 Kafka 集群的 chroot 环境。如果不指定，默认使用 根路径。如果指定的 chroot 路径不存在，broker 会在启动的时候创建它。</p>
+<p><br></p>
+<ol>
+<li>log.dirs</li>
+</ol>
+<p>Kafka 把所有消息都保存在磁盘上， 存放这些日志片段的目录是通过 log.dirs 指定的。 它是 一组用逗号分隔的本地文件系统路径。 如果指定了多个路径， 那么 broker 会根据“最少使用”原则， 把同一个分区的日志片段保存到同一个路径下。 要注意， <strong>broker会往拥有最少数目分区的路径新增分区， 而不是往拥有最小磁盘空间的路径新增分区</strong></p>
+<p><br></p>
+<ol>
+<li>num.recovery.threads.per.data.dir</li>
+</ol>
+<p>对于如下3 种情况， Kafka会使用可配置的线程池来处理日志片段 ：</p>
+<ul>
+<li>服务器正常启动， 用于打开每个分区的日志片段 </li>
+<li>服务器崩溃后重启， 用于检查和截断每个分区的日志片段：</li>
+<li>服务器正常关闭，用于关闭日志片段。</li>
+</ul>
+<p><br></p>
+<p>默认情况下， 每个日志目录只使用一个线程。 但是因为这些线程只是在服务器启动和关闭时会用到 ，所以完全可以设置大量的线程来达到并行操作的目的。 特别是对于包含大量分区的服务器来说， 一旦发生崩溃， 在进行恢复时使用井行操作可能会省下数小时的时间。 设置此参数时需要注意， 所配置的数字对应的是 log.dirs 指定的单个日志目录。 也就是说， 如果num.recovery.threads.per.data.dir 被设定为 8 ， 井且 log.dir指定了 3 个路径， 那么总共需要 24 个线程，也就是每个日志路径需要8个线程</p>
+<p><br></p>
+<ol>
+<li>auto.create.topics.enabl</li>
+</ol>
+<p>默认情况下， Kafka 会在如下几种情形下自动创建主题</p>
+<ul>
+<li>当一个生产者开始往主题写入消息时</li>
+<li>当一个消费者开始从主题读取消息时</li>
+<li>当任意一个客户端向主题发送元数据请求时</li>
+</ul>
+<p>很多时候， 这些行为都是非预期的。 而且， 根据 Kafka 协议， 如果一个主题不先被创建， 根本无法知道它是否已经存在。 如果显式地创建主题， 不管是手动创建还是通过其他配置系统来创建， 都可以把 auto.create.topics . enable 设为 false</p>
+<p><br></p>
+<h4 id="topic-的默认配置"><a href="#topic-的默认配置" class="headerlink" title="topic 的默认配置"></a>topic 的默认配置</h4><p>Kafka 为新创建的主题提供了很多默认配置参数。 可以通过管理工具（将在第 9 章介绍） 为每个主题单独配置一部分参数， 比如分区个数和数据保留策略。 服务器提供的默认配置可以作为基准， 它们适用于大部分主题。</p>
+<p><br></p>
+<ol>
+<li>num.partitions</li>
+</ol>
+<p>num.partitions 参数指定了新创 建的主题将包含 多少个分区。如果启用了主题自动创建功能（该功能默认是启用的），主题分区的个数就是该参数指定的值。 该参数的默认值 是1 。 要注意， 我们可以增加主题分区的个数，但不能减少分区的个数。 所以， 如果要让一个主题的分区个数少于num.partitions 指定的值，需要手动创建该主题。</p>
+<p>第 1 章里已经提到，Kafka 集群通过分区对 topic 进行横向扩展，所以当有新的 broker 加入集群时， 我们可以增加拥有大量消息的 topic 的分区个数，来进行负载均衡；</p>
+<p><br></p>
+<p><strong>如何选择分区数量</strong></p>
+<p>为主题选定分区数量并不是一件可有可无的事情，在进行数量选择时 ，需要考虑如下几个因素；</p>
+<ul>
+<li>主题需要达到多大的吞吐量？例如， 是希望每秒钟写入 100 KB 还是1GB?</li>
+<li>从单个分区读取数据的最大吞吐量是多少？每个分区一般都会有一个消费者，如果你知道生产者将数据写入kafka的速度不会超过每秒 50MB ， 那么你也该知道， 从一个分区读取数据的吞吐量不需要超过每秒50MB </li>
+<li>可以通过类似的方法估算生产者向单个分区写入数据的吞吐量， 不过生产者的速度一般比消费者快得多， 所以最好为生产者多估算一些吞吐量 。</li>
+<li>每个 broker 包含的分区个数、 可用的磁盘空间和 网络带宽。</li>
+<li>如果消息是按照不同的键采写入分区的， 那么为已有的主题新增分区就会很困难。也就是一致性哈希的问题</li>
+<li>单个 broker 对分区个数是有限制的，因为分区越多， 占用的内存越多， 完成leader选举需要的时间也越长。</li>
+</ul>
+<p><br></p>
+<p><strong>很显然， 综合考虑以上几 个因素， 你需要很多分区 ，但不能太多。 如果你估算出主题的吞吐量和消费者吞吐量， 可以用主题吞吐量除以消费者吞吐量算出分区的个数。也就是说，如果每秒钟要从主题上写入和读取1GB 的数据， 并且每个消费者每秒钟可以处理 50MB 的数据， 那么至少需要 20 个分区。 这样就可以让 20 个消费者同时读取这些分区， 从而达到每秒钟 lGB 的吞吐量。</strong></p>
+<p><br></p>
+<p>如果不知道这些信息， 那么根据经验，把分区的大小限制在 25GB 以内，可以得到比较理想的效果</p>
+<p><br></p>
+<ol>
+<li>log.retention.ms</li>
+</ol>
+<p>Kafka 通常根据时 间来决定数 据可以被保 留多久。 默认使用 log.retention. hous设置时间，默认值为 168 小时， 也就是一周 。 除此以外， 还有其他两 个参数 log.retention.minutes 和 log.retention.ms，这三个参数的作用是一致的，都是决定消息多久时间后被删除，不过还是推 荐使用 log.retention.ms，如果指定了 不止一个参数，Kafka 会优先使用具有最小值 的那个参数</p>
+<p><br></p>
+<p><strong>根据时间保留数据和最后修改时间</strong></p>
+<p>根据时间保留数据是通过检查磁盘上日志片段文件的最后修改时间来实现的。 一般来说，最后修改时间指的就是日志片段的关闭时间， 也就是文件里最后一个消息的时间戳 。不过， 如果使用管理工具在服务器间移动分区，最后修改时间就不准确了 。时间误差可能导致这些分区过多地保留数据。在第9章讨论分区移动时会提到更多这方面的内容。</p>
+<p><br></p>
+<ol>
+<li>log.retention.bytes</li>
+</ol>
+<p>另一种方式是通过保留的消息字节数来判断消息是否过期。它的值通过参数 log.retention.bytes 来指定，作用在每一个分区上。 也就是说，如果有一个包含 8 个分区的主题， 井且 log.retention.bytes 被设为 lGB ， 那么这个topic上最多可以保留8GB的数据，所以，当主题的分区个数增加时，整个主题可以保留的数据也随之增加。</p>
+<p><br></p>
+<p><strong>根据字节大小和时间保留数据</strong></p>
+<p>如果同时指定 log.retention.ms 和  log.retention.bytes，只要任意一个条件得到 满足，消息就会被删除。例如，假设 log.retention.ms  设置为 86400000 （也就是 1 天），log.retention.bytes 设置为 I 000 000 000 （也就是 lGB ）， 如果消息字节总数在不到一天的时 间就超 过了 1GB ， 那么多出来 的部分就会 被删除。 相反， 如果消息字节总数小于 lGB ， 那么一天之后这些消息 也会被删除 ， 尽管分区的数据总量小于lGB 。</p>
+<p><br></p>
+<ol>
+<li>log.segment.bytes</li>
+</ol>
+<p>以上的设置都作用在日志片段上，而不是作用在单个消息上，当消息到达broker 时， 它们被迫加到分区的当前日志片段上，当日志片段大小达到log.segment.bytes  指定的上限（默认是 lGB ）时，当前日志片段就会被关 闭， 一个新的日志片段被打开。如果一个日志片段被关闭，就开始等待过期。这个参数的值越小，就会越频繁地关闭和分配新文件，从而降低磁盘写入的整体效率。</p>
+<p><br></p>
+<p>如果主题的 消息量不大 ， 那么如何调 整这个参数 的大小就变 得尤为重要 。 例如，如果一个主题每天只接收 100MB 的消息，而 log.segment.bytes 使用默认设置，那么需要10 天时间才能填满 一个日志片段。 因为在日志 片段被关闭之前消息是不会过期的 ， 所以如果 log.retention.ms 被设为 604 800 000 （ 也就是 1 周）， 那么日志片段最多需要 17 天才会过期 。这是因为关闭日志片段需要10 天的时间，而根据配置的过期时间 ，还需要再保 留 7 天时间（要等到日志片段里的最后一个消息过期才能被删除）</p>
+<p><br></p>
+<p>这个参数的配置还会影响到：</p>
+<p><strong>使用时间戳 获取偏移量</strong> 的精确度：</p>
+<p><br></p>
+<p>日志片段的大小会影响使用时间戳获取偏移量的精度，在使用时间戳获取日志偏移量时，Kafka 会检查分区里最后修改时间大于指定时间戳的日志片段（ 已经被关闭的），该日志片段的前一个文件的最后修改时间小于指定时向戳，然后 Kafka 返回该日志片段（也就是文件名） 开头的偏移量。 对于使用时间戳获取偏移量的操作来说，日志片段越小，结果越准确。（例如：找 3:00 的偏移量，先找大于它的，最后修改时间为 5:00 的日志片段，再找之前小于它的，例如 最后修改时间 为 2:00 的日志文段，最后返回2:00 的日志片段的开头的偏移量）</p>
+<p><br></p>
+<ol>
+<li>log.segment.ms</li>
+</ol>
+<p>另 一个可以控 制日志片段 关闭时间的 参数是 log.segment.ms 时， 它指定了多长时间之后日志片段会被 关闭。 就像log.retention.bytes 和 log.retention.ms 这两个参数 一样，log.segment.bytes 和 log.segment.ms 这两个参数之间也不存在互斥问题 ，日志片段会在大小或时间达到上限时被关闭，就看哪个条件先得到满 足。 默认情况下 ，log.segment.ms 没有设定值， 所以只根据大小来关闭日志片段。</p>
+<p><br></p>
+<ol>
+<li>message.max.bytes</li>
+</ol>
+<p>broker 通过设置 message.max.bytes 参数来限制单个消息的 大小，默认值是1000000 ，也 就是 1MB 。 如果生产者 尝试发送的 消息超过这个大小， 不仅消息不会被接收， 还会收到 broker 返回的错误信息。 跟其他与字节相关的配置参数一样 ，该参数指的是压缩后的消息、 大小， 也就是说，只要压缩后的消息小于message.max.bytes 指定的值，消息的实际大小可以远大于这个值。</p>
+<p><br></p>
+<p>这个值对性能有显著的影响。值越大，那么负责处理网络连接和请求的线程就需要花越多的时间来处理这些请求 。 它还会增加磁盘写入块的大小， 从而影响 IO吞吐量。</p>
+<p><br></p>
+<p><strong>在服务端和 客户端之间 协调消息大 小的配置</strong></p>
+<p>消费者客户端设置的 fetch.message.max.bytes 必须与服务器端设置的消息大小进行协调。 如果这个值比message.max.bytes小， 那么消费者就无法读取比较大的消息， 导致出现消费者被阻塞的情况。 在为集群里 的 broker 配置 replica.fetch.max.bytes 参数时 ， 也遵循同样的原则。</p>
+<p><br></p>
+<p><br></p>
+<h3 id="二、Kafka集群"><a href="#二、Kafka集群" class="headerlink" title="二、Kafka集群"></a>二、Kafka集群</h3><p><br></p>
+<h4 id="需要多少个broker"><a href="#需要多少个broker" class="headerlink" title="需要多少个broker"></a>需要多少个broker</h4><p>一个 Kafka 集群需要多少个broker 取决于以下几个因素，首先，需要多少磁盘空间来保留数据，以及单个broker 有多少空间可用。 如果整个集群需要保留10TB 的数据， 每个 broker 可以存储 2TB ，那么至少需要 5 个 broker。 如果启用了数据复制 ， 那么至少还需要一倍的空间，不过这要取决于配置 的复制系数是多少， 也就是说，如果启用 了数据复制， 那么这个集群至少需要10 个 broker</p>
+<p>第二个要考虑的因素是 集群处理请求的能力 。 这通常与网络接口处 理客户端流量的能力有关，特别是当有多个消费者存在或者在数据保留期间流量发生波动 （比如高峰时段的流量爆发）时。 如果单个 broker 的网络接口在高峰时段可以达到 80% 的使用量， 并且有两个消费者， 那么消费者就无法保持峰值， 除非有两个 broker。 如果集群启用了复制功能， 则要把这个额外的消费者考虑在内。 因磁盘吞吐量低和系统内存不足造成的性能问题， 也可以通过扩展多个 broker 来解决。</p>
+<p><br></p>
+<p><br></p>
+<h2 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h2><p><br></p>
+<h4 id="生产者配置"><a href="#生产者配置" class="headerlink" title="生产者配置"></a>生产者配置</h4><p>bootstrap.servers</p>
+<p>key.serializer</p>
+<p>value.serializer</p>
+<p><strong>acks</strong>：</p>
+<p>acks 参数指定了 必须要有多少个 分区副本收到消 息， 生产者才会认为 消息写入是成功 的 。 这个参数对消息 丢失的可能性有重要影响。 该参数有如下选项 ：</p>
+<ul>
+<li>如果 acks=0 ， 生产者在成功写入消息之前不会等待任何来自服务器的响应。 也就是说，如果当中出现了问题 ， 导致服务器没有收到消息， 那么生产者就无从得知， 消息也就丢失了。不过，因为生产者不需要等待服务器的响应， 所以它可以以网络能够支持的最大速度发送消息， 从而达到很高的吞吐量。</li>
+<li>如果 acks=1 ， 只要集群的首领 节点收到消息， 生产者就会收到 一个来自服务器 的成功 响应。 如果消息无撞到达首领节点（比如首领节点崩溃， 新的首领还没有被选举出来）， 生产者会收到一个错误响应， 为了避免数据丢失， 生产者会重发消息。 不过，如果一个没有收到消息的节点成为新首领 ，消息还是会丢失。这个时候的吞吐量取决于使用的是同步发送还是异步发送。 如果让发送客户端等待服务器的响应（通过调用 Future 对象 的 get() 方提）， 显然会增加延迟（在网络上传输一个来回的延迟），如果客户端使用回调， 延迟问题就可以得到缓解， 不过吞吐量还是会受发送中消息数量的限制（比如生产者在收到服务器响应之前可以发送多少个消息）。</li>
+<li>如果 acks=all ， 只有当所有参与复制的节点全部收到消息时， 生产者才会收到一个来自服务器的成功响应。 这种模式是最 安全的，它可以保证不止一个服务器 收到消息， 就算有服务器发生崩溃， 整个集群仍然可以运行（第 5 章将讨论更多的细节）。 不过，它的 延迟比 acks=1 时更高， 因为我们要等待不只一个服务器节点接收消息。</li>
+</ul>
+<p>buffer.memory</p>
+<p>该参数用来设置生产者内存缓冲区的大小，如果应用程序发送消息的速度超过发送到服务器的速度， 会导致生产者空间不足。 这个时候，send （）方法调用 要么被阻塞， 要么抛出异常 ， 取决于如何设 置 block.on.buffer.full参数, （在 0.9.0.0 版本里被替换 成了 max.block.ms ，表示在抛出异常之前可以阻塞一段时间）。</p>
+<p>compression.type</p>
+<p>默认情况下，消息发送时不会被压缩。 该参数可以设 置为 snappy 、 gzip 或 lz4 ， 它指定了消息被发送给 broker 之前使用哪一种压缩算也进行压缩。 snappy 压缩算法由 Google发明， 它占用较少的 CPU ， 却能提供较好的性能和相当可观的压缩比 ，如果 比较关注性能和网络带宽， 可以使用这种算法 。 gzip 压缩算法一般会占用较多的 CPU ， 但会提供更高的压缩 比，所以如果网络带宽比较有限 ，可以使用这种算法。 使用压缩可以降低网络传输开销和存储开销， 而这往往是向 Kafka 发送消息的瓶颈所在。</p>
+<p><strong>retries</strong></p>
+<p>生产者从服务 器收到的错误 有可能是临时 性的错误（比 如分区找不到 首领）。 在这种情况 下， retries 参数的值决定了生产者可以 重发消息的次数， 如果达到这个次数， 生产者会放弃重试并返回错误。 默认情况下， 生产者会在每次重试之间等待100ms ， 不过可以通过 retry.backoff.ms 参数来改变这个时间间隔。 建议在设置重试次数和重试 时间间隔之前，先测试一下恢复一个崩溃节点需要多少时 间（比如所有分区选举出首领需要多长时间），让总的重试时间比 Kafka 集群从崩溃中恢复的时间长 ，否则生产者会过早地放弃重试。 不过有些错误不是临时性错误 ， 没办法通过重试来解决（比如“ 消息 ”错误）。 一般情况下， 因为生产者会自动进行重试 ， 所以就没必要在代码逻辑里 处理那些可重试的错误。 你只需要处理那些不可重试的错误或重试次数超出上限的情况。</p>
+<p>batch.size</p>
+<p>当有多个消息需要被发送到同一个分区时 ，生产者会把它们放在同一个批次里。 该参数指 定了一个批次可以使用的内存大小， 按照字节数计算（而不是消息个数）。 当批次被填满 ， 批次里的所有消息会被发送出去。 不过生产者井 不一定都会等 到批次被填满 才发送， 半满的批次， 甚至只包含一 个消息的批次也有可能被发送。 所以就算把批次大小设置得很大， 也不会造成延迟， 只是会占用更多的内存而已 。 但如果设置得太小， 因为生产者需 要更频繁地发送消息， 会增加一些额外的开销。</p>
+<p>linger.ms</p>
+<p>该参数指定了生产者在发送批次之前等待更多消息加入批次的时间 。 KafkaProduce 会在 批次填满或 linger.ms 达到上限时把批次发送出去 。 默认情况下， 只要有可用的线程， 生产者就会把消息发送出去， 哪怕批次里只有一个消息。 把 linger.ms 设置成比 0 大的数， 让生产者在发送批次之前等待一会儿， 使更多的消息加入到这个批 次。 虽然这样会增加延迟， 但也会提升吞吐量（因为一次性发送更多的消息， 每个消息的开销就变小了） 。</p>
+<p>client.id</p>
+<p>该参数可以是 任意的字符串 ， 服务器会用它来识别消息的来源，还可以用在日志和配额指标里</p>
+<p><strong>max.in.flight.requests.per.connection</strong></p>
+<p>该参数指定了生产者在收到服务器晌应之前可以发送多少个消息。它的值越高， 就会占用越多的内存，不过也会提升吞吐量。 把它设为1可以保证消息是按照发送的顺序写入服务器的，即使发生了重试。</p>
+<p>timeout.ms、request.timeout.ms 和 metadata.fetch.timeout.ms</p>
+<p>request.timeout.ms 指定了生产者在发送数据时等待服务器返回响应的时间，metadata.fetch. timeout.ms指定了生产者 在获取元数据 （比如目标分 区的首领是谁 ）时等待服 务器返回响应的时 间。 如果等待响应超时， 那么生产者要么重试发送数据， 要么返回一个错误 （抛出异常或执行回调）。timeout.ms指定了 broker 等待同步副本 返回消息确认 的时间， 与 asks 的配置相匹配 一如果在指定时间内没有收到同步副本的确认， 那么 broker 就会返回一个错误。</p>
+<p>max.block.ms</p>
+<p>该参数指定了在调用 send （） 方法或使用 partitionFor（ ） 方法获取元数据时生产者的阻塞时间。当生产者的发送缓冲区已满， 或者没有可用的元数据时， 这些方法就会阻塞。 在阻塞时间达到 max.block.ms 时， 生产者会抛出超时异常。</p>
+<p>max.request .size</p>
+<p>该参数用于控 制生产者发送 的请求大小。 它可以指能发送的单个消息的最大值， 也可以指单个请求里所有消息总的大小。 例如， 假设这个值为 1MB ， 那么可以发送的单个最大消息为 1MB ， 或者生产者可以在单个请求里发送一个批次， 该批次包含了1000 个消息， 每个消息大小为1KB 。 另外， broker对可接收的消息最大值也有 自己的限制（ message.max.bytes ），所以两边的配置最好可以匹配，避免生产者发 送的消息被 broker 拒绝。</p>
+<p>receive.buffer.bytes 和 send.buffer.bytes</p>
+<p>这两个参数分 别指定了 TCP socket 接收和发送数据包的缓冲区大小。 如果它们被设置为-1， 就使用操作系统的默认值。 如果生产者或 消费者与 broker 处于不同的数据中心， 那么可以适当增大这些值， 因为跨数据中心的网络一般都有比较高的延迟和比较低的带宽。</p>
+<p><br></p>
+<h4 id="关于数据的有序性"><a href="#关于数据的有序性" class="headerlink" title="关于数据的有序性"></a>关于数据的有序性</h4><p>Kafka 可以保证同一个分区里的消息是有序的。 也就是说， 如果生产者按照一定的顺序发送消息， broker 就会按照这个顺序把它们写入分区 ，消费者也会按照同样的顺序读取它们。 在某些情况下 ，顺序是非常重要的。 例如，往一个账户存入 100 元再取出来， 这个与先取钱再存钱是截然不同的 ！不过， 有些场景对顺序不是很敏感。</p>
+<p>如果把 retries 设为非零整数， 同时把 max.in.flight.requests.per.connection 设为比 1 大的数， 那么， 如果第一个批次消息写入失败， 而第二个批次 写入 成功， broker 会重试写入第一个批次。如果此时第一个批次也写入成功，那么两个批次的顺序就反过来了。</p>
+<p>一般来说，如果某些场景要求消息是有序的 ，而且消息是否写入成功也是很关键的， 所以不建议把retries设为 0。可以把 max.in.flight.requests.per.connection 设为1，这样在生产者尝试发送第一批消息时， 就不会有其他的消息发送给 broker。 不过这样会严重影响生产者的吞吐量 ，所以只有在对消息的顺序有严格要求的情况下才能这么做。</p>
+<p><br></p>
+<h4 id="关于partition与可能的一致性哈希"><a href="#关于partition与可能的一致性哈希" class="headerlink" title="关于partition与可能的一致性哈希"></a>关于partition与可能的一致性哈希</h4><p>只有在不改变主 题分区数量的情 况下， 键与分区之间的映射才能保持不变。 举个例子， 在分区数量保持不变的情况下， 可以保证用户 045189 的记录总是被写 到分区 34。 在从分区读取数据肘， 可以进行各种优化。 不过， 一旦主题增加了 新的分区， 这些就无法保证了一旧数据仍然留在分区 34 ， 但新的记录可能被写到其他分区上 。 如果要使用key来映射分区， 那么最好在创建主题的时候就把分区规划好（第 2 章介绍了如何确定合适的分区数 量），而且永远不要增加新分区。也就是说partition 并不会采用一致性哈希内种移动数据的方法；</p>
+<p><br></p>
+<p><br></p>
+<h2 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h2><p><br></p>
+<h4 id="消费者组"><a href="#消费者组" class="headerlink" title="消费者组"></a>消费者组</h4><p>使用这个概念的原因是，如果只有一个消费者，如果此时生产者的生产速率突然变得很快，那么一个消费者可能消费不过来，所以此时很有必要对消费者进行横向伸缩， 就像多个生产者可以向相同的主题写入消息一样，我们也可以使用多个消费者从同一个主题读取消息， 对消息进行分流。</p>
+<p>Kafka 消费者从属于消费者群组。 一个群组里的消费者订阅的是同－个主题， 每个消费者接收主题一部分分区的消息。</p>
+<p><br></p>
+<p>这就叫做横向扩展，所以我们有必要为主题创建大量的分区，在负载增长时可以加入更多的消费者。不过要注意，不要让消费者的数量超过主题分区的数量，多余的消费者只会被闲置。</p>
+<p><br></p>
+<h4 id="消费者组和分区再均衡"><a href="#消费者组和分区再均衡" class="headerlink" title="消费者组和分区再均衡"></a>消费者组和分区再均衡</h4><p>一个新的消费者加入群组时， 它读取的是原本由其他消费者读取的消息。 当一个消费者被关闭或发生崩溃时， 它就离开群组， 原本由它读取的分区将由群组里的其他消费者来读取。 在主题发生变化时 ，比如管理员添加了 新的分区， 会发生分区重分配 。</p>
+<p>分区的所有权从一个消费者转移到另一个消费者 ， 这样的行为被称为再均衡。 再均衡非常重要， 它为消费者群组带来了高可用性和伸缩性（我们可以放心地添加或移除梢费者），不过在正常情况下， 我们并不希望发生这样的行为。 在再均衡期间，消费者无法读取消息， 造成整个群组一小段时间的不可用。 另外，当分区被重新分配给另一个消费者时， 消费者当前的读取状态会丢失，它有可能还需要去刷新缓存 ，在它重新恢复状态之前会拖慢应用程序。我们将在本章讨论如何进行安全的再均衡， 以及如何避免不必要的再均衡。</p>
+<p>消费者通过向被指派为群组协调器的 broker （不同的群组可以有不同的协调器）发送心跳来维持它们和群组的从属关系以及它们对分区的所有权关系。 只要消费者以正常的时间间隔发送心跳， 就被认为是活跃的， 说明它还在读取分区里的消息。 消费者会在轮询消息（为了获取消息） 或提交偏移量时发送心跳。 如果消费者停止发送心跳的时间足够长，会话就会过期， 群组协调器认为它已经死亡，就会触发一次再均衡。</p>
+<p>如果一个消费者发生崩溃， 井停止读取消息 ，群组协调器会等待几秒钟， 确认它死亡了才会触发再均衡。 在这几秒钟时间里，死掉的消费者不会读取分区里的消息。 在清理消费者时，消费者会通知协调器它将要离开群组， 协调器会立即触发一次再均衡， 尽量降低处理停顿。 在本章的后续部分，我们将讨论一些用于控制发送心跳频率和会话过期时间的配置参数，以及如何根据实际需要来配置这些参数。</p>
+<p><br></p>
+<h4 id="心跳行为在最近版本中的变化，以及可能引发的问题"><a href="#心跳行为在最近版本中的变化，以及可能引发的问题" class="headerlink" title="心跳行为在最近版本中的变化，以及可能引发的问题"></a>心跳行为在最近版本中的变化，以及可能引发的问题</h4><p>在 0.10.1 版本里， Kafka 社区引入了一个独立的心跳线程 ，可以在轮询消息的空档发送心跳。这样一来，发送心跳的频率（也就是消费者群组用于检测发生崩溃的消费者或不再发送心跳的消费者的时间）与消息轮询的频率（由处理消息所花费的时间来确定）之间就是相互独立的 。</p>
+<p>在0.10.1 版本之前，max.poll.records 默认是 2147483647，也就是kafka里面有多少poll多少，如果消费者拿到的这些数据在指定时间内消费不完，超过了 session.timeout.ms 设置的值，就会手动提交失败，数据就会回滚到kafka中，会发生重复消费的情况。如此循环，数据就会越堆越多。0.10.1版本之后，max.poll.records 默认是500，并且这个版本多了一个 max.poll.interval.ms 这个参数，默认是 300s，这个参数的意思是每两次poll拉取数据时间间隔最大超时时间，超过这个值，broker就会认为你这个消费者挂了，并且重新平衡，这时候就消费不到信息了。</p>
+<p>所以在新版本的kafka中，如果遇到消息处理很慢的情况，直接增加 max.poll.interval.ms 这个参数的值或者减小max.poll.records的值就可以了；</p>
+<p>在老版本的kafka中，需要调整 session.timeout  和 max.poll.records 这两个参数的值；</p>
+<p><br></p>
+<h4 id="分配分区是怎样的一个过程"><a href="#分配分区是怎样的一个过程" class="headerlink" title="分配分区是怎样的一个过程"></a>分配分区是怎样的一个过程</h4><p>当消费者要加入群组时 ，它会向群组协调器发送 一个JoinGroup 请求。 第一个加入群组的消费者将成为“群主”。 群主从协调器那里获得群组的成员列表（列表中包含了所有最近发送过心跳的消费者， 它们被认为是活跃的）， 并负责给每一个消费者分配分区。 它使用一个实现了 PartitionAssignor接口的类来决定哪些分区应该被分配给哪个消费者 。</p>
+<p>Kafka 内置了两种分配策略， 在后面的配置参数小节我们将深入讨论。 分配完毕之后， 群主把分配情况列表发送给群组协调器，协调器再把这些信息发送给所有消费者。 每个消费者只能看到自己的分配信息，只有群主知道群组里所有消费者的分配信息。 这个过程会在每次再均衡时重复发生。</p>
+<p><br></p>
+<h4 id="消费者配置"><a href="#消费者配置" class="headerlink" title="消费者配置"></a>消费者配置</h4><p>fetch.min.bytes</p>
+<p>该属性指定了消费者从服务器获取记录的最小字节数。 broker 在收到消费者的数据请求时， 如果可用的数据量小于 fetch.min.bytes 指定的大小， 那么它会等到有足够的可用数据时才把它返回给消费者。 这样可以降低消费者和 broker 的工作负载， 因为它们在主题不是很活跃的时候（或者一天里的低谷时段）就不需要来来回回地处理 消息。如果没有很多可用数据， 但消费者的 CPU 使用率却很高， 那么就需要把该属性的值设得比默认值大。 如果消费者的数量比较多， 把该属性的值设置得大一点可以降低 broker 的工作负载。</p>
+<p>fetch.max.wait.ms</p>
+<p>我们通过 fetch.min.bytes 告诉 Kafka ，等到有足够的数据时才把它返回给消费者。 而 fetch.max.wait.ms 则用于指定 broker 的等待时间， 默认是 500ms 。如果没有足够的数据流入Kafka， 消费者获取最小数据量的要求就 得不到满足， 最终导致 500ms 的延迟。 如果要降低潜在的延迟（为了满足 SLA ）， 可以把该参数值设置得小一些。 如果 fetch.max.wait.ms 被设 为 100ms ，并且 fetch.min.bytes 被设为 1MB ，那么 Kafka 在收到消费者的请求后， 要么返回1MB 数据， 要么在 100ms 后返回所有可用的数据 ，就看哪个条件先得到满足。</p>
+<p>max.partition.fetch.bytes</p>
+<p>该属性指定了服务器从每个分区里返回给消费者的最大字节数。 它的默认值是 1MB，也就是说，KafkaConsumer.poll()  方法从每个分区里返回的记录最多不超过 max.partition.fetch.bytes 指定的字节。 如果一个主题有 20 个分区和 5 个消费者， 那么每个消费者需要至少 4MB 的可用内存来接收记录。 在为消费者分配内存时， 可以给它们多分配一些， 因为如果群组里有消费者发生崩溃，剩下的消费者需要处理更多的分区。 max.partition.fetch.bytes 的值必须比 broker 能够接收的最大消息的字节数（ 通过 max.message.size 属性配置）大，否则消费者可能无法读取这些消息， 导致消费者一直挂起重试。在设置该属性时，另一个需要考虑的因素是消费者处理数据的时间。 消费者需要频繁调用 poll （） 方法来避免会话过期和发生分区再均衡，如果单次调用 poll（） 返回的数据太多， 消费者需要更多的时间来处理， 可能无法及时进行下一个轮询来避免会话过期。如果出现这种情况， 可以把 max.partition.fetch.bytes 值改小 ，或者延长会话过期时间。</p>
+<p>session.timeout.ms</p>
+<p>该属性指定了消费者在被认为死亡之前可以与服务器断开连接的时间， 默认是 3s。如果消费者没有在session.timeout.ms 指定的时间内发送心跳给群组协调器， 就被认为已经死亡， 协调器就会触发再均衡，把它的分区分配给群组里的其他消费者 。该属性与 heartbeat.interval.ms 紧密相关 。 heartbeat.interval.ms 指定了 poll （） 方法向协调器发送心跳的频率，session.timeout.ms 则指定了消费者可以多久不发送心跳。 所以， 一般需要同时修改这两个属性， heartbeat.interval.ms 必须比 session.timeout.ms 小， 一 般是session.timeout.ms 的三分之一 。如果 session.timeout.ms 是 3s ，那么heartbeat.interval.ms 应该是 1s 。 把 session.timeout.ms 值设得比默认值小， 可以更快地检测和恢复崩溃的节点， 不过长时间的轮询或垃圾收集可能导致非预期的再均衡。把该属性的值设置得大一些， 可以减少意外的再均衡，不过检测节点崩溃需要更长的时间。</p>
+<p>auto.offset.reset</p>
+<p>该属性指定了消费者在读取一个没有偏移量的分区或者偏移量无效的情况下（因消费者长时间失效，包含偏移量的记录已经过时井被删除）该作何处理。它的默认值是 latest，意思是说，在偏移量无效的情况下，消费者将从最新的记录开始读取数据（在消费者启动之后生成的记录）。另一个值是 earliest ，意思是说，在偏移量无效的情况下 ，消费者将从起始位置读取分区的记录。</p>
+<p>enable.auto.commit</p>
+<p>我们稍后将介绍几种不同的提交偏移量的方式。 该属性指定了消费者是否自动提交偏移量，默认值是 true。 为了尽量避免出现重复数据和数据丢失， 可以把它设为false，由自己控制何时提交偏移量。如果把它设为 true ，还可以通过配置 auto.commit.interval.ms属性来控制提交的频率。</p>
+<p>partition.assignment.strategy</p>
+<p>我们知道，分区会被分配给群组里的消费者。 PartitionAssignor 根据给定的消费者和主题，决定哪些分区应该被分配给哪个消费者。Kafka 有两个默认的分配策略。</p>
+<ul>
+<li><p>Range</p>
+<p>该策略会把主题的若干个连续的分区分配给消费者。 假设消费者C1 和消费者 C2 同时订阅了主题 T1 和主题 T2 ，井且每个主题有 3 个分区。 那么消费者 C1 有可能分配到这两个主题的分区 0 和分区1 ，而消费者 C2 分配到这两个主题的分区2。因为每个主题拥有奇数个分区，而分配是在主题内独立完成的，第一个消费者最后分配到比第二个消费者更多的分区。 只要使用了 Range 策略， 而且分区数量无法被消费者数量整除，就会出现这种情况。</p>
+</li>
+<li><p>RoundRobin</p>
+<p>该策略把主题的所有分区逐个分配给消费者。 如果使用 RoundRobin 策略来给消费者 Cl 和消费者 C2 分配分区， 那么消费者 C1 将分到主题 T1 的分区 0 和分区 2 以及主题 T2 的分区 1 ， 消费者 C2 将分配到主题 T1 的分区 1 以及主题T2的分区 0 和分区 2。 一般来说，如果所有消费者都订阅相同的主题（这种情况很常见） , RoundRobin 策略会给所有消费者分配相同数量的分区（ 或最多就差一个分区）。</p>
+</li>
+</ul>
+<p>可以通过设置 partition.assignment.strategy 来选择分区策略。 默认使用的是 org.apache.kafka.clients.consumer.RangeAssignor， 这个类实现了 Range 策略， 不过也可以把它改成org.apache.kafka.clients.consumer.RoundRobinAssignor 。 我们还可以使用自定义策略， 在这种情况下，partition.assignment.strategy 属性的值就是自定义类的名字。</p>
+<p>client.id</p>
+<p>该属性可以是任意字符串 ，broker用它来标识从客户端发送过来的消息，通常被用在日志 、度量指标和配额里</p>
+<p>max.poll.record</p>
+<p>该属性用于控制单次调用 poll（）方法能够返回的记录数量，可以帮你控制在轮询里需要处理的数据量。</p>
+<p>receive.buffer.bytes 和 send.buffer.bytes</p>
+<p>socket 在读写数据时用 到的 TCP 缓冲区也可以设置大小。 如果它们被设为-1 ，就使用操作系统的默认值。如果生产者或消费者与broker处于不同的数据中心内，可以适当增大这 些值，因为跨数据中心的网络一般都有比较高的延迟和比较低的带宽。</p>
+<p><br></p>
+<h4 id="提交偏移量"><a href="#提交偏移量" class="headerlink" title="提交偏移量"></a>提交偏移量</h4><p>那么消费者是如 何提交偏移量的呢？消费者往一 个叫作 ＿consumer_offset 的特殊topic发送消息，消息里包含每个分区的偏移量。 如果消费者一直处于运行状态， 那么偏移量就没有什么用处。 不过，如果消费者发生崩溃或者有新的消费者加入群组，就会触发再均衡，完成再均衡之后， 每个消费者可能分配到新的分区，而不是之前处理的那个。为了能够继续之前的工作，消费者需要读取每个分区最后一次提交的偏移量，然后从偏移量指定的地方继续处理。</p>
+<p><br></p>
+<p>自动提交：</p>
+<p>enable.auto.commit设置为true，auto.commit.intrval.ms 设置提交间隔，默认值是5s；</p>
+<p>假设我们仍然使用默认的 5s 提交时间间隔， 在最近一次提交之后的 3s 发生了再均衡， 再均衡之后，消费者从最后一次提交的偏移量位置开始读取消息。这个时候偏移量已经落后了 3s，所以在这 3s 内到达的消息会被重复处理。 可以通过修改提交时间间隔来更频繁地提交偏移量，减小可能出现重复消息的时间窗，不过这种情况是无法完全避免的。</p>
+<p><br></p>
+<p>手动同步提交，</p>
+<p>手动调用 commitSync() 方法，如果发生了再均衡， 从最近一批消息到发生再均衡之间的所有消息都将被重复处理。</p>
+<p><br></p>
+<p>手动异步提交</p>
+<p>异步提交offset，不用阻塞程序，但是 commitAsync() 不会重试，只会提交一次， 它之所以不进行重试， 是因为在它收到服务器响应的时候， 可能有一个更大的偏移量已经提交成功。 假设我们发出一个请求用于提交偏移量2000 ，这个时候发生了短暂的通信问题 ，服务器收不到请求，自然也不会作出任何响应。 与此同时，我们处理了另外一批消息， 并成功提交了偏移量 3000。 如果 commitAsync()  重新尝试提交偏移量 2000 ，它有可能在偏移量 3000 之后提交成功。 这个时候如果发生再均衡， 就会出现重复消息。但是它支持回调，可以在回调方法中记录错误日志；</p>
+<p><br></p>
+<p>同步和异步组合</p>
+<p>一般情况下，针对偶尔出现的提交失败，不进行重试不会有太大问题，因为如果提交失败是因为临时问题导致的，</p>
+<p>那么后续的提交总会有成功的。但如果这是发生在关闭消费者或再均衡前的最后一次提交， 就要确保能够提交成功。因此，在消费者关闭前一般会组合使用 commitSync() 和 commitAsync() </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testConsum</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    Properties conf = <span class="keyword">new</span> Properties();</span><br><span class="line">    conf.put(<span class="string">"bootstrap.servers"</span>, <span class="string">""</span>);</span><br><span class="line">    conf.put(<span class="string">"group.id"</span>, <span class="string">""</span>);</span><br><span class="line">    KafkaConsumer&lt;String, String&gt; consumer = <span class="keyword">new</span> KafkaConsumer&lt;&gt;(conf);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            ConsumerRecords&lt;String,String&gt; records = consumer.poll(<span class="number">100</span>);</span><br><span class="line">            <span class="keyword">for</span>(ConsumerRecord&lt;String,String&gt; record: records)&#123;</span><br><span class="line">                <span class="comment">//do something</span></span><br><span class="line">            &#125;</span><br><span class="line">            consumer.commitAsync();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            consumer.commitSync();</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            consumer.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果一切正常，使用commitAsync()方法来提交，这样速度更快，而且即使这次提交失败，下一次提交很可能成功，如果直接关闭消费者，就没有所谓的下一次提交了，使用consumer.commitSync() 会一直重试，直到提交成功，或发生无法恢复的错误</p>
+<p><br></p>
+<h4 id="提交特定的偏移量"><a href="#提交特定的偏移量" class="headerlink" title="提交特定的偏移量"></a>提交特定的偏移量</h4><p>提交偏移量的频率与处理消息批次的频率是一样的。 但如果想要更频繁地提交出怎么办？如果poll() 方法返回一大批数据， 为了避免因再均衡引起的重复处理整批消息，想要在批次中间提交偏移量该怎么办？这种情况无法通过</p>
+<p>调用 commitSync() 和 commitAsync() 方法来实现，因为它们只会提交最后 一个偏移量，而此时该批次里的消息 还没有处理完。</p>
+<p>幸运 的是， 消费者 API 允许在调用  commitSync() 和 commitAsync() 方法时传进去希望提交的分区和偏移量的 map。 假设你处理了半个批次的消息，最后一个来自主题“ customers” 分区 3 的消息的偏移量是 5000 ， 你可以调用 commitSync()  方法来提交它。 不过， 因为消费者可能不只读取一 个分区， 你需要跟踪所有分区的偏移量， 所以在这个层面上控制偏移量的提交会让代码变复杂。</p>
+<p><br></p>
+<h4 id="再均衡监听器"><a href="#再均衡监听器" class="headerlink" title="再均衡监听器"></a>再均衡监听器</h4><p>实现ConsumerRebalanceListener接口，两个方法：onPartitionRevoked，方法会在再均衡开始之前和消费者停止读取消息之后被调用。如果在这里提交偏移量，下一个接管分区的消费者就知道该从哪里开始读取了。onPartitionAssigned，方法会在重新分配分区之后和消费者开始读取消息之前被调用。</p>
+<p><br></p>
+<h4 id="从特定偏移量处开始处理记录（exactly-once-语义）"><a href="#从特定偏移量处开始处理记录（exactly-once-语义）" class="headerlink" title="从特定偏移量处开始处理记录（exactly-once 语义）"></a>从特定偏移量处开始处理记录（exactly-once 语义）</h4><p>试想一下这样的场景：应用程序从 Kafka 读取事件（可能是网站的用户点击事件流 ），对 它们进行处理（可能是使用自动程序清理点击操作井添加会话信息），然后把结果保存到数据库、NoSQL 存储引擎或Hadoop。假设我们真的不想丢失任何数据，也不想在数据库里多次保存相同的结果。</p>
+<p>这种情况下，消费者的代码可能是这样的 ：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testConsum</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    Properties conf = <span class="keyword">new</span> Properties();</span><br><span class="line">    KafkaConsumer&lt;String, String&gt; consumer = <span class="keyword">new</span> KafkaConsumer(conf);</span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">        ConsumerRecords&lt;String,String&gt; records = consumer.poll(<span class="number">100</span>);</span><br><span class="line">        <span class="keyword">for</span>(ConsumerRecord&lt;String,String&gt; record: records)&#123;</span><br><span class="line">            currentOffsets.put(<span class="keyword">new</span> TopicPartition(record.topic(),record.partition()),<span class="keyword">new</span> OffsetAndMetadata(record.offset()+<span class="number">1</span>));</span><br><span class="line">            ProcessRecord(record);</span><br><span class="line">            StoreRecordInDB(record);</span><br><span class="line">            consumer.commitSync(currentOffsets);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个例子里，每处理一条记录就提交一次偏移量。尽管如此，在记录被保存到数据库之后以及偏移量被提交之前 ，应用程序仍然有可能发生崩愤， 导致重复处理数据， 数据库里就会出现重复记录。</p>
+<p>如果保存记录和偏移量可以在一个原子操作里完成， 就可以避免出现上述情况。记录和偏移量要么都被成功提交， 要么都不提交。如果记录是保存在数据库里而偏移量是提交到 Kafka 上，那么就无法实现原子操作。</p>
+<p>不过 ，如果在同一个事务里把记录和偏移量都写到数据库里会怎样呢？ 那么我们就会知道记录和偏移量要么都成功提交， 要么都没有，然后重新处理记录。</p>
+<p>现在的问题是 ：如果偏移量是保存在数据库里而不是 Kafka 里，那么消费者在得到新分区时怎么知道该从哪里开始读取？这个时候可以使用 seek（） 方法。 在消费者启动或分配到新分区时 ，可以使用 seek（）方法查找保存在数据库里的偏移量。</p>
+<p>下面的例子大致说明了如何使用这个 API 。使用 ConsumerRebalanceListener 和 seek（）方法确保我们是从数据库里保存的偏移量所指定的位置开始处理消息的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SaveOffsetsOnRebalance</span> <span class="keyword">implements</span> <span class="title">ConsumerRebalanceListener</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> KafkaConsumer consumer;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SaveOffsetsOnRebalance</span><span class="params">(KafkaConsumer consumer)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.consumer = consumer;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onPartitionsRevoked</span><span class="params">(Collection&lt;TopicPartition&gt; partitions)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//在消费者负责的分区被回收前提交数据库事务，保存消费的记录和位移</span></span><br><span class="line">        commitDBTransaction();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onPartitionsAssigned</span><span class="params">(Collection&lt;TopicPartition&gt; partitions)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//在开始消费前，从数据库中获取分区的位移，并使用seek()来指定开始消费的位移</span></span><br><span class="line">        <span class="keyword">for</span>(TopicPartition partition: partitions)</span><br><span class="line">            consumer.seek(partition, getOffsetFromDB(partition));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testConsum</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    String topics = <span class="string">""</span>;</span><br><span class="line">    Properties conf = <span class="keyword">new</span> Properties();</span><br><span class="line">    KafkaConsumer&lt;String, String&gt; consumer = <span class="keyword">new</span> KafkaConsumer(conf);</span><br><span class="line"></span><br><span class="line">    consumer.subscribe(topics,<span class="keyword">new</span> SaveOffsetsOnRebalance());</span><br><span class="line">    consumer.poll(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(TopicPartition partition: consumer.assignment())&#123;</span><br><span class="line">        consumer.seek(partition,getOffsetFromDB(partition));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">        ConsumerRecords&lt;String,String&gt; records = consumer.poll(<span class="number">100</span>);</span><br><span class="line">        <span class="keyword">for</span>(ConsumerRecord&lt;String,String&gt; record: records)&#123;</span><br><span class="line">            processRecord(record);</span><br><span class="line">            storeRecordInDB(record);</span><br><span class="line">            storeOffsetInDB(record.topic(),record.partition(),record.offset());</span><br><span class="line">        &#125;</span><br><span class="line">        commitDBTransaction();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用一个虚构的方法来提交数据库事务。 大致想法是这样的： 在处理完记录之后， 将记录和偏移量插入数据库，然后在即将失去分区所有权之前提交事务， 确保成功保存了这些信息。</p>
+<p>使用另一个虚构的方法来从数据库获取偏移量，在分配到新分区的时候，使用 seek() 方法定位到那些记录。</p>
+<p>订阅主题之后， 开始启动消费者，我们调用一次 poll（）方法， 让消费者加入到消费者群组里，并获取分配到的分区 ， 然后马上调用 seek （） 方法定位分区的偏移量。 要记住，seek（）方法只更新我们正在使用的位置，在下一次调用 poll（）时就可以获得正确的消息。 如果 seek（）发生错误（ 比如偏移量不存在）,poll（）就会抛出异常。</p>
+<p>另一个虚构的方法，这次要更新的是数据库里用于保存偏移量的表。 假设更新记录的速度非常快 ， 所以每条记录都需要更新一次数据库， 但提交的速度比较慢， 所以只在每个批次末尾提交一次。这里可以通过很多种方式进行优化。</p>
+<p>通过把偏移量和记录保存到同一个外部系统来实现单次语义可以有很多种方式，不过它们都需要结合使用SaveOffsetsOnRebalance 和 seek（）方法来确保能够及时保存偏移量，井保证消费者总是能够从正确的位置开始读取消息。</p>
+<p><br></p>
+<h4 id="如何退出"><a href="#如何退出" class="headerlink" title="如何退出"></a>如何退出</h4><p>如果确定要退出循环， 需要通过另一个线程调用 consumer.wakeup（ ）方法。 如果循环运行在主线程里，可以在 ShutdownHook 里调用该方法。要记住，consumer.wakeup（ ）是消费者唯一一个可以从其他线程里安全调用的方法。调用 consumer.wakeup（ ） 可以退出 poll() ，并抛出wakeupException异常，或者如果调用consumer.wakeup（ ）时线程没有等待轮询， 那么异常将在下一轮调用 poll （）时抛出。 我们不需要处理 WakeupExcept.on，因为它只是用于跳出循环的一种方式。 不过，在退出线程之前调用 consumer.close（）是很有必要的，它会提交任何还没有提交的东西，并向群组协调器发送消息，告知自己要离开群组，接下来就会触发再均衡 ，而不需要等待会话超时。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//注册JVM关闭时的回调钩子，当JVM关闭时调用此钩子。</span></span><br><span class="line">Runtime.getRuntime().addShutdownHook(<span class="keyword">new</span> Thread() &#123;</span><br><span class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">              System.out.println(<span class="string">"Starting exit..."</span>);</span><br><span class="line">              <span class="comment">//调用消费者的wakeup方法通知主线程退出</span></span><br><span class="line">              consumer.wakeup();</span><br><span class="line">              <span class="keyword">try</span> &#123;</span><br><span class="line">                  <span class="comment">//等待主线程退出</span></span><br><span class="line">                  mainThread.join();</span><br><span class="line">              &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                  e.printStackTrace();</span><br><span class="line">              &#125;</span><br><span class="line">          &#125; </span><br><span class="line">&#125;);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// looping until ctrl-c, the shutdown hook will cleanup on exit</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">        ConsumerRecords&lt;String, String&gt; records = consumer.poll(<span class="number">1000</span>);</span><br><span class="line">        System.out.println(System.currentTimeMillis() + <span class="string">"--  waiting for data..."</span>);</span><br><span class="line">        <span class="keyword">for</span> (ConsumerRecord&lt;String, String&gt; record : records) &#123;</span><br><span class="line">            System.out.printf(<span class="string">"offset = %d, key = %s, value = %s\n"</span>,record.offset(), record.key(), record.value());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (TopicPartition tp: consumer.assignment())</span><br><span class="line">            System.out.println(<span class="string">"Committing offset at position:"</span> + consumer.position(tp));</span><br><span class="line">        consumer.commitSync();</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (WakeupException e) &#123;</span><br><span class="line">    <span class="comment">// ignore for shutdown</span></span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    consumer.close();</span><br><span class="line">    System.out.println(<span class="string">"Closed consumer and we are done"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://clay4444.github.io">clay</a>
+            </p><p>原文链接：<a href="http://clay4444.github.io/posts/2ce93f5b/">http://clay4444.github.io/posts/2ce93f5b/</a>
+            </p><p>发表日期：<a href="http://clay4444.github.io/posts/2ce93f5b/">May 17th 2019, 7:46:14 pm</a>
+            </p><p>更新日期：<a href="http://clay4444.github.io/posts/2ce93f5b/">May 17th 2019, 9:53:14 pm</a>
+            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/clay4444.github.io/posts/5bedbc4e/" title="深入理解java虚拟机">
+                    <div class="prevTitle">深入理解java虚拟机</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:clay4444@126.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/clay4444" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title="wechat">
+                  
+                  <img class="profile-qr" src="/clay4444.github.io/assets/example_qr.png">
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第二章"><span class="toc-number">1.</span> <span class="toc-text">第二章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、配置"><span class="toc-number">1.1.</span> <span class="toc-text">一、配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常规配置"><span class="toc-number">1.1.1.</span> <span class="toc-text">常规配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#topic-的默认配置"><span class="toc-number">1.1.2.</span> <span class="toc-text">topic 的默认配置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、Kafka集群"><span class="toc-number">1.2.</span> <span class="toc-text">二、Kafka集群</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#需要多少个broker"><span class="toc-number">1.2.1.</span> <span class="toc-text">需要多少个broker</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三章"><span class="toc-number">2.</span> <span class="toc-text">第三章</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#生产者配置"><span class="toc-number">2.0.1.</span> <span class="toc-text">生产者配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于数据的有序性"><span class="toc-number">2.0.2.</span> <span class="toc-text">关于数据的有序性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于partition与可能的一致性哈希"><span class="toc-number">2.0.3.</span> <span class="toc-text">关于partition与可能的一致性哈希</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四章"><span class="toc-number">3.</span> <span class="toc-text">第四章</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#消费者组"><span class="toc-number">3.0.1.</span> <span class="toc-text">消费者组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#消费者组和分区再均衡"><span class="toc-number">3.0.2.</span> <span class="toc-text">消费者组和分区再均衡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#心跳行为在最近版本中的变化，以及可能引发的问题"><span class="toc-number">3.0.3.</span> <span class="toc-text">心跳行为在最近版本中的变化，以及可能引发的问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分配分区是怎样的一个过程"><span class="toc-number">3.0.4.</span> <span class="toc-text">分配分区是怎样的一个过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#消费者配置"><span class="toc-number">3.0.5.</span> <span class="toc-text">消费者配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#提交偏移量"><span class="toc-number">3.0.6.</span> <span class="toc-text">提交偏移量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#提交特定的偏移量"><span class="toc-number">3.0.7.</span> <span class="toc-text">提交特定的偏移量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#再均衡监听器"><span class="toc-number">3.0.8.</span> <span class="toc-text">再均衡监听器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#从特定偏移量处开始处理记录（exactly-once-语义）"><span class="toc-number">3.0.9.</span> <span class="toc-text">从特定偏移量处开始处理记录（exactly-once 语义）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何退出"><span class="toc-number">3.0.10.</span> <span class="toc-text">如何退出</span></a></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 160
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/clay4444.github.io/posts/2ce93f5b/">kafka权威指南第二三四章</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/5bedbc4e/">深入理解java虚拟机</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/f849401d/">算法进阶第一课-3</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/clay4444.github.io/posts/ff78c689/">算法进阶第六课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/7f010ad5/">算法基础第六课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/8366812d/">算法进阶第四五课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/22</span><a class="archive-post-title" href="/clay4444.github.io/posts/42c55172/">算法进阶第三课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/fdbf220/">算法进阶第二课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/10</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fcd1ef8/">算法进阶第一课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/28</span><a class="archive-post-title" href="/clay4444.github.io/posts/8bd8430e/">算法基础特别节目</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/26</span><a class="archive-post-title" href="/clay4444.github.io/posts/5a6a5509/">算法基础第八课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/ad017d4a/">算法基础第七课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/1a0f410c/">算法基础第五课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/7591844b/">算法基础第四课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2bc9d2e/">算法基础第三课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/22</span><a class="archive-post-title" href="/clay4444.github.io/posts/5c06dc97/">Flink中startNewChain和SlotSharingGroup的区别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/20</span><a class="archive-post-title" href="/clay4444.github.io/posts/8fa23e7c/">算法基础第二课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/17</span><a class="archive-post-title" href="/clay4444.github.io/posts/bfb4d2a4/">算法基础第一课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/15</span><a class="archive-post-title" href="/clay4444.github.io/posts/6e3b6e5d/">kafka权威指南第一章</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/15</span><a class="archive-post-title" href="/clay4444.github.io/posts/98dde65a/">StreamingSystem第三章总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/11</span><a class="archive-post-title" href="/clay4444.github.io/posts/613fbfdf/">StreamingSystem一二章总结</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/6f100083/">TwoPhaseCommitSinkFunction</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/03</span><a class="archive-post-title" href="/clay4444.github.io/posts/b8ce2b2d/">sql语句中where与having的区别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/5bb24833/">ElasticSearch入门（三）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/16aceb61/">ElasticSearch入门（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/26ba07b9/">ElasticSearch入门（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/dfa909ab/">Flink的Metrics与监控</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/6a73b0f6/">Flink状态管理与恢复机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/827d698b/">Flink的Window与Time</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/589f5c61/">DataStreamAPI</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/4042ab31/">Flink基本概念与部署</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/clay4444.github.io/posts/22d66bb6/">Hive常见优化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/clay4444.github.io/posts/ce3cc54d/">zookeeper为什么一定要配置成奇数台</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/8bea7439/">MySql锁机制及索引</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/767c3cbc/">TCP三次握手-四次挥手面试总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/6d00129c/">自旋锁</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/1922d0f6/">常见海量处理题目解题关键</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/28</span><a class="archive-post-title" href="/clay4444.github.io/posts/db7f9c/">深入理解spark之架构与原理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/b1a1506f/">查找两个数组的相同字符（两个超大文件的相同字符）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/9799c850/">MR中的计数器、job串联等功能实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/03</span><a class="archive-post-title" href="/clay4444.github.io/posts/9c6cea3b/">Spring注解驱动开发之组件注册</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/44e5bf34/">Git中fork和clone的区别，fetch与pull的区别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/27</span><a class="archive-post-title" href="/clay4444.github.io/posts/9b145405/">Log4J与slf4j使用详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/eeeb2ca/">Java中的几种引用类型：强引用、软引用、弱引用和虚引用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/b391d3f0/">scala函数式编程和集合进阶</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/ccad62d6/">scala的面向对象和操作符</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/90c61e02/">scala数据类型等基本操作</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/11</span><a class="archive-post-title" href="/clay4444.github.io/posts/c640a1d5/">Java9之模块化和REPL工具</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/41355ae3/">Spark作业提交执行流程及底层实现介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/97e35c7b/">Storm的分组策略和确保消息送达机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/d5a66bc5/">Storm和kafka、Hbase之间的整合</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/9799a940/">Storm架构及其资源分配问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e73169bb/">详解hbase扫描、过滤、缓存等问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/615ff67f/">详解hbase架构、数据读取、存储、拆分风暴等问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/cedf1ac1/">kafka消息队列初探</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/117ed1fe/">Flume日志收集框架初探</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/fdf5e3ed/">死锁及其解决办法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/969c35d/">并发编程实战(八)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/28</span><a class="archive-post-title" href="/clay4444.github.io/posts/c03b7c51/">并发编程实战(七)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/27</span><a class="archive-post-title" href="/clay4444.github.io/posts/5f3364db/">并发编程实战(六)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/27</span><a class="archive-post-title" href="/clay4444.github.io/posts/c63c2ca9/">并发编程实战(五)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/26</span><a class="archive-post-title" href="/clay4444.github.io/posts/4a0a5133/">Java中的Runnable、Callable、Future、FutureTask的区别与示例</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/c0977bd4/">并发编程实战(四)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/eb162f92/">并发编程实战(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/a2cd52e0/">MR之社交粉丝数据查找共同好友</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/cc1873ed/">MR之流量统计相关需求</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/29</span><a class="archive-post-title" href="/clay4444.github.io/posts/f932ba85/">数据结构之图</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/27</span><a class="archive-post-title" href="/clay4444.github.io/posts/afe7cf7/">栈的经典应用之中缀表达式和后缀表达式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/26</span><a class="archive-post-title" href="/clay4444.github.io/posts/39aa6912/">数据结构之二叉树</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/409910e4/">数据结构之散列表</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/21</span><a class="archive-post-title" href="/clay4444.github.io/posts/6c17d6bd/">数据结构之树</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/19</span><a class="archive-post-title" href="/clay4444.github.io/posts/786266a6/">Java之Iterator与Iterable的区别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/17</span><a class="archive-post-title" href="/clay4444.github.io/posts/1c652596/">JDK1.7-Stack源码分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/21482a37/">LinkedHashMap源码赏析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/14</span><a class="archive-post-title" href="/clay4444.github.io/posts/526318cc/">HashMap源码赏析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/13</span><a class="archive-post-title" href="/clay4444.github.io/posts/df7893e2/">LinkedList源码赏析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/d36c0402/">ArrayList删除特定元素的方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/11</span><a class="archive-post-title" href="/clay4444.github.io/posts/55c3a3c7/">ArrayList添加一个元素add方法的核心</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/5b758090/">ArrayList源码赏析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/6d17d8e0/">Java8系列之新时间和日期API</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/03</span><a class="archive-post-title" href="/clay4444.github.io/posts/91ca9518/">Java8系列之Optional容器</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/28</span><a class="archive-post-title" href="/clay4444.github.io/posts/9b8b8703/">Java8系列之Stream-API</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/ccf34b81/">Java8系列之Lambda表达式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/21</span><a class="archive-post-title" href="/clay4444.github.io/posts/f26db82e/">Comparator和Comparable详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/20</span><a class="archive-post-title" href="/clay4444.github.io/posts/c4dacfdd/">Java8系列之宏观简介</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/17</span><a class="archive-post-title" href="/clay4444.github.io/posts/13325b7b/">Java的反射与动态代理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/1c38ec28/">关于内部类的那些事</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/10</span><a class="archive-post-title" href="/clay4444.github.io/posts/82b03554/">装饰者模式详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/148c5e8e/">策略模式详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/34ec76cc/">迭代器模式详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/f4488fab/">适配器模式详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/21</span><a class="archive-post-title" href="/clay4444.github.io/posts/db6632d/">详解关系型数据库三范式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/11</span><a class="archive-post-title" href="/clay4444.github.io/posts/dcf98c31/">maven的聚合和继承</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/c51233f6/">JavaIO流</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/31</span><a class="archive-post-title" href="/clay4444.github.io/posts/a4b4dacb/">详解Java7中的Try-with-resource</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/e4155742/">Java异常处理模板</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/15</span><a class="archive-post-title" href="/clay4444.github.io/posts/6bb61ef6/">深入探讨Java的故障保护异常处理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/78696dcf/">本地YUM源制作</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/04</span><a class="archive-post-title" href="/clay4444.github.io/posts/621e5041/">VMware虚拟机三种联网方法及原理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/30</span><a class="archive-post-title" href="/clay4444.github.io/posts/ecfdb360/">关于mapreduce程序开发的一些总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/clay4444.github.io/posts/c1ee2109/">MR之mapreduce原理深入剖析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/27</span><a class="archive-post-title" href="/clay4444.github.io/posts/21f9e9c5/">MR之WordCountDemo及执行流程图</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/a9435451/">MR之客户端提交mr程序job的流程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/63320029/">详解namenode的安全模式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/22</span><a class="archive-post-title" href="/clay4444.github.io/posts/ac72d308/">Hadoop集群的联邦机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/20</span><a class="archive-post-title" href="/clay4444.github.io/posts/d0edc1ed/">Linux常用命令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/15</span><a class="archive-post-title" href="/clay4444.github.io/posts/a45c106d/">Hadoop集群高可用配置原理及过程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/13</span><a class="archive-post-title" href="/clay4444.github.io/posts/442eff56/">详解Linux的链接文件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/84f5b3e/">NIO系列之非阻塞式IO</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/clay4444.github.io/posts/65ebcdd2/">NIO系列之缓冲区和通道</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/a4ab48f8/">线程八锁</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/28</span><a class="archive-post-title" href="/clay4444.github.io/posts/657d2343/">经典面试题之线程按顺序交替打印</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/2822593d/">CAS算法原子变量底层到底是如何工作的</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/clay4444.github.io/posts/46a889d8/">Lock与synchronized的区别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/15</span><a class="archive-post-title" href="/clay4444.github.io/posts/f9184235/">Disruptor框架</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/282014e2/">重入锁和读写锁和分布式锁的应用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/10</span><a class="archive-post-title" href="/clay4444.github.io/posts/417d070a/">concurrent包下常用类及其应用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/03</span><a class="archive-post-title" href="/clay4444.github.io/posts/8b920ef3/">Executor线程池应用及其源代码解析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href="/clay4444.github.io/posts/ba8be30a/">多线程的设计模式之生产者-消费者模式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/28</span><a class="archive-post-title" href="/clay4444.github.io/posts/c319249/">多线程的设计模式之Master-Worker模式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/6d530e97/">多线程的设计模式之Future模式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/f1a00836/">并发Queue详解及其应用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/20</span><a class="archive-post-title" href="/clay4444.github.io/posts/2b949ee4/">并发类容器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href="/clay4444.github.io/posts/bdf654d1/">同步类容器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/5d37d5dd/">集合迭代器快速失败行为及CopyOnWriteArrayList</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/15</span><a class="archive-post-title" href="/clay4444.github.io/posts/c8369a3e/">MR之倒排索引的建立</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/13</span><a class="archive-post-title" href="/clay4444.github.io/posts/db40873f/">ThreadLocal详解及其底层实现分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/3c6f5864/">BlockQueue队列内部实现剖析及简单模拟</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/9a01ed74/">通过一道阿里面试题看线程间通信的概念</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/03</span><a class="archive-post-title" href="/clay4444.github.io/posts/623ba864/">关于synchronized一些容易忽略的特性</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/2dd0f618/">Hive自定义函数和Transform</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/29</span><a class="archive-post-title" href="/clay4444.github.io/posts/5ec70f63/">Hive参数配置方式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/73b70227/">关于Hive的Select查询</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/f92012d0/">Hive中的数据存储格式和基本操作</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/20</span><a class="archive-post-title" href="/clay4444.github.io/posts/e01e83db/">Hive最常用之统计报表</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/18</span><a class="archive-post-title" href="/clay4444.github.io/posts/111e02e0/">volatile关键字</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/15</span><a class="archive-post-title" href="/clay4444.github.io/posts/16f9fb4/">单例模式的双重检查锁定+volatile</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/13</span><a class="archive-post-title" href="/clay4444.github.io/posts/e4408e09/">关于Hive的join操作</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="源码解析系列"><span class="iconfont-archer">&#xe606;</span>源码解析系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="Flink"><span class="iconfont-archer">&#xe606;</span>Flink</span>
+    
+        <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
+    
+        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
+    
+        <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
+    
+        <span class="sidebar-tag-name" data-tags="Java8系列"><span class="iconfont-archer">&#xe606;</span>Java8系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="Java9系列"><span class="iconfont-archer">&#xe606;</span>Java9系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="MapReduce"><span class="iconfont-archer">&#xe606;</span>MapReduce</span>
+    
+        <span class="sidebar-tag-name" data-tags="MySql"><span class="iconfont-archer">&#xe606;</span>MySql</span>
+    
+        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
+    
+        <span class="sidebar-tag-name" data-tags="Storm"><span class="iconfont-archer">&#xe606;</span>Storm</span>
+    
+        <span class="sidebar-tag-name" data-tags="环境部署问题系列"><span class="iconfont-archer">&#xe606;</span>环境部署问题系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="maven"><span class="iconfont-archer">&#xe606;</span>maven</span>
+    
+        <span class="sidebar-tag-name" data-tags="快学scala读书笔记"><span class="iconfont-archer">&#xe606;</span>快学scala读书笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="zookeeper"><span class="iconfont-archer">&#xe606;</span>zookeeper</span>
+    
+        <span class="sidebar-tag-name" data-tags="并发编程实战读书笔记"><span class="iconfont-archer">&#xe606;</span>并发编程实战读书笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="大数据处理算法"><span class="iconfont-archer">&#xe606;</span>大数据处理算法</span>
+    
+        <span class="sidebar-tag-name" data-tags="Java异常处理"><span class="iconfont-archer">&#xe606;</span>Java异常处理</span>
+    
+        <span class="sidebar-tag-name" data-tags="hdfs"><span class="iconfont-archer">&#xe606;</span>hdfs</span>
+    
+        <span class="sidebar-tag-name" data-tags="elasticsearch"><span class="iconfont-archer">&#xe606;</span>elasticsearch</span>
+    
+        <span class="sidebar-tag-name" data-tags="日志框架"><span class="iconfont-archer">&#xe606;</span>日志框架</span>
+    
+        <span class="sidebar-tag-name" data-tags="GC"><span class="iconfont-archer">&#xe606;</span>GC</span>
+    
+        <span class="sidebar-tag-name" data-tags="NIO"><span class="iconfont-archer">&#xe606;</span>NIO</span>
+    
+        <span class="sidebar-tag-name" data-tags="Spring注解驱动开发"><span class="iconfont-archer">&#xe606;</span>Spring注解驱动开发</span>
+    
+        <span class="sidebar-tag-name" data-tags="kafka"><span class="iconfont-archer">&#xe606;</span>kafka</span>
+    
+        <span class="sidebar-tag-name" data-tags="JavaIO流系列"><span class="iconfont-archer">&#xe606;</span>JavaIO流系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="jvm"><span class="iconfont-archer">&#xe606;</span>jvm</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="多线程编程"><span class="iconfont-archer">&#xe60a;</span>多线程编程</span>
+    
+        <span class="sidebar-category-name" data-categories="Java基础"><span class="iconfont-archer">&#xe60a;</span>Java基础</span>
+    
+        <span class="sidebar-category-name" data-categories="big-data"><span class="iconfont-archer">&#xe60a;</span>big-data</span>
+    
+        <span class="sidebar-category-name" data-categories="scala"><span class="iconfont-archer">&#xe60a;</span>scala</span>
+    
+        <span class="sidebar-category-name" data-categories="Linux"><span class="iconfont-archer">&#xe60a;</span>Linux</span>
+    
+        <span class="sidebar-category-name" data-categories="数据库"><span class="iconfont-archer">&#xe60a;</span>数据库</span>
+    
+        <span class="sidebar-category-name" data-categories="计算机网络"><span class="iconfont-archer">&#xe60a;</span>计算机网络</span>
+    
+        <span class="sidebar-category-name" data-categories="设计模式"><span class="iconfont-archer">&#xe60a;</span>设计模式</span>
+    
+        <span class="sidebar-category-name" data-categories="数据结构"><span class="iconfont-archer">&#xe60a;</span>数据结构</span>
+    
+        <span class="sidebar-category-name" data-categories="kafka权威指南读书笔记"><span class="iconfont-archer">&#xe60a;</span>kafka权威指南读书笔记</span>
+    
+        <span class="sidebar-category-name" data-categories="leetcode"><span class="iconfont-archer">&#xe60a;</span>leetcode</span>
+    
+        <span class="sidebar-category-name" data-categories="StreamingSystem读书笔记"><span class="iconfont-archer">&#xe60a;</span>StreamingSystem读书笔记</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/clay4444.github.io/",
+        author: "clay"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/clay4444.github.io/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/clay4444.github.io/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/clay4444.github.io/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
