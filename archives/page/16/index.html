@@ -346,6 +346,35 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/3c6f5864/">
+            
+                <span>BlockQueue队列内部实现剖析及简单模拟</span>
+        </a>
+        <div class="abstract-content">
+            BlockQueue:
+顾名思义，首先它是一个队列，并且支持阻塞的队列，阻塞的放入和得到数据，我们要实现LinkedBlockingQueue下面两个简单的方法put和take
+put(anObject): 把anObject加到BlockingQueue里,如果BlockQueue没有空间,则调用此方法的线程被阻断，直到BlockingQueue里面有空间再继续.
+take: 取走BlockingQueue里排在首位的对象,若BlockingQueue为空,阻断进入等待状态直到BlockingQueue有新的数据被加入.
+实现代码
+
+12345678910111213141516171...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/07/08</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/9a01ed74/">
             
                 <span>通过一道阿里面试题看线程间通信的概念</span>
@@ -648,45 +677,10 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/e4408e09/">
-            
-                <span>关于Hive的join操作</span>
-        </a>
-        <div class="abstract-content">
-            Hive Join1.基本特性：Hive支持等值连接（equalityjoins）、外连接（outer joins）和（left/right joins）。Hive 不支持非等值的连接，因为非等值连接非常难转化到 map/reduce 任务。
-另外，Hive 支持多于 2 个表的连接。
-
-2.只支持等值join例如： 
-123SELECT a.* FROMa JOIN b ON (a.id = b.id)SELECT a.* FROM a JOIN bON (a.id = b.id AND a.department =b.department)
-是正确的，然而:
-1SELECT a.* ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/06/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hive">Hive</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/clay4444.github.io/archives/page/15/">&#60; PREV</a><a class="page-number" href="/clay4444.github.io/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/clay4444.github.io/archives/page/14/">14</a><a class="page-number" href="/clay4444.github.io/archives/page/15/">15</a><span class="page-number current">16</span>
+        <a class="extend prev" rel="prev" href="/clay4444.github.io/archives/page/15/">&#60; PREV</a><a class="page-number" href="/clay4444.github.io/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/clay4444.github.io/archives/page/14/">14</a><a class="page-number" href="/clay4444.github.io/archives/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/clay4444.github.io/archives/page/17/">17</a><a class="extend next" rel="next" href="/clay4444.github.io/archives/page/17/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -3704,9 +3698,40 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 160
+        Total : 161
         </div>
         <!-- search  -->
         
@@ -3719,6 +3744,11 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href="/clay4444.github.io/posts/f63f9c6e/">kafka权威指南第五六章</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3926,12 +3956,12 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
         </li>
     
     
@@ -3941,7 +3971,7 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
         </li>
     
     
@@ -3951,7 +3981,7 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
         </li>
     
     
@@ -4001,12 +4031,12 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
         </li>
     
     
@@ -4036,7 +4066,7 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
         </li>
     
     
@@ -4046,7 +4076,7 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
         </li>
     
     
@@ -4071,6 +4101,11 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
@@ -4082,11 +4117,6 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
         </li>
     
     
@@ -4121,12 +4151,12 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
@@ -4141,12 +4171,12 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/eb162f92/">并发编程实战(一)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/eb162f92/">并发编程实战(一)</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
         </li>
     
     
@@ -4587,9 +4617,9 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
         <span class="sidebar-tag-name" data-tags="elasticsearch"><span class="iconfont-archer">&#xe606;</span>elasticsearch</span>
     
-        <span class="sidebar-tag-name" data-tags="日志框架"><span class="iconfont-archer">&#xe606;</span>日志框架</span>
-    
         <span class="sidebar-tag-name" data-tags="GC"><span class="iconfont-archer">&#xe606;</span>GC</span>
+    
+        <span class="sidebar-tag-name" data-tags="日志框架"><span class="iconfont-archer">&#xe606;</span>日志框架</span>
     
         <span class="sidebar-tag-name" data-tags="NIO"><span class="iconfont-archer">&#xe606;</span>NIO</span>
     

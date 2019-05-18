@@ -359,6 +359,44 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/44c10193/">
+            
+                <span>MapReduce的Task并行度决定机制</span>
+        </a>
+        <div class="abstract-content">
+            MapTask并行度决定机制maptask的并行度决定map阶段的任务处理并发度，进而影响到整个job的处理速度
+那么，mapTask并行实例是否越多越好呢？其并行度又是如何决定呢？
+
+mapTask并行度的决定机制一个job的map阶段并行度由客户端在提交job时决定
+而客户端对map阶段并行度的规划的基本逻辑为：
+
+将待处理数据执行逻辑切片（即按照一个特定切片大小，将待处理数据划分成逻辑上的多个split），然后每一个split分配一个mapTas并行实例处理
+
+
+这段逻辑及形成的切片规划描述文件，由FileInputFormat实现类的getSplits()方法完成，其过程如下图：...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/16</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="MapReduce">MapReduce</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/4ad64663/">
             
                 <span>MapReduce框架结构及核心运行机制</span>
@@ -677,45 +715,10 @@ pull request的作用比如在仓库的主人（A）没有把我们添加为项�
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/b391d3f0/">
-            
-                <span>scala函数式编程和集合进阶</span>
-        </a>
-        <div class="abstract-content">
-            函数式编程注意点：
-如果使用了匿名函数，那么匿名函数一定不能有返回值，必须有返回的话，需要写在函数的结尾。
-
-
-12345678scala&gt;def add(a:Int,b:Int) = a + bscala&gt;val f = add _					//将函数赋值给一个变量,函数类型变量。scala&gt;def multi(n:Int) = n * 2scala&gt;def f = multi _				//_ 表示取出函数本身scala&gt;Array(1,2,3,4).map(f)
-
-匿名函数1234scala&gt;(n:Double)=&gt;3 * n						/...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/03/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="快学scala读书笔记">快学scala读书笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/clay4444.github.io/page/4/">&#60; PREV</a><a class="page-number" href="/clay4444.github.io/">1</a><span class="space">&hellip;</span><a class="page-number" href="/clay4444.github.io/page/3/">3</a><a class="page-number" href="/clay4444.github.io/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/clay4444.github.io/page/6/">6</a><a class="page-number" href="/clay4444.github.io/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/clay4444.github.io/page/16/">16</a><a class="extend next" rel="next" href="/clay4444.github.io/page/6/">NEXT &#62;</a>
+        <a class="extend prev" rel="prev" href="/clay4444.github.io/page/4/">&#60; PREV</a><a class="page-number" href="/clay4444.github.io/">1</a><span class="space">&hellip;</span><a class="page-number" href="/clay4444.github.io/page/3/">3</a><a class="page-number" href="/clay4444.github.io/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/clay4444.github.io/page/6/">6</a><a class="page-number" href="/clay4444.github.io/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/clay4444.github.io/page/17/">17</a><a class="extend next" rel="next" href="/clay4444.github.io/page/6/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -3830,9 +3833,40 @@ pull request的作用比如在仓库的主人（A）没有把我们添加为项�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 160
+        Total : 161
         </div>
         <!-- search  -->
         
@@ -3845,6 +3879,11 @@ pull request的作用比如在仓库的主人（A）没有把我们添加为项�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href="/clay4444.github.io/posts/f63f9c6e/">kafka权威指南第五六章</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -4052,12 +4091,12 @@ pull request的作用比如在仓库的主人（A）没有把我们添加为项�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
         </li>
     
     
@@ -4067,7 +4106,7 @@ pull request的作用比如在仓库的主人（A）没有把我们添加为项�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
         </li>
     
     
@@ -4077,7 +4116,7 @@ pull request的作用比如在仓库的主人（A）没有把我们添加为项�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
         </li>
     
     
@@ -4127,12 +4166,12 @@ pull request的作用比如在仓库的主人（A）没有把我们添加为项�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
         </li>
     
     
@@ -4162,7 +4201,7 @@ pull request的作用比如在仓库的主人（A）没有把我们添加为项�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
         </li>
     
     
@@ -4172,7 +4211,7 @@ pull request的作用比如在仓库的主人（A）没有把我们添加为项�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
         </li>
     
     
@@ -4197,6 +4236,11 @@ pull request的作用比如在仓库的主人（A）没有把我们添加为项�
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
@@ -4208,11 +4252,6 @@ pull request的作用比如在仓库的主人（A）没有把我们添加为项�
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
         </li>
     
     
@@ -4247,12 +4286,12 @@ pull request的作用比如在仓库的主人（A）没有把我们添加为项�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
@@ -4267,12 +4306,12 @@ pull request的作用比如在仓库的主人（A）没有把我们添加为项�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/eb162f92/">并发编程实战(一)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/eb162f92/">并发编程实战(一)</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
         </li>
     
     
@@ -4713,9 +4752,9 @@ pull request的作用比如在仓库的主人（A）没有把我们添加为项�
     
         <span class="sidebar-tag-name" data-tags="elasticsearch"><span class="iconfont-archer">&#xe606;</span>elasticsearch</span>
     
-        <span class="sidebar-tag-name" data-tags="日志框架"><span class="iconfont-archer">&#xe606;</span>日志框架</span>
-    
         <span class="sidebar-tag-name" data-tags="GC"><span class="iconfont-archer">&#xe606;</span>GC</span>
+    
+        <span class="sidebar-tag-name" data-tags="日志框架"><span class="iconfont-archer">&#xe606;</span>日志框架</span>
     
         <span class="sidebar-tag-name" data-tags="NIO"><span class="iconfont-archer">&#xe606;</span>NIO</span>
     

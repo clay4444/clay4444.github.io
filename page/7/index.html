@@ -359,6 +359,50 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/97e35c7b/">
+            
+                <span>Storm的分组策略和确保消息送达机制</span>
+        </a>
+        <div class="abstract-content">
+            分组策略
+shuffle 随机分组
+
+
+
+
+field分组
+
+安装指定filed的key进行hash处理，
+相同的field，一定进入到同一bolt.
+该分组容易产生数据倾斜问题，通过使用二次聚合避免此类问题。
+
+
+使用二次聚合避免倾斜。
+App入口类
+1234567891011121314151617181920212223242526public class App &#123;  public static void main(String[] args) throws Exception &#123;    TopologyBuilder builder = new Topolo...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/03/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Storm">Storm</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/9799a940/">
             
                 <span>Storm架构及其资源分配问题</span>
@@ -787,37 +831,10 @@ $&gt;flume-ng ve...
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/305a7ab3/">
-            
-                <span>数字证书及CA的扫盲介绍</span>
-        </a>
-        <div class="abstract-content">
-            先说一个通俗的例子考虑到证书体系的相关知识比较枯燥、晦涩。俺先拿一个通俗的例子来说事儿。
-
-普通的介绍信想必大伙儿都听说过介绍信的例子吧？假设 A 公司的张三先生要到 B 公司去拜访，但是 B 公司的所有人都不认识他，他咋办捏？常用的办法是带公司开的一张介绍信，在信中说：兹有张三先生前往贵公司办理业务，请给予接洽……云云。然后在信上敲上A公司的公章。
-　　张三先生到了 B 公司后，把介绍信递给 B 公司的前台李四小姐。李小姐一看介绍信上有 A 公司的公章，而且 A 公司是经常和 B 公司有业务往来的，这位李小姐就相信张先生不是歹人了。
-　　说到这，爱抬杠的同学会问了：万一公章是伪造的，咋...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/03/02</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/clay4444.github.io/page/6/">&#60; PREV</a><a class="page-number" href="/clay4444.github.io/">1</a><span class="space">&hellip;</span><a class="page-number" href="/clay4444.github.io/page/5/">5</a><a class="page-number" href="/clay4444.github.io/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/clay4444.github.io/page/8/">8</a><a class="page-number" href="/clay4444.github.io/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/clay4444.github.io/page/16/">16</a><a class="extend next" rel="next" href="/clay4444.github.io/page/8/">NEXT &#62;</a>
+        <a class="extend prev" rel="prev" href="/clay4444.github.io/page/6/">&#60; PREV</a><a class="page-number" href="/clay4444.github.io/">1</a><span class="space">&hellip;</span><a class="page-number" href="/clay4444.github.io/page/5/">5</a><a class="page-number" href="/clay4444.github.io/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/clay4444.github.io/page/8/">8</a><a class="page-number" href="/clay4444.github.io/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/clay4444.github.io/page/17/">17</a><a class="extend next" rel="next" href="/clay4444.github.io/page/8/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -3932,9 +3949,40 @@ $&gt;flume-ng ve...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 160
+        Total : 161
         </div>
         <!-- search  -->
         
@@ -3947,6 +3995,11 @@ $&gt;flume-ng ve...
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href="/clay4444.github.io/posts/f63f9c6e/">kafka权威指南第五六章</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -4154,12 +4207,12 @@ $&gt;flume-ng ve...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
         </li>
     
     
@@ -4169,7 +4222,7 @@ $&gt;flume-ng ve...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
         </li>
     
     
@@ -4179,7 +4232,7 @@ $&gt;flume-ng ve...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
         </li>
     
     
@@ -4229,12 +4282,12 @@ $&gt;flume-ng ve...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
         </li>
     
     
@@ -4264,7 +4317,7 @@ $&gt;flume-ng ve...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
         </li>
     
     
@@ -4274,7 +4327,7 @@ $&gt;flume-ng ve...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
         </li>
     
     
@@ -4299,6 +4352,11 @@ $&gt;flume-ng ve...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
@@ -4310,11 +4368,6 @@ $&gt;flume-ng ve...
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
         </li>
     
     
@@ -4349,12 +4402,12 @@ $&gt;flume-ng ve...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
@@ -4369,12 +4422,12 @@ $&gt;flume-ng ve...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/eb162f92/">并发编程实战(一)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/eb162f92/">并发编程实战(一)</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
         </li>
     
     
@@ -4815,9 +4868,9 @@ $&gt;flume-ng ve...
     
         <span class="sidebar-tag-name" data-tags="elasticsearch"><span class="iconfont-archer">&#xe606;</span>elasticsearch</span>
     
-        <span class="sidebar-tag-name" data-tags="日志框架"><span class="iconfont-archer">&#xe606;</span>日志框架</span>
-    
         <span class="sidebar-tag-name" data-tags="GC"><span class="iconfont-archer">&#xe606;</span>GC</span>
+    
+        <span class="sidebar-tag-name" data-tags="日志框架"><span class="iconfont-archer">&#xe606;</span>日志框架</span>
     
         <span class="sidebar-tag-name" data-tags="NIO"><span class="iconfont-archer">&#xe606;</span>NIO</span>
     

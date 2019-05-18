@@ -359,6 +359,43 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/442eff56/">
+            
+                <span>详解Linux的链接文件</span>
+        </a>
+        <div class="abstract-content">
+            链接文件
+1.硬链接
+两个完全相同文件，类似于实时备份。两个文件之间完全同步。
+删除时，只删一个。 但是修改时，另外一个也会修改 。
+目录不能使用硬链接。
+ln a.txt alink            //a.txt:目标文件, alink:连接名称.
+
+
+2. 符号连接
+相当于快捷方式.    存放的其实就是路径。
+可以对文件，也可以对文件夹创建符号连接。
+符号连接存在的时候，可以删除目标文件。
+$&gt;ln -s a.txt alink        //a.txt: 目标文件  alink:连接名称(symbolic)
+
+
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/09/13</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/84f5b3e/">
             
                 <span>NIO系列之非阻塞式IO</span>
@@ -622,45 +659,10 @@ Disruptor是一个高性能的异步处理框架，或者可以认为是最快�
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/8b920ef3/">
-            
-                <span>Executor线程池应用及其源代码解析</span>
-        </a>
-        <div class="abstract-content">
-            Executor框架
-为了更好的控制多线程，JDK提供了一套线程框架Executor，帮助开发人员更有效的进行线程控制，他们都在java.util.concurrent包中，是JDK并发包的核心，其中有一个比较重要的类，Executors，它扮演这线程工厂的角色，我们通过Executors可以创建特定功能的线程池
-Executors创建线程池的方法
-
-
-newFixedThreadPool()方法，该方法返回一个固定数量的线程池，该方法的线程数始终不变，当有一个任务提交时，若线程池中空闲，则立即执行，若没有，则会被暂缓在一个任务队列中等待有空闲的线程去执行
-newSingleThread...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/08/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="源码解析系列">源码解析系列</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/clay4444.github.io/page/13/">&#60; PREV</a><a class="page-number" href="/clay4444.github.io/">1</a><span class="space">&hellip;</span><a class="page-number" href="/clay4444.github.io/page/12/">12</a><a class="page-number" href="/clay4444.github.io/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/clay4444.github.io/page/15/">15</a><a class="page-number" href="/clay4444.github.io/page/16/">16</a><a class="extend next" rel="next" href="/clay4444.github.io/page/15/">NEXT &#62;</a>
+        <a class="extend prev" rel="prev" href="/clay4444.github.io/page/13/">&#60; PREV</a><a class="page-number" href="/clay4444.github.io/">1</a><span class="space">&hellip;</span><a class="page-number" href="/clay4444.github.io/page/12/">12</a><a class="page-number" href="/clay4444.github.io/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/clay4444.github.io/page/15/">15</a><a class="page-number" href="/clay4444.github.io/page/16/">16</a><a class="page-number" href="/clay4444.github.io/page/17/">17</a><a class="extend next" rel="next" href="/clay4444.github.io/page/15/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -3775,9 +3777,40 @@ newSingleThread...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 160
+        Total : 161
         </div>
         <!-- search  -->
         
@@ -3790,6 +3823,11 @@ newSingleThread...
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href="/clay4444.github.io/posts/f63f9c6e/">kafka权威指南第五六章</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3997,12 +4035,12 @@ newSingleThread...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
         </li>
     
     
@@ -4012,7 +4050,7 @@ newSingleThread...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
         </li>
     
     
@@ -4022,7 +4060,7 @@ newSingleThread...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
         </li>
     
     
@@ -4072,12 +4110,12 @@ newSingleThread...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
         </li>
     
     
@@ -4107,7 +4145,7 @@ newSingleThread...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
         </li>
     
     
@@ -4117,7 +4155,7 @@ newSingleThread...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
         </li>
     
     
@@ -4142,6 +4180,11 @@ newSingleThread...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
@@ -4153,11 +4196,6 @@ newSingleThread...
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
         </li>
     
     
@@ -4192,12 +4230,12 @@ newSingleThread...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
@@ -4212,12 +4250,12 @@ newSingleThread...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/eb162f92/">并发编程实战(一)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/eb162f92/">并发编程实战(一)</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
         </li>
     
     
@@ -4658,9 +4696,9 @@ newSingleThread...
     
         <span class="sidebar-tag-name" data-tags="elasticsearch"><span class="iconfont-archer">&#xe606;</span>elasticsearch</span>
     
-        <span class="sidebar-tag-name" data-tags="日志框架"><span class="iconfont-archer">&#xe606;</span>日志框架</span>
-    
         <span class="sidebar-tag-name" data-tags="GC"><span class="iconfont-archer">&#xe606;</span>GC</span>
+    
+        <span class="sidebar-tag-name" data-tags="日志框架"><span class="iconfont-archer">&#xe606;</span>日志框架</span>
     
         <span class="sidebar-tag-name" data-tags="NIO"><span class="iconfont-archer">&#xe606;</span>NIO</span>
     

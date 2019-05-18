@@ -1,0 +1,4757 @@
+<!DOCTYPE html>
+<html lang="chinese">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="clay">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="clay">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="I'll do every thing for GTR">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>kafka权威指南第五六章 · 十年饮冰，难凉热血</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/clay4444.github.io/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/clay4444.github.io/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/clay4444.github.io/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/clay4444.github.io/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/clay4444.github.io/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/clay4444.github.io/font/Oswald-Regular.ttf" crossorigin="">
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin="">
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/clay4444.github.io/">诚觉世事尽可原谅.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">kafka权威指南第五六章</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/clay4444.github.io/">诚觉世事尽可原谅.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/clay4444.github.io/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            kafka权威指南第五六章
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">13k</span>阅读时长: <span class="post-count reading-time">44 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/05/18</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/clay4444.github.io/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/clay4444.github.io/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="第五章：深入kafka"><a href="#第五章：深入kafka" class="headerlink" title="第五章：深入kafka"></a>第五章：深入kafka</h2><ol>
+<li>Kafka 如何进行复制；</li>
+<li>Kafka 如何处理来自生产者和消费者的请求</li>
+<li>Kafka 的存储细节， 比如文件格式和索引。</li>
+</ol>
+<p><br></p>
+<h3 id="集群成员管理"><a href="#集群成员管理" class="headerlink" title="集群成员管理"></a>集群成员管理</h3><p>Kafka使用Zookeeper管理集群成员状态，每一个broker都有一个唯一ID（在配置文件中指定或者自动生成），当broker启动时会在Zookeeper中注册相应的临时节点。如果集群中存在相同的ID，那么新的broker会启动失败。</p>
+<p>Zookeeper中的节点注册路径为/broker/ids，Kafka的各个组件会监听此路径下的变更信息，当broker加入或者离开时，它们会收到通知。当节点离开（可能由于停机、网络故障、长GC等导致）时，Zookeeper中相应的节点会消失，但该broker的ID仍然会在某些数据结构中存在。比如，每个主题的副本列表会包含副本所在的broker ID，因此如果一个broker离开同时有一个新的broker拥有此相同的ID，那么新的broker会在集群中替代之前的broker，并且会被分配同样的主题和分区。</p>
+<p><br></p>
+<h3 id="集群控制器（Controller）"><a href="#集群控制器（Controller）" class="headerlink" title="集群控制器（Controller）"></a>集群控制器（Controller）</h3><p>集群控制器也是一个broker，在承担一般的broker职责外，它还负责选举分区的主副本（后面会讨论分区主副本的作用）。集群中的第一个broker通过在Zookeeper的/controller路径下创建一个临时节点来成为控制器。当其他broker启动时，也会试图创建一个临时节点，但是会收到一个“节点已存在”的异常，这样便知道当前已经存在集群控制器。这些broker会监听Zookeeper的这个控制器临时节点，当控制器发生故障时，该临时节点会消失，这些broker便会收到通知，然后尝试去创建临时节点成为新的控制器。</p>
+<p>对于一个控制器来说，如果它发现集群中的一个broker离开时，它会检查该broker是否有分区的主副本，如果有则需要对这些分区选举出新的主副本。控制器会在分区的副本列表中选出一个新的主副本，并且发送请求给新的主副本和其他的跟随者；这样新的主副本便知道需要处理生产者和消费者的请求，而跟随者则需要向新的主副本同步消息。</p>
+<p>如果控制器发现有新的broker（这个broker也有可能是之前宕机的）加入时，它会通过此broker的ID来检查该broker是否有分区副本存在，如果有则通知该broker向相应的分区主副本同步消息。</p>
+<p>最后，每当选举一个新的控制器时，就会产生一个新的更大的控制器时间戳（controller epoch），这样集群中的broker收到控制器的消息时检查此时间戳，当发现消息来源于老的控制器，它们便会忽略，以避免脑裂（split brain）。</p>
+<p><br></p>
+<h3 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h3><p> 复制，是Kafka架构的核心。通过复制机制，Kafka达到了高可用的要求，保证在少量节点发生故障时集群仍然可用。如前所述，每个主题都有若干个分区，而每个分区有多个副本，这些副本都存在broker中。Kafka中的副本有两种类型：</p>
+<ul>
+<li>主副本（leader replica）：每个分区都有唯一的主副本，所有的生产者和消费者请求都由主副本处理，这样才能保证一致性。</li>
+<li><p>跟随者副本（follower replica）：分区的其他副本为跟随者副本，跟随者副本不处理生产者或消费者请求，它们只是向主副本同步消息，当主副本所在的broker宕机后，跟随者副本会选举出新的主副本。</p>
+<p>对于主副本来说，它还有一个职责，那就是关注跟随者副本的同步状态。每个跟随者副本都会保持与主副本同步，但在异常情况（例如网络阻塞、机器故障、重启等）下，跟随者的状态可能会同步失败。跟随者副本通过向主副本发送Fetch请求来进行同步（与消费者一样），请求中包含希望同步的下一个消息位移，该位移始终是有序的。比如，一个跟随者可能会按序请求消息1，消息2，消息3…如果跟随者请求消息N，那么主副本可以确定此跟随者已经接收到N-1及以前的消息了。因此根据请求中的位移信息，主副本知道跟随者的落后状态，如果副本超过10秒钟没有发送同步请求或者请求的位移属于10秒钟以前的位移，那么主副本会认为该跟随者是同步落后（out of sync）的。如果一个跟随者副本是同步落后的，那么在主副本发生故障时该跟随者不能成为新的主副本。而能够及时同步的跟随者副本则是in-sync状态的，这些跟随者副本有资格成为新的主副本。当然10秒钟不是固定的，可以通过replica.lag.time.max.ms来设置。</p>
+</li>
+</ul>
+<p>每个分区除了有主副本之外，还有一个备选主副本（preferred leader），它是主题初始创建时的主副本。在主题初始创建时，Kafka使用一定的算法来分散所有主题的主副本与跟随者副本，因此备份主副本通常能保证集群的流量是均衡分布的。如果备份主副本是in-sync状态的，那么在主副本发生故障后，它会自动成为新的主副本。</p>
+<p><br></p>
+<h3 id="请求处理"><a href="#请求处理" class="headerlink" title="请求处理"></a>请求处理</h3><p> Kafka的broker主要工作是，当作为分区的主副本时，处理来自生产者/消费者客户端、跟随者副本以及控制器的请求。对于此Kafka使用自定义的二进制协议来进行通信，请求的头部包含如下信息：</p>
+<ul>
+<li>请求类型</li>
+<li>请求版本（通过此参数broker可以正确处理不同版本客户端的请求）</li>
+<li>关联ID：标识请求的全局唯一数字，也会在响应结果和错误日志中呈现。</li>
+<li>客户端ID：用来识别请求的来源。</li>
+</ul>
+<p>同一个客户端发送的所有请求都是按序处理的，这保证了消息的有序性。</p>
+<p>对于监听的每一个端口，broker都会运行一个接收者（acceptor）线程来建立连接，并且把连接交给一个处理器（processor）线程处理，处理器线程的数量是可配置的。处理器线程接收客户端的请求，把请求放进请求队列，最后从响应队列中取出结果返回给客户端。当请求放进请求队列后，IO线程负责进行处理，大部分的请求都属于两种类型：</p>
+<ul>
+<li>生产请求（produce request）：由生产者发送，包含需要写入的消息。</li>
+<li>拉取请求（fetch request）：由消费者和跟随者副本发送。</li>
+</ul>
+<p>整体架构如下所示：</p>
+<img src="/clay4444.github.io/posts/undefined/picture1.jpg">
+<p>生产请求和拉取请求都需要发送给分区的主副本处理，如果一个跟随者副本收到这两种请求，它会返回“Not a Leader for Partition”的异常信息，客户端收到异常信息后向正确的主副本发送请求。</p>
+<p>客户端怎么知道哪个是主副本呢？通过使用另一种类型的请求来实现，那就是元信息请求（metadata request）。Kafka的任意一个broker都可以处理这种请求，请求中包含客户端感兴趣的主题列表，broker会返回这些主题的分区列表、分区的副本列表以及主副本信息。客户端收到这些信息后，会进行一定时间的缓存（由metadata.max.age.ms指定），当超过时间或者broker返回请求的异常后，会刷新此信息。整体交互处理如下：</p>
+<img src="/clay4444.github.io/posts/undefined/picture2.jpg">
+<p><br></p>
+<h4 id="生产请求（produce-request）"><a href="#生产请求（produce-request）" class="headerlink" title="生产请求（produce request）"></a>生产请求（produce request）</h4><p>acks参数控制多少个副本确认写入成功后生产者才认为消息生产成功。这个参数的取值可以为：</p>
+<ul>
+<li>acks=0：消息发送完毕，生产者认为消息写入成功；</li>
+<li>acks=1：主副本写入成功，生产者认为消息写入成功；</li>
+<li>acks=all：所有in-sync副本写入成功，生产者认为消息写入成功。</li>
+</ul>
+<p>如果主副本收到生产消息，它会执行一些检查逻辑，包含：</p>
+<p>发送的用户是否有权限写入主题？请求的acks参数取值是否合法（只允许0，1，all）？如果acks设置为all，是否有足够的in-sync副本来安全写入消息？（我们可以配置如果in-sync副本低于一定数量，主副本拒绝写入消息）</p>
+<p>检查通过后主副本会持久化消息到本地磁盘，在Linux系统上消息只会写入到文件系统的缓存，因此并没有保证一定写入到磁盘；Kafka依赖<strong>复制机制</strong>来保证数据不丢失。</p>
+<p>一旦消息本地持久化后，如果acks=1那么会返回结果给客户端，如果acks=all那么会将请求放置在一个称为purgatory的缓冲区中等待其他的副本写入完成。</p>
+<p><br></p>
+<h4 id="拉取请求（fetch-request）"><a href="#拉取请求（fetch-request）" class="headerlink" title="拉取请求（fetch request）"></a>拉取请求（fetch request）</h4><p>主副本处理拉取请求和处理生产请求差不多。客户端发送一个拉取请求，包含主题、分区和位移信息，主副本返回相应的数据。另外，客户端也指定返回的最大数据量，防止数据量过大造成客户端内存溢出。同时，客户端也指定返回的最小数据量，当消息数据量没有达到最小数据量时，请求会一直阻塞直到有足够的数据返回，如下所示：</p>
+<img src="/clay4444.github.io/posts/undefined/picture3.jpg">
+<p>指定最小的数据量在负载不高的情况下非常有用，通过这种方式可以减轻网络往返的额外开销。当然请求也不能永远的阻塞，客户端可以指定最大的阻塞时间，如果到达指定的阻塞时间，即便没有足够的数据也会返回。</p>
+<p>有意思的是，不是所有主副本的数据都能够被读取。当数据被所有in-sync状态的副本写入成功后，它才能被客户端读取。对于主副本来说，这并不难实现，因为之前已经说过通过副本同步，它知道所有副本当前已经完成同步的消息位移。该机制描述如下：</p>
+<img src="/clay4444.github.io/posts/undefined/picture4.jpg">
+<p>但为什么要这么做呢？这是因为如果没有足够的副本持久化消息，该消息是不安全的。如果主副本发生故障，然后其他副本成为新的主副本，这些消息将会在Kafka中莫名其妙的消失。也就是说，存在一个消费组能够读到某个消息，但另外的消费组读不到这个消息，从而导致不一致的行为。</p>
+<p>这样的机制也导致了新消息到达消费者应用的高延迟，特别是存在副本之间网络拥塞的情况。我们可以通过replica.lag.time.max.ms来指定副本在复制消息时可被允许的最大延迟时间，减小该值可以使得消费者无需等待延迟较大的副本写入。</p>
+<p>在读取消息上，Kafka使用零复制（zero-copy）来提高性能。也就是说，Kafka将文件（更准确的说，是文件系统缓存）的消息直接传给网络通道，并没有使用中间的buffer。这避免了内存的字节拷贝和buffer维护，极大地提高了性能。</p>
+<p><br></p>
+<h4 id="其他请求"><a href="#其他请求" class="headerlink" title="其他请求"></a>其他请求</h4><p>我们讨论了Kafka中最常见的三种请求类型：元信息请求，生产请求和拉取请求。这些请求都是使用的是Kafka的自定义二进制协议。集群中broker间的通信请求也是使用同样的协议，这些请求是内部使用的，客户端不能发送。比如在选举分区主副本过程中，控制器会发送LeaderAndIsr请求给新的主副本和其他跟随副本。</p>
+<p> 这个协议目前已经支持20种请求类型，并且仍然在演进以支持更多的类型。另外，Kafka也会修改已有的请求来增加扩展性。比如在0.9.0版本和0.10.0版本，Kafka决定在元信息请求中返回集群的控制器信息，因此在元信息请求和返回值中增加了一个版本号；0.9.0版本的客户端会发送版本号为0的元信息请求，而broker（无论是0.9.0或者0.10.0）也会返回版本号为0的结果，结果中不会包含控制器信息；而0.10.0版本的客户端会发送版本号为1的元信息请求，0.10.0版本的broker会返回版本号为1的结果，并且包含控制器信息。注意的是，如果0.10.0版本的客户端发送此请求到0.9.0版本的broker，那么请求会报错，这也是为什么在升级时先升级broker再升级客户端的理由。</p>
+<p><br></p>
+<h3 id="物理存储"><a href="#物理存储" class="headerlink" title="物理存储"></a>物理存储</h3><p>Kafka中基本的存储单元是一个分区副本。分区副本不能跨越多个broker，甚至不能跨越同一个broker的多个磁盘。当配置Kafka时，管理员需要设置log.dirs来指定分区存储的目录。</p>
+<p>下面来看下存储的细节。</p>
+<p><br></p>
+<h4 id="分区分配"><a href="#分区分配" class="headerlink" title="分区分配"></a>分区分配</h4><p>当创建一个新主题时，Kafka首先需要决定如何分配分区到不同的broker。假设有6个broker，那么创建一个有10个分区且复制因子为3的主题的话，Kafka需要分配30个分区副本到这6个broker。分配策略主要的考虑因素如下：</p>
+<ul>
+<li>尽可能将分区副本均衡分配到集群的broker中；</li>
+<li>对于每个分区，它的所有副本需要在不同的broker；</li>
+<li>如果broker（0.10.0及更高版本）有机架信息，那么对于一个分区的所有副本，尽量分配这些副本到不同的机架。这保证了机架发生故障时集群仍然可用。</li>
+</ul>
+<p>下面以一个例子来说明这几个策略。假设集群由6个broker，我们从一个随机的broker（不妨称为4号）开始以轮询的方式来分配分区的主副本。因此分区0的主副本在4号broker，分区1的主副本在5号broker，分区2的主副本在0号（总数量为6，下标从0开始）broker…然后对于每个分区的其他副本，从其主副本所在的broker开始分配。由于分区0的主副本在4号broker，分区0的第一个跟随者副本在5号broker，第二个跟随者副本在6号broker，以此类推…</p>
+<p>如果考虑机架因素，那么我们需要首先根据broker的机架信息来对broker进行排序，而不是上面的按照序号递增来排序。假如0号、1号和2号broker在同一个机架，3号、4号和5号broker在另一个机架，那么broker的顺序可能为0，3，1，4，2，5。这个顺序穿插了不同机架的broker。那么对于这种情况，分区0的主副本在4号broker，分区1的主副本在2号broker…</p>
+<p>在分配分区和副本到broker之后，下一步需要决定使用哪个目录来存储分区。策略非常简单：统计每个目录的分区数，把新分区分配到最少分区数的目录中。因此如果新增加一个磁盘，所有的新分区都会分配到在这个磁盘上，因为它的分区数最少。</p>
+<p><br></p>
+<h4 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h4><p>消息保留，是Kafka中一个很重要的概念。Kafka不会永远保留数据，也不会等待所有的消费组读取了消息才删除消息。只要数据量达到上限或者数据达到过期时间，Kafka会删除老的消息数据。</p>
+<p>因为在一个大文件中查找需要清理的数据并进行删除是非常耗时而且容易出错的，Kafka将每个分区切割成段（segment）。默认每个段大小不超过1G，且只包含7天的数据。如果段的消息量达到1G，那么该段会关闭，同时打开一个新的段进行写入。</p>
+<p>正在写入的段称为活跃段（active segment），活跃段不会被删除。因此，假如设置日志保留时间为1天，但是日志段包含5天的数据，那么我们实际上会保留5天的数据，因为活跃段正在使用而且在关闭前不会删除。</p>
+<p>对于每个分区的每个段（包括不活跃的段），broker都会维护文件句柄，因此打开的文件句柄数通常会比较多，这个需要适度调整系统的进程文件句柄参数。</p>
+<p><br></p>
+<h4 id="文件格式"><a href="#文件格式" class="headerlink" title="文件格式"></a>文件格式</h4><p>每个段都单独存为一个文件，文件内存放消息和位移。磁盘上的数据格式、生产者发送的数据格式和消费者读取的数据格式都是一样的，使用相同的数据格式使得Kafka可以进行零拷贝优化，以及避免压缩和解压缩。</p>
+<p>除了key/value和位移之外，每个消息还包含消息大小、校验和（检测数据损坏）、魔数（标识消息格式版本）、压缩算法（Snappy、GZip或者LZ4）和时间戳（0.10.0新增）。</p>
+<p>如果发送者发送压缩的消息，那么批量发送的消息会压缩在一起，以“包装消息”（wrapper message）来发送，如下所示：</p>
+<img src="/clay4444.github.io/posts/undefined/picture5.jpg">
+<p>因此如果生产者使用压缩，那么发送更大的批量消息可以得到更好的网络传输效率，并且节省磁盘存储空间。</p>
+<p><br></p>
+<h4 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h4><p>Kafka允许消费者从任意合法的位移拉取消息，也就是说如果消费者希望从位移为100的地方开始读取1MB的消息，broker需要在该分区的所有段中定位到该消息的位置然后开始读取数据。为了帮助broker迅速定位，Kafka对于每个分区都维护一个索引，该索引将位移映射到段以及段内偏移。</p>
+<p>索引也是按照段来切割的，因此清理过期消息时相应的索引也可以很容易清理。另外，索引并没有维护校验和，因此如果索引损坏了，Kafka会重新读取段文件生成索引。</p>
+<p><br></p>
+<h4 id="压缩（compaction）-清理"><a href="#压缩（compaction）-清理" class="headerlink" title="压缩（compaction） / 清理"></a>压缩（compaction） / 清理</h4><p>正常情况下，Kafka存储一定数量的消息，并且如果消息超过一定时间，这些消息会被清除。此外，Kafka还支持压缩的消息保留策略，使用这种策略会使得对于主题内的每个键，Kafka只会保留最新的消息内容。显然，压缩的策略对同时包含键和消息内容的主题才生效，如果主题内的消息键为null，那么压缩的策略不会生效。</p>
+<p><br></p>
+<h4 id="压缩的工作原理："><a href="#压缩的工作原理：" class="headerlink" title="压缩的工作原理："></a>压缩的工作原理：</h4><p>每个分区都可以分为两部分：</p>
+<ul>
+<li>干净（clean）：这部分消息之前已经被压缩过，对于每个key来说这部分只存在一个value。</li>
+<li>脏（dirty）：在上一次压缩后写入的新消息。</li>
+</ul>
+<p>如下所示：</p>
+<img src="/clay4444.github.io/posts/undefined/picture6.jpg">
+<p>如果使用压缩，那么每个broker会启动一个压缩管理器线程和若干个压缩线程，每个线程负责一个分区。</p>
+<p>在压缩分区时，压缩线程会首先读取脏的部分，并且建立一个key的哈希和位移的映射，对于相同的键，只保留最新的位移。其中key的哈希大小为16字节，位移大小为8个字节。也就是说，一个映射只有24字节，假设消息大小为1KB，那么1GB的段有1百万条消息，建立这个段的映射只需要24MB的内存，映射的内存效率是非常高效的。</p>
+<p>在配置Kafka时，管理员需要设置这些压缩线程可以使用的总内存。如果设置1GB的总内存同时有5个压缩线程，那么每个线程只有200MB的内存可用。在压缩线程工作时，它不需要把所有脏的段文件都一起在内存中建立上述映射，但需要保证至少能够建立一个段的映射。如果不能同时处理所有脏的段，Kafka会一次压缩最老的几个脏段，然后在下一次再处理其他的脏段。</p>
+<p>一旦建立完脏段的键与位移的映射后，压缩线程会从最老的干净的段开始处理。如果发现段中的消息的键没有在映射中出现，那么可以知道这个消息是最新的，然后简单的复制到一个新的干净的段中；否则如果消息的键在映射中出现，这条消息需要抛弃，因为对于这个键，已经有新的消息写入。处理完会将产生的新段替代原始段，并处理下一个段。</p>
+<p>对于一个段，处理前和处理后的效果如下：</p>
+<img src="/clay4444.github.io/posts/undefined/picture7.jpg">
+<p><br></p>
+<h4 id="删除事件"><a href="#删除事件" class="headerlink" title="删除事件"></a>删除事件</h4><p>对于只保留最新消息的压缩策略来说，Kafka还支持删除相应键的消息操作（而不仅仅是保留最新的消息内容）。这是通过生产者发送一条特殊的消息来实现的，该消息包含一个键以及一个null的消息内容。当压缩线程发现这条消息时，它首先仍然进行一个正常的压缩并且保留这个包含null的特殊消息一段时间，在这段时间内消费者消费者可以获取到这条消息并且知道消息内容已经被删除。过了这段时间，压缩线程会删除这条消息，这个键会从分区中消失。这段时间是必须的，因为它可以使得消费者有一定的时间余地来收到这条消息。</p>
+<p><br></p>
+<h4 id="什么时候压缩？"><a href="#什么时候压缩？" class="headerlink" title="什么时候压缩？"></a>什么时候压缩？</h4><p>与过期清除的策略一样，压缩策略也不会对活跃段进行压缩。在0.10.0以及更老的版本，Kafka会在主题包含50%脏记录的时候进行压缩，目的是为了既不频繁压缩（影响性能），也不留存太多脏记录。</p>
+<p><br></p>
+<p><br></p>
+<h2 id="第六章：可靠的数据传递"><a href="#第六章：可靠的数据传递" class="headerlink" title="第六章：可靠的数据传递"></a>第六章：可靠的数据传递</h2><p>可靠性是一个系统的属性，这种属性必须在系统设计之初就进行考虑。而Kafka支持不同程度的数据可靠性，这得取决于不同的使用场景。有的应用需要极强的数据可靠性，而有的应用则更倾向于性能和可扩展性…Kafka提供了非常灵活的配置和API来支持不同的用户场景。</p>
+<p>也正是由于Kafka的灵活性，如果使用时不加以留意可能会导致问题。比如，你以为当前的系统是非常可靠的但实际却不然。下面我们来看下 Kafka 中的可靠性语义。</p>
+<p><br></p>
+<h3 id="可靠性保证"><a href="#可靠性保证" class="headerlink" title="可靠性保证"></a>可靠性保证</h3><p>当我们讨论可靠性的时候，我们总会提到<strong>保证</strong>这个词语。可靠性保证是基础，我们基于这些基础之上构建我们的应用。比如关系型数据库的可靠性保证是ACID，也就是原子性（Atomicity）、一致性（Consistency）、隔离性（Isolation）和持久性（Durability）。</p>
+<p>Kafka中的可靠性保证有如下四点：</p>
+<ul>
+<li>对于一个分区来说，它的消息是有序的。如果一个生产者向一个分区先写入消息A，然后写入消息B，那么消费者会先读取消息A再读取消息B。</li>
+<li>当消息写入所有in-sync状态的副本后，消息才会认为<strong>已提交（committed）</strong>。这里的写入有可能只是写入到文件系统的缓存，不一定刷新到磁盘。生产者可以等待不同时机的确认，比如等待分区主副本写入即返回，后者等待所有in-sync状态副本写入才返回。</li>
+<li>一旦消息已提交，那么只要有一个副本存活，数据不会丢失。</li>
+<li>消费者只能读取到已提交的消息。</li>
+</ul>
+<p>使用这些基础保证，我们构建一个可靠的系统，这时候需要考虑一个问题：究竟我们的应用需要多大程度的可靠性？可靠性不是无偿的，它与系统可用性、吞吐量、延迟和硬件价格息息相关，得此失彼。因此，我们往往需要做权衡，一味的追求可靠性并不实际。下面我们先来看下Kafka的复制机制是如何保证可靠性的，然后进一步讨论可靠性配置。</p>
+<p><br></p>
+<h3 id="复制-1"><a href="#复制-1" class="headerlink" title="复制"></a>复制</h3><p>复制机制是Kafka可靠性保证的核心，</p>
+<p>每一个Kafka的主题都会分成几个分区，每个分区都单独存放在磁盘上。Kafka保证分区内的消息顺序。每个分区可以有若干个相同的副本，其中一个为主副本。生产者发送消息到主副本，消费者从主副本中读取消息。其他副本需要保持与主副本同步，如果主副本不可用，那么这些同步中的副本其中之一会成为新的主副本。</p>
+<p>一个副本被认为是in-sync（也就是及时同步）状态，当且仅当它为主副本，或者是保持如下行为的其他副本：</p>
+<ul>
+<li>与Zookeeper的会话仍然活跃，即心跳间隔不超过6秒（时间可以配置）。</li>
+<li>向主副本发起拉取数据请求间隔不超过10秒（时间可以配置）。</li>
+<li>向主副本拉取的数据应当是10秒内产生的消息，也就是说不能拉取太老的消息。</li>
+</ul>
+<p>如果一个副本不满足以上要求，那么它会变成out-of-sync状态直到它重新满足以上要求。</p>
+<p>稍微有落后但仍然是in-sync状态的副本会拖慢生产者和消费者，因为它们需要等待所有in-sync状态的副本写入该消息。一旦某个副本变成out-of-sync状态，我们不需要等待它写入消息，这时候该副本不会造成任何性能影响，但同时由于in-sync状态副本减少，系统的冗余度也减少，数据丢失的可能性增大。</p>
+<p>下面来看下实际中的具体应用及配置。</p>
+<p><br></p>
+<h3 id="broker配置"><a href="#broker配置" class="headerlink" title="broker配置"></a>broker配置</h3><p>Kafka中有三个broker的参数会影响数据可靠性。但就像其他的参数一样，这些参数可以在broker中设置（影响所有的主题），也可以在主题中设置（只影响该主题）。下面来看下这些参数。</p>
+<p><br></p>
+<h4 id="复制因子（Replication-Factor）"><a href="#复制因子（Replication-Factor）" class="headerlink" title="复制因子（Replication Factor）"></a>复制因子（Replication Factor）</h4><p>主题的复制因子配置参数为replication.factor；而对于自动创建的主题来说，broker中可以配置default.replication.factor来控制复制因子。</p>
+<p>如果设置复制因子为N，那么我们能够容忍N-1个副本发生故障。因此更高的复制因子意味着更高的可用性以及数据可靠性；但另一方面，N个副本意味着需要存储N份相同的数据，需要N倍的存储空间。因此我们需要基于业务特点来决定复制因子。如果单个broker重启而导致主题不可用是可以接受的，那么复制因子为1就行。如果设置为2，那么我们可以容忍一个副本发生故障，但在此情况下系统只有1个副本运行，有丢失数据的风险。基于以上考虑，建议设置复制因子为3，对于大部分应用来说这种级别的容灾已经足够了，但特殊应用可能需要更高的冗余度，比如银行的关键数据存储会使用5个副本以防万一。</p>
+<p>副本的位置也很重要。默认情况下，Kafka会将一个分区的不同副本放在不同的broker。但这仍然不够，如果所有的副本都在同一个机架上，那么无论复制因子为多少，该机架断电就会损失所有的数据。因此为了预防机架故障，在配置broker时建议配置broker.rack参数来指明机架信息，Kafka会利用此信息来将不同副本均衡到多个机架上。</p>
+<p><br></p>
+<h4 id="有损主副本选举"><a href="#有损主副本选举" class="headerlink" title="有损主副本选举"></a>有损主副本选举</h4><p>unclean.leader.election.enable这个参数只能在broker级别设置，默认为true。这个参数有什么用？如前所述，如果分区的主副本不可用，那么in-sync副本中会选举出新的主副本，这样的选举是无损（clean）的，因为主副本切换没有导致数据丢失。但如果除了主副本外，没有in-sync副本存在呢？这种情况可能由于如下两种场景导致：</p>
+<ul>
+<li>分区有多个副本，除了主副本外其他副本均发生故障，但我们仍然往主副本中写入消息，这会导致其他副本同步落后。如果主副本不幸也发生故障，而在故障恢复中其他副本先恢复，那么现在集群中只有落后的副本可用。</li>
+<li>分区有多个副本，但由于网络原因，其他副本落后于主副本变成out-of-sync状态。假如主副本发生故障，集群中同样只有落后的副本可用。</li>
+</ul>
+<p>对于这样的情况，我们需要从可用性与一致性之间作出选择：</p>
+<ul>
+<li>如果我们不允许落后副本成为新的主副本，那么集群是不可用的直到我们启动老的主副本。在实际情况中，这可能不能快速恢复，而且也不一定能恢复。</li>
+<li>如果我们允许落后副本成为新的主副本，那么丢失了部分已经提交的数据，而且导致消费者看到不一致的状态。</li>
+</ul>
+<p>设置unclean.leader.election.enable为true，会允许落后副本成为新的主副本，这也是Kafka的默认设置。对于数据可靠性以及一致性非常重要的场景，用户可以设置为false。</p>
+<p><br></p>
+<h4 id="最少in-sync副本数"><a href="#最少in-sync副本数" class="headerlink" title="最少in-sync副本数"></a>最少in-sync副本数</h4><p>对于最少in-sync副本数，主题与broker维度的参数都为min.insync.replicas。</p>
+<p>上面可以看到，即便我们有多个副本，但最后可能只有一个副本（也就是主副本）是in-sync状态的。而且诡异的是，即便我们设置acks=all，也只有成功写入到一个副本中；也就是说，这里的all指的是所有in-sync状态副本，而不是所有副本。如果主副本故障，那么就面临上面说的问题，需要在一致性和可用性中做艰难取舍。</p>
+<p>为了避免陷入这种情况，对于3个副本的分区来说，我们可以设置min.insync.replicas至少为2，这样可以保证数据至少写入了2份。如果系统中in-sync状态副本只剩下主副本，由于不满足min.insync.replicas，这时候生产者生产消息会失败，但消费者仍然可以读取之前的消息。这保证了一致性，牺牲了部分的可用性（但没有完全不可用）。</p>
+<p><br></p>
+<h3 id="可靠的生产者"><a href="#可靠的生产者" class="headerlink" title="可靠的生产者"></a>可靠的生产者</h3><p>即使我们使用最可靠的方式来配置broker以保证数据不丢失，但如果使用生产者的方式不对，那么仍然可能会造成丢失。</p>
+<p>下面从两个场景来说明这个问题：</p>
+<ul>
+<li>我们配置broker使用3个副本来进行冗余，并且禁止了有损主副本选举，这保证了一旦消息提交成功，那么消息将不会丢失。但是，假如我们配置生产者使用acks=1的确认方式，那么消息发送到主副本并且写入成功后，主副本返回结果，这时候生产者认为消息已经提交成功了。如果这时候主副本返回结果后就出现故障，并且没有把该消息同步到in-sync副本（in-sync副本允许有短暂的消息落后），那么in-sync副本会选举出新的主副本，而新的主副本并没有包含该消息。这样便出现生产者“认为”消息提交成功，但消息丢失的情况。</li>
+<li>我们配置broker使用3个副本来进行冗余，并且禁止了有损主副本选举，而且生产者使用acks=all的配置。假如在写入消息时，主副本发生故障（并进行新主副本选举），那么broker会返回“主副本不可用”的异常。如果我们程序没有处理这个错误并进行重试，那么消息将会丢失。这样的数据丢失并不是由于broker本身可靠性导致的，因为broker就没有成功收到这个消息。</li>
+</ul>
+<p>因此对于可靠性非常重要的系统来说，在使用生产者写入消息时需要注意如下两点：</p>
+<ul>
+<li>使用正确的acks参数来满足业务的可靠性需要；</li>
+<li>正确处理写入消息的异常信息。</li>
+</ul>
+<p>下面来对不同的acks取值进行深入的讨论。</p>
+<p><br></p>
+<h4 id="消息确认"><a href="#消息确认" class="headerlink" title="消息确认"></a>消息确认</h4><p>生产者可以选择三种acks取值：</p>
+<ul>
+<li>acks=0：这种方式意味着，一旦生产者将消息通过网络传输成功，那么就认为消息已经写入到Kafka。假如这时候分区并不可用或者正在进行主副本选举，那么消息将会丢失，但生产者并不知晓。因为生产者在传输成功就进行后续处理了，没有关注Kafka的处理结果。当然，如果是消息序列化失败或者网卡发生故障，生产者还是能够得知这些错误的，因为这些错误发生在传输过程中。但这种方式也是性能最高的方式，虽然可能会导致消息丢失。</li>
+<li>acks=1：这种方式意味着，生产者传输消息到主副本，并等待主副本写入磁盘（注意，可能只是写入到文件系统缓存，不一定刷新到磁盘），如果写入完成则返回成功，否则返回失败。如果发送消息时分区正在进行主副本选举，那么生产者会收到主副本不可用异常，在收到此异常信息后，生产者可以进行重试来避免消息丢失。但在主副本发生故障时，那些没有及时同步到其他副本的消息会丢失。</li>
+<li>acks=all：这种方式意味着，生产者传输消息到主副本，并且在所有in-sync副本写入成功后主副本返回确认信息，否则返回错误。这个参数同时配合broker的min.insync.replica参数使用，能够实现“一旦返回成功，意味着最少写入N个副本”的语义，其中N为min.insync.replica的取值。如果生产者接收到错误，那么需要进行重试以防止消息丢失。这种方式也是最慢的处理方式，因为生产者需要等待所有in-sync副本写入成功。</li>
+</ul>
+<p>下面对生产者遇到错误后的重试策略进行深入讨论。</p>
+<p><br></p>
+<h4 id="配置生产者的重试机制"><a href="#配置生产者的重试机制" class="headerlink" title="配置生产者的重试机制"></a>配置生产者的重试机制</h4><p>在使用生产者发送消息的时候，我们将会两类错误：</p>
+<ul>
+<li>可恢复错误：对于这种错误，生产者内部会进行重试。比如说broker返回主副本不可用异常，当生产者收到此异常后会进行重试。</li>
+<li>不可恢复错误：对于这种错误，即便生产者进行重试也不会成功，因此需要应用本身进行处理。比如说broker返回配置非法异常，当生产者收到此异常后进行重试也于事无补，需要应用自身进行处理。</li>
+</ul>
+<p>如果你希望一条消息也不丢失，那么对于可恢复异常来说，可能会希望生产者一直重试直到成功。如果是因为主副本选举或者网络抖动而导致的异常，那么这种策略没什么问题。但如果网络一时半会恢复不了，我们也可以放弃重试并记录异常（比如记录日志、持久化到数据库等等），后续再进行处理。这取决于应用本身。注意到Kafka的跨机房复制工具（MirrorMaker）默认采取无限重试的策略，这是因为作为高可靠性的复制工具来说，它不应该丢失任何一条消息。</p>
+<p>另外，生产者重试也可能会导致消息重复。假如消息发送到broker并且所有in-sync副本都写入成功，但在返回结果时网络发生故障，这时候生产者由于没收到回复认为消息没有发送成功，然后进行重试，这样便导致消息重复。异常处理和重试能够保证消息“最少一次”的语义，但无法保证“有且仅有一次”的语义（至少0.10.0版本Kafka如此）。应用本身如果需要实现“有且仅有一次”的语义，可以在消息中加入全局唯一标识符，这样在消费消息时可以进行去重。或者，应用生产幂等的消息，也就是说发送重复的消息没有影响，比如说“账户余额为110元”是幂等消息（因为发送多次也不会对账户造成影响），而“账户增加110元”则不是幂等消息（因为发送多次的结果并不一样）。</p>
+<p><br></p>
+<h4 id="其他的错误处理"><a href="#其他的错误处理" class="headerlink" title="其他的错误处理"></a>其他的错误处理</h4><p>生产者的内部重试机制已经能解决大部分问题，但还有一些错误是需要应用进行处理的：</p>
+<ul>
+<li>不可恢复异常（比如消息大小非法、权限认证失败）；</li>
+<li>消息发送到broker之前发生的异常（比如序列化异常）；</li>
+<li>生产者达到重试上限的异常，或者由于消息重试导致消息堆积最终内存溢出的异常。</li>
+</ul>
+<p>对于这些异常，我们可以记录日志，持久化到数据库或者简单的抛弃。但如果说我们的处理方式仍然为不断重试，那么建议把这样的重试策略下沉到生产者内部重试机制。</p>
+<p><br></p>
+<p><br></p>
+<h3 id="可靠的消费者"><a href="#可靠的消费者" class="headerlink" title="可靠的消费者"></a>可靠的消费者</h3><p>上面讨论了如何使得生产者更可靠，现在来看下消息消费端的可靠处理方式。之前说到，当消息变成已提交状态（也就是写入到所有in-sync副本）后，它才能被消费端读取。这保证了消费者读取到的数据始终是一致的，为了达到高可靠，消费者需要保证在消费消息时不丢失数据。</p>
+<p>在处理分区消息时，消费者一般的处理流程为：拉取批量消息，处理完成后提交位移，然后再拉取下一批消息。提交位移保证了当前消费者发生故障或重启时，其他消费者可以接着上一次的消息位移来进行处理。需要提醒的是，消费端丢失消息的一个主要原因为：消费者拉取消息后还没处理完就提交位移，一旦在消息处理过程中发生故障，新的消费者会从已提交的位移接着处理，导致发生故障时的消息丢失。</p>
+<p>下面来看下消费端处理流程中的一些需要注意的细节。</p>
+<p><br></p>
+<h4 id="重要的可靠性配置"><a href="#重要的可靠性配置" class="headerlink" title="重要的可靠性配置"></a>重要的可靠性配置</h4><p>如果希望设计一个高可靠的消费者，那么消费者中有4个重要的属性需要慎重考虑。</p>
+<p>第一个属性是group.id，大概的作用是：如果有多个消费者拥有相同的group.id并且订阅相同的主题，那么每个消费者会负责消费一部分的消息。如果消费组内存在多个消费者，那么一个消费者发生故障那么其他消费者可以接替其工作，保证高可用。</p>
+<p>第二个属性是auto.offset.reset，这个属性在如下场景中起作用：当消费者读取消息，Kafka中没有提交的位移（比如消费者所属的消费组第一次启动）或者希望读取的位移不合法（比如消费组曾经长时间下线导致位移落后）时，消费者如何处理？当设置为earliest，消费者会从分区的起始端开始读取，这可能会导致消费者重复处理消息，但也将消息丢失可能性降低到最小；当设置为latest，消费者会从分区末端开始读取，这会导致消息丢失可能性加大，但会降低消息重复处理的概率。</p>
+<p>第三个属性是enable.auto.commit，这个属性需要慎重考虑，那就是：你希望消费者定期自动提交位移，还是应用手动提交位移？自动提交位移可以让应用在处理消息时不用实现提交位移的逻辑，并且如果我们是在poll循环中使用相同的线程处理消息，那么自动提交位移可以保证在消息处理完成后才提交位移。如果我们在poll循环中使用另外的线程处理消息，那么自动提交位移可能会导致提交还没完成处理的消息位移。</p>
+<p>第四个属性是auto.commit.interval.ms，它与第三个属性有关。如果选择了自动提交位移，那么这个属性控制提交位移的时间间隔。默认值是5秒，通常来说降低间隔可以降低消息重复处理的可能性。</p>
+<p><br></p>
+<h4 id="手动提交位移"><a href="#手动提交位移" class="headerlink" title="手动提交位移"></a>手动提交位移</h4><p>如果我们选择手动提交位移，下面来根据不同场景来讨论如何实现更可靠的消费者。</p>
+<p><strong>处理完消息后立即提交</strong></p>
+<p>如果在poll循环中进行消息处理，并且处理完后提交位移，那么提交位移的实现方式非常简单。对于这种场景，可以考虑使用自动提交而不是手动提交。</p>
+<p><strong>在处理消息过程中多次提交</strong></p>
+<p>消费者拉取批量消息后处理消息时，在处理过程中可以使用手动提交位移方式来多次更新位移。这种方式可以使得消息重复处理可能性降低。不过在这个场景中，如果不加以注意，那么可能会提交上一次拉取的最大位移而不是当前已经处理的消息位移。</p>
+<p><strong>重平衡</strong></p>
+<p>在设计应用时，我们需要记得正确处理重平衡。当重平衡发生时，消费者当前处理的分区可能会被回收，我们需要记得在回收前提交位移。</p>
+<p><strong>消费者的重试</strong></p>
+<p>第一种处理方式是，我们提交已经处理成功的位移，然后将处理失败的消息存储到一个缓冲区，并不断进行重试处理这些消息。另外，在处理这些消息时可能poll循环仍然在继续，我们可以使用pause()方法来使得poll不会返回新的数据，这样使得重试更容易。</p>
+<p>第二种处理方式是，我们把处理失败的消息写入到另外的主题，然后继续处理当前的消息。对于失败消息的主题，我们既可以使用同一个消费组进行处理，也可以使用不同的消费组进行处理。这种主题类似于其他消息系统使用的死信队列（dead-letter-queue）。</p>
+<p><strong>持久化状态</strong></p>
+<p>在某些场景下，我们可能需要在拉取消息时维护状态。比如，对于计算滑动平均数（moving average），我们每次拉取新消息时需要更新相应的平均数。当消费者重启时，我们不但需要从上一次提交的位移开始消费，同时还需要从相应的滑动平均数中恢复。一种处理方式是，我们提交位移时将滑动平均数写入到一个用于保存结果的主题，这样应用重启时可以获取上一次的处理结果。但由于Kafka不支持多操作的事务性，因此这种方式并不严谨。我们当然可以自己加以处理，但这个问题解决起来比较复杂，建议可以使用Kafka Streams这样的开源库。</p>
+<p><strong>消息处理时间长</strong></p>
+<p>某些应用拉取消息回来后处理消息时间比较长（比如依赖于一个阻塞服务或者进行复杂的计算），而某些版本的消费者如果长时间不poll消息会导致会话超时，因此使用这些版本的应用需要不断的拉取消息来发送心跳包到broker。一种常见的处理方式是，我们使用多线程来处理消息，然后当前线程调用pause()来使得既可以调用poll()而且消费者不会拉取新的消息；当消息处理完成后，再调用resume()来使得消费者恢复正常拉取逻辑。</p>
+<p><strong>有且仅有一次的语义</strong></p>
+<p>一种常见的处理方式为，我们使用支持唯一键的外部系统（比如关系型数据库、Elasticsearch等）来进行结果去重。我们可以自己实现唯一键并且在消息中加入此属性，也可以根据消息的主题、分区以及位移信息来生成唯一键。另外，如果该外部系统支持事务，那么我们可以在一个事务中同时保存消息处理结果和位移。消费者重启时可以从该系统中获取位移，并且使用seek()方法来开始从相应的位移开始消费。</p>
+<p><br></p>
+<p><br></p>
+<h3 id="验证系统的可靠性"><a href="#验证系统的可靠性" class="headerlink" title="验证系统的可靠性"></a>验证系统的可靠性</h3><p>当完成整个系统（生产者、broker、消费者）的高可靠设计后，我们下一步需要去验证设计和配置是否正确，验证工作可以分为三层：验证配置、验证应用和在线上监控应用。</p>
+<p><br></p>
+<h4 id="验证Kafka配置"><a href="#验证Kafka配置" class="headerlink" title="验证Kafka配置"></a>验证Kafka配置</h4><p>在验证配置时，建议将Kafka整体配置与业务逻辑分离，这样做有两大原因：</p>
+<ul>
+<li>这样可以验证配置是否满足需求。</li>
+<li>这样可以猜测Kafka系统行为并且进行验证。</li>
+</ul>
+<p><br></p>
+<p>Kafka中有两个工具来协助我们完成配置验证，那就是org.apache.kafka.tools包中的VerifiableProducer和VerifiableConsumer。使用VerifiableProducer时，我们可以像配置一般的生产者一样配置acks和retries，并且可以配置消息生产速率；当运行VerifiableProducer起来后，它会打印出消息写入的结果。而VerifiableConsumer则可以进行写入消息的检查，它按序打印出消费的消息以及提交、重平衡等信息。</p>
+<p>在使用前，我们先定义好测试场景，比如：</p>
+<ul>
+<li>主副本选举：如果杀死主副本会怎么样？生产者和消费者多长时间才恢复正常？</li>
+<li>控制器选举：控制器重启后系统多长时间才恢复正常?</li>
+<li>broker重启：逐一重启broker是否会导致消息丢失？</li>
+<li>有损主副本选举：如果杀死所有的分区副本然后启动一个out-of-sync状态的副本会怎么样？如果在此场景下希望系统恢复那么配置是否正确？行为是否符合预期？</li>
+</ul>
+<p>在定义好测试场景后，我们便可以启动VerifiableProducer和VerifiableConsumer，并且验证相应的场景。</p>
+<p><br></p>
+<h4 id="验证应用"><a href="#验证应用" class="headerlink" title="验证应用"></a>验证应用</h4><p>在验证完生产者、broker和消费者配置后，我们需要验证整体的业务逻辑，主要包含异常处理、消息提交、重平衡监听器以及其他Kafka客户端交互逻辑。在验证业务逻辑上，Kafka无法提供更多的支持，建议应用考虑多种故障场景下的逻辑验证：</p>
+<ul>
+<li>客户端与broker断开连接；</li>
+<li>主副本选举；</li>
+<li>broker重启；</li>
+<li>消费者重启；</li>
+<li>生产者重启。</li>
+</ul>
+<p>对于每种场景，我们应该猜测预期的行为并进行结果验证。比如，在进行消费者重启的验证时，可能会预期消费者会短暂的暂停消费（由于重平衡），然后快速恢复，而且不会导致超过1000条记录重复处理。</p>
+<p><br></p>
+<h4 id="线上监控可靠性"><a href="#线上监控可靠性" class="headerlink" title="线上监控可靠性"></a>线上监控可靠性</h4><p>最后，我们需要实时监控线上系统的运行情况。</p>
+<p>Kafka客户端（生产者/消费者）包含有监控状态和事件的JMX指标。对于生产者来说，最重要的两个指标为平均每个消息的错误率和重试率，这两个指标上升意味着系统出现了问题。另外，我们也需要关注生产者的日志，如果日志中出现“Got error produce response with correlation id 5689 on topic-partition [topic-1,3], retrying (two attempts left). Error: …”这样的异常信息并且日志中的重试次数为0，那么意味着该消息已经达到了重试次数的上限，基于此我们可能会希望提高重试次数的阈值。</p>
+<p>对于客户端来说，最重要的指标为消息延迟（consumer lag）。这个指标反映了消费者当前拉取的消息与最新消息的差距，在理想情况下应该为0，但是因为我们拉取消息后需要进行处理，因此消息延迟不大也是正常的。由于消息延迟的上下波动是正常的，因此对于这个指标设置报警可能比较复杂，我们可以使用LinkedIn开源的<a href="https://github.com/linkedin/Burrow" target="_blank" rel="noopener">Burrow</a>来减轻开发量。</p>
+<p>此外，为了跟踪消息的整体生产及处理流程，Kafka从0.10.0版本开始加入了消息生产的时间戳。为了验证消息在特定时间内被消费，我们需要在生产端和消费端同时记录消息数，然后消费端根据生产的时间戳来计算整体消息的延迟时间。这些数据需要有一个实时系统负责收集和监控，这样的系统实现起来会比较复杂，目前除了Confluent公司的商业化产品<a href="https://www.confluent.io/product/control-center/" target="_blank" rel="noopener">Confluent Control Center</a>外并没有开源的实现。</p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://clay4444.github.io">clay</a>
+            </p><p>原文链接：<a href="http://clay4444.github.io/posts/f63f9c6e/">http://clay4444.github.io/posts/f63f9c6e/</a>
+            </p><p>发表日期：<a href="http://clay4444.github.io/posts/f63f9c6e/">May 18th 2019, 11:15:24 pm</a>
+            </p><p>更新日期：<a href="http://clay4444.github.io/posts/f63f9c6e/">May 18th 2019, 11:16:20 pm</a>
+            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/clay4444.github.io/posts/2ce93f5b/" title="kafka权威指南第二三四章">
+                    <div class="prevTitle">kafka权威指南第二三四章</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:clay4444@126.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/clay4444" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title="wechat">
+                  
+                  <img class="profile-qr" src="/clay4444.github.io/assets/example_qr.png">
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第五章：深入kafka"><span class="toc-number">1.</span> <span class="toc-text">第五章：深入kafka</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#集群成员管理"><span class="toc-number">1.1.</span> <span class="toc-text">集群成员管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#集群控制器（Controller）"><span class="toc-number">1.2.</span> <span class="toc-text">集群控制器（Controller）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复制"><span class="toc-number">1.3.</span> <span class="toc-text">复制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请求处理"><span class="toc-number">1.4.</span> <span class="toc-text">请求处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#生产请求（produce-request）"><span class="toc-number">1.4.1.</span> <span class="toc-text">生产请求（produce request）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#拉取请求（fetch-request）"><span class="toc-number">1.4.2.</span> <span class="toc-text">拉取请求（fetch request）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他请求"><span class="toc-number">1.4.3.</span> <span class="toc-text">其他请求</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#物理存储"><span class="toc-number">1.5.</span> <span class="toc-text">物理存储</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#分区分配"><span class="toc-number">1.5.1.</span> <span class="toc-text">分区分配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件管理"><span class="toc-number">1.5.2.</span> <span class="toc-text">文件管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件格式"><span class="toc-number">1.5.3.</span> <span class="toc-text">文件格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#索引"><span class="toc-number">1.5.4.</span> <span class="toc-text">索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#压缩（compaction）-清理"><span class="toc-number">1.5.5.</span> <span class="toc-text">压缩（compaction） / 清理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#压缩的工作原理："><span class="toc-number">1.5.6.</span> <span class="toc-text">压缩的工作原理：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除事件"><span class="toc-number">1.5.7.</span> <span class="toc-text">删除事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#什么时候压缩？"><span class="toc-number">1.5.8.</span> <span class="toc-text">什么时候压缩？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第六章：可靠的数据传递"><span class="toc-number">2.</span> <span class="toc-text">第六章：可靠的数据传递</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#可靠性保证"><span class="toc-number">2.1.</span> <span class="toc-text">可靠性保证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复制-1"><span class="toc-number">2.2.</span> <span class="toc-text">复制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#broker配置"><span class="toc-number">2.3.</span> <span class="toc-text">broker配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#复制因子（Replication-Factor）"><span class="toc-number">2.3.1.</span> <span class="toc-text">复制因子（Replication Factor）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#有损主副本选举"><span class="toc-number">2.3.2.</span> <span class="toc-text">有损主副本选举</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最少in-sync副本数"><span class="toc-number">2.3.3.</span> <span class="toc-text">最少in-sync副本数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可靠的生产者"><span class="toc-number">2.4.</span> <span class="toc-text">可靠的生产者</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#消息确认"><span class="toc-number">2.4.1.</span> <span class="toc-text">消息确认</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置生产者的重试机制"><span class="toc-number">2.4.2.</span> <span class="toc-text">配置生产者的重试机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他的错误处理"><span class="toc-number">2.4.3.</span> <span class="toc-text">其他的错误处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可靠的消费者"><span class="toc-number">2.5.</span> <span class="toc-text">可靠的消费者</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#重要的可靠性配置"><span class="toc-number">2.5.1.</span> <span class="toc-text">重要的可靠性配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#手动提交位移"><span class="toc-number">2.5.2.</span> <span class="toc-text">手动提交位移</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#验证系统的可靠性"><span class="toc-number">2.6.</span> <span class="toc-text">验证系统的可靠性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#验证Kafka配置"><span class="toc-number">2.6.1.</span> <span class="toc-text">验证Kafka配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#验证应用"><span class="toc-number">2.6.2.</span> <span class="toc-text">验证应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#线上监控可靠性"><span class="toc-number">2.6.3.</span> <span class="toc-text">线上监控可靠性</span></a></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 161
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href="/clay4444.github.io/posts/f63f9c6e/">kafka权威指南第五六章</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/clay4444.github.io/posts/2ce93f5b/">kafka权威指南第二三四章</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/5bedbc4e/">深入理解java虚拟机</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/f849401d/">算法进阶第一课-3</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/clay4444.github.io/posts/ff78c689/">算法进阶第六课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/7f010ad5/">算法基础第六课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/8366812d/">算法进阶第四五课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/22</span><a class="archive-post-title" href="/clay4444.github.io/posts/42c55172/">算法进阶第三课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/fdbf220/">算法进阶第二课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/10</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fcd1ef8/">算法进阶第一课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/28</span><a class="archive-post-title" href="/clay4444.github.io/posts/8bd8430e/">算法基础特别节目</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/26</span><a class="archive-post-title" href="/clay4444.github.io/posts/5a6a5509/">算法基础第八课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/ad017d4a/">算法基础第七课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/1a0f410c/">算法基础第五课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/7591844b/">算法基础第四课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2bc9d2e/">算法基础第三课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/22</span><a class="archive-post-title" href="/clay4444.github.io/posts/5c06dc97/">Flink中startNewChain和SlotSharingGroup的区别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/20</span><a class="archive-post-title" href="/clay4444.github.io/posts/8fa23e7c/">算法基础第二课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/17</span><a class="archive-post-title" href="/clay4444.github.io/posts/bfb4d2a4/">算法基础第一课</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/15</span><a class="archive-post-title" href="/clay4444.github.io/posts/6e3b6e5d/">kafka权威指南第一章</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/15</span><a class="archive-post-title" href="/clay4444.github.io/posts/98dde65a/">StreamingSystem第三章总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/11</span><a class="archive-post-title" href="/clay4444.github.io/posts/613fbfdf/">StreamingSystem一二章总结</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/6f100083/">TwoPhaseCommitSinkFunction</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/03</span><a class="archive-post-title" href="/clay4444.github.io/posts/b8ce2b2d/">sql语句中where与having的区别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/5bb24833/">ElasticSearch入门（三）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/16aceb61/">ElasticSearch入门（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/26ba07b9/">ElasticSearch入门（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/dfa909ab/">Flink的Metrics与监控</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/6a73b0f6/">Flink状态管理与恢复机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/827d698b/">Flink的Window与Time</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/589f5c61/">DataStreamAPI</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/4042ab31/">Flink基本概念与部署</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/clay4444.github.io/posts/22d66bb6/">Hive常见优化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/clay4444.github.io/posts/ce3cc54d/">zookeeper为什么一定要配置成奇数台</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/8bea7439/">MySql锁机制及索引</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/767c3cbc/">TCP三次握手-四次挥手面试总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/6d00129c/">自旋锁</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/1922d0f6/">常见海量处理题目解题关键</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/28</span><a class="archive-post-title" href="/clay4444.github.io/posts/db7f9c/">深入理解spark之架构与原理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/b1a1506f/">查找两个数组的相同字符（两个超大文件的相同字符）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/9799c850/">MR中的计数器、job串联等功能实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/03</span><a class="archive-post-title" href="/clay4444.github.io/posts/9c6cea3b/">Spring注解驱动开发之组件注册</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/44e5bf34/">Git中fork和clone的区别，fetch与pull的区别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/27</span><a class="archive-post-title" href="/clay4444.github.io/posts/9b145405/">Log4J与slf4j使用详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/eeeb2ca/">Java中的几种引用类型：强引用、软引用、弱引用和虚引用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/b391d3f0/">scala函数式编程和集合进阶</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/ccad62d6/">scala的面向对象和操作符</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/90c61e02/">scala数据类型等基本操作</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/11</span><a class="archive-post-title" href="/clay4444.github.io/posts/c640a1d5/">Java9之模块化和REPL工具</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/41355ae3/">Spark作业提交执行流程及底层实现介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/3fb5d1b7/">SparkRDD弹性分布式数据集简介及RDD变换</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/1761f4b4/">Spark数据倾斜问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/97e35c7b/">Storm的分组策略和确保消息送达机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/d5a66bc5/">Storm和kafka、Hbase之间的整合</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/9799a940/">Storm架构及其资源分配问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e73169bb/">详解hbase扫描、过滤、缓存等问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/615ff67f/">详解hbase架构、数据读取、存储、拆分风暴等问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/cedf1ac1/">kafka消息队列初探</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/117ed1fe/">Flume日志收集框架初探</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/fdf5e3ed/">死锁及其解决办法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/969c35d/">并发编程实战(八)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/28</span><a class="archive-post-title" href="/clay4444.github.io/posts/c03b7c51/">并发编程实战(七)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/27</span><a class="archive-post-title" href="/clay4444.github.io/posts/5f3364db/">并发编程实战(六)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/27</span><a class="archive-post-title" href="/clay4444.github.io/posts/c63c2ca9/">并发编程实战(五)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/26</span><a class="archive-post-title" href="/clay4444.github.io/posts/4a0a5133/">Java中的Runnable、Callable、Future、FutureTask的区别与示例</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/c0977bd4/">并发编程实战(四)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/eb162f92/">并发编程实战(一)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/a2cd52e0/">MR之社交粉丝数据查找共同好友</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/cc1873ed/">MR之流量统计相关需求</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/29</span><a class="archive-post-title" href="/clay4444.github.io/posts/f932ba85/">数据结构之图</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/27</span><a class="archive-post-title" href="/clay4444.github.io/posts/afe7cf7/">栈的经典应用之中缀表达式和后缀表达式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/26</span><a class="archive-post-title" href="/clay4444.github.io/posts/39aa6912/">数据结构之二叉树</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/409910e4/">数据结构之散列表</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/21</span><a class="archive-post-title" href="/clay4444.github.io/posts/6c17d6bd/">数据结构之树</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/19</span><a class="archive-post-title" href="/clay4444.github.io/posts/786266a6/">Java之Iterator与Iterable的区别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/17</span><a class="archive-post-title" href="/clay4444.github.io/posts/1c652596/">JDK1.7-Stack源码分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/21482a37/">LinkedHashMap源码赏析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/14</span><a class="archive-post-title" href="/clay4444.github.io/posts/526318cc/">HashMap源码赏析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/13</span><a class="archive-post-title" href="/clay4444.github.io/posts/df7893e2/">LinkedList源码赏析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/d36c0402/">ArrayList删除特定元素的方法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/11</span><a class="archive-post-title" href="/clay4444.github.io/posts/55c3a3c7/">ArrayList添加一个元素add方法的核心</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/5b758090/">ArrayList源码赏析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/6d17d8e0/">Java8系列之新时间和日期API</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/03</span><a class="archive-post-title" href="/clay4444.github.io/posts/91ca9518/">Java8系列之Optional容器</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/28</span><a class="archive-post-title" href="/clay4444.github.io/posts/9b8b8703/">Java8系列之Stream-API</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/ccf34b81/">Java8系列之Lambda表达式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/21</span><a class="archive-post-title" href="/clay4444.github.io/posts/f26db82e/">Comparator和Comparable详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/20</span><a class="archive-post-title" href="/clay4444.github.io/posts/c4dacfdd/">Java8系列之宏观简介</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/17</span><a class="archive-post-title" href="/clay4444.github.io/posts/13325b7b/">Java的反射与动态代理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/1c38ec28/">关于内部类的那些事</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/10</span><a class="archive-post-title" href="/clay4444.github.io/posts/82b03554/">装饰者模式详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/148c5e8e/">策略模式详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/34ec76cc/">迭代器模式详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/f4488fab/">适配器模式详解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/21</span><a class="archive-post-title" href="/clay4444.github.io/posts/db6632d/">详解关系型数据库三范式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/11</span><a class="archive-post-title" href="/clay4444.github.io/posts/dcf98c31/">maven的聚合和继承</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/c51233f6/">JavaIO流</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/31</span><a class="archive-post-title" href="/clay4444.github.io/posts/a4b4dacb/">详解Java7中的Try-with-resource</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/e4155742/">Java异常处理模板</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/15</span><a class="archive-post-title" href="/clay4444.github.io/posts/6bb61ef6/">深入探讨Java的故障保护异常处理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/78696dcf/">本地YUM源制作</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/04</span><a class="archive-post-title" href="/clay4444.github.io/posts/621e5041/">VMware虚拟机三种联网方法及原理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/30</span><a class="archive-post-title" href="/clay4444.github.io/posts/ecfdb360/">关于mapreduce程序开发的一些总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href="/clay4444.github.io/posts/c1ee2109/">MR之mapreduce原理深入剖析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/27</span><a class="archive-post-title" href="/clay4444.github.io/posts/21f9e9c5/">MR之WordCountDemo及执行流程图</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/a9435451/">MR之客户端提交mr程序job的流程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/63320029/">详解namenode的安全模式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/22</span><a class="archive-post-title" href="/clay4444.github.io/posts/ac72d308/">Hadoop集群的联邦机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/20</span><a class="archive-post-title" href="/clay4444.github.io/posts/d0edc1ed/">Linux常用命令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/15</span><a class="archive-post-title" href="/clay4444.github.io/posts/a45c106d/">Hadoop集群高可用配置原理及过程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/13</span><a class="archive-post-title" href="/clay4444.github.io/posts/442eff56/">详解Linux的链接文件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/84f5b3e/">NIO系列之非阻塞式IO</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href="/clay4444.github.io/posts/65ebcdd2/">NIO系列之缓冲区和通道</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/01</span><a class="archive-post-title" href="/clay4444.github.io/posts/a4ab48f8/">线程八锁</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/28</span><a class="archive-post-title" href="/clay4444.github.io/posts/657d2343/">经典面试题之线程按顺序交替打印</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/2822593d/">CAS算法原子变量底层到底是如何工作的</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href="/clay4444.github.io/posts/46a889d8/">Lock与synchronized的区别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/15</span><a class="archive-post-title" href="/clay4444.github.io/posts/f9184235/">Disruptor框架</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/282014e2/">重入锁和读写锁和分布式锁的应用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/10</span><a class="archive-post-title" href="/clay4444.github.io/posts/417d070a/">concurrent包下常用类及其应用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/03</span><a class="archive-post-title" href="/clay4444.github.io/posts/8b920ef3/">Executor线程池应用及其源代码解析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href="/clay4444.github.io/posts/ba8be30a/">多线程的设计模式之生产者-消费者模式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/28</span><a class="archive-post-title" href="/clay4444.github.io/posts/c319249/">多线程的设计模式之Master-Worker模式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/6d530e97/">多线程的设计模式之Future模式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/f1a00836/">并发Queue详解及其应用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/20</span><a class="archive-post-title" href="/clay4444.github.io/posts/2b949ee4/">并发类容器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href="/clay4444.github.io/posts/bdf654d1/">同步类容器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/5d37d5dd/">集合迭代器快速失败行为及CopyOnWriteArrayList</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/15</span><a class="archive-post-title" href="/clay4444.github.io/posts/c8369a3e/">MR之倒排索引的建立</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/13</span><a class="archive-post-title" href="/clay4444.github.io/posts/db40873f/">ThreadLocal详解及其底层实现分析</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/3c6f5864/">BlockQueue队列内部实现剖析及简单模拟</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/9a01ed74/">通过一道阿里面试题看线程间通信的概念</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/03</span><a class="archive-post-title" href="/clay4444.github.io/posts/623ba864/">关于synchronized一些容易忽略的特性</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/2dd0f618/">Hive自定义函数和Transform</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/29</span><a class="archive-post-title" href="/clay4444.github.io/posts/5ec70f63/">Hive参数配置方式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/73b70227/">关于Hive的Select查询</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/f92012d0/">Hive中的数据存储格式和基本操作</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/20</span><a class="archive-post-title" href="/clay4444.github.io/posts/e01e83db/">Hive最常用之统计报表</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/18</span><a class="archive-post-title" href="/clay4444.github.io/posts/111e02e0/">volatile关键字</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/15</span><a class="archive-post-title" href="/clay4444.github.io/posts/16f9fb4/">单例模式的双重检查锁定+volatile</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/13</span><a class="archive-post-title" href="/clay4444.github.io/posts/e4408e09/">关于Hive的join操作</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="源码解析系列"><span class="iconfont-archer">&#xe606;</span>源码解析系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="Flink"><span class="iconfont-archer">&#xe606;</span>Flink</span>
+    
+        <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
+    
+        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
+    
+        <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
+    
+        <span class="sidebar-tag-name" data-tags="Java8系列"><span class="iconfont-archer">&#xe606;</span>Java8系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="Java9系列"><span class="iconfont-archer">&#xe606;</span>Java9系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="MapReduce"><span class="iconfont-archer">&#xe606;</span>MapReduce</span>
+    
+        <span class="sidebar-tag-name" data-tags="MySql"><span class="iconfont-archer">&#xe606;</span>MySql</span>
+    
+        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
+    
+        <span class="sidebar-tag-name" data-tags="Storm"><span class="iconfont-archer">&#xe606;</span>Storm</span>
+    
+        <span class="sidebar-tag-name" data-tags="环境部署问题系列"><span class="iconfont-archer">&#xe606;</span>环境部署问题系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="maven"><span class="iconfont-archer">&#xe606;</span>maven</span>
+    
+        <span class="sidebar-tag-name" data-tags="快学scala读书笔记"><span class="iconfont-archer">&#xe606;</span>快学scala读书笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="zookeeper"><span class="iconfont-archer">&#xe606;</span>zookeeper</span>
+    
+        <span class="sidebar-tag-name" data-tags="并发编程实战读书笔记"><span class="iconfont-archer">&#xe606;</span>并发编程实战读书笔记</span>
+    
+        <span class="sidebar-tag-name" data-tags="大数据处理算法"><span class="iconfont-archer">&#xe606;</span>大数据处理算法</span>
+    
+        <span class="sidebar-tag-name" data-tags="Java异常处理"><span class="iconfont-archer">&#xe606;</span>Java异常处理</span>
+    
+        <span class="sidebar-tag-name" data-tags="hdfs"><span class="iconfont-archer">&#xe606;</span>hdfs</span>
+    
+        <span class="sidebar-tag-name" data-tags="elasticsearch"><span class="iconfont-archer">&#xe606;</span>elasticsearch</span>
+    
+        <span class="sidebar-tag-name" data-tags="GC"><span class="iconfont-archer">&#xe606;</span>GC</span>
+    
+        <span class="sidebar-tag-name" data-tags="日志框架"><span class="iconfont-archer">&#xe606;</span>日志框架</span>
+    
+        <span class="sidebar-tag-name" data-tags="NIO"><span class="iconfont-archer">&#xe606;</span>NIO</span>
+    
+        <span class="sidebar-tag-name" data-tags="Spring注解驱动开发"><span class="iconfont-archer">&#xe606;</span>Spring注解驱动开发</span>
+    
+        <span class="sidebar-tag-name" data-tags="kafka"><span class="iconfont-archer">&#xe606;</span>kafka</span>
+    
+        <span class="sidebar-tag-name" data-tags="JavaIO流系列"><span class="iconfont-archer">&#xe606;</span>JavaIO流系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="jvm"><span class="iconfont-archer">&#xe606;</span>jvm</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="多线程编程"><span class="iconfont-archer">&#xe60a;</span>多线程编程</span>
+    
+        <span class="sidebar-category-name" data-categories="Java基础"><span class="iconfont-archer">&#xe60a;</span>Java基础</span>
+    
+        <span class="sidebar-category-name" data-categories="big-data"><span class="iconfont-archer">&#xe60a;</span>big-data</span>
+    
+        <span class="sidebar-category-name" data-categories="scala"><span class="iconfont-archer">&#xe60a;</span>scala</span>
+    
+        <span class="sidebar-category-name" data-categories="Linux"><span class="iconfont-archer">&#xe60a;</span>Linux</span>
+    
+        <span class="sidebar-category-name" data-categories="数据库"><span class="iconfont-archer">&#xe60a;</span>数据库</span>
+    
+        <span class="sidebar-category-name" data-categories="计算机网络"><span class="iconfont-archer">&#xe60a;</span>计算机网络</span>
+    
+        <span class="sidebar-category-name" data-categories="设计模式"><span class="iconfont-archer">&#xe60a;</span>设计模式</span>
+    
+        <span class="sidebar-category-name" data-categories="数据结构"><span class="iconfont-archer">&#xe60a;</span>数据结构</span>
+    
+        <span class="sidebar-category-name" data-categories="kafka权威指南读书笔记"><span class="iconfont-archer">&#xe60a;</span>kafka权威指南读书笔记</span>
+    
+        <span class="sidebar-category-name" data-categories="leetcode"><span class="iconfont-archer">&#xe60a;</span>leetcode</span>
+    
+        <span class="sidebar-category-name" data-categories="StreamingSystem读书笔记"><span class="iconfont-archer">&#xe60a;</span>StreamingSystem读书笔记</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/clay4444.github.io/",
+        author: "clay"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/clay4444.github.io/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/clay4444.github.io/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/clay4444.github.io/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
