@@ -1,8 +1,9 @@
 ---
 title: kafka权威指南第二三四章
-date: 2019-05-17 19:46:14
 categories:
   - kafka权威指南读书笔记
+abbrlink: 2ce93f5b
+date: 2019-05-17 19:46:14
 ---
 
 ## 第二章
