@@ -1,8 +1,9 @@
 ---
 title: kafka权威指南第五六章
-date: 2019-05-18 23:15:24
 categories:
   - kafka权威指南读书笔记
+abbrlink: f63f9c6e
+date: 2019-05-18 23:15:24
 ---
 
 ## 第五章：深入kafka
