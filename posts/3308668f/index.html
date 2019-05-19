@@ -475,14 +475,14 @@ height:50vh;
 </ul>
 <p><br></p>
 <h4 id="1-中心集群架构"><a href="#1-中心集群架构" class="headerlink" title="1. 中心集群架构"></a>1. 中心集群架构</h4><p>下面是多个本地集群和一个中心集群的架构：</p>
-
+<img src="/clay4444.github.io/posts/3308668f/picture1.jpg">
 <p>简单情况下只存在两个集群，即主集群和副本集群：</p>
-
+<img src="/clay4444.github.io/posts/3308668f/picture2.jpg">
 <p>这种架构适用于，数据分布在多个数据中心而某些应用需要访问整体数据集。另外每个数据中心的应用可以处理本地数据，但无法访问全量数据。这种架构的主要优点在于，数据生产到本地，而且跨集群只复制一次数据（到中心集群）。只依赖本地数据的应用可以部署在本地集群，而依赖多数据中心的应用则部署在中心集群。这种架构也非常简单，因为数据流向是单向的，这使得部署、运维和监控非常容易。</p>
 <p>它的主要缺点在于，区域的集群不能访问另一个集群的数据。比如，我们在每个城市维护一个Kafka集群来保存银行的用户信息和账户历史，并且将这些数据同步到中心集群以便做银行的商业分析。当用户访问本地的银行分支网站时，这些请求可以被分发到本地集群处理；但如果用户访问异地的银行分支网站时，要么该异地集群跟中心集群通信（此种方式不建议），要么直接拒绝请求（是的非常尴尬）。</p>
 <p><br></p>
 <h4 id="2-多活架构"><a href="#2-多活架构" class="headerlink" title="2. 多活架构"></a>2. 多活架构</h4><p>这种架构适用于多个集群共享数据，如下所示：</p>
-
+<img src="/clay4444.github.io/posts/3308668f/picture3.jpg">
 <p>此架构主要优点在于，每个集群都可以处理用户的任何请求并且不阉割产品功能（与前一种架构对比），而且就近处理用户请求，响应时间可以大大降低。其次，由于数据冗余与弹性控制，一个集群出现故障，可以把用户请求导流到别的集群进行处理。</p>
 <p>此架构主要缺点在于，由于多个集群都可以处理用户请求，异步的数据读取和更新无法保证全局数据一致性。下面列举一些可能会遇到的挑战：</p>
 <ul>
@@ -495,7 +495,7 @@ height:50vh;
 <p>需要提醒的是，Kafka正在计划添加记录头部，允许我们添加标记信息。我们在生产消息时可以加上数据中心的标记，这样也可以避免循环数据复制。当然，我们也可以自己在消息体中增加标记信息进行过滤，但缺点是当前的镜像工具并不支持，我们得自己开发复制逻辑。</p>
 <p><br></p>
 <h4 id="3-冷热互备架构"><a href="#3-冷热互备架构" class="headerlink" title="3. 冷热互备架构"></a>3. 冷热互备架构</h4><p>有时候，多集群是为了防止单点故障。比如说，我们可能有两个集群，其中集群A处于服务状态，另一个集群B通过数据镜像来接收集群A所有的事件，当集群A不可用时，B可以启动服务。在这种场景中，集群B包含了数据的冷备份。架构如下所示：</p>
-
+<img src="/clay4444.github.io/posts/3308668f/picture4.jpg">
 <p>这种架构的优点在于搭建简单并且适用于多种场景。我们只需搭建第二个集群，设置一个镜像进程来将源集群的所有事件同步到该集群即可，并且不用担心发生数据冲突。缺点在于，我们浪费了一个集群资源，因为集群故障通常很少发生。一些公司会选择搭建低配的备份集群，但这样会存在一个风险，那就是无法保证出现紧急情况时该备份集群是否能支撑所有服务；另一些公司则选择适当利用备份集群，那就是把一些读取操作转移到备份集群。</p>
 <p>集群故障转移也具有一些挑战性。但无论我们选择何种故障转移方案，SRE团队都需要进行日常的故障演练。因为，即便今天故障转移是有效的，在进行系统升级之后很可能失效了。一个季度进行一次故障转移演练是最低限度，强大的SRE团队会演练更频繁，Netflix著名的Chaos Monkey玩的更溜，它会随机制造故障，也就是说故障每天都可能发生。</p>
 <p>下面来看下故障转移比较具有挑战性的地方。</p>
@@ -524,7 +524,7 @@ height:50vh;
 <p>另外需要注意的是，一般需要3个数据中心，因为Kafka依赖的Zookeeper需要奇数的节点来保证服务可用性，只要有超过一半的节点存活，服务即可用。如果我们只有两个数据中心，那么肯定其中一个数据中心拥有多数的Zookeeper节点，那么该数据中心发生故障的话服务便不可用；如果拥有三个数据中心并且Zookeeper节点均匀分布，那么其中一个数据中心发生故障，服务仍然可用。</p>
 <p><br></p>
 <h3 id="MirrorMaker"><a href="#MirrorMaker" class="headerlink" title="MirrorMaker"></a>MirrorMaker</h3><p>Kafka内置了一个用于集群间做数据镜像的简单工具–MirrorMaker，它的核心是一个包含若干个消费者的消费组，该消费组从指定的主题中读取数据，然后使用生产者把这些消息推送到另一个集群。每个消费者负责一部分主题和分区，而生产者则只需要一个，被这些消费者共享；每隔60秒消费者会通知生产者发送消息数据，然后等待另一个集群的Kafka接收写入这些数据；最后这些消费者提交已写入消息的位移。MirrorMaker保证数据不丢失，而且在发生故障时不超过60秒的数据重复。内部架构如下所示：</p>
-
+<img src="/clay4444.github.io/posts/3308668f/picture5.jpg">
 <p><br></p>
 <h4 id="如何配置"><a href="#如何配置" class="headerlink" title="如何配置"></a>如何配置</h4><p>略</p>
 
@@ -535,7 +535,7 @@ height:50vh;
             <p>原文作者：<a href="http://clay4444.github.io">clay</a>
             </p><p>原文链接：<a href="http://clay4444.github.io/posts/3308668f/">http://clay4444.github.io/posts/3308668f/</a>
             </p><p>发表日期：<a href="http://clay4444.github.io/posts/3308668f/">May 19th 2019, 4:01:14 pm</a>
-            </p><p>更新日期：<a href="http://clay4444.github.io/posts/3308668f/">May 19th 2019, 4:02:22 pm</a>
+            </p><p>更新日期：<a href="http://clay4444.github.io/posts/3308668f/">May 19th 2019, 4:02:51 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -680,6 +680,76 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -3822,17 +3892,22 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
         </li>
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/9799c850/">MR中的计数器、job串联等功能实现</a>
         </li>
     
     
@@ -3843,11 +3918,6 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/9799c850/">MR中的计数器、job串联等功能实现</a>
         </li>
     
     
@@ -3932,17 +4002,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
         </li>
     
     
@@ -3967,12 +4037,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
         </li>
     
     
@@ -3982,7 +4052,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
         </li>
     
     
@@ -4017,22 +4087,22 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/c0977bd4/">并发编程实战(四)</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/c0977bd4/">并发编程实战(四)</a>
         </li>
     
     
@@ -4047,12 +4117,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
         </li>
     
     
@@ -4443,15 +4513,15 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Flink"><span class="iconfont-archer">&#xe606;</span>Flink</span>
     
+        <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
+    
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
     
-        <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
-    
-        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="Java8系列"><span class="iconfont-archer">&#xe606;</span>Java8系列</span>
     
