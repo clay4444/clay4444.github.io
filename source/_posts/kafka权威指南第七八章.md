@@ -1,8 +1,9 @@
 ---
 title: kafka权威指南第七八章
-date: 2019-05-19 16:01:14
 categories:
   - kafka权威指南读书笔记
+abbrlink: 3308668f
+date: 2019-05-19 16:01:14
 ---
 
 ## 第七章：数据管道
