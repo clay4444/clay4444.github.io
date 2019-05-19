@@ -432,10 +432,10 @@ height:50vh;
 <li>拉取请求（fetch request）：由消费者和跟随者副本发送。</li>
 </ul>
 <p>整体架构如下所示：</p>
-<img src="/clay4444.github.io/posts/undefined/picture1.jpg">
+<img src="/clay4444.github.io/posts/f63f9c6e/picture1.jpg">
 <p>生产请求和拉取请求都需要发送给分区的主副本处理，如果一个跟随者副本收到这两种请求，它会返回“Not a Leader for Partition”的异常信息，客户端收到异常信息后向正确的主副本发送请求。</p>
 <p>客户端怎么知道哪个是主副本呢？通过使用另一种类型的请求来实现，那就是元信息请求（metadata request）。Kafka的任意一个broker都可以处理这种请求，请求中包含客户端感兴趣的主题列表，broker会返回这些主题的分区列表、分区的副本列表以及主副本信息。客户端收到这些信息后，会进行一定时间的缓存（由metadata.max.age.ms指定），当超过时间或者broker返回请求的异常后，会刷新此信息。整体交互处理如下：</p>
-<img src="/clay4444.github.io/posts/undefined/picture2.jpg">
+<img src="/clay4444.github.io/posts/f63f9c6e/picture2.jpg">
 <p><br></p>
 <h4 id="生产请求（produce-request）"><a href="#生产请求（produce-request）" class="headerlink" title="生产请求（produce request）"></a>生产请求（produce request）</h4><p>acks参数控制多少个副本确认写入成功后生产者才认为消息生产成功。这个参数的取值可以为：</p>
 <ul>
@@ -449,10 +449,10 @@ height:50vh;
 <p>一旦消息本地持久化后，如果acks=1那么会返回结果给客户端，如果acks=all那么会将请求放置在一个称为purgatory的缓冲区中等待其他的副本写入完成。</p>
 <p><br></p>
 <h4 id="拉取请求（fetch-request）"><a href="#拉取请求（fetch-request）" class="headerlink" title="拉取请求（fetch request）"></a>拉取请求（fetch request）</h4><p>主副本处理拉取请求和处理生产请求差不多。客户端发送一个拉取请求，包含主题、分区和位移信息，主副本返回相应的数据。另外，客户端也指定返回的最大数据量，防止数据量过大造成客户端内存溢出。同时，客户端也指定返回的最小数据量，当消息数据量没有达到最小数据量时，请求会一直阻塞直到有足够的数据返回，如下所示：</p>
-<img src="/clay4444.github.io/posts/undefined/picture3.jpg">
+<img src="/clay4444.github.io/posts/f63f9c6e/picture3.jpg">
 <p>指定最小的数据量在负载不高的情况下非常有用，通过这种方式可以减轻网络往返的额外开销。当然请求也不能永远的阻塞，客户端可以指定最大的阻塞时间，如果到达指定的阻塞时间，即便没有足够的数据也会返回。</p>
 <p>有意思的是，不是所有主副本的数据都能够被读取。当数据被所有in-sync状态的副本写入成功后，它才能被客户端读取。对于主副本来说，这并不难实现，因为之前已经说过通过副本同步，它知道所有副本当前已经完成同步的消息位移。该机制描述如下：</p>
-<img src="/clay4444.github.io/posts/undefined/picture4.jpg">
+<img src="/clay4444.github.io/posts/f63f9c6e/picture4.jpg">
 <p>但为什么要这么做呢？这是因为如果没有足够的副本持久化消息，该消息是不安全的。如果主副本发生故障，然后其他副本成为新的主副本，这些消息将会在Kafka中莫名其妙的消失。也就是说，存在一个消费组能够读到某个消息，但另外的消费组读不到这个消息，从而导致不一致的行为。</p>
 <p>这样的机制也导致了新消息到达消费者应用的高延迟，特别是存在副本之间网络拥塞的情况。我们可以通过replica.lag.time.max.ms来指定副本在复制消息时可被允许的最大延迟时间，减小该值可以使得消费者无需等待延迟较大的副本写入。</p>
 <p>在读取消息上，Kafka使用零复制（zero-copy）来提高性能。也就是说，Kafka将文件（更准确的说，是文件系统缓存）的消息直接传给网络通道，并没有使用中间的buffer。这避免了内存的字节拷贝和buffer维护，极大地提高了性能。</p>
@@ -481,7 +481,7 @@ height:50vh;
 <h4 id="文件格式"><a href="#文件格式" class="headerlink" title="文件格式"></a>文件格式</h4><p>每个段都单独存为一个文件，文件内存放消息和位移。磁盘上的数据格式、生产者发送的数据格式和消费者读取的数据格式都是一样的，使用相同的数据格式使得Kafka可以进行零拷贝优化，以及避免压缩和解压缩。</p>
 <p>除了key/value和位移之外，每个消息还包含消息大小、校验和（检测数据损坏）、魔数（标识消息格式版本）、压缩算法（Snappy、GZip或者LZ4）和时间戳（0.10.0新增）。</p>
 <p>如果发送者发送压缩的消息，那么批量发送的消息会压缩在一起，以“包装消息”（wrapper message）来发送，如下所示：</p>
-<img src="/clay4444.github.io/posts/undefined/picture5.jpg">
+<img src="/clay4444.github.io/posts/f63f9c6e/picture5.jpg">
 <p>因此如果生产者使用压缩，那么发送更大的批量消息可以得到更好的网络传输效率，并且节省磁盘存储空间。</p>
 <p><br></p>
 <h4 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h4><p>Kafka允许消费者从任意合法的位移拉取消息，也就是说如果消费者希望从位移为100的地方开始读取1MB的消息，broker需要在该分区的所有段中定位到该消息的位置然后开始读取数据。为了帮助broker迅速定位，Kafka对于每个分区都维护一个索引，该索引将位移映射到段以及段内偏移。</p>
@@ -495,13 +495,13 @@ height:50vh;
 <li>脏（dirty）：在上一次压缩后写入的新消息。</li>
 </ul>
 <p>如下所示：</p>
-<img src="/clay4444.github.io/posts/undefined/picture6.jpg">
+<img src="/clay4444.github.io/posts/f63f9c6e/picture6.jpg">
 <p>如果使用压缩，那么每个broker会启动一个压缩管理器线程和若干个压缩线程，每个线程负责一个分区。</p>
 <p>在压缩分区时，压缩线程会首先读取脏的部分，并且建立一个key的哈希和位移的映射，对于相同的键，只保留最新的位移。其中key的哈希大小为16字节，位移大小为8个字节。也就是说，一个映射只有24字节，假设消息大小为1KB，那么1GB的段有1百万条消息，建立这个段的映射只需要24MB的内存，映射的内存效率是非常高效的。</p>
 <p>在配置Kafka时，管理员需要设置这些压缩线程可以使用的总内存。如果设置1GB的总内存同时有5个压缩线程，那么每个线程只有200MB的内存可用。在压缩线程工作时，它不需要把所有脏的段文件都一起在内存中建立上述映射，但需要保证至少能够建立一个段的映射。如果不能同时处理所有脏的段，Kafka会一次压缩最老的几个脏段，然后在下一次再处理其他的脏段。</p>
 <p>一旦建立完脏段的键与位移的映射后，压缩线程会从最老的干净的段开始处理。如果发现段中的消息的键没有在映射中出现，那么可以知道这个消息是最新的，然后简单的复制到一个新的干净的段中；否则如果消息的键在映射中出现，这条消息需要抛弃，因为对于这个键，已经有新的消息写入。处理完会将产生的新段替代原始段，并处理下一个段。</p>
 <p>对于一个段，处理前和处理后的效果如下：</p>
-<img src="/clay4444.github.io/posts/undefined/picture7.jpg">
+<img src="/clay4444.github.io/posts/f63f9c6e/picture7.jpg">
 <p><br></p>
 <h4 id="删除事件"><a href="#删除事件" class="headerlink" title="删除事件"></a>删除事件</h4><p>对于只保留最新消息的压缩策略来说，Kafka还支持删除相应键的消息操作（而不仅仅是保留最新的消息内容）。这是通过生产者发送一条特殊的消息来实现的，该消息包含一个键以及一个null的消息内容。当压缩线程发现这条消息时，它首先仍然进行一个正常的压缩并且保留这个包含null的特殊消息一段时间，在这段时间内消费者消费者可以获取到这条消息并且知道消息内容已经被删除。过了这段时间，压缩线程会删除这条消息，这个键会从分区中消失。这段时间是必须的，因为它可以使得消费者有一定的时间余地来收到这条消息。</p>
 <p><br></p>
@@ -661,13 +661,18 @@ height:50vh;
             <p>原文作者：<a href="http://clay4444.github.io">clay</a>
             </p><p>原文链接：<a href="http://clay4444.github.io/posts/f63f9c6e/">http://clay4444.github.io/posts/f63f9c6e/</a>
             </p><p>发表日期：<a href="http://clay4444.github.io/posts/f63f9c6e/">May 18th 2019, 11:15:24 pm</a>
-            </p><p>更新日期：<a href="http://clay4444.github.io/posts/f63f9c6e/">May 18th 2019, 11:16:20 pm</a>
+            </p><p>更新日期：<a href="http://clay4444.github.io/posts/f63f9c6e/">May 18th 2019, 11:17:01 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/clay4444.github.io/posts/3308668f/" title="kafka权威指南第七八章">
+                    <div class="nextTitle">kafka权威指南第七八章</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -3716,50 +3721,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 161
+        Total : 162
         </div>
         <!-- search  -->
         
@@ -3772,6 +3736,11 @@ top:50vh;
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/19</span><a class="archive-post-title" href="/clay4444.github.io/posts/3308668f/">kafka权威指南第七八章</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3984,6 +3953,11 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
         </li>
     
@@ -3994,7 +3968,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
         </li>
     
     
@@ -4005,11 +3979,6 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/9799c850/">MR中的计数器、job串联等功能实现</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
         </li>
     
     
@@ -4079,12 +4048,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/97e35c7b/">Storm的分组策略和确保消息送达机制</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/d5a66bc5/">Storm和kafka、Hbase之间的整合</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/d5a66bc5/">Storm和kafka、Hbase之间的整合</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/97e35c7b/">Storm的分组策略和确保消息送达机制</a>
         </li>
     
     
@@ -4099,12 +4068,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
         </li>
     
     
@@ -4129,7 +4098,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
         </li>
     
     
@@ -4139,7 +4108,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
         </li>
     
     
@@ -4179,12 +4148,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
@@ -4199,22 +4168,22 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/eb162f92/">并发编程实战(一)</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/eb162f92/">并发编程实战(一)</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
         </li>
     
     
@@ -4605,11 +4574,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Flink"><span class="iconfont-archer">&#xe606;</span>Flink</span>
     
-        <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
-    
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
+    
+        <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
     
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
     
