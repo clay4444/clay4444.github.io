@@ -1,8 +1,9 @@
 ---
 title: Flink源码解析之Job提交流程
-date: 2019-06-05 15:30:27
 tags:
   - Flink
+abbrlink: c75f56
+date: 2019-06-05 15:30:27
 ---
 
 ### 1.  wordcount 例子
@@ -240,7 +241,7 @@ try { return client.run(streamGraph, jarFiles, globalClasspaths, usercodeClassLo
 
 client的run方法首先生成一个JobGraph，然后将其传递给JobClient。关于Client、 JobClient、JobManager到底谁管谁，可以看这张图：
 
-{% asset_img 一.png %}
+{% asset_img 一.jpg %}
 
 <br/>
 
