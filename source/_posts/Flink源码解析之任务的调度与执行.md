@@ -340,7 +340,7 @@ IOManager提供了两种方式枚举磁盘文件，一种是直接遍历文件�
 
 在底层，flink将文件IO抽象为FileIOChannle，封装了底层实现。
 
-{% asset_img 四.jpg %}
+{% asset_img 六.jpg %}
 
 可以看到，flink在底层实际上都是以异步的方式进行读写。
 

@@ -1,8 +1,9 @@
 ---
 title: Flink源码解析之StreamOperator
-date: 2019-06-06 11:48:11
 tags:
   - Flink
+abbrlink: 118b9a37
+date: 2019-06-06 11:48:11
 ---
 
 ## StreamOperator的抽象与实现
