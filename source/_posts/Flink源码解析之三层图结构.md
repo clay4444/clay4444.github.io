@@ -1,8 +1,9 @@
 ---
 title: Flink源码解析之三层图结构
-date: 2019-06-05 18:19:48
 tags:
   - Flink
+abbrlink: fade0564
+date: 2019-06-05 18:19:48
 ---
 
 ### 1.flink的图结构
