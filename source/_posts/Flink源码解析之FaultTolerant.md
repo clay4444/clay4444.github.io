@@ -1,8 +1,9 @@
 ---
 title: Flink源码解析之FaultTolerant
-date: 2019-06-06 15:46:17
 tags:
   - Flink
+abbrlink: 90722dc0
+date: 2019-06-06 15:46:17
 ---
 
 ## 为执行保驾护航——Fault Tolerant与保证ExactlyOnce语义
