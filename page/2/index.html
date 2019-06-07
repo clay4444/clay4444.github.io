@@ -359,6 +359,237 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/5bedbc4e/">
+            
+                <span>深入理解java虚拟机</span>
+        </a>
+        <div class="abstract-content">
+            -XX:+HeapDumpOnOutOfMemoryError 堆内存溢出时dump出一个快照文件，后续可以使用工具进行解析
+-Xms20m
+-Xmx20m
+堆内存设置为20m
+
+jps：列出所有的java进程
+jconsole：性能分析工具
+
+java 语言 -&gt; java 编译器 -&gt; class文件  -&gt; java虚拟机
+scala 语言 -&gt; scala 编译器  -&gt; class文件 -&gt; java虚拟机
+只是一些规范而已
+
+classic VM
+第一款商用的虚拟机，只有纯解释器，如果想要编译，就必须外挂jit，但是会导致所有代码都要jit...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/05</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="jvm">jvm</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/f849401d/">
+            
+                <span>算法进阶第一课-3</span>
+        </a>
+        <div class="abstract-content">
+            题目：给定一个整数，判断该数是否是回文数
+常数项：
+比如插入排序遍历的时候只有一个交换操作，所以这个算法的常数项很低，但是时间复杂度O(n^2)，
+但是堆排序，处理的过程中有很多的交换、判断、赋值 等操作，所以这个算法的常数项很高，但是它的时间复杂度是O(N*log(N))
+所以在数组长度很小的情况下，插入排序效果更优，但是如果数组很长，常数项能起到的作用就很小了，此时就要看时间复杂度，明显 O(N*log(N)) 的时间复杂度在数组很长时，效果更优
+
+代码
+123456789101112131415161718192021222324252627public class Code_01...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/05</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/ff78c689/">
+            
+                <span>算法进阶第六课</span>
+        </a>
+        <div class="abstract-content">
+            题目：换钱的方法数换钱的方法数 
+【题目】 给定数组arr，arr中所有的值都为正数且不重复。每个值代表 一种面值的货币，每种面值的货币可以使用任意张，再给定一 个整数aim代表要找的钱数，求换钱有多少种方法。
+【举例】 arr=[5,10,25,1]，aim=0。 组成0元的方法有1种，就是所有面值的货币都不用。所以返回1。 
+arr=[5,10,25,1]，aim=15。 组成15元的方法有6种，分别为3张5元、1张10元+1张5元、1张 10元+5张1元、10张1元+1张5元、2张5元+5张1元和15张1元。所 以返回6。
+ arr=[3,5]，aim=2。 任何方法都无法组成2元...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/04</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/7f010ad5/">
+            
+                <span>算法基础第六课</span>
+        </a>
+        <div class="abstract-content">
+            图的存储方式
+邻接表边不带权重的：
+
+如果是无向图，就是彼此都互为邻居，1和2链接，那么1的邻居有2，2的邻居有1。
+
+边带权重的；
+
+
+
+邻接矩阵边带有权重的：
+
+图中的数字表示边上的权重；
+
+一般的表示法：第一列表示权重，第二列表示from，第三列表示to
+
+
+代码点：
+1234567891011121314151617public class Node &#123;	public int value; //点代表的值	public int in;  //入度	public int out; // 出度	public ArrayList&lt;Node&gt; nexts;   //...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/01</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/8366812d/">
+            
+                <span>算法进阶第四五课</span>
+        </a>
+        <div class="abstract-content">
+            题目：大楼的轮廓线给定一个N行3列二维数组， 每一行表示有一座大楼， 一共有N座大楼。所有大楼的底部都坐落在X轴上， 每一行的三个值(a,b,c)代表每座大楼的从(a,0)点开始， 到(b,0)点结束， 高度为c。输入的数据可以保证a&lt;b,且a， b， c均为正数。 大楼之间可以有重合。请输出整体的轮廓线。
+例子： 给定一个二维数组[[1, 3, 3],[2, 4, 4],[5, 6, 1]]
+输出为轮廓线[[1, 2, 3],[2, 4, 4],[5, 6, 1]] 
+
+
+
+思路：
+把给定的二维数组设计成如下的方式：
+(1,3,上)、(3,3,下)、(2,4,上)、(4,4,下)...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/01</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/42c55172/">
+            
+                <span>算法进阶第三课</span>
+        </a>
+        <div class="abstract-content">
+            Morris 遍历经典二叉树的遍历不管是递归还是非递归，都避免不了额外空间复杂度O(h)，递归是程序帮我们压栈，非递归是我们自己压栈，因为当我们遍历左子树或者右子树的时候，我们希望遍历完一遍后，还回到当前节点，所以这个过程是省不掉的；
+
+morris遍历
+时间复杂度O(N)，空间复杂度O(1)
+指向null也是会占用空间的，morris遍历就是利用这些剩余空间来完成遍历的，相当于是修改原来二叉树的结构，让我们可以回去，这一种统一思路叫做线索二叉树；
+
+标准：
+当前节点记为cur，
+
+如果CUR没有左孩子，CUR向右移动，CUR = cur.right
+如果CUR有左孩子，找到左子树最右节...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/22</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/fdbf220/">
+            
+                <span>算法进阶第二课</span>
+        </a>
+        <div class="abstract-content">
+            窗口内最大值的更新结构窗口：L和R，都只能向右走，加数的时候R向右走，减数的时候L向右走，求一个窗口的最大值，如果遍历，每次都需要承担一个O(len) 的时间复杂度，要做的就是找到一种结构，可以更快的找到窗口内的最大值；
+
+双端队列结构：双向链表
+不需要遍历，只需要从头部加减东西，从尾部加减东西，时间复杂度都是O(1)
+我们需要保证从头部到尾部放的值是从大到小的；
+加数的时候，从双端队列的尾部加入，如果原数组i位置上的数字是value，考察双端队列的尾部， value如果比尾部的值小，直接落在尾部后面，如果比尾部的值大，依次弹出尾部的值，直到value小于尾部某个值，或者弹到空；然后把新...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/16</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/3fcd1ef8/">
             
                 <span>算法进阶第一课</span>
@@ -435,226 +666,6 @@ kmp这个算法就是想办法加速这个过程；
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/26</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/ad017d4a/">
-            
-                <span>算法基础第七课</span>
-        </a>
-        <div class="abstract-content">
-            trie 树、前缀树何为前缀树？ 如何生成前缀树？
-一个字符串类型的数组arr1，另一个字符串类型的数组arr2。
-
-
-
-几种情况：
-所有的字符串中是否有以”be”开头的，只需要按照路往下走判断即可。但是只判断是否含有be这个单词，是查询不出来的，只含有be和还含有bef是相同的树，是完全一致的trie树
-所以每个节点加一个多余数据项：有多少个字符串是以当前节点结尾的。还想查询有多少个字符串以”bc”作为前缀，这种树查不出来。所以每个节点再加一个数据项：每一个节点被划过了多少次。
-
-代码
-12345678910111213141516171819202122232425262728293...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/24</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/1a0f410c/">
-            
-                <span>算法基础第五课</span>
-        </a>
-        <div class="abstract-content">
-            认识哈希函数和哈希表
-性质
-输入域无穷大
-输出域有穷大
-输入固定，则输出固定。
-输入不固定，输出也有可能一致，哈希碰撞
-保证离散性，均匀分布，例如 输入0-98 ，输出0，1，2，给出0-98 99个不同的数字，那么最终的结果会趋近于0有33个，1有33个，2有33个，这就是哈希函数的离散性： 虽然不同的输入也可能导致相同的输出，但是如果给定很多不同的输入，那么最终输出的固定S域中，也会均匀分布
-
-
-特征：
-和输入没有规律，即使输入有规律(很相近)，哈希之后可能相差很远。
-推广：input通过hash函数之后得到一个code，那么最终所有的code 都 % m之后，也会均匀的散列在m-1...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/24</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/7591844b/">
-            
-                <span>算法基础第四课</span>
-        </a>
-        <div class="abstract-content">
-            遍历的递归行为分析
-依次来到节点的顺序是啥？
-每个节点会来到三次，这个顺序是不变的，只是我们把打印的时机放在哪，就被加工成了先序，中序和后序
-
-我们把打印的时机放在第一次来到这个节点的时候，就是先序遍历，把打印的时机放在第二次来到这个节点的时候，就是中序遍历，把打印的时机放在第三次来到这个节点的时候，就是后序遍历，
-
-先序遍历头节点，左子树，右子树
-
-非递归版本
-一个栈，先把头结点放进去，然后开始循环，每次先弹出一个节点，然后再进行压栈，先压右，再压左，那么下次弹出的时候，肯定是先弹出左节点，后弹右节点，弹出左节点的时候，还会继续把左孩子的右，左依次压入，所以整体的过程就是先处理当前节点...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/24</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/c2bc9d2e/">
-            
-                <span>算法基础第三课</span>
-        </a>
-        <div class="abstract-content">
-            用数组结构实现大小固定的队列和栈
-栈
-
-代码：
-1234567891011121314151617181920212223242526public static class ArrayStack &#123;//固定数组，实现栈    private Integer[] arr;    private Integer index;//如果把数组竖着排，index就是第一个。    public ArrayStack(int initSize) &#123;        if (initSize &lt; 0) &#123;            throw new IllegalArg...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/23</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/5c06dc97/">
-            
-                <span>Flink中startNewChain和SlotSharingGroup的区别</span>
-        </a>
-        <div class="abstract-content">
-            声明本文转自云邪的博客：Flink 原理与实现：理解 Flink 中的计算资源，并添加了一些自己的总结
-
-本文所讨论的计算资源是指用来执行 Task 的资源，是一个逻辑概念。本文会介绍 Flink 计算资源相关的一些核心概念，如：Slot、SlotSharingGroup、CoLocationGroup、Chain等。并会着重讨论 Flink 如何对计算资源进行管理和隔离，如何将计算资源利用率最大化等等。理解 Flink 中的计算资源对于理解 Job 如何在集群中运行的有很大的帮助，也有利于我们更透彻地理解 Flink 原理，更快速地定位问题。
-
-Operator Chains 为了更高...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Flink">Flink</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/8fa23e7c/">
-            
-                <span>算法基础第二课</span>
-        </a>
-        <div class="abstract-content">
-            荷兰国旗问题给定一个数组arr，和一个数num，请把小于num的数放在数组的 左边，等于num的数放在数组的中间，大于num的数放在数组的 右边。
-要求额外空间复杂度O(1)，时间复杂度O(N)
-
-less、more和cur两个指针，less左边的代表小于num区域的数，more右边的代表大于num区域的数，cur指向当前数，过程图示如下
-
-
-
-遇到小于num的，直接和小于区域的下一个数进行交换。cur直接跳一个位置，遇到大于num的，直接和大于区域的下一个数进行交换。cur原地不动，因为不知道换过来的数字是大于还是小于num还是等于num。遇到等于num的，直接跳下一个数。当cur和m...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/20</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/bfb4d2a4/">
-            
-                <span>算法基础第一课</span>
-        </a>
-        <div class="abstract-content">
-            时间复杂度常数时间的操作：一个操作如果和数据量没有关系，每次都是 固定时间内完成的操作，叫做常数操作。
-
-时间复杂度为一个算法流程中，常数操作数量的指标。常用O （读作big O）来表示。具体来说，在常数操作数量的表达式中， 只要高阶项，不要低阶项，也不要高阶项的系数，剩下的部分 如果记为f(N)，那么时间复杂度为O(f(N))。
-
-评价一个算法流程的好坏，先看时间复杂度的指标，然后再分 析不同数据样本下的实际运行时间，也就是常数项时间。
-
-一个简单的理解时间复杂度的例子一个有序数组A，另一个无序数组B，请打印B中的所有不在A中的数，A数 组长度为N，B数组长度为M。
-
-算法流程1：对于...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/17</span>
             </div>
             <!-- tags  -->
             
@@ -3839,9 +3850,148 @@ less、more和cur两个指针，less左边的代表小于num区域的数，more�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 162
+        Total : 169
         </div>
         <!-- search  -->
         
@@ -3854,6 +4004,41 @@ less、more和cur两个指针，less左边的代表小于num区域的数，more�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/37b5aa5b/">分布式存储系统基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/82553e97/">Flink源码解析之数据流转</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/90722dc0/">Flink源码解析之FaultTolerant</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/118b9a37/">Flink源码解析之StreamOperator</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/149d881d/">Flink源码解析之任务的调度与执行</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/fade0564/">Flink源码解析之三层图结构</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/c75f56/">Flink源码解析之Job提交流程</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -4076,12 +4261,12 @@ less、more和cur两个指针，less左边的代表小于num区域的数，more�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
         </li>
     
     
@@ -4091,12 +4276,12 @@ less、more和cur两个指针，less左边的代表小于num区域的数，more�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
         </li>
     
     
@@ -4156,12 +4341,12 @@ less、more和cur两个指针，less左边的代表小于num区域的数，more�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
         </li>
     
     
@@ -4181,17 +4366,17 @@ less、more和cur两个指针，less左边的代表小于num区域的数，more�
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
         </li>
     
     
@@ -4216,17 +4401,17 @@ less、more和cur两个指针，less左边的代表小于num区域的数，more�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
     
@@ -4266,17 +4451,12 @@ less、more和cur两个指针，less左边的代表小于num区域的数，more�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
@@ -4286,7 +4466,7 @@ less、more和cur两个指针，less左边的代表小于num区域的数，more�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
         </li>
     
     
@@ -4296,12 +4476,17 @@ less、more和cur两个指针，less左边的代表小于num区域的数，more�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
         </li>
     
     
@@ -4698,9 +4883,9 @@ less、more和cur两个指针，less左边的代表小于num区域的数，more�
     
         <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
     
-        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
-    
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="Java8系列"><span class="iconfont-archer">&#xe606;</span>Java8系列</span>
     
@@ -4743,6 +4928,8 @@ less、more和cur两个指针，less左边的代表小于num区域的数，more�
         <span class="sidebar-tag-name" data-tags="kafka"><span class="iconfont-archer">&#xe606;</span>kafka</span>
     
         <span class="sidebar-tag-name" data-tags="JavaIO流系列"><span class="iconfont-archer">&#xe606;</span>JavaIO流系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="分布式"><span class="iconfont-archer">&#xe606;</span>分布式</span>
     
         <span class="sidebar-tag-name" data-tags="jvm"><span class="iconfont-archer">&#xe606;</span>jvm</span>
     

@@ -359,6 +359,303 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/3ad494db/">
+            
+                <span>并发编程实战(三)</span>
+        </a>
+        <div class="abstract-content">
+            第三章：对象的共享主要介绍如何共享和发布对象
+
+内存可见性：一个常见的误区是：认为关键字synchronized 只能用于实现原子性或者确定  “ 临界区 （ Critical Section ）”。罔同步还有另一个重要的方面：内存可见性（ Memoy Visibility ）。我们不仅希望防止某个线程正在使用对象状态而另一个线程在同时修改该状态，西且希望确保当一个线程修改了对象状态后，其能线程能够看到发生的状态变化
+
+为了确保多个线程之间对内存写入操作的可见性，必须使用同步机制。
+示例代码：
+1234567891011121314151617181920public class NoV...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/24</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程实战读书笔记">并发编程实战读书笔记</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/4427b4f0/">
+            
+                <span>并发编程实战(二)</span>
+        </a>
+        <div class="abstract-content">
+            主要介绍了如何通过同步来避免多个线程在同一时刻访问相同的数据
+
+核心要对状态访问操作进行管理，特别是对共享的（ Shared ）和可变的（ Mutable ）状态的访问。
+“共享“ 意味着变量可以由多个线程间同时访问，而 “可变” 则意味着变量的值在其生命周期内可以发生变化
+
+对象的状态从非正式的意义上来说，对象的状态是指存储在状态变量（例如实例或静态域〉中的数据
+
+线程安全要使得对象是结程安全的，需要采用同步机制来协同对对象可变状态的访问。
+
+修复并发错误的三种方式不在线程之间共享该状态变量
+将状态变量修改为不可变的变量
+在访问状态变量时使用同步
+
+面向对象技术的优势（封装）面向对象这...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程实战读书笔记">并发编程实战读书笔记</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/eb162f92/">
+            
+                <span>并发编程实战(一)</span>
+        </a>
+        <div class="abstract-content">
+            第一章：简介
+要解决的问题Java平台提供的各种并发功能与开发人员在程序中需要的并发语义并不匹配，
+
+在Java在语言中提供了一结底层机制，例如同步和条件等待，但在使用这些机制来实现应用级的协议与策略时必须始终保持一致。如果没有这些策略，那么在编写程序肘，虽然程序看似顺利的编译和运行， 但是却总会出现各种奇怪的问题
+
+为什么需要编写并发程序
+钱程是Java 语言中不可或缺的重要功能，它们能使复杂的异步代码变得更货单，从而极大地需化了复杂系统的开发。此外，要想充分发挥多处理器系统的强大计算能力，最简单的方式就是使用线程。随着处理器数量的持续增长，如伺高效地使用并发正变得越来越重要。
+
+操作...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程实战读书笔记">并发编程实战读书笔记</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/af70e59d/">
+            
+                <span>MR之自定义GroupingComparator</span>
+        </a>
+        <div class="abstract-content">
+            需求有如下订单数据
+
+
+
+订单id
+商品id
+成交金额
+
+
+
+
+Order_0000001
+Pdt_01
+222.8
+
+
+Order_0000001
+Pdt_05
+25.8
+
+
+Order_0000002
+Pdt_03
+522.8
+
+
+Order_0000002
+Pdt_04
+122.4
+
+
+Order_0000003
+Pdt_01
+222.8
+
+
+
+现在需要求出每一个订单中成交金额最大的一笔交易
+
+分析1、利用“订单id和成交金额”作为key，可以将map阶段读取到的所有订单数据按照id分区，按照金额排序，发送到reduce
+2、在reduce端利用groupingcomparator...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/12</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="MapReduce">MapReduce</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/987ce803/">
+            
+                <span>MR之自定义inputFormat</span>
+        </a>
+        <div class="abstract-content">
+            需求无论hdfs还是mapreduce，对于小文件都有损效率，实践中，又难免面临处理大量小文件的场景，此时，就需要有相应解决方案
+
+分析小文件的优化无非以下几种方式：
+1、 在数据采集的时候，就将小文件或小批数据合成大文件再上传HDFS
+2、 在业务处理之前，在HDFS上使用mapreduce程序对小文件进行合并
+3、 在mapreduce处理时，可采用combineInputFormat提高效率
+
+实现本节实现的是上述第二种方式
+程序的核心机制：
+自定义一个InputFormat
+改写RecordReader，实现一次读取一个完整文件封装为KV
+在输出时使用SequenceFileOu...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/12</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="MapReduce">MapReduce</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/a2cd52e0/">
+            
+                <span>MR之社交粉丝数据查找共同好友</span>
+        </a>
+        <div class="abstract-content">
+            需求以下是qq的好友列表数据，冒号前是一个用，冒号后是该用户的所有好友（数据中的好友关系是单向的）
+A:B,C,D,F,E,O
+B:A,C,E,K
+C:F,A,D,I
+D:A,E,F,L
+E:B,C,D,M,L
+F:A,B,C,D,E,O,M
+G:A,C,D,E,F
+H:A,C,D,E,O
+求出哪些人两两之间有共同好友，及他俩的共同好友都有谁？
+
+解体思路第一步  
+map
+读一行   A:B,C,D,F,E,O
+输出   \&lt;B,A&gt;\&lt;C,A&gt;\&lt;D,A&gt;\&lt;F,A&gt;\&lt;E,A&gt;\&lt;O,A&gt;
+在读一行   B:A...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/12</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="MapReduce">MapReduce</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/cc1873ed/">
+            
+                <span>MR之流量统计相关需求</span>
+        </a>
+        <div class="abstract-content">
+            数据：12345id，phoneNumber，upFlow，dFlow0,  138----	   ,  12,     111,  134----	   ,  13,     102,  136----	   ,  15,     163,  135----	   ,  17,     11
+需求一：统计上，下行流量FlowBean123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/12</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="MapReduce">MapReduce</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/f932ba85/">
             
                 <span>数据结构之图</span>
@@ -473,224 +770,6 @@ height:50vh;
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/01/26</span>
             </div>
             <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/409910e4/">
-            
-                <span>数据结构之散列表</span>
-        </a>
-        <div class="abstract-content">
-            什么是哈希表哈希表就是一种以 键-值(key-indexed) 存储数据的结构，我们只要输入待查找的值即key，即可查找到其对应的值。
-哈希的思路很简单，如果所有的键都是整数，那么就可以使用一个简单的无序数组来实现：将键作为索引，值即为其对应的值，这样就可以快速访问任意键的值。这是对于简单的键的情况，我们将其扩展到可以处理更加复杂的类型的键。
-使用哈希查找有两个步骤:
-
-使用哈希函数将被查找的键转换为数组的索引。在理想的情况下，不同的键会被转换为不同的索引值，但是在有些情况下我们需要处理多个键被哈希到同一个索引值的情况。所以哈希查找的第二个步骤就是处理冲突
-处理哈希碰撞冲突。有很多处理哈...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/01/23</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/6c17d6bd/">
-            
-                <span>数据结构之树</span>
-        </a>
-        <div class="abstract-content">
-            树结点的度¨结点拥有的子树数称为结点的度。度为0的结点称为叶子结点或终端结点，度不为0的结点称为非终端结点或分支结点。除根结点以外，分支结点也称为内部结点。树的度是树内各结点的度的最大值。
-层次与深度节点的层次从根开始定义，根为第一层，根的孩子为第二层，若某节点在第i层，则其子树就在第i+1层，其双亲在同一层的节点互为堂兄弟，
-树中节点的最大层次称为树的深度或高度，当前树的深度为4
-
-1234567891011121314151617/** * @return  二叉树的高度 */public int getHight()&#123;  return getHight(root);&#1...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/01/21</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/786266a6/">
-            
-                <span>Java之Iterator与Iterable的区别</span>
-        </a>
-        <div class="abstract-content">
-            Iterable的定义：Java.lang包
-1234567891011121314151617/** * Implementing this interface allows an object to be the target of * the "foreach" statement. * * @param &lt;T&gt; the type of elements returned by the iterator * * @since 1.5 */public interface Iterable&lt;T&gt; &#123;  /**     * Returns an ite...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/01/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="源码解析系列">源码解析系列</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/1c652596/">
-            
-                <span>JDK1.7-Stack源码分析</span>
-        </a>
-        <div class="abstract-content">
-            继承关系
- 在类的继承关系上，只继承Vector，，Vector继承自AbstractList，实现了List，底层用数组实现。
-
-源代码结构分析1.构造器12public Stack() &#123;&#125;
-2. 压栈12345public E push(E item) &#123;  addElement(item);//调用Vector中的addElement方法。  return item;&#125;
-12345public synchronized void addElement(E obj) &#123;  modCount++;  ensureCapacityHel...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/01/17</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="源码解析系列">源码解析系列</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/21482a37/">
-            
-                <span>LinkedHashMap源码赏析</span>
-        </a>
-        <div class="abstract-content">
-            两种排序方式
-根据时间(存储)排序，即先插入的是最老的，要被删除的，
-根据访问时间排序，每访问一次，就放到队列尾部，将来移除的时候，都是移除队列头部的元素。
-
-基础介绍 LinkedHashMap类似于HashMap，但是迭代遍历它时，取得“键值对”的顺序是插入次序，或者是最近最少使用（LRU）的次序。只比HashMap慢一点；而在迭代访问时反而更快，因为它使用链表维护内部次序
-1public class LinkedHashMap&lt;K,V&gt; extends HashMap&lt;K,V&gt; implements Map&lt;K,V&gt;
-两个重要属性12345678...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/01/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="源码解析系列">源码解析系列</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/526318cc/">
-            
-                <span>HashMap源码赏析</span>
-        </a>
-        <div class="abstract-content">
-            什么是HashMap基于哈希表的一个Map接口实现，存储的对象是一个键值对对象(Entry&lt;K,V&gt;)；
-HashMap补充说明基于数组和链表实现，内部维护着一个数组table，该数组保存着每个链表的表头结点；查找时，先通过hash函数计算key的hash值，再根据key的hash值计算数组索引（取余法），然后根据索引找到链表表头结点，然后遍历查找该链表；
-HashMap数据结构画了个示意图，如下，左边的数组索引是根据key的hash值计算得到，不同hash值有可能产生一样的索引，即哈希冲突，此时采用链地址法处理哈希冲突，即将所有索引一致的节点构成一个单链表；
-
-HashMa...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/01/14</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="源码解析系列">源码解析系列</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/df7893e2/">
-            
-                <span>LinkedList源码赏析</span>
-        </a>
-        <div class="abstract-content">
-            LinkedList从功能阅读-简单函数开始-List的Api一般在使用中最常用的就是，数据的存、取、删、循环遍历，就从这几个点分析源码
-1 - boolean add(E e)将指定元素添加到此列表的结尾。此方法等效于 addLast(E)。
-1234567891011121314151617181920public boolean add(E e) &#123;  linkLast(e);  return true;&#125;/**     * Links e as last element.     */void linkLast(E e) &#123;  //先取得此队列的最后...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/01/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="源码解析系列">源码解析系列</a>
-    
-</div>
             
         </div>
     </article>
@@ -3873,9 +3952,148 @@ HashMa...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 162
+        Total : 169
         </div>
         <!-- search  -->
         
@@ -3888,6 +4106,41 @@ HashMa...
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/37b5aa5b/">分布式存储系统基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/82553e97/">Flink源码解析之数据流转</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/90722dc0/">Flink源码解析之FaultTolerant</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/118b9a37/">Flink源码解析之StreamOperator</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/149d881d/">Flink源码解析之任务的调度与执行</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/fade0564/">Flink源码解析之三层图结构</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/c75f56/">Flink源码解析之Job提交流程</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -4110,12 +4363,12 @@ HashMa...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
         </li>
     
     
@@ -4125,12 +4378,12 @@ HashMa...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
         </li>
     
     
@@ -4190,12 +4443,12 @@ HashMa...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
         </li>
     
     
@@ -4215,17 +4468,17 @@ HashMa...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
         </li>
     
     
@@ -4250,17 +4503,17 @@ HashMa...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
     
@@ -4300,17 +4553,12 @@ HashMa...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
@@ -4320,7 +4568,7 @@ HashMa...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
         </li>
     
     
@@ -4330,12 +4578,17 @@ HashMa...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
         </li>
     
     
@@ -4732,9 +4985,9 @@ HashMa...
     
         <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
     
-        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
-    
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="Java8系列"><span class="iconfont-archer">&#xe606;</span>Java8系列</span>
     
@@ -4777,6 +5030,8 @@ HashMa...
         <span class="sidebar-tag-name" data-tags="kafka"><span class="iconfont-archer">&#xe606;</span>kafka</span>
     
         <span class="sidebar-tag-name" data-tags="JavaIO流系列"><span class="iconfont-archer">&#xe606;</span>JavaIO流系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="分布式"><span class="iconfont-archer">&#xe606;</span>分布式</span>
     
         <span class="sidebar-tag-name" data-tags="jvm"><span class="iconfont-archer">&#xe606;</span>jvm</span>
     

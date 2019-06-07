@@ -346,6 +346,231 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/9194e3d6/">
+            
+                <span>扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</span>
+        </a>
+        <div class="abstract-content">
+            HTTP / HTTPS 详解声明：文章转载自：http://www.techug.com/post/https-ssl-tls.html
+
+“SSL/TLS”是干嘛用滴？SSL 是洋文“Secure Sockets Layer”的缩写，中文叫做“安全套接层”。它是在上世纪90年代中期，由网景公司设计的。（顺便插一句，网景公司不光发明了 SSL，还发明了很多 Web 的基础设施——比如“CSS 样式表”和“JS 脚本”）
+
+为啥要发明 SSL 这个协议捏？因为原先互联网上使用的 HTTP 协议是明文的，存在很多缺点——比如传输内容会被偷窥（嗅探）和篡改。发明 SSL 协议，就是为了解决这...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/03/02</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/fdf5e3ed/">
+            
+                <span>死锁及其解决办法</span>
+        </a>
+        <div class="abstract-content">
+            要点提示
+掌握死锁的概念和产生死锁的根本原因
+理解产生死锁的必要条件–以下四个条件同时具备：互斥条件、不可抢占条件、占有且申请条件、循环等待条件
+记住解决死锁的一般方法，掌握死锁的预防和死锁的避免二者的基本思想
+掌握死锁的预防策略中资源有序分配策略
+理解进程安全序列的概念，理解死锁与安全序列的关系
+了解银行家算法
+了解资源分配图
+了解死锁的检测及恢复的思想
+
+
+死锁的理解  在计算机系统中，涉及软件，硬件资源都可能发生死锁。例如：系统中只有一台CD-ROM驱动器和一台打印机，某一个进程占有了CD-ROM驱动器，又申请打印机；另一进程占有了打印机，还申请CD-ROM。结果，两个进程都被阻塞...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/03/01</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/969c35d/">
+            
+                <span>并发编程实战(八)</span>
+        </a>
+        <div class="abstract-content">
+            第八章：线程池的使用本章将介绍对线程池进行配置与调优的一些高级选项，并分析在使用任务执行框架时需要注意的各种危险，以及一些使用Executor 的高级示例。
+
+需要明确指定执行策略的任务
+依赖性任务。
+
+
+只有当任务都是同类型的并且相互强立时，线程池的性能才能达到最佳。如果将运行时间较长的与运行时问较短的任务混合在一起，那么除非线程池很大，否则将可能造成 “ 阻塞 ”。如果提交的任务依赖于其他任务，那么除非线程池无限大，否则将可能造成死锁。
+
+如果某些任务依赖于其他的任务，那么会要求线程池足够大，从而确保他们的依赖任务不会被放入等待队列中而被拒绝。而采用线程封闭机制的任务需要串行执行。
+...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/03/01</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程实战读书笔记">并发编程实战读书笔记</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/c03b7c51/">
+            
+                <span>并发编程实战(七)</span>
+        </a>
+        <div class="abstract-content">
+            第七章 取消和关闭java没有任何机制来安全的终止线程
+我们很少希望某个任务、线程或服务立即停止，因为这种立即停止会使共享的数据结构处于不一致的状态。相反，在编写任务和服务时可以使用一种协作的方式：~需要停止时，它们首先会清除当前正在执行的工作，然启再结束。这提供了更好的灵活性，因为任务本身的代码比发出取消请求的代碍更清楚如何执行清除工作。
+
+任务取消如果外部代码能在某个操作正常完成之前将其置入“ 完成” 状态，那么这个操作就可以称为可取消的（ Cancellable ）
+
+用户请求取消
+有时间限制的操作
+应用程序事件
+错误：网页爬虫程序搜索相关的页面，并将页面或摘要数据保存到硬盘。当一...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/28</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程实战读书笔记">并发编程实战读书笔记</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/5f3364db/">
+            
+                <span>并发编程实战(六)</span>
+        </a>
+        <div class="abstract-content">
+            第六章 任务执行大多数并发应用程序都是围绕“任务执行（ Task Execution ）”来构造的：任务通常是一些抽象的且离散的工作单元。通过把应用程序的工作分解到多个任务中，可以简化程序的组织结构，提供一种自然的事务边界来优化错误恢复过程，以及提供一种自然的并行工作机构来提升并发性。
+
+串行执行任务12345678910public class SingleThreadWebServer &#123;    public static void main(String[] args) throws IOException&#123;    ServerSocket socket = n...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/27</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程实战读书笔记">并发编程实战读书笔记</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/c63c2ca9/">
+            
+                <span>并发编程实战(五)</span>
+        </a>
+        <div class="abstract-content">
+            第五章：基础构建模块此章节最好和之前的多线程编程博客一同观看，各个容器的详细介绍和使用方式在这里不会再过多记录。
+
+同步容器类包括Vector和HashTable这些同步的封装器类是由Collections.synchronizedXxx 等工厂方法创建的。这些类实现线程安全的方式是：将它们的状态封装起来，并对每个公有方法都进行同步，使得每次只有一个线程能访问容器的状态。
+
+不支持复合操作的原子性：例如 “迭代”，“若没有则添加‘，”条件运算“。。。。等
+我们可以通过客户端加锁来解决不可靠迭代问题，但是要牺牲一些伸缩性，通过在迭代期间持有Vector的锁，可以防止其他线程在迭代期间修改V...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/27</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程实战读书笔记">并发编程实战读书笔记</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/4a0a5133/">
+            
+                <span>Java中的Runnable、Callable、Future、FutureTask的区别与示例</span>
+        </a>
+        <div class="abstract-content">
+            Runnable其中Runnable应该是我们最熟悉的接口，它只有一个run()函数，用于将耗时操作写在其中，该函数没有返回值。然后使用某个线程去执行该runnable即可实现多线程，Thread类在调用start()函数后就是执行的是Runnable的run()函数。Runnable的声明如下 : 
+123456789101112public interface Runnable &#123;    /**      * When an object implementing interface &lt;code&gt;Runnable&lt;/code&gt; is used    ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/26</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/92f9baae/">
             
                 <span>关于JdbcConnection的线程安全问题</span>
@@ -435,303 +660,6 @@ To rephrase the question: should I avoid sharing instances of classes which impl
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="并发编程实战读书笔记">并发编程实战读书笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/3ad494db/">
-            
-                <span>并发编程实战(三)</span>
-        </a>
-        <div class="abstract-content">
-            第三章：对象的共享主要介绍如何共享和发布对象
-
-内存可见性：一个常见的误区是：认为关键字synchronized 只能用于实现原子性或者确定  “ 临界区 （ Critical Section ）”。罔同步还有另一个重要的方面：内存可见性（ Memoy Visibility ）。我们不仅希望防止某个线程正在使用对象状态而另一个线程在同时修改该状态，西且希望确保当一个线程修改了对象状态后，其能线程能够看到发生的状态变化
-
-为了确保多个线程之间对内存写入操作的可见性，必须使用同步机制。
-示例代码：
-1234567891011121314151617181920public class NoV...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/24</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程实战读书笔记">并发编程实战读书笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/4427b4f0/">
-            
-                <span>并发编程实战(二)</span>
-        </a>
-        <div class="abstract-content">
-            主要介绍了如何通过同步来避免多个线程在同一时刻访问相同的数据
-
-核心要对状态访问操作进行管理，特别是对共享的（ Shared ）和可变的（ Mutable ）状态的访问。
-“共享“ 意味着变量可以由多个线程间同时访问，而 “可变” 则意味着变量的值在其生命周期内可以发生变化
-
-对象的状态从非正式的意义上来说，对象的状态是指存储在状态变量（例如实例或静态域〉中的数据
-
-线程安全要使得对象是结程安全的，需要采用同步机制来协同对对象可变状态的访问。
-
-修复并发错误的三种方式不在线程之间共享该状态变量
-将状态变量修改为不可变的变量
-在访问状态变量时使用同步
-
-面向对象技术的优势（封装）面向对象这...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程实战读书笔记">并发编程实战读书笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/eb162f92/">
-            
-                <span>并发编程实战(一)</span>
-        </a>
-        <div class="abstract-content">
-            第一章：简介
-要解决的问题Java平台提供的各种并发功能与开发人员在程序中需要的并发语义并不匹配，
-
-在Java在语言中提供了一结底层机制，例如同步和条件等待，但在使用这些机制来实现应用级的协议与策略时必须始终保持一致。如果没有这些策略，那么在编写程序肘，虽然程序看似顺利的编译和运行， 但是却总会出现各种奇怪的问题
-
-为什么需要编写并发程序
-钱程是Java 语言中不可或缺的重要功能，它们能使复杂的异步代码变得更货单，从而极大地需化了复杂系统的开发。此外，要想充分发挥多处理器系统的强大计算能力，最简单的方式就是使用线程。随着处理器数量的持续增长，如伺高效地使用并发正变得越来越重要。
-
-操作...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程实战读书笔记">并发编程实战读书笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/af70e59d/">
-            
-                <span>MR之自定义GroupingComparator</span>
-        </a>
-        <div class="abstract-content">
-            需求有如下订单数据
-
-
-
-订单id
-商品id
-成交金额
-
-
-
-
-Order_0000001
-Pdt_01
-222.8
-
-
-Order_0000001
-Pdt_05
-25.8
-
-
-Order_0000002
-Pdt_03
-522.8
-
-
-Order_0000002
-Pdt_04
-122.4
-
-
-Order_0000003
-Pdt_01
-222.8
-
-
-
-现在需要求出每一个订单中成交金额最大的一笔交易
-
-分析1、利用“订单id和成交金额”作为key，可以将map阶段读取到的所有订单数据按照id分区，按照金额排序，发送到reduce
-2、在reduce端利用groupingcomparator...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="MapReduce">MapReduce</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/987ce803/">
-            
-                <span>MR之自定义inputFormat</span>
-        </a>
-        <div class="abstract-content">
-            需求无论hdfs还是mapreduce，对于小文件都有损效率，实践中，又难免面临处理大量小文件的场景，此时，就需要有相应解决方案
-
-分析小文件的优化无非以下几种方式：
-1、 在数据采集的时候，就将小文件或小批数据合成大文件再上传HDFS
-2、 在业务处理之前，在HDFS上使用mapreduce程序对小文件进行合并
-3、 在mapreduce处理时，可采用combineInputFormat提高效率
-
-实现本节实现的是上述第二种方式
-程序的核心机制：
-自定义一个InputFormat
-改写RecordReader，实现一次读取一个完整文件封装为KV
-在输出时使用SequenceFileOu...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="MapReduce">MapReduce</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/a2cd52e0/">
-            
-                <span>MR之社交粉丝数据查找共同好友</span>
-        </a>
-        <div class="abstract-content">
-            需求以下是qq的好友列表数据，冒号前是一个用，冒号后是该用户的所有好友（数据中的好友关系是单向的）
-A:B,C,D,F,E,O
-B:A,C,E,K
-C:F,A,D,I
-D:A,E,F,L
-E:B,C,D,M,L
-F:A,B,C,D,E,O,M
-G:A,C,D,E,F
-H:A,C,D,E,O
-求出哪些人两两之间有共同好友，及他俩的共同好友都有谁？
-
-解体思路第一步  
-map
-读一行   A:B,C,D,F,E,O
-输出   \&lt;B,A&gt;\&lt;C,A&gt;\&lt;D,A&gt;\&lt;F,A&gt;\&lt;E,A&gt;\&lt;O,A&gt;
-在读一行   B:A...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="MapReduce">MapReduce</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/cc1873ed/">
-            
-                <span>MR之流量统计相关需求</span>
-        </a>
-        <div class="abstract-content">
-            数据：12345id，phoneNumber，upFlow，dFlow0,  138----	   ,  12,     111,  134----	   ,  13,     102,  136----	   ,  15,     163,  135----	   ,  17,     11
-需求一：统计上，下行流量FlowBean123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="MapReduce">MapReduce</a>
     
 </div>
             
@@ -3819,9 +3747,148 @@ map
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 162
+        Total : 169
         </div>
         <!-- search  -->
         
@@ -3834,6 +3901,41 @@ map
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/37b5aa5b/">分布式存储系统基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/82553e97/">Flink源码解析之数据流转</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/90722dc0/">Flink源码解析之FaultTolerant</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/118b9a37/">Flink源码解析之StreamOperator</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/149d881d/">Flink源码解析之任务的调度与执行</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/fade0564/">Flink源码解析之三层图结构</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/c75f56/">Flink源码解析之Job提交流程</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -4056,12 +4158,12 @@ map
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
         </li>
     
     
@@ -4071,12 +4173,12 @@ map
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
         </li>
     
     
@@ -4136,12 +4238,12 @@ map
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
         </li>
     
     
@@ -4161,17 +4263,17 @@ map
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
         </li>
     
     
@@ -4196,17 +4298,17 @@ map
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
     
@@ -4246,17 +4348,12 @@ map
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
@@ -4266,7 +4363,7 @@ map
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
         </li>
     
     
@@ -4276,12 +4373,17 @@ map
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
         </li>
     
     
@@ -4678,9 +4780,9 @@ map
     
         <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
     
-        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
-    
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="Java8系列"><span class="iconfont-archer">&#xe606;</span>Java8系列</span>
     
@@ -4723,6 +4825,8 @@ map
         <span class="sidebar-tag-name" data-tags="kafka"><span class="iconfont-archer">&#xe606;</span>kafka</span>
     
         <span class="sidebar-tag-name" data-tags="JavaIO流系列"><span class="iconfont-archer">&#xe606;</span>JavaIO流系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="分布式"><span class="iconfont-archer">&#xe606;</span>分布式</span>
     
         <span class="sidebar-tag-name" data-tags="jvm"><span class="iconfont-archer">&#xe606;</span>jvm</span>
     

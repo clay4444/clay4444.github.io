@@ -359,6 +359,346 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/67e1a306/">
+            
+                <span>Hbase和Hive的集成</span>
+        </a>
+        <div class="abstract-content">
+            将hbase的表影射到hive上使用hive的查询语句。
+1CREATE TABLE t11(key string, name string) STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'  WITH SERDEPROPERTIES ("hbase.columns.mapping" = ":key,cf:name") TBLPROPERTIES("hbase.table.name" = "ns1:t11");
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/03/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Hbase">Hbase</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/e1de3e9b/">
+            
+                <span>详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</span>
+        </a>
+        <div class="abstract-content">
+            热点大量的数据都涌向了一个或几个节点
+
+
+hbase区域空间下的meta元数据表就是一个很好的示例：
+
+最后加一个hash值，让挨在一起的数据分到不同的region中，防止数据查询时都到一个节点上查询造成热点问题。
+
+rowKey的设计原则
+
+
+
+
+
+经常查询的数据要放在一起，没有错，但是不能量太大，否则，就会引发热点问题，此时就要把这些大量的数据拆到不同的节点上去。
+
+也就是要在连续性和散列性之间做一个权衡
+
+盐析
+
+撒盐的时候会尽量均匀。
+分配的前缀种类数量要和你想使用数据分散到不同的region的数量一致。
+
+
+
+
+
+
+
+
+例子：电信公司通话记录存储
+
+首先根据设备查看总共有多少个...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/03/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Hbase">Hbase</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/f7fb5894/">
+            
+                <span>详解Hbase的协处理器coprocessor</span>
+        </a>
+        <div class="abstract-content">
+            coprocessor   协处理器批处理的，等价于存储过程或者触发器
+
+执行顺序
+
+
+执行状态
+
+
+
+图示：系统协处理器优先加载
+
+
+[Observer]
+观察者,类似于触发器，基于事件。发生动作时，回调相应方法。
+
+
+RegionObserver：用户可以使用这种协处理器处理数据修改事件，他们与表的region紧密联系
+MasterObserver：可以被用作管理或DDL类型的操作，这些是集群级事件。
+WAlObserver：提供控制WAL的钩子函数
+
+
+[Endpoint]终端,类似于存储过程。
+
+
+
+使用过程
+加载
+
+12345678910111213[hbase-site.xm...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/03/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Hbase">Hbase</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/e73169bb/">
+            
+                <span>详解hbase扫描、过滤、缓存等问题</span>
+        </a>
+        <div class="abstract-content">
+            hbase 大体架构
+
+预先切割创建表时，预先对表进行切割。
+切割线是rowkey.
+$hbase&gt;create ‘ns1:t2’,’f1’,SPLITS=&gt;[‘row3000’,’row6000’]        切三份
+
+hbase：meta结果
+
+
+web UI界面
+ 
+
+hdfs结果
+ 
+
+刷新入库插入一条数据如果想立即在hdfs上看见结果，需要对数据进行刷新
+ 
+
+指定版本数创建表时指定列族的版本数,该列族的所有列都具有相同数量的版本
+1$hbase&gt;create 'ns1:t3',&#123;NAME=&gt;'f1',VERSIONS=&gt;3&#125...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/03/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Hbase">Hbase</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/615ff67f/">
+            
+                <span>详解hbase架构、数据读取、存储、拆分风暴等问题</span>
+        </a>
+        <div class="abstract-content">
+            hbase进程hmaster
+hregionserver
+
+hbase 端口16010
+
+start-hbase.shhbase-daemon.sh start master
+hbase-daemons.sh start regionserver
+
+hbase的HA设置启动多个master即可。因为habase本身自己就依赖于zookeeper，所以直接用hbase-daemon.sh start master启动一次就会自动成为back up节点，
+zk节点下:/hbase/backup-master
+
+hbase-shell操作​    $&gt;hbase shell       ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/03/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Hbase">Hbase</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/cedf1ac1/">
+            
+                <span>kafka消息队列初探</span>
+        </a>
+        <div class="abstract-content">
+            JMS
+java message servicejava消息服务。
+
+queue
+只有能有一个消费者。P2P模式(点对点).
+发布订阅(publish-subscribe,主题模式)，
+
+
+
+JMS：
+两种模式：
+p2p模式：只有能有一个消费者。P2P模式(点对点).
+发布订阅(publish-subscribe,主题模式)，
+
+kafka：
+用消费者组的方式把两种模式组合在一起，把所有的用户都放在同一个组中，此时只会有一个消费者收到消息，把所有的消费者都单独放在一个组中，此时所有的消费者都会收到消息。
+
+kafka
+分布式流处理平台。
+在系统之间构建实时数据流管道。
+以topic分类对...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/03/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="kafka">kafka</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/117ed1fe/">
+            
+                <span>Flume日志收集框架初探</span>
+        </a>
+        <div class="abstract-content">
+            flume
+
+收集、移动、聚合大量日志数据的服务。
+基于流数据的架构，用于在线日志分析。
+基于事件。
+在生产和消费者之间启动协调作用。
+提供了事务保证，确保消息一定被分发。
+Source 多种
+sink多种.
+
+multihop        //多级跃点.
+
+
+Source​    接受数据，类型有多种。
+
+Channel临时存放地，对Source中来的数据进行缓冲，直到sink消费掉。
+
+Sink从channel提取数据存放到中央化存储(hadoop / hbase)。
+
+安装flume1.7.0
+下载
+
+tar
+
+环境变量
+
+验证flume是否成功
+$&gt;flume-ng ve...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/03/08</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="flume">flume</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/649d866d/">
             
                 <span>扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</span>
@@ -432,231 +772,6 @@ height:50vh;
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/03/02</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/9194e3d6/">
-            
-                <span>扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</span>
-        </a>
-        <div class="abstract-content">
-            HTTP / HTTPS 详解声明：文章转载自：http://www.techug.com/post/https-ssl-tls.html
-
-“SSL/TLS”是干嘛用滴？SSL 是洋文“Secure Sockets Layer”的缩写，中文叫做“安全套接层”。它是在上世纪90年代中期，由网景公司设计的。（顺便插一句，网景公司不光发明了 SSL，还发明了很多 Web 的基础设施——比如“CSS 样式表”和“JS 脚本”）
-
-为啥要发明 SSL 这个协议捏？因为原先互联网上使用的 HTTP 协议是明文的，存在很多缺点——比如传输内容会被偷窥（嗅探）和篡改。发明 SSL 协议，就是为了解决这...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/03/02</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/fdf5e3ed/">
-            
-                <span>死锁及其解决办法</span>
-        </a>
-        <div class="abstract-content">
-            要点提示
-掌握死锁的概念和产生死锁的根本原因
-理解产生死锁的必要条件–以下四个条件同时具备：互斥条件、不可抢占条件、占有且申请条件、循环等待条件
-记住解决死锁的一般方法，掌握死锁的预防和死锁的避免二者的基本思想
-掌握死锁的预防策略中资源有序分配策略
-理解进程安全序列的概念，理解死锁与安全序列的关系
-了解银行家算法
-了解资源分配图
-了解死锁的检测及恢复的思想
-
-
-死锁的理解  在计算机系统中，涉及软件，硬件资源都可能发生死锁。例如：系统中只有一台CD-ROM驱动器和一台打印机，某一个进程占有了CD-ROM驱动器，又申请打印机；另一进程占有了打印机，还申请CD-ROM。结果，两个进程都被阻塞...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/03/01</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/969c35d/">
-            
-                <span>并发编程实战(八)</span>
-        </a>
-        <div class="abstract-content">
-            第八章：线程池的使用本章将介绍对线程池进行配置与调优的一些高级选项，并分析在使用任务执行框架时需要注意的各种危险，以及一些使用Executor 的高级示例。
-
-需要明确指定执行策略的任务
-依赖性任务。
-
-
-只有当任务都是同类型的并且相互强立时，线程池的性能才能达到最佳。如果将运行时间较长的与运行时问较短的任务混合在一起，那么除非线程池很大，否则将可能造成 “ 阻塞 ”。如果提交的任务依赖于其他任务，那么除非线程池无限大，否则将可能造成死锁。
-
-如果某些任务依赖于其他的任务，那么会要求线程池足够大，从而确保他们的依赖任务不会被放入等待队列中而被拒绝。而采用线程封闭机制的任务需要串行执行。
-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/03/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程实战读书笔记">并发编程实战读书笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/c03b7c51/">
-            
-                <span>并发编程实战(七)</span>
-        </a>
-        <div class="abstract-content">
-            第七章 取消和关闭java没有任何机制来安全的终止线程
-我们很少希望某个任务、线程或服务立即停止，因为这种立即停止会使共享的数据结构处于不一致的状态。相反，在编写任务和服务时可以使用一种协作的方式：~需要停止时，它们首先会清除当前正在执行的工作，然启再结束。这提供了更好的灵活性，因为任务本身的代码比发出取消请求的代碍更清楚如何执行清除工作。
-
-任务取消如果外部代码能在某个操作正常完成之前将其置入“ 完成” 状态，那么这个操作就可以称为可取消的（ Cancellable ）
-
-用户请求取消
-有时间限制的操作
-应用程序事件
-错误：网页爬虫程序搜索相关的页面，并将页面或摘要数据保存到硬盘。当一...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程实战读书笔记">并发编程实战读书笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/5f3364db/">
-            
-                <span>并发编程实战(六)</span>
-        </a>
-        <div class="abstract-content">
-            第六章 任务执行大多数并发应用程序都是围绕“任务执行（ Task Execution ）”来构造的：任务通常是一些抽象的且离散的工作单元。通过把应用程序的工作分解到多个任务中，可以简化程序的组织结构，提供一种自然的事务边界来优化错误恢复过程，以及提供一种自然的并行工作机构来提升并发性。
-
-串行执行任务12345678910public class SingleThreadWebServer &#123;    public static void main(String[] args) throws IOException&#123;    ServerSocket socket = n...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/27</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程实战读书笔记">并发编程实战读书笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/c63c2ca9/">
-            
-                <span>并发编程实战(五)</span>
-        </a>
-        <div class="abstract-content">
-            第五章：基础构建模块此章节最好和之前的多线程编程博客一同观看，各个容器的详细介绍和使用方式在这里不会再过多记录。
-
-同步容器类包括Vector和HashTable这些同步的封装器类是由Collections.synchronizedXxx 等工厂方法创建的。这些类实现线程安全的方式是：将它们的状态封装起来，并对每个公有方法都进行同步，使得每次只有一个线程能访问容器的状态。
-
-不支持复合操作的原子性：例如 “迭代”，“若没有则添加‘，”条件运算“。。。。等
-我们可以通过客户端加锁来解决不可靠迭代问题，但是要牺牲一些伸缩性，通过在迭代期间持有Vector的锁，可以防止其他线程在迭代期间修改V...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/27</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="并发编程实战读书笔记">并发编程实战读书笔记</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/4a0a5133/">
-            
-                <span>Java中的Runnable、Callable、Future、FutureTask的区别与示例</span>
-        </a>
-        <div class="abstract-content">
-            Runnable其中Runnable应该是我们最熟悉的接口，它只有一个run()函数，用于将耗时操作写在其中，该函数没有返回值。然后使用某个线程去执行该runnable即可实现多线程，Thread类在调用start()函数后就是执行的是Runnable的run()函数。Runnable的声明如下 : 
-123456789101112public interface Runnable &#123;    /**      * When an object implementing interface &lt;code&gt;Runnable&lt;/code&gt; is used    ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/26</span>
             </div>
             <!-- tags  -->
             
@@ -3841,9 +3956,148 @@ height:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 162
+        Total : 169
         </div>
         <!-- search  -->
         
@@ -3856,6 +4110,41 @@ height:50vh;
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/37b5aa5b/">分布式存储系统基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/82553e97/">Flink源码解析之数据流转</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/90722dc0/">Flink源码解析之FaultTolerant</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/118b9a37/">Flink源码解析之StreamOperator</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/149d881d/">Flink源码解析之任务的调度与执行</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/fade0564/">Flink源码解析之三层图结构</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/c75f56/">Flink源码解析之Job提交流程</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -4078,12 +4367,12 @@ height:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
         </li>
     
     
@@ -4093,12 +4382,12 @@ height:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
         </li>
     
     
@@ -4158,12 +4447,12 @@ height:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
         </li>
     
     
@@ -4183,17 +4472,17 @@ height:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
         </li>
     
     
@@ -4218,17 +4507,17 @@ height:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
     
@@ -4268,17 +4557,12 @@ height:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
@@ -4288,7 +4572,7 @@ height:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
         </li>
     
     
@@ -4298,12 +4582,17 @@ height:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
         </li>
     
     
@@ -4700,9 +4989,9 @@ height:50vh;
     
         <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
     
-        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
-    
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="Java8系列"><span class="iconfont-archer">&#xe606;</span>Java8系列</span>
     
@@ -4745,6 +5034,8 @@ height:50vh;
         <span class="sidebar-tag-name" data-tags="kafka"><span class="iconfont-archer">&#xe606;</span>kafka</span>
     
         <span class="sidebar-tag-name" data-tags="JavaIO流系列"><span class="iconfont-archer">&#xe606;</span>JavaIO流系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="分布式"><span class="iconfont-archer">&#xe606;</span>分布式</span>
     
         <span class="sidebar-tag-name" data-tags="jvm"><span class="iconfont-archer">&#xe606;</span>jvm</span>
     

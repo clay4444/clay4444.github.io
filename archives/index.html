@@ -346,6 +346,234 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/37b5aa5b/">
+            
+                <span>分布式存储系统基础</span>
+        </a>
+        <div class="abstract-content">
+            分布式存储系统基础分布式存储系统首先要面对的问题就是数据分片，即将数据均匀地分布到多个存储节点。另外，为了保证可靠性和可用性，需要将数据复制多个副本，这就带来了多个副本的数据一致性问题。
+大规模系统的重要目标是节省成本，因而只能采用性价比较高的PC服务器。这些服务器性能很好，但是故障率很高，要求系统能够在软件层面实现自动容错。当存储节点出现故障时，系统能够检测出来，并将原有的数据和服务迁移到集群中其他正常工作的节点。
+
+基本概念异常在分布式存储系统中，往往将一台服务器或者服务器上运行的一个进程称为一个节点，节点与节点之间通过网络互联。然而，服务节点是不可靠的，网络也是不可靠的，它们之间通...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/07</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="分布式">分布式</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/82553e97/">
+            
+                <span>Flink源码解析之数据流转</span>
+        </a>
+        <div class="abstract-content">
+            数据流转——Flink的数据抽象及数据交换过程本章打算讲一下flink底层是如何定义和在操作符之间传递数据的。
+
+1. flink的数据抽象
+1.1 MemorySegmentFlink作为一个高效的流框架，为了避免JVM的固有缺陷（java对象存储密度低，FGC影响吞吐 和响应等），必然走上自主管理内存的道路。
+这个 MemorySegment 就是Flink的内存抽象。默认情况下，一个MemorySegment可以被看做 是一个32kb大的内存块的抽象。这块内存既可以是JVM里的一个byte[]，也可以是堆外内存 （DirectByteBuffer）。
+如果说byte[]数组和dir...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/06</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Flink">Flink</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/90722dc0/">
+            
+                <span>Flink源码解析之FaultTolerant</span>
+        </a>
+        <div class="abstract-content">
+            为执行保驾护航——Fault Tolerant与保证ExactlyOnce语义
+1.Fault Tolerant演进之路对于7×24小时不间断运行的流程序来说，要保证fault tolerant是很难的，这不像是离线任 务，如果失败了只需要清空已有结果，重新跑一次就可以了。对于流任务，如果要保证能够重 新处理已处理过的数据，就要把数据保存下来；而这就面临着几个问题：比如一是保存多久的数据？二是重复计算的数据应该怎么处理，怎么保证幂等性？ 对于一个流系统，我们有以下希望：
+
+最好能做到exactly-once
+处理延迟越低越好
+吞吐量越高越好
+计算模型应当足够简单易用，又具有足够的表达力
+...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/06</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Flink">Flink</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/118b9a37/">
+            
+                <span>Flink源码解析之StreamOperator</span>
+        </a>
+        <div class="abstract-content">
+            StreamOperator的抽象与实现
+1. 数据源的逻辑——StreamSource与时间模型StreamSource抽象了一个数据源，并且指定了一些如何处理数据的模式。
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990public class StreamSource&lt;OUT, SRC ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/06</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Flink">Flink</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/149d881d/">
+            
+                <span>Flink源码解析之任务的调度与执行</span>
+        </a>
+        <div class="abstract-content">
+            任务的调度与执行关于flink的任务执行架构，官网的这两张图就是最好的说明：
+
+Flink 集群启动后，首先会启动一个 JobManger 和多个的 TaskManager。用户的代码会由 JobClient 提交给 JobManager，JobManager 再把来自不同用户的任务发给 不同的 TaskManager 去执行，每个TaskManager管理着多个task，task是执行计算的最小结构， TaskManager 将心跳和统计信息汇报给 JobManager。TaskManager 之间以流的形式进行 数据的传输。上述除了task外的三者均为独立的 JVM 进程。 要注意的...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/06</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Flink">Flink</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/fade0564/">
+            
+                <span>Flink源码解析之三层图结构</span>
+        </a>
+        <div class="abstract-content">
+            1.flink的图结构事实上，flink总共提供了三种图的抽象，我们前面已经提到了StreamGraph和JobGraph，还 有一种是ExecutionGraph，是用于调度的基本数据结构。
+
+
+上面这张图清晰的给出了flink各个图的工作原理和转换过程。其中最后一个物理执行图并非 flink的数据结构，而是程序开始执行后，各个task分布在不同的节点上，所形成的物理上的关 系表示。
+
+
+从JobGraph的图里可以看到，数据从上一个operator流到下一个operator的过程中，上 游作为生产者提供了IntermediateDataSet，而下游作为消费者需要JobEdge。事实...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/05</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Flink">Flink</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/c75f56/">
+            
+                <span>Flink源码解析之Job提交流程</span>
+        </a>
+        <div class="abstract-content">
+            1.  wordcount 例子123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051public class SocketTextStreamWordCount &#123;    public static void main(String[] args) throws Exception &#123;        /*if (args.length != 2) &#123;            System.err.println("USAGE:\...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/05</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Flink">Flink</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/3308668f/">
             
                 <span>kafka权威指南第七八章</span>
@@ -420,237 +648,6 @@ l...
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/17</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/5bedbc4e/">
-            
-                <span>深入理解java虚拟机</span>
-        </a>
-        <div class="abstract-content">
-            -XX:+HeapDumpOnOutOfMemoryError 堆内存溢出时dump出一个快照文件，后续可以使用工具进行解析
--Xms20m
--Xmx20m
-堆内存设置为20m
-
-jps：列出所有的java进程
-jconsole：性能分析工具
-
-java 语言 -&gt; java 编译器 -&gt; class文件  -&gt; java虚拟机
-scala 语言 -&gt; scala 编译器  -&gt; class文件 -&gt; java虚拟机
-只是一些规范而已
-
-classic VM
-第一款商用的虚拟机，只有纯解释器，如果想要编译，就必须外挂jit，但是会导致所有代码都要jit...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/05</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="jvm">jvm</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/f849401d/">
-            
-                <span>算法进阶第一课-3</span>
-        </a>
-        <div class="abstract-content">
-            题目：给定一个整数，判断该数是否是回文数
-常数项：
-比如插入排序遍历的时候只有一个交换操作，所以这个算法的常数项很低，但是时间复杂度O(n^2)，
-但是堆排序，处理的过程中有很多的交换、判断、赋值 等操作，所以这个算法的常数项很高，但是它的时间复杂度是O(N*log(N))
-所以在数组长度很小的情况下，插入排序效果更优，但是如果数组很长，常数项能起到的作用就很小了，此时就要看时间复杂度，明显 O(N*log(N)) 的时间复杂度在数组很长时，效果更优
-
-代码
-123456789101112131415161718192021222324252627public class Code_01...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/05</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/ff78c689/">
-            
-                <span>算法进阶第六课</span>
-        </a>
-        <div class="abstract-content">
-            题目：换钱的方法数换钱的方法数 
-【题目】 给定数组arr，arr中所有的值都为正数且不重复。每个值代表 一种面值的货币，每种面值的货币可以使用任意张，再给定一 个整数aim代表要找的钱数，求换钱有多少种方法。
-【举例】 arr=[5,10,25,1]，aim=0。 组成0元的方法有1种，就是所有面值的货币都不用。所以返回1。 
-arr=[5,10,25,1]，aim=15。 组成15元的方法有6种，分别为3张5元、1张10元+1张5元、1张 10元+5张1元、10张1元+1张5元、2张5元+5张1元和15张1元。所 以返回6。
- arr=[3,5]，aim=2。 任何方法都无法组成2元...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/04</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/7f010ad5/">
-            
-                <span>算法基础第六课</span>
-        </a>
-        <div class="abstract-content">
-            图的存储方式
-邻接表边不带权重的：
-
-如果是无向图，就是彼此都互为邻居，1和2链接，那么1的邻居有2，2的邻居有1。
-
-边带权重的；
-
-
-
-邻接矩阵边带有权重的：
-
-图中的数字表示边上的权重；
-
-一般的表示法：第一列表示权重，第二列表示from，第三列表示to
-
-
-代码点：
-1234567891011121314151617public class Node &#123;	public int value; //点代表的值	public int in;  //入度	public int out; // 出度	public ArrayList&lt;Node&gt; nexts;   //...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/01</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/8366812d/">
-            
-                <span>算法进阶第四五课</span>
-        </a>
-        <div class="abstract-content">
-            题目：大楼的轮廓线给定一个N行3列二维数组， 每一行表示有一座大楼， 一共有N座大楼。所有大楼的底部都坐落在X轴上， 每一行的三个值(a,b,c)代表每座大楼的从(a,0)点开始， 到(b,0)点结束， 高度为c。输入的数据可以保证a&lt;b,且a， b， c均为正数。 大楼之间可以有重合。请输出整体的轮廓线。
-例子： 给定一个二维数组[[1, 3, 3],[2, 4, 4],[5, 6, 1]]
-输出为轮廓线[[1, 2, 3],[2, 4, 4],[5, 6, 1]] 
-
-
-
-思路：
-把给定的二维数组设计成如下的方式：
-(1,3,上)、(3,3,下)、(2,4,上)、(4,4,下)...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/04/01</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/42c55172/">
-            
-                <span>算法进阶第三课</span>
-        </a>
-        <div class="abstract-content">
-            Morris 遍历经典二叉树的遍历不管是递归还是非递归，都避免不了额外空间复杂度O(h)，递归是程序帮我们压栈，非递归是我们自己压栈，因为当我们遍历左子树或者右子树的时候，我们希望遍历完一遍后，还回到当前节点，所以这个过程是省不掉的；
-
-morris遍历
-时间复杂度O(N)，空间复杂度O(1)
-指向null也是会占用空间的，morris遍历就是利用这些剩余空间来完成遍历的，相当于是修改原来二叉树的结构，让我们可以回去，这一种统一思路叫做线索二叉树；
-
-标准：
-当前节点记为cur，
-
-如果CUR没有左孩子，CUR向右移动，CUR = cur.right
-如果CUR有左孩子，找到左子树最右节...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/22</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/fdbf220/">
-            
-                <span>算法进阶第二课</span>
-        </a>
-        <div class="abstract-content">
-            窗口内最大值的更新结构窗口：L和R，都只能向右走，加数的时候R向右走，减数的时候L向右走，求一个窗口的最大值，如果遍历，每次都需要承担一个O(len) 的时间复杂度，要做的就是找到一种结构，可以更快的找到窗口内的最大值；
-
-双端队列结构：双向链表
-不需要遍历，只需要从头部加减东西，从尾部加减东西，时间复杂度都是O(1)
-我们需要保证从头部到尾部放的值是从大到小的；
-加数的时候，从双端队列的尾部加入，如果原数组i位置上的数字是value，考察双端队列的尾部， value如果比尾部的值小，直接落在尾部后面，如果比尾部的值大，依次弹出尾部的值，直到value小于尾部某个值，或者弹到空；然后把新...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/16</span>
             </div>
             <!-- tags  -->
             
@@ -3738,9 +3735,148 @@ morris遍历
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 162
+        Total : 169
         </div>
         <!-- search  -->
         
@@ -3753,6 +3889,41 @@ morris遍历
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/37b5aa5b/">分布式存储系统基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/82553e97/">Flink源码解析之数据流转</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/90722dc0/">Flink源码解析之FaultTolerant</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/118b9a37/">Flink源码解析之StreamOperator</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/149d881d/">Flink源码解析之任务的调度与执行</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/fade0564/">Flink源码解析之三层图结构</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/c75f56/">Flink源码解析之Job提交流程</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3975,12 +4146,12 @@ morris遍历
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
         </li>
     
     
@@ -3990,12 +4161,12 @@ morris遍历
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
         </li>
     
     
@@ -4055,12 +4226,12 @@ morris遍历
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
         </li>
     
     
@@ -4080,17 +4251,17 @@ morris遍历
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
         </li>
     
     
@@ -4115,17 +4286,17 @@ morris遍历
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
     
@@ -4165,17 +4336,12 @@ morris遍历
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
@@ -4185,7 +4351,7 @@ morris遍历
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
         </li>
     
     
@@ -4195,12 +4361,17 @@ morris遍历
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
         </li>
     
     
@@ -4597,9 +4768,9 @@ morris遍历
     
         <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
     
-        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
-    
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="Java8系列"><span class="iconfont-archer">&#xe606;</span>Java8系列</span>
     
@@ -4642,6 +4813,8 @@ morris遍历
         <span class="sidebar-tag-name" data-tags="kafka"><span class="iconfont-archer">&#xe606;</span>kafka</span>
     
         <span class="sidebar-tag-name" data-tags="JavaIO流系列"><span class="iconfont-archer">&#xe606;</span>JavaIO流系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="分布式"><span class="iconfont-archer">&#xe606;</span>分布式</span>
     
         <span class="sidebar-tag-name" data-tags="jvm"><span class="iconfont-archer">&#xe606;</span>jvm</span>
     

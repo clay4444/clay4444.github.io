@@ -346,6 +346,268 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/6d17d8e0/">
+            
+                <span>Java8系列之新时间和日期API</span>
+        </a>
+        <div class="abstract-content">
+            传统的日期时间API会有线程安全问题，123456789101112131415161718192021222324SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");Callable&lt;Date&gt; task = new Callable&lt;Date&gt;() &#123;  @Override  public Date call() throws Exception &#123;    return sdf.parse("20161121");  &#125;&#125;;ExecutorService poo...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/01/06</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Java8系列">Java8系列</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/91ca9518/">
+            
+                <span>Java8系列之Optional容器</span>
+        </a>
+        <div class="abstract-content">
+            一、Optional 容器类：用于尽量避免空指针异常①. Optional.of(T t) : 创建一个 Optional 实例
+123456@Testpublic void test1()&#123;  Optional&lt;Employee&gt; op = Optional.of(new Employee());  Employee emp = op.get();  System.out.println(emp);&#125;
+
+②. Optional.empty() : 创建一个空的 Optional 实例
+③.Optional.ofNullable(T t):若 t 不为 n...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/01/03</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Java8系列">Java8系列</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/9b8b8703/">
+            
+                <span>Java8系列之Stream-API</span>
+        </a>
+        <div class="abstract-content">
+            流(Stream) 到底是什么呢？
+是数据渠道，用于操作数据源（集合、数组等）所生成的元素序列。
+“集合讲的是数据，流讲的是计算！ ”
+注意：
+
+① Stream 自己不会存储元素。
+② Stream 不会改变源对象。相反，他们会返回一个持有结果的新Stream。
+③ Stream 操作是延迟执行的。这意味着他们会等到需要结果的时候才执行。
+Stream 的操作三个步骤① 创建 Stream
+
+一个数据源（如： 集合、数组）， 获取一个流
+
+② 中间操作
+
+一个中间操作链，对数据源的数据进行处理
+
+③ 终止操作(终端操作)
+
+一个终止操作，执行中间操作链，并产生结果
+
+创建Stream①...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/12/28</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Java8系列">Java8系列</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/ccf34b81/">
+            
+                <span>Java8系列之Lambda表达式</span>
+        </a>
+        <div class="abstract-content">
+            为什么使用Lambda表达式：Lambda 是一个匿名函数，我们可以把 Lambda表达式理解为是一段可以传递的代码（将代码像数据一样进行传递）。可以写出更简洁、更灵活的代码。作为一种更紧凑的代码风格，使Java的语言表达能力得到了提升。
+
+一：代码对比1. 字符串排序1234567891011121314151617181920//原来的匿名内部类@Testpublic void test1()&#123;  //方法一  Comparator&lt;String&gt; com = new Comparator&lt;String&gt;()&#123;    @Override  ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/12/24</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Java8系列">Java8系列</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/f26db82e/">
+            
+                <span>Comparator和Comparable详解</span>
+        </a>
+        <div class="abstract-content">
+            Comparator 和 Comparable 相同的地方
+他们都是java的一个接口, 并且是用来对自定义的class比较大小的,
+什么是自定义class: 如
+
+1234public class Person&#123;   String name;   int age &#125;
+当我们有这么一个personList,里面包含了person1, person2, persion3….., 我们用Collections.sort( personList ), 
+是得不到预期的结果的. 这时肯定有人要问, 那为什么可以排序一个字符串list呢?
+
+如 StringList{“hell...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/12/21</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/c4dacfdd/">
+            
+                <span>Java8系列之宏观简介</span>
+        </a>
+        <div class="abstract-content">
+            简介：
+速度更快
+代码更少
+强大的Stream API
+便于并行
+最大化减少空指针异常
+
+
+其中最为核心的是Lambda 表达式与Stream API
+
+Java8的代码执行速度更快的几个原因：1. 底层数据结构的优化：
+HashMap的优化：
+
+碰撞的个数大于8，总大小大于64，把每个链表转变成红黑树 。
+除了添加操作以外，其他的效率都变高，
+添加的时候1.7 是加在链表的头部，1.8是加在链表的尾部。
+效率高的原因是：每次判断都是只判断一半。
+扩容之后再重新排序，不会再去运算每个每个元素的hashcode值了，直接是原来hash表的长度加上现在的位置。
+
+
+ConcurrentHas...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/12/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Java8系列">Java8系列</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/13325b7b/">
+            
+                <span>Java的反射与动态代理</span>
+        </a>
+        <div class="abstract-content">
+            Java Reflection
+Reflection（反射）是被视为动态语言的关键，反射机制允许程序在执行期借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性及方法
+Java反射机制提供的功能
+
+
+在运行时判断任意一个对象所属的类
+在运行时构造任意一个类的对象
+在运行时判断任意一个类所具有的成员变量和方法
+在运行时调用任意一个对象的成员变量和方法
+生成动态代理
+
+
+反射相关的主要API：
+
+
+java.lang.Class:代表一个类
+java.lang.reflect.Method:代表类的方法 (这是一个类了，不是一个方法)
+java.lang.r...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/12/17</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/1c38ec28/">
             
                 <span>关于内部类的那些事</span>
@@ -420,247 +682,6 @@ UML类图我们先来看看装饰者模式的类图，再来详细讲述：
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/12/07</span>
             </div>
             <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/34ec76cc/">
-            
-                <span>迭代器模式详解</span>
-        </a>
-        <div class="abstract-content">
-            场景理解：假设有一个蛋糕店和一个餐厅，蛋糕店的菜单使用List实现，餐厅的菜单使用String[]  实现，现在两家店进行合并，需求：提供一个打印所有菜单的方法，
-一般做法( 代码实现 )菜单实体 :
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748/** * 菜单实体 */public class MenuItem &#123;  private String name,description;  private boolean vegatable;  priv...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/12/05</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/f4488fab/">
-            
-                <span>适配器模式详解</span>
-        </a>
-        <div class="abstract-content">
-            现实生活中的一些例子例如我们去美国，但是我们带的手机充电器是国标插口的，此时，我们就需要使用一个转换接口，把国标的充电器转换成美标的。再比如，我们开车，车上的点烟器也是一种转换接口，把USB转换成火焰
-
-对适配器模式的理解 ( 适配的步骤 )
-从用户的角度看不到被适配者，是解耦的，
-用户调用适配器转化出来的目标接口或方法
-适配器再调用被适配者的相关接口方法
-
-和装饰者模式的区别
-装饰者是为了添加功能，
-适配器是为了接口的转换
-举例理解：国标插座转美标：适配器。     国标插座增加电流保护等功能：装饰者。
-
-鸭子冒充火鸡的代码示例Duck：
-12345public interface D...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/12/01</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/db6632d/">
-            
-                <span>详解关系型数据库三范式</span>
-        </a>
-        <div class="abstract-content">
-            1. 第一范式(确保每列保持原子性)第一范式是最基本的范式。如果数据库表中的所有字段值都是不可分解的原子值，就说明该数据库表满足了第一范式。
-第一范式的合理遵循需要根据系统的实际需求来定。比如某些数据库系统中需要用到“地址”这个属性，本来直接将“地址”属性设计成一个数据库表的字段就行。但是如果系统经常会访问“地址”属性中的“城市”部分，那么就非要将“地址”这个属性重新拆分为省份、城市、详细地址等多个部分进行存储，这样在对地址中某一部分操作的时候将非常方便。这样设计才算满足了数据库的第一范式，如下表所示。
-
-上表所示的用户信息遵循了第一范式的要求，这样在对用户使用城市进行分类的时候就非常方...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/11/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="MySql">MySql</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/dcf98c31/">
-            
-                <span>maven的聚合和继承</span>
-        </a>
-        <div class="abstract-content">
-            一、为什么要聚合？随着技术的飞速发展和各类用户对软件的要求越来越高，软件本身也变得越来越复杂，然后软件设计人员开始采用各种方式进行开发，于是就有了我们的分层架构、分模块开发，来提高代码的清晰和重用。针对于这一特性，maven也给予了相应的配置。
-
-所谓聚合，顾名思义，就是把多个模块或项目聚合到一起，我们可以建立一个专门负责聚合工作的Maven project —  aggregator。
-
-建立该project的时候，我们要注意以下几点：
-
-该aggregator本身也做为一个Maven项目，它必须有自己的POM
-它的打包方式必须为： pom
-引入了新的元素：modules—module...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/11/11</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="maven">maven</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/c51233f6/">
-            
-                <span>JavaIO流</span>
-        </a>
-        <div class="abstract-content">
-            1：概述1.1 输入和输出 – 数据源和目标媒介往里读往外写 
-输入流可以理解为向内存输入，输出流可以理解为从内存输出
-​    Java的IO包主要关注的是从原始数据源的读取以及输出原始数据到目标媒介。以下是最典型的数据源和目标媒介：
-
-
-文件
-管道
-网络连接
-内存缓存
-System.in, System.out, System.error(注：Java标准输入、输出、错误输出)
-
-1.2 流​    在Java IO中，流是一个核心的概念。流从概念上来说是一个连续的数据流。你既可以从流中读取数据，也可以往流中写数据。流与数据源或者数据流向的媒介相关联。在Java IO中流既可以是字节...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/11/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="JavaIO流系列">JavaIO流系列</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/a4b4dacb/">
-            
-                <span>详解Java7中的Try-with-resource</span>
-        </a>
-        <div class="abstract-content">
-            声明本文翻译自：http://tutorials.jenkov.com/java-exception-handling/try-with-resources.html
-正文​    在java 7中使用Try-with-resource是一种新的异常处理机制，可以更容易地正确关闭在try-catch块内使用的资源。
-
-​    这里是本文涵盖的主题列表：
-1. 古老的Try-Catch-Finally 资源管理方式​    在java 7之前，管理需要明确关闭的资源的实现方式有些繁琐。
-
-​    看下面的方法读取文件并将其打印到system.out：
-12345678910111213...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/10/31</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Java异常处理">Java异常处理</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/e4155742/">
-            
-                <span>Java异常处理模板</span>
-        </a>
-        <div class="abstract-content">
-            声明：本文翻译自：http://tutorials.jenkov.com/java-exception-handling/exception-handling-templates.html#static-template-methods
-正文：1. 正确的异常处理方式：繁琐
-注：阅读本文前，强烈建议首先阅读本人另外一篇博客：深入探讨Java的故障保护异常处理
-正确的异常处理代码可能是非常繁琐的编写。try-catch块也会使代码混乱，使其更难阅读。看下面的例子：
-
-
-1234567891011121314151617181920212223242526272829Input       ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/10/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Java异常处理">Java异常处理</a>
-    
-</div>
             
         </div>
     </article>
@@ -3746,9 +3767,148 @@ System.in, System.out, System.error(注：Java标准输入、输出、错误输�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 162
+        Total : 169
         </div>
         <!-- search  -->
         
@@ -3761,6 +3921,41 @@ System.in, System.out, System.error(注：Java标准输入、输出、错误输�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/37b5aa5b/">分布式存储系统基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/82553e97/">Flink源码解析之数据流转</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/90722dc0/">Flink源码解析之FaultTolerant</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/118b9a37/">Flink源码解析之StreamOperator</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/149d881d/">Flink源码解析之任务的调度与执行</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/fade0564/">Flink源码解析之三层图结构</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/c75f56/">Flink源码解析之Job提交流程</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -3983,12 +4178,12 @@ System.in, System.out, System.error(注：Java标准输入、输出、错误输�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
         </li>
     
     
@@ -3998,12 +4193,12 @@ System.in, System.out, System.error(注：Java标准输入、输出、错误输�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
         </li>
     
     
@@ -4063,12 +4258,12 @@ System.in, System.out, System.error(注：Java标准输入、输出、错误输�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
         </li>
     
     
@@ -4088,17 +4283,17 @@ System.in, System.out, System.error(注：Java标准输入、输出、错误输�
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
         </li>
     
     
@@ -4123,17 +4318,17 @@ System.in, System.out, System.error(注：Java标准输入、输出、错误输�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
     
@@ -4173,17 +4368,12 @@ System.in, System.out, System.error(注：Java标准输入、输出、错误输�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
@@ -4193,7 +4383,7 @@ System.in, System.out, System.error(注：Java标准输入、输出、错误输�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
         </li>
     
     
@@ -4203,12 +4393,17 @@ System.in, System.out, System.error(注：Java标准输入、输出、错误输�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
         </li>
     
     
@@ -4605,9 +4800,9 @@ System.in, System.out, System.error(注：Java标准输入、输出、错误输�
     
         <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
     
-        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
-    
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="Java8系列"><span class="iconfont-archer">&#xe606;</span>Java8系列</span>
     
@@ -4650,6 +4845,8 @@ System.in, System.out, System.error(注：Java标准输入、输出、错误输�
         <span class="sidebar-tag-name" data-tags="kafka"><span class="iconfont-archer">&#xe606;</span>kafka</span>
     
         <span class="sidebar-tag-name" data-tags="JavaIO流系列"><span class="iconfont-archer">&#xe606;</span>JavaIO流系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="分布式"><span class="iconfont-archer">&#xe606;</span>分布式</span>
     
         <span class="sidebar-tag-name" data-tags="jvm"><span class="iconfont-archer">&#xe606;</span>jvm</span>
     

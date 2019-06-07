@@ -359,6 +359,248 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/ecfdb360/">
+            
+                <span>关于mapreduce程序开发的一些总结</span>
+        </a>
+        <div class="abstract-content">
+            MRmapreduce在编程的时候，基本上一个固化的模式，没有太多可灵活改变的地方，除了以下几处：
+
+
+1、输入数据接口：InputFormat   —&gt;     FileInputFormat(文件类型数据读取的通用抽象类)  DBInputFormat （数据库数据读取的通用抽象类）
+   默认使用的实现类是： TextInputFormat     job.setInputFormatClass(TextInputFormat.class) TextInputFormat的功能逻辑是：一次读一行文本，然后将该行的起始偏移量作为key，行内容作为value返回
+
+
+2、逻辑处理...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/09/30</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="MapReduce">MapReduce</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/c1ee2109/">
+            
+                <span>MR之mapreduce原理深入剖析</span>
+        </a>
+        <div class="abstract-content">
+            shuffleshuffle的过程就是各种缓存，排序，分区的过程。
+
+详细解析
+注意：环形缓冲区和   存储环形缓冲区溢出的数据放入内存，是分开的，只是它划在一起了而已，当内存中的数据到了80%之后，就开始通过spilder往文件里写，就把这80%写成一个文件，
+再重复此步骤。就生成了很多文件。
+GroupingComparator的作用就是定义一个规则，让MR把复合这个规则的，定义为一个key。
+conbiner的作用和reduce阶段是一样的，只是reducer阶段是对全局所有maptask产生的一个分区。conbiner作用的知识当前的一个maptask，这个组件的效果就是大大提升...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/09/29</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="MapReduce">MapReduce</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/21f9e9c5/">
+            
+                <span>MR之WordCountDemo及执行流程图</span>
+        </a>
+        <div class="abstract-content">
+            WordcountMapper1234567891011121314151617181920212223242526272829303132333435/** * KEYIN: 默认情况下，是mr框架所读到的一行文本的起始偏移量，Long, * 但是在hadoop中有自己的更精简的序列化接口，所以不直接用Long，而用LongWritable *  * VALUEIN:默认情况下，是mr框架所读到的一行文本的内容，String，同上，用Text *  * KEYOUT：是用户自定义逻辑处理完成之后输出数据中的key，在此处是单词，String，同上，用Text * VALUEOUT：是用...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/09/27</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="MapReduce">MapReduce</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/a9435451/">
+            
+                <span>MR之客户端提交mr程序job的流程</span>
+        </a>
+        <div class="abstract-content">
+            客户端提交job简明图示
+解析在job.submit() 这个方法的执行过程中先去通过Proxy对象去获取存放路径，然后：
+
+调用getSplit()方法切片，形成资源切片规划，序列化成文件  job.split
+把客户端设置的job的相关参数写到一个文件中       job.xml
+获取客户端生成的job的jar包           job.jar
+
+最后把这三个文件提交到Proxy返回的路径中，等待后续的流程处理。
+
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/09/25</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="MapReduce">MapReduce</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/63320029/">
+            
+                <span>详解namenode的安全模式</span>
+        </a>
+        <div class="abstract-content">
+            namenode的安全模式
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/09/24</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="hdfs">hdfs</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/ac72d308/">
+            
+                <span>Hadoop集群的联邦机制</span>
+        </a>
+        <div class="abstract-content">
+            联邦机制原因如果一个namenode一个不够用，数据特别多的话，就要进行水平扩展。
+
+简明图示
+
+问题及解决办法要提供不同的服务。存储不同的数据，就面临很大问题，例如一个数据修改了，另一个人通过另一个namenode查询，发现没改。。。。
+解决办法：分目录，一个负责/japanese,   一个负责/art-x，类似于磁盘中的C盘，D盘。
+nn1和nn2 存储数据一样，是高可用，clusterID一致。
+nn3和nn4存储数据一样，是高可用，clusterID一致。
+两个clusterID通过不同的目录来提供不同服务。
+他们共用所有的datanade，这时，datanode配置文件上的b...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/09/22</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="HA机制">HA机制</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/d0edc1ed/">
+            
+                <span>Linux常用命令</span>
+        </a>
+        <div class="abstract-content">
+            sudo临时借用root的权限执行命令,只在当前命令下有效。命令结束后，还是原来用户。
+1.配置当前用户具有sudo的执行权利
+​    [/etc/sudoers]
+​    …
+​    root ALL=(ALL) ALL
+​    centos ALL=(ALL) ALL
+​    …
+$&gt;sudo chown -R centos:centos 
+
+job放到后台运行的进程.
+1.将程序放到后台运行,以&amp;结尾.
+​    $&gt;nano b.txt &amp;
+2.查看后台运行的jobs数
+​    $&gt;jobs
+3.切换后台作业到前台来.
+​    $&...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/09/20</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/a45c106d/">
             
                 <span>Hadoop集群高可用配置原理及过程</span>
@@ -450,216 +692,6 @@ $&gt;ln -s a.txt alink        //a.txt: 目标文件  alink:连接名称(symbolic
         <a class="post-tag" href="javascript:void(0);" data-tags="NIO">NIO</a>
     
 </div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/65ebcdd2/">
-            
-                <span>NIO系列之缓冲区和通道</span>
-        </a>
-        <div class="abstract-content">
-            基本概念1.简介：Java NIO（ New IO） 是从Java 1.4版本开始引入的一个新的IO API，可以替代标准的Java IO API。NIO与原来的IO有同样的作用和目的，但是使用的方式完全不同， NIO支持面向缓冲区的、基于通道的IO操作。 NIO将以更加高效的方式进行文件的读写操作。
-
-2.与IO的主要区别
-只要是IO，肯定就是完成数据的传输。
-
-普通IO:
-直接面向的就是传输的数据的管道中的数据的流动。
-单向的。
-
-NIO：
-NIO的通道也可以理解为传输数据的流，但是不可以看成水流，可以看成铁路，铁路要完成运输，必须要依靠火车，所以这个通道只是一个从源地点到目的地点的...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/09/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="NIO">NIO</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/a4ab48f8/">
-            
-                <span>线程八锁</span>
-        </a>
-        <div class="abstract-content">
-            1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768/* * 题目：判断打印的 "one" or "two" ？ *  * 1. 两个普通同步方法，两个线程，标准打印， 打印? //one  two * 2. 新增 Thread.sleep() 给 getOne() ,打印? //one  two * 3. 新增普通方法 getThree() , 打印? //three  one   tw...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/09/01</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/657d2343/">
-            
-                <span>经典面试题之线程按顺序交替打印</span>
-        </a>
-        <div class="abstract-content">
-            
-编写一个程序，开启 3 个线程，这三个线程的 ID 分别为 A、B、C，每个线程将自己的 ID 在屏幕上打印 10 遍，要求输出的结果必须按顺序显示。
-如：ABCABCABC…… 依次递归
-
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/08/28</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/2822593d/">
-            
-                <span>CAS算法原子变量底层到底是如何工作的</span>
-        </a>
-        <div class="abstract-content">
-            原子变量 CAS算法
-i++ 的原子性问题：i++ 的操作实际上分为三个步骤“读-改-写”
-
-123456int i = 10;i = i++; //10int temp = i;i = i + 1;i = temp;
-
-原子变量：在 java.util.concurrent.atomic 包下提供了一些原子变量。
-
-
-volatile 保证内存可见性
-
-CAS（Compare-And-Swap） 算法保证数据变量的原子性
-CAS 算法是硬件对于并发操作的支持
-CAS 包含了三个操作数：
-​    ①内存值  V
-​    ②预估值  A
-​    ③更新值  B
-​    当且仅当 V...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/08/25</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/46a889d8/">
-            
-                <span>Lock与synchronized的区别</span>
-        </a>
-        <div class="abstract-content">
-            区别：
-显式锁：Lock及其子类(如ReentrantLock, ReadWriteLock等). 
-内置锁：Synchronized实现的
-
-1. 可中断申请如果使用synchronized申请一个内置锁时锁被其他线程持有, 那么当前线程将被挂起, 等待锁重新可用, 而且等待期间无法中断. 而显式锁提供了可中断申请:   
-2.尝试型申请Lock.tryLock和Lock.tryLock(long time, TimeUnit unit)方法用于尝试获取锁. 如果尝试没有成功, 则返回false, 否则返回true. 而内置锁则不提供这种特性, 一旦开始申请内置锁, 在申请成功之前, ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/08/20</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/f9184235/">
-            
-                <span>Disruptor框架</span>
-        </a>
-        <div class="abstract-content">
-            Disruptor并发框架简介
-Martin Fowler在自己网站上写了一篇LMAX架构的文章，在文章中他介绍了LMAX是一种新型零售金融交易平台，它能够以很低的延迟产生大量交易。这个系统是建立在JVM平台上，其核心是一个业务逻辑处理器，它能够在一个线程里每秒处理6百万订单。业务逻辑处理器完全是运行在内存中，使用事件源驱动方式。业务逻辑处理器的核心是Disruptor。
-Disruptor它是一个开源的并发框架，并获得2011 Duke’s 程序框架创新奖，能够在无锁的情况下实现网络的Queue并发操作。
-Disruptor是一个高性能的异步处理框架，或者可以认为是最快的消息框架（轻量...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/08/15</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/282014e2/">
-            
-                <span>重入锁和读写锁和分布式锁的应用</span>
-        </a>
-        <div class="abstract-content">
-            ReentrantLock(重入锁)
-重入锁，在需要进行同步的时候代码部分加上锁定，但不要忘记最后一定要释放锁定，不然会造成锁永远无法释放，其他线程永远进不来的结果
-注意：一定要和finally配合使用
-重入锁也无法像CountDownLatch一样做到实时性
-
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455public class UseReentrantLock &#123;  private Lock lock = new Re...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/08/12</span>
-            </div>
-            <!-- tags  -->
             
         </div>
     </article>
@@ -3842,9 +3874,148 @@ Disruptor是一个高性能的异步处理框架，或者可以认为是最快�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 162
+        Total : 169
         </div>
         <!-- search  -->
         
@@ -3857,6 +4028,41 @@ Disruptor是一个高性能的异步处理框架，或者可以认为是最快�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/37b5aa5b/">分布式存储系统基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/82553e97/">Flink源码解析之数据流转</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/90722dc0/">Flink源码解析之FaultTolerant</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/118b9a37/">Flink源码解析之StreamOperator</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/149d881d/">Flink源码解析之任务的调度与执行</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/fade0564/">Flink源码解析之三层图结构</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/c75f56/">Flink源码解析之Job提交流程</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -4079,12 +4285,12 @@ Disruptor是一个高性能的异步处理框架，或者可以认为是最快�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
         </li>
     
     
@@ -4094,12 +4300,12 @@ Disruptor是一个高性能的异步处理框架，或者可以认为是最快�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
         </li>
     
     
@@ -4159,12 +4365,12 @@ Disruptor是一个高性能的异步处理框架，或者可以认为是最快�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
         </li>
     
     
@@ -4184,17 +4390,17 @@ Disruptor是一个高性能的异步处理框架，或者可以认为是最快�
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
         </li>
     
     
@@ -4219,17 +4425,17 @@ Disruptor是一个高性能的异步处理框架，或者可以认为是最快�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
     
@@ -4269,17 +4475,12 @@ Disruptor是一个高性能的异步处理框架，或者可以认为是最快�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
@@ -4289,7 +4490,7 @@ Disruptor是一个高性能的异步处理框架，或者可以认为是最快�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
         </li>
     
     
@@ -4299,12 +4500,17 @@ Disruptor是一个高性能的异步处理框架，或者可以认为是最快�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
         </li>
     
     
@@ -4701,9 +4907,9 @@ Disruptor是一个高性能的异步处理框架，或者可以认为是最快�
     
         <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
     
-        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
-    
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="Java8系列"><span class="iconfont-archer">&#xe606;</span>Java8系列</span>
     
@@ -4746,6 +4952,8 @@ Disruptor是一个高性能的异步处理框架，或者可以认为是最快�
         <span class="sidebar-tag-name" data-tags="kafka"><span class="iconfont-archer">&#xe606;</span>kafka</span>
     
         <span class="sidebar-tag-name" data-tags="JavaIO流系列"><span class="iconfont-archer">&#xe606;</span>JavaIO流系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="分布式"><span class="iconfont-archer">&#xe606;</span>分布式</span>
     
         <span class="sidebar-tag-name" data-tags="jvm"><span class="iconfont-archer">&#xe606;</span>jvm</span>
     

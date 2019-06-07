@@ -359,6 +359,226 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/ad017d4a/">
+            
+                <span>算法基础第七课</span>
+        </a>
+        <div class="abstract-content">
+            trie 树、前缀树何为前缀树？ 如何生成前缀树？
+一个字符串类型的数组arr1，另一个字符串类型的数组arr2。
+
+
+
+几种情况：
+所有的字符串中是否有以”be”开头的，只需要按照路往下走判断即可。但是只判断是否含有be这个单词，是查询不出来的，只含有be和还含有bef是相同的树，是完全一致的trie树
+所以每个节点加一个多余数据项：有多少个字符串是以当前节点结尾的。还想查询有多少个字符串以”bc”作为前缀，这种树查不出来。所以每个节点再加一个数据项：每一个节点被划过了多少次。
+
+代码
+12345678910111213141516171819202122232425262728293...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/24</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/1a0f410c/">
+            
+                <span>算法基础第五课</span>
+        </a>
+        <div class="abstract-content">
+            认识哈希函数和哈希表
+性质
+输入域无穷大
+输出域有穷大
+输入固定，则输出固定。
+输入不固定，输出也有可能一致，哈希碰撞
+保证离散性，均匀分布，例如 输入0-98 ，输出0，1，2，给出0-98 99个不同的数字，那么最终的结果会趋近于0有33个，1有33个，2有33个，这就是哈希函数的离散性： 虽然不同的输入也可能导致相同的输出，但是如果给定很多不同的输入，那么最终输出的固定S域中，也会均匀分布
+
+
+特征：
+和输入没有规律，即使输入有规律(很相近)，哈希之后可能相差很远。
+推广：input通过hash函数之后得到一个code，那么最终所有的code 都 % m之后，也会均匀的散列在m-1...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/24</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/7591844b/">
+            
+                <span>算法基础第四课</span>
+        </a>
+        <div class="abstract-content">
+            遍历的递归行为分析
+依次来到节点的顺序是啥？
+每个节点会来到三次，这个顺序是不变的，只是我们把打印的时机放在哪，就被加工成了先序，中序和后序
+
+我们把打印的时机放在第一次来到这个节点的时候，就是先序遍历，把打印的时机放在第二次来到这个节点的时候，就是中序遍历，把打印的时机放在第三次来到这个节点的时候，就是后序遍历，
+
+先序遍历头节点，左子树，右子树
+
+非递归版本
+一个栈，先把头结点放进去，然后开始循环，每次先弹出一个节点，然后再进行压栈，先压右，再压左，那么下次弹出的时候，肯定是先弹出左节点，后弹右节点，弹出左节点的时候，还会继续把左孩子的右，左依次压入，所以整体的过程就是先处理当前节点...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/24</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/c2bc9d2e/">
+            
+                <span>算法基础第三课</span>
+        </a>
+        <div class="abstract-content">
+            用数组结构实现大小固定的队列和栈
+栈
+
+代码：
+1234567891011121314151617181920212223242526public static class ArrayStack &#123;//固定数组，实现栈    private Integer[] arr;    private Integer index;//如果把数组竖着排，index就是第一个。    public ArrayStack(int initSize) &#123;        if (initSize &lt; 0) &#123;            throw new IllegalArg...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/23</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/5c06dc97/">
+            
+                <span>Flink中startNewChain和SlotSharingGroup的区别</span>
+        </a>
+        <div class="abstract-content">
+            声明本文转自云邪的博客：Flink 原理与实现：理解 Flink 中的计算资源，并添加了一些自己的总结
+
+本文所讨论的计算资源是指用来执行 Task 的资源，是一个逻辑概念。本文会介绍 Flink 计算资源相关的一些核心概念，如：Slot、SlotSharingGroup、CoLocationGroup、Chain等。并会着重讨论 Flink 如何对计算资源进行管理和隔离，如何将计算资源利用率最大化等等。理解 Flink 中的计算资源对于理解 Job 如何在集群中运行的有很大的帮助，也有利于我们更透彻地理解 Flink 原理，更快速地定位问题。
+
+Operator Chains 为了更高...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/22</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Flink">Flink</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/8fa23e7c/">
+            
+                <span>算法基础第二课</span>
+        </a>
+        <div class="abstract-content">
+            荷兰国旗问题给定一个数组arr，和一个数num，请把小于num的数放在数组的 左边，等于num的数放在数组的中间，大于num的数放在数组的 右边。
+要求额外空间复杂度O(1)，时间复杂度O(N)
+
+less、more和cur两个指针，less左边的代表小于num区域的数，more右边的代表大于num区域的数，cur指向当前数，过程图示如下
+
+
+
+遇到小于num的，直接和小于区域的下一个数进行交换。cur直接跳一个位置，遇到大于num的，直接和大于区域的下一个数进行交换。cur原地不动，因为不知道换过来的数字是大于还是小于num还是等于num。遇到等于num的，直接跳下一个数。当cur和m...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/20</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/bfb4d2a4/">
+            
+                <span>算法基础第一课</span>
+        </a>
+        <div class="abstract-content">
+            时间复杂度常数时间的操作：一个操作如果和数据量没有关系，每次都是 固定时间内完成的操作，叫做常数操作。
+
+时间复杂度为一个算法流程中，常数操作数量的指标。常用O （读作big O）来表示。具体来说，在常数操作数量的表达式中， 只要高阶项，不要低阶项，也不要高阶项的系数，剩下的部分 如果记为f(N)，那么时间复杂度为O(f(N))。
+
+评价一个算法流程的好坏，先看时间复杂度的指标，然后再分 析不同数据样本下的实际运行时间，也就是常数项时间。
+
+一个简单的理解时间复杂度的例子一个有序数组A，另一个无序数组B，请打印B中的所有不在A中的数，A数 组长度为N，B数组长度为M。
+
+算法流程1：对于...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/17</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/6e3b6e5d/">
             
                 <span>kafka权威指南第一章</span>
@@ -435,280 +655,6 @@ Slava是Google的MillWheel团队的长期成员，后来成为Windmill团队的�
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/11</span>
             </div>
             <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/6f100083/">
-            
-                <span>TwoPhaseCommitSinkFunction</span>
-        </a>
-        <div class="abstract-content">
-            原文地址是https://data-artisans.com/blog/end-to-end-exactly-once-processing-apache-flink-apache-kafka
-
-2017年12月Apache Flink社区发布了1.4版本。该版本正式引入了一个里程碑式的功能：两阶段提交Sink，即TwoPhaseCommitSinkFunction。该SinkFunction提取并封装了两阶段提交协议中的公共逻辑，自此Flink搭配特定source和sink（特别是0.11版本Kafka）搭建精确一次处理语义(下称EOS)应用成为了可能。作为一个抽象类，TwoPhase...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/12/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Flink">Flink</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/b8ce2b2d/">
-            
-                <span>sql语句中where与having的区别</span>
-        </a>
-        <div class="abstract-content">
-            whereWhere 是一个约束声明，使用Where约束来自数据库的数据，
-
-Where是在结果返回之前起作用的，
-Where中不能使用聚合函数。 
-
-
-havingHaving 是一个过滤声明，
-
-是在查询返回结果集以后对查询结果进行的过滤操作，
-在Having中可以使用聚合函数。 
-
-
-下面用一个例子进一步说明问题。假设有数据表：
-1234567CREATE TABLE  `test`.`salary_info` (  `id` int(10) unsigned NOT NULL auto_increment,  `deparment` varchar(16) NOT NULL de...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="MySql">MySql</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/5bb24833/">
-            
-                <span>ElasticSearch入门（三）</span>
-        </a>
-        <div class="abstract-content">
-            ElasticSearch的基础分布式架构总体图示
-
-Elasticsearch对复杂分布式机制的透明隐藏特性Elasticsearch是一套分布式的系统，分布式是为了应对大数据量隐藏了复杂的分布式机制
-分片机制（我们之前随随便便就将一些document插入到es集群中去了，我们有没有care过数据怎么进行分片的，数据到哪个shard中去）
-cluster discovery（集群发现机制，我们之前在做那个集群status从yellow转green的实验里，直接启动了第二个es进程，那个进程作为一个node自动就发现了集群，并且加入了进去，还接受了部分数据，replica shard）
-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="elasticsearch">elasticsearch</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/16aceb61/">
-            
-                <span>ElasticSearch入门（二）</span>
-        </a>
-        <div class="abstract-content">
-            ES 多种搜索方式
-query string search搜索全部商品：GET /ecommerce/product/_search
-took：耗费了几毫秒timed_out：是否超时，这里是没有_shards：数据拆成了5个分片，所以对于搜索请求，会打到所有的primary shard（或者是它的某个replica shard也可以）hits.total：查询结果的数量，3个documenthits.max_score：score的含义，就是document对于一个search的相关度的匹配分数，越相关，就越匹配，分数也高hits.hits：包含了匹配搜索的document的详细数据
-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="elasticsearch">elasticsearch</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/26ba07b9/">
-            
-                <span>ElasticSearch入门（一）</span>
-        </a>
-        <div class="abstract-content">
-            什么是Elasticsearch什么是搜索？百度：我们比如说想找寻任何的信息的时候，就会上百度去搜索一下，比如说找一部自己喜欢的电影，或者说找一本喜欢的书，或者找一条感兴趣的新闻（提到搜索的第一印象）百度 != 搜索，这是不对的
-垂直搜索（站内搜索）
-互联网的搜索：电商网站，招聘网站，新闻网站，各种appIT系统的搜索：OA软件，办公自动化软件，会议管理，日程管理，项目管理，员工管理，搜索“张三”，“张三儿”，“张小三”；有个电商网站，卖家，后台管理系统，搜索“牙膏”，订单，“牙膏相关的订单”
-搜索，就是在任何场景下，找寻你想要的信息，这个时候，会输入一段你要搜索的关键字，然后就期望找到...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="elasticsearch">elasticsearch</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/dfa909ab/">
-            
-                <span>Flink的Metrics与监控</span>
-        </a>
-        <div class="abstract-content">
-            Metrics的种类Counter计数器
-
-Gauge直接赋值
-
-Histogram会存一部分历史数据，然后取一段时间内的中位数等操作
-
-Meter时间相关，一段时间内的比率值，速率，每秒的数据流入量啊，等等
-
-按照作用划分
-MetricOption包下包含所有的metrics指标
-
-JobManager
-JobManager Job
-TaskManager
-TaskManager Job
-Task
-Operator
-
-
-
-Metrics 的获取方式MetricsReporter
-Restful api
-
-MetricsReporter
-jmx
-Ganglia
-Graphite
-
-
-自定...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/07</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Flink">Flink</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/6a73b0f6/">
-            
-                <span>Flink状态管理与恢复机制</span>
-        </a>
-        <div class="abstract-content">
-            状态 （state）定义某task / operator 在某时刻的一个中间结果
-快照
-作用State可以被记录，在失败的情况下恢复
-基本类型
-Operator state
-keyed state
-
-
-State 类型
-Operator State
-唯一绑定到特定operator，对应一个算子，
-与key无关
-无论怎么配置backend，都是存储在java堆中，
-数据结构 ： ListState\
-代码实例
-
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/06</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Flink">Flink</a>
-    
-</div>
             
         </div>
     </article>
@@ -3891,9 +3837,148 @@ Operator State
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 162
+        Total : 169
         </div>
         <!-- search  -->
         
@@ -3906,6 +3991,41 @@ Operator State
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/37b5aa5b/">分布式存储系统基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/82553e97/">Flink源码解析之数据流转</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/90722dc0/">Flink源码解析之FaultTolerant</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/118b9a37/">Flink源码解析之StreamOperator</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/149d881d/">Flink源码解析之任务的调度与执行</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/fade0564/">Flink源码解析之三层图结构</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/c75f56/">Flink源码解析之Job提交流程</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -4128,12 +4248,12 @@ Operator State
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
         </li>
     
     
@@ -4143,12 +4263,12 @@ Operator State
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
         </li>
     
     
@@ -4208,12 +4328,12 @@ Operator State
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
         </li>
     
     
@@ -4233,17 +4353,17 @@ Operator State
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
         </li>
     
     
@@ -4268,17 +4388,17 @@ Operator State
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
     
@@ -4318,17 +4438,12 @@ Operator State
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
@@ -4338,7 +4453,7 @@ Operator State
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
         </li>
     
     
@@ -4348,12 +4463,17 @@ Operator State
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
         </li>
     
     
@@ -4750,9 +4870,9 @@ Operator State
     
         <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
     
-        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
-    
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="Java8系列"><span class="iconfont-archer">&#xe606;</span>Java8系列</span>
     
@@ -4795,6 +4915,8 @@ Operator State
         <span class="sidebar-tag-name" data-tags="kafka"><span class="iconfont-archer">&#xe606;</span>kafka</span>
     
         <span class="sidebar-tag-name" data-tags="JavaIO流系列"><span class="iconfont-archer">&#xe606;</span>JavaIO流系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="分布式"><span class="iconfont-archer">&#xe606;</span>分布式</span>
     
         <span class="sidebar-tag-name" data-tags="jvm"><span class="iconfont-archer">&#xe606;</span>jvm</span>
     

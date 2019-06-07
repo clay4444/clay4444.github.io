@@ -346,6 +346,213 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/c319249/">
+            
+                <span>多线程的设计模式之Master-Worker模式</span>
+        </a>
+        <div class="abstract-content">
+            Master-Worker模式
+简易图：
+
+
+
+Master-Worker模式是常用的并行计算的模式，它的核心思想是系统由两类进程协助工作，Master进程和Worker进程，Master负责接收和分配任务，Worker负责处理子任务，当各个Worker子进程处理完成后，会将结果返回给Master，由Master做归纳和总结，其好处就是能将一个大任务分解成若干个小任务，并行执行，从而提高系统的吞吐量
+设计思想
+Master必须要有一个容器乘装所有的任务，因为Client要提交所有的任务到Master，这个容器要不一定要是阻塞的，但是要是一个队列，先进来的任务先处理，所以可以采用Concu...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/07/28</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/6d530e97/">
+            
+                <span>多线程的设计模式之Future模式</span>
+        </a>
+        <div class="abstract-content">
+            Future模式
+时序图
+
+
+
+Future模式有点类似于商品订单，比如在网购时，当看中某一件商品时，就可以提交订单，当订单处理完成后，在家里等待商品送货上门即可，或者说更形象的我们发送Ajax请求的时候，页面是异步的进行后台处理，用户无需一直等待请求的结果，可以继续浏览或操作其他内容
+FutureData是对RealData的包装，是对真实数据的一个代理，封装了获取真实数据的等待过程。它们都实现了共同的接口，所以，针对客户端程序组是没有区别的；
+客户端在调用的方法中，单独启用一个线程来完成真实数据的组织，这对调用客户端的main函数式封闭的；
+因为在FutureData中的notify...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/07/24</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/f1a00836/">
+            
+                <span>并发Queue详解及其应用</span>
+        </a>
+        <div class="abstract-content">
+            总结：
+ArrayBlockingQueue 没有读分离 有界队列
+LinkedBlockingQueue 读写分类 无界队列
+SynchronousQueue 没有缓冲，没有容量
+PriorityBlockingQueue 优先级队列，Comparable接口判断 无界队列
+DelayQueue 延迟队列， Delayed接口判断 无界队列
+
+在并发队列上提供了两套实现，一个是以ConcurrentLinkedQueue为代表的高性能队列，一个是以BlockQueue接口为代表的阻塞队列，不论哪种，都继承自Queue
+（1.）ConcurrentLinkedQueue是一个适用于高并发...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/07/23</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/2b949ee4/">
+            
+                <span>并发类容器</span>
+        </a>
+        <div class="abstract-content">
+            
+由于同步类容器(Vector或者HashTable)的同步性只是单个方法间的同步性，而且是用synchronized关键字修饰的，所以同一时间只能有一个线程访问内个方法，这显然不符合高并发性，而且针对复合操作同步类容器是没有原子性的，只能通过synchronized加锁修饰这个复合操作(遍历，根据index获取元素…..)的方法，但是也就意味着同一时间只能有一个线程访问此复合方法，也就无法满足并发性
+
+为了解决上述问题：并发类容器
+并发类容器是专门针对并发设计的，使用ConcurrentHashMap来代替给予散列的传统的HashTable，而且在ConcurrentMap中，添加了一...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/07/20</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/bdf654d1/">
+            
+                <span>同步类容器</span>
+        </a>
+        <div class="abstract-content">
+            同步类容器
+总结：同步类容器是线程安全的，但是只是每个单个的方法保持着安全性，即添加方法，获取方法，它实现的方式无非就是在每个这样的方法上加上synchronized锁，这样只是保证了每个独立方法的线程安全性，但是没有若是复合操作的话，比如遍历，根据指定的index访问元素，如果在这期间，其他线程修改或者删除了某个(或者是确定的一个)，那么还是会有线程安全问题的，而且每次只能有一个线程访问容器的状态，很显然不能满足高并发的需求； 这里还有一点需要注意的是：抛出ConcurrentModificationException这个异常的情况是当一个线程正在用迭代器遍历的时候，被其他线程修改了其...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/07/19</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/5d37d5dd/">
+            
+                <span>集合迭代器快速失败行为及CopyOnWriteArrayList</span>
+        </a>
+        <div class="abstract-content">
+            什么是集合迭代器快速失败行为
+以ArrayList为例，在多线程并发情况下，如果有一个线程在修改ArrayList集合的结构（插入、移除…），而另一个线程正在用迭代器遍历读取集合中的元素，此时将抛出ConcurrentModificationException异常立即停止迭代遍历操作，而不需要等到遍历结束后再检查有没有出现问题；
+
+ArrayList.Itr迭代器快速失败源码及例子
+查看ArrayList的Itr迭代器源码，可以看到Itr为ArrayList的私有内部类，有一个expectedModCount成员属性，在迭代器对象创建的时候初始化为ArrayList的modCount，即...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/07/16</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="源码解析系列">源码解析系列</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/c8369a3e/">
+            
+                <span>MR之倒排索引的建立</span>
+        </a>
+        <div class="abstract-content">
+            需求很多个文件，里面有很多单词，要求的结果是统计每个单词，倒排索引，在每个文件中出现的次数
+
+代码实现InverIndexStepOne12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364public class InverIndexStepOne &#123;  static class InverIndexStepOneMapper extends Mapper&lt;LongWritable, Te...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/07/15</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="MapReduce">MapReduce</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/db40873f/">
             
                 <span>ThreadLocal详解及其底层实现分析</span>
@@ -431,258 +638,6 @@ wait方法释放锁，notify方法不释放锁
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/07/06</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/623ba864/">
-            
-                <span>关于synchronized一些容易忽略的特性</span>
-        </a>
-        <div class="abstract-content">
-            
-对象锁的同步和异步
-同步 synchronized
-
-同步的概念就是共享，我们要牢牢记住共享这两个字，如果不是共享的资源，就没有必要同步
-
-
-异步asynchronized
-
-异步的概念就是独立，相互之间不受到任何制约，就好像我们学习http的时候，在页面发起的Ajax请求，我们还可以继续浏览或操作页面的内容，二者之间没有任何关系
-
-
-同步的目的就是为了线程安全，其实对于线程安全来说，需要满足两个特性
-
-原子性(同步)可见性
-
-
-实例代码
-
-
-123456789101112131415161718192021222324252627282930313233343536373839404...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/07/03</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/2dd0f618/">
-            
-                <span>Hive自定义函数和Transform</span>
-        </a>
-        <div class="abstract-content">
-            Hive自定义函数和Transform​    当Hive提供的内置函数无法满足你的业务处理需要时，此时就可以考虑使用用户自定义函数（UDF：user-defined function）
-
-自定义函数类别UDF  作用于单个数据行，产生一个数据行作为输出。（数学函数，字符串函数）
-UDAF（用户定义聚集函数）：接收多个输入数据行，并产生一个输出数据行。（count，max）
-
-UDF开发实例1、先开发一个java类，继承UDF，并重载evaluate方法
-12345678910package cn.itcast.bigdata.udfimport org.apache.hadoop.hi...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/07/02</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hive">Hive</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/5ec70f63/">
-            
-                <span>Hive参数配置方式</span>
-        </a>
-        <div class="abstract-content">
-            关于Hive的参数配置​    开发Hive应用时，不可避免地需要设定Hive的参数。设定Hive的参数可以调优HQL代码的执行效率，或帮助定位问题。然而实践中经常遇到的一个问题是，为什么设定的参数没有起作用？这通常是错误的设定方式导致的。
-
-对于一般参数，有以下三种设定方式：1.配置文件 
-2.命令行参数 
-3.参数声明 
-
-配置文件：
-Hive的配置文件包括：
-l 用户自定义配置文件：$HIVE_CONF_DIR/hive-site.xml
-l 默认配置文件：$HIVE_CONF_DIR/hive-default.xml
-用户自定义配置会覆盖默认配置 。
-
-命令行参数：
-启动Hive...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/06/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hive">Hive</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/73b70227/">
-            
-                <span>关于Hive的Select查询</span>
-        </a>
-        <div class="abstract-content">
-            基本的Select操作1.语法结构12345678SELECT [ALL | DISTINCT] select_expr, select_expr, ... FROM table_reference[WHERE where_condition] [GROUP BY col_list [HAVING condition]] [CLUSTER BY col_list   | [DISTRIBUTE BY col_list] [SORT BY| ORDER BY col_list] ] [LIMIT number]
-
-2. 注：1、order by 会对输入做全局排序，因此只有一个reduce...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/06/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hive">Hive</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/f92012d0/">
-            
-                <span>Hive中的数据存储格式和基本操作</span>
-        </a>
-        <div class="abstract-content">
-            一、Hive的数据存储1、Hive中所有的数据都存储在HDFS 中，没有专门的数据存储格式（可支持Text，SequenceFile，ParquetFile，RCFILE等）
-2、只需要在创建表的时候告诉 Hive 数据中的列分隔符和行分隔符，Hive 就可以解析数据。
-3、Hive 中包含以下数据模型：DB、Table，External Table，Partition，Bucket。
-
-db：在hdfs中表现为${hive.metastore.warehouse.dir}目录下一个文件夹
-
-table：在hdfs中表现所属db目录下一个文件夹
-
-external table：外部表, ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/06/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hive">Hive</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/e01e83db/">
-            
-                <span>Hive最常用之统计报表</span>
-        </a>
-        <div class="abstract-content">
-            Hive 数据处理技巧之 统计报表问题：求每个月以来每个员工的累计金额
-1. 准备数据12create table t_access_times(username string,month string,salary int)row format delimited fields terminated by ',';
-1load data local inpath '/home/hdfs/t_access_times.dat' into table t_access_times;
-数据：
-12345678910A,2015-01,5A,2015-01,15B,2015-01,5A,201...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/06/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Hive">Hive</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/111e02e0/">
-            
-                <span>volatile关键字</span>
-        </a>
-        <div class="abstract-content">
-            
-valatile关键字的主要作用是使变量在多个线程间可见
-没有valatile之前的做法，在变量或者方法上加锁，特点(弊端)： 每次只有一个线程来修改，效率低
-JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把主内存中的数据copy到线程单独的内存中，所以不加volatile关键字的话，即使主内存中的数据发生了改变，线程内存中的数据也不会发生变化
-适用的场景可以是很多的线程都在读，一个线程在写的情况，看图示
-
-
-测试代码：
-123456789101112131415161718192021222324public class Runhread extends Thread&...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/06/18</span>
             </div>
             <!-- tags  -->
             
@@ -3770,9 +3725,148 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 162
+        Total : 169
         </div>
         <!-- search  -->
         
@@ -3785,6 +3879,41 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/07</span><a class="archive-post-title" href="/clay4444.github.io/posts/37b5aa5b/">分布式存储系统基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/82553e97/">Flink源码解析之数据流转</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/90722dc0/">Flink源码解析之FaultTolerant</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/118b9a37/">Flink源码解析之StreamOperator</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/149d881d/">Flink源码解析之任务的调度与执行</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/fade0564/">Flink源码解析之三层图结构</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/05</span><a class="archive-post-title" href="/clay4444.github.io/posts/c75f56/">Flink源码解析之Job提交流程</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -4007,12 +4136,12 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/44c10193/">MapReduce的Task并行度决定机制</a>
         </li>
     
     
@@ -4022,12 +4151,12 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
         </li>
     
     
@@ -4087,12 +4216,12 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/b5801fa4/">Spark简介及wc实现</a>
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href="/clay4444.github.io/posts/77c338dd/">IDEA编译scala文件时不会把scala文件打包的解决办法</a>
         </li>
     
     
@@ -4112,17 +4241,17 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/f7fb5894/">详解Hbase的协处理器coprocessor</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
         </li>
     
     
@@ -4147,17 +4276,17 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
         </li>
     
     
@@ -4197,17 +4326,12 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
@@ -4217,7 +4341,7 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href="/clay4444.github.io/posts/3ad494db/">并发编程实战(三)</a>
         </li>
     
     
@@ -4227,12 +4351,17 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/af70e59d/">MR之自定义GroupingComparator</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/12</span><a class="archive-post-title" href="/clay4444.github.io/posts/987ce803/">MR之自定义inputFormat</a>
         </li>
     
     
@@ -4629,9 +4758,9 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
     
         <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
     
-        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
-    
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hive"><span class="iconfont-archer">&#xe606;</span>Hive</span>
     
         <span class="sidebar-tag-name" data-tags="Java8系列"><span class="iconfont-archer">&#xe606;</span>Java8系列</span>
     
@@ -4674,6 +4803,8 @@ JDK 1.5之后针对多线程做了优化，每启动一个新线程，都会把�
         <span class="sidebar-tag-name" data-tags="kafka"><span class="iconfont-archer">&#xe606;</span>kafka</span>
     
         <span class="sidebar-tag-name" data-tags="JavaIO流系列"><span class="iconfont-archer">&#xe606;</span>JavaIO流系列</span>
+    
+        <span class="sidebar-tag-name" data-tags="分布式"><span class="iconfont-archer">&#xe606;</span>分布式</span>
     
         <span class="sidebar-tag-name" data-tags="jvm"><span class="iconfont-archer">&#xe606;</span>jvm</span>
     
