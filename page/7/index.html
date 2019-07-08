@@ -359,6 +359,41 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/clay4444.github.io/posts/b391d3f0/">
+            
+                <span>scala函数式编程和集合进阶</span>
+        </a>
+        <div class="abstract-content">
+            函数式编程注意点：
+如果使用了匿名函数，那么匿名函数一定不能有返回值，必须有返回的话，需要写在函数的结尾。
+
+
+12345678scala&gt;def add(a:Int,b:Int) = a + bscala&gt;val f = add _					//将函数赋值给一个变量,函数类型变量。scala&gt;def multi(n:Int) = n * 2scala&gt;def f = multi _				//_ 表示取出函数本身scala&gt;Array(1,2,3,4).map(f)
+
+匿名函数1234scala&gt;(n:Double)=&gt;3 * n						/...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/03/12</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="快学scala读书笔记">快学scala读书笔记</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/clay4444.github.io/posts/ccad62d6/">
             
                 <span>scala的面向对象和操作符</span>
@@ -690,54 +725,10 @@ storm以消费者从kafka队列中提取消息。
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/clay4444.github.io/posts/97e35c7b/">
-            
-                <span>Storm的分组策略和确保消息送达机制</span>
-        </a>
-        <div class="abstract-content">
-            分组策略
-shuffle 随机分组
-
-
-
-
-field分组
-
-安装指定filed的key进行hash处理，
-相同的field，一定进入到同一bolt.
-该分组容易产生数据倾斜问题，通过使用二次聚合避免此类问题。
-
-
-使用二次聚合避免倾斜。
-App入口类
-1234567891011121314151617181920212223242526public class App &#123;  public static void main(String[] args) throws Exception &#123;    TopologyBuilder builder = new Topolo...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/03/08</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Storm">Storm</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/clay4444.github.io/page/6/">&#60; PREV</a><a class="page-number" href="/clay4444.github.io/">1</a><span class="space">&hellip;</span><a class="page-number" href="/clay4444.github.io/page/5/">5</a><a class="page-number" href="/clay4444.github.io/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/clay4444.github.io/page/8/">8</a><a class="page-number" href="/clay4444.github.io/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/clay4444.github.io/page/17/">17</a><a class="extend next" rel="next" href="/clay4444.github.io/page/8/">NEXT &#62;</a>
+        <a class="extend prev" rel="prev" href="/clay4444.github.io/page/6/">&#60; PREV</a><a class="page-number" href="/clay4444.github.io/">1</a><span class="space">&hellip;</span><a class="page-number" href="/clay4444.github.io/page/5/">5</a><a class="page-number" href="/clay4444.github.io/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/clay4444.github.io/page/8/">8</a><a class="page-number" href="/clay4444.github.io/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/clay4444.github.io/page/18/">18</a><a class="extend next" rel="next" href="/clay4444.github.io/page/8/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -4148,9 +4139,72 @@ App入口类
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 170
+        Total : 171
         </div>
         <!-- search  -->
         
@@ -4163,6 +4217,11 @@ App入口类
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/7b38f501/">Spring注解驱动开发之AOP-声明式事务</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -4186,12 +4245,12 @@ App入口类
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/118b9a37/">Flink源码解析之StreamOperator</a>
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/149d881d/">Flink源码解析之任务的调度与执行</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/149d881d/">Flink源码解析之任务的调度与执行</a>
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href="/clay4444.github.io/posts/118b9a37/">Flink源码解析之StreamOperator</a>
         </li>
     
     
@@ -4425,17 +4484,12 @@ App入口类
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/57f823bb/">MR之参数优化</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/4ad64663/">MapReduce框架结构及核心运行机制</a>
         </li>
     
     
@@ -4446,6 +4500,11 @@ App入口类
     
         <li class="archive-post-item">
             <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/403d9f31/">MR之自定义outputFormat</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/16</span><a class="archive-post-title" href="/clay4444.github.io/posts/68d67dd4/">Mapreduce中的DistributedCache应用</a>
         </li>
     
     
@@ -4530,7 +4589,7 @@ App入口类
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
         </li>
     
     
@@ -4540,7 +4599,7 @@ App入口类
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/67e1a306/">Hbase和Hive的集成</a>
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href="/clay4444.github.io/posts/e1de3e9b/">详解Hbase的rowKey设计（热点问题）和Hbase中的布隆过滤器</a>
         </li>
     
     
@@ -4565,22 +4624,22 @@ App入口类
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/305a7ab3/">数字证书及CA的扫盲介绍</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/649d866d/">扫盲HTTPS和SSL、TLS协议[2]：可靠密钥交换的难点，以及身份认证的必要性</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/edc108ac/">扫盲DNS原理，兼谈域名劫持和域名欺骗+域名污染</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href="/clay4444.github.io/posts/9194e3d6/">扫盲HTTPS和SSL、TLS协议[1]：背景知识、协议的需求、设计的难点</a>
         </li>
     
     
@@ -4615,12 +4674,12 @@ App入口类
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/92f9baae/">关于JdbcConnection的线程安全问题</a>
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href="/clay4444.github.io/posts/c2c02cf/">关于HttpSession的线程安全问题</a>
         </li>
     
     
@@ -4635,12 +4694,12 @@ App入口类
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/eb162f92/">并发编程实战(一)</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/4427b4f0/">并发编程实战(二)</a>
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href="/clay4444.github.io/posts/eb162f92/">并发编程实战(一)</a>
         </li>
     
     
@@ -5041,11 +5100,11 @@ App入口类
     
         <span class="sidebar-tag-name" data-tags="Flink"><span class="iconfont-archer">&#xe606;</span>Flink</span>
     
+        <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
+    
         <span class="sidebar-tag-name" data-tags="flume"><span class="iconfont-archer">&#xe606;</span>flume</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
-    
-        <span class="sidebar-tag-name" data-tags="HA机制"><span class="iconfont-archer">&#xe606;</span>HA机制</span>
     
         <span class="sidebar-tag-name" data-tags="Hbase"><span class="iconfont-archer">&#xe606;</span>Hbase</span>
     
