@@ -1,8 +1,9 @@
 ---
 title: Spring注解驱动开发之AOP-声明式事务
-date: 2019-07-08 12:48:40
 tags:
   - Spring注解驱动开发
+abbrlink: 7b38f501
+date: 2019-07-08 12:48:40
 ---
 
 ### AOP
