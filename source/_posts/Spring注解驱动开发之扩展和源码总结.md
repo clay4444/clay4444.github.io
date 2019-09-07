@@ -1,8 +1,9 @@
 ---
 title: Spring注解驱动开发之扩展和源码总结
-date: 2019-07-11 13:36:32
 tags:
   - Spring注解驱动开发
+abbrlink: da036dae
+date: 2019-07-11 13:36:32
 ---
 
 ### 扩展
